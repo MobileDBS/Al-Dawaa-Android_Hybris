@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AlDawaaHybris"
 include ':app'
+include ':core'
