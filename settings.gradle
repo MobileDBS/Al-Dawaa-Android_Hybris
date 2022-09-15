@@ -9,3 +9,8 @@ dependencyResolutionManagement {
 rootProject.name = "AlDawaaHybris"
 include ':app'
 include ':core'
+include ':authentication'
+include ':authentication:authentication-datasource'
+include ':authentication:authentication-domain'
+include ':authentication:ui-login'
+include ':authentication:ui-register'
