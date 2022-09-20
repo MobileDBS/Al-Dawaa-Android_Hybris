@@ -71,6 +71,8 @@ dependencies {
     implementation(Compose.tooling)
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigation)
+    implementation(Compose.preview)
+
     implementation(Google.material)
 
     implementation (Retrofit.retrofit)
