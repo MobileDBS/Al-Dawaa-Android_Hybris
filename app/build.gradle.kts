@@ -64,6 +64,8 @@ dependencies {
 
     //Coil image loading
     implementation(Coil.coil)
+    implementation(Coil.coilGif)
+
 
     implementation(Compose.activity)
     implementation(Compose.ui)
