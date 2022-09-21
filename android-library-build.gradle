@@ -54,13 +54,13 @@ dependencies{
     implementation Compose.material
     implementation Compose.tooling
     implementation Compose.navigation
+    implementation Compose.preview
 
     implementation Google.material
 
     implementation (Retrofit.retrofit)
     implementation (Retrofit.moshiConverter)
     implementation (Retrofit.retrofitCoroutines)
-
     implementation (Retrofit.moshi)
     implementation (Retrofit.moshiKotlin)
     implementation (Retrofit.moshiCodegen)
