@@ -1,4 +1,4 @@
-package com.kr.aldawaa
+package com.kr.aldawaa.ui
 
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
@@ -28,9 +28,11 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +64,8 @@ fun GifImage(
         .build()
     Image(
         painter = rememberAsyncImagePainter(
-            ImageRequest.Builder(context).data(data = R.raw.splash_gif).apply(block = {
+            ImageRequest.Builder(context).data(data =
+            R.raw.splash_gif).apply(block = {
                 size(Size.ORIGINAL)
             }).build(), imageLoader = imageLoader
         ),
