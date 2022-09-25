@@ -86,6 +86,7 @@ dependencies {
     implementation (Retrofit.moshiCodegen)
 
 
+    implementation(project(Modules.core))
 
     implementation(Hilt.android)
     kapt(Hilt.compiler)
