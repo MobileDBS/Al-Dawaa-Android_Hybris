@@ -14,6 +14,8 @@ dependencies{
 
     "implementation"(Kotlinx.coroutinesCore)
 
+    "implementation" (Hilt.javaInject)
+
    // "implementation"(Hilt.android)
    // "kapt"(Hilt.compiler)
 
