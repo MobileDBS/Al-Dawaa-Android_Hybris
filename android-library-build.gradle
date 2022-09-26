@@ -70,6 +70,8 @@ dependencies{
     implementation(Coil.coil)
     implementation(Coil.coilGif)
 
-    implementation Hilt.android
-    kapt Hilt.compiler
+    implementation(Hilt.android)
+    implementation(Hilt.lifecycle)
+    kapt(Hilt.androidx)
+    kapt(Hilt.compiler)
 }

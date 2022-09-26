@@ -13,6 +13,8 @@ dependencies{
     "implementation"(project(Modules.authenticationDomain))
 
     "implementation"(Kotlinx.coroutinesCore)
+    "implementation"(Kotlinx.coroutinesAndroid)
+
 
     "implementation" (Hilt.javaInject)
 

@@ -3,7 +3,9 @@ apply{
 }
 dependencies{
 
+    "implementation"(Kotlinx.coroutinesAndroid)
     "implementation" (Hilt.javaInject)
+    "implementation"(project(Modules.authenticationDomain))
     "implementation"(project(Modules.authenticationDataSource))
 
 }

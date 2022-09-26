@@ -85,10 +85,13 @@ dependencies {
     implementation (Retrofit.moshiKotlin)
     implementation (Retrofit.moshiCodegen)
 
-
     implementation(project(Modules.core))
+    implementation(project(Modules.authenticationDataSource))
+
 
     implementation(Hilt.android)
+    implementation(Hilt.lifecycle)
+    kapt(Hilt.androidx)
     kapt(Hilt.compiler)
     //  debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 

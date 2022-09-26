@@ -1,6 +1,13 @@
 object Hilt {
     const val hiltVersion = "2.43.2"
     const val javaInjectVersion = "1"
+    const val hiltLifecycleVersion = "1.0.0-alpha03"
+    const val hiltAndroidxVersion = "1.0.0"
+
+
+    const val lifecycle = "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleVersion"
+    const val androidx = "'androidx.hilt:hilt-compiler:$hiltAndroidxVersion"
+
     const val android = "com.google.dagger:hilt-android:$hiltVersion"
     const val compiler = "com.google.dagger:hilt-compiler:$hiltVersion"
     const val javaInject = "javax.inject:javax.inject:$javaInjectVersion"
