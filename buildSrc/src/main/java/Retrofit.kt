@@ -13,4 +13,5 @@ object Retrofit {
     const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${moshiVersion}"
     const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${moshiVersion}"
 
+
 }

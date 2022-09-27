@@ -1,13 +1,18 @@
 package com.kr.authentication_datasource.network
 
+import com.kr.authentication_datasource.network.dto.LoginRequest
+import com.kr.authentication_datasource.network.dto.LoginResponse
+import javax.inject.Inject
 
-class AuthenticationRepoImp  @Inject constructor(
-    private  val api: CoinPaprikaApi
-) : CoinRepository{
-    override suspend fun getCoins(): List<CoinDto> {
-        return  api.getCoins()
+class AuthenticationRepoImp @Inject constructor(private val apiInterface: ApiInterface) {
+
+    suspend fun loginRequest(): LoginResponse {
+        return apiInterface.login(
+            "",
+            "english",
+            LoginRequest("0562137538", "123456", "")
+        )
+
     }
 
-    override suspend fun getCoinById(coinId: String): CoinDetailDto {
-        return  api.getCoinById(coinId)
-    }
+}
