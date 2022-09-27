@@ -5,8 +5,8 @@ object Hilt {
     const val hiltAndroidxVersion = "1.0.0"
 
 
-    const val lifecycle = "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleVersion"
-    const val androidx = "'androidx.hilt:hilt-compiler:$hiltAndroidxVersion"
+//    const val lifecycle = "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleVersion"
+//   const val androidx = "'androidx.hilt:hilt-compiler:$hiltAndroidxVersion"
 
     const val android = "com.google.dagger:hilt-android:$hiltVersion"
     const val compiler = "com.google.dagger:hilt-compiler:$hiltVersion"

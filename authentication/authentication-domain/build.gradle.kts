@@ -3,7 +3,7 @@ apply{
 }
 dependencies{
 
-    "implementation" (Hilt.javaInject)
-    "implementation"(project(Modules.authenticationDataSource))
+  //  "implementation" (Hilt.javaInject)
+//    "implementation"(project(Modules.authenticationDataSource))
 
 }

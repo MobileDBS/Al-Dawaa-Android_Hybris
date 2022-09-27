@@ -3,7 +3,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
+//apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion Android.compileSdk
@@ -70,8 +70,8 @@ dependencies{
     implementation(Coil.coil)
     implementation(Coil.coilGif)
 
-    implementation(Hilt.android)
-    implementation(Hilt.lifecycle)
-    kapt(Hilt.androidx)
+//    implementation(Hilt.lifecycle)
+   // kapt(Hilt.androidx)
     kapt(Hilt.compiler)
+    implementation(Hilt.android)
 }
