@@ -26,13 +26,15 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-     /*   release {
+//        getByName("release") {
+//            isMinifyEnabled = false
+//        }
+        release {
 
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }*/
+            isMinifyEnabled = true
+            isShrinkResources = true
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
