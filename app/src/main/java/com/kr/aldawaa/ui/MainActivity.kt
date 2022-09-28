@@ -35,7 +35,6 @@ import coil.size.Size
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
 import com.kr.ui_login.ui.LoginViewModel
-//import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,7 +43,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+      //      val viewModel: RegsterViewModel = hiltViewModel()
        //     val viewModel: LoginViewModel = hiltViewModel()
 //            val state = viewModel.state.value
 //            Log.v("loginResponse" , state.user?.firstname.toString())
@@ -52,6 +51,13 @@ class MainActivity : ComponentActivity() {
 
 
             AlDawaaHybrisTheme {
+                val viewModel: LoginViewModel = hiltViewModel()
+                            val state = viewModel.state.value
+
+
+
+
+            Log.v("loginResponse" , state.error.toString())
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                    // GifImage()

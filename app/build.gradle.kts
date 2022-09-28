@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -20,9 +19,9 @@ android {
         versionName = Android.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    /*    vectorDrawables {
-            useSupportLibrary true
-        }*/
+        /*    vectorDrawables {
+                useSupportLibrary true
+            }*/
     }
 
     buildTypes {
@@ -30,9 +29,8 @@ android {
 //            isMinifyEnabled = false
 //        }
         release {
-
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+//            isShrinkResources = true
 //            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -42,19 +40,22 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-       // useIR = true
+        // useIR = true
     }
     buildFeatures {
         compose  = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.kotlinCompilerExtensionVersion
+
         //kotlinCompilerVersion '1.7.10'
     }
     packagingOptions {
-        resources {
+  /*      resources {
             exclude("/META-INF/AL2.0,LGPL2.1")
-        }
+        }*/
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
     }
 }
 
@@ -97,8 +98,8 @@ dependencies {
     kapt(Hilt.compiler)
     //  debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
-//    implementation(project(Modules.ui_login))
-       implementation(project(Modules.ui_register))
+    implementation(project(Modules.ui_login))
+   // implementation(project(Modules.ui_register))
 
 
 }

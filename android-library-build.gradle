@@ -1,8 +1,16 @@
 // build.gradle for android libraries that contain UI
 //Will expand from this file to all ui/android library modules[components ,heroList, heroDetail]...
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+
+/*apply plugin: 'com.android.library'
+apply plugin: 'android'
+apply plugin: 'kotlin-kapt'
+
+kotlin("android")
+kotlin("kapt")*/
 //apply plugin: 'dagger.hilt.android.plugin'
 
 android {
@@ -35,10 +43,13 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion Compose.composeVersion
+        kotlinCompilerExtensionVersion Compose.kotlinCompilerExtensionVersion
         kotlinCompilerVersion Kotlin.version
     }
     packagingOptions {
+  /*      resources {
+            exclude("/META-INF/AL2.0,LGPL2.1")
+        }*/
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")
     }
@@ -55,7 +66,10 @@ dependencies{
     implementation Compose.material
     implementation Compose.tooling
     implementation Compose.navigation
-    implementation Compose.preview
+    implementation Compose.hiltNavigation
+//    implementation(Compose.composeCompiler)
+
+    //  implementation Compose.preview
 
     implementation Google.material
 

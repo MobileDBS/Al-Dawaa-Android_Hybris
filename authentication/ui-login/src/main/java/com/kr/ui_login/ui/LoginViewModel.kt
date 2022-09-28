@@ -1,5 +1,6 @@
 package com.kr.ui_login.ui
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -13,21 +14,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-   // private val userCase: LoginUseCase
+    private val userCase: LoginUseCase
     )
     : ViewModel() {
-    ////private val _state = mutableStateOf(LoginState())
-  //  val state: State<LoginState> = _state
+    private val _state = mutableStateOf(LoginState())
+    val state: State<LoginState> = _state
     init {
-     //   login("0562137538", "123456")
+        login("0562137538", "123456")
     }
 
-/*
     private fun login(identity :String , password :String) {
        userCase(identity , password).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.value = LoginState(user = result.data)
+                       Log.v("loginResponse" , result.data?.firstname.toString())
                 }
                 is Resource.Error -> {
                     _state.value = LoginState(
@@ -40,5 +41,4 @@ class LoginViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
-*/
 }
