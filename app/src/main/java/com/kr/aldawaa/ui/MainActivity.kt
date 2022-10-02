@@ -3,18 +3,18 @@ package com.kr.aldawaa.ui
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,37 +34,53 @@ import coil.request.ImageRequest
 import coil.size.Size
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+import com.kr.network.ConnectivityObserver
+import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
+@Inject
+     lateinit var connectivityObserver: NetworkConnectivityObserver
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-      //      val viewModel: RegsterViewModel = hiltViewModel()
-       //     val viewModel: LoginViewModel = hiltViewModel()
-//            val state = viewModel.state.value
-//            Log.v("loginResponse" , state.user?.firstname.toString())
-//            Log.v("loginResponse" , state.error.toString())
-
-
             AlDawaaHybrisTheme {
-                val viewModel: LoginViewModel = hiltViewModel()
-                            val state = viewModel.state.value
-
-
-
-
-            Log.v("loginResponse" , state.error.toString())
+               // connectivityObserver = NetworkConnectivityObserver(applicationContext)
+                val status by connectivityObserver.observe().collectAsState(initial = ConnectivityObserver.Status.Unavailable)
+                checkConnection(status)
+                //loginConnectionTest
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                   // GifImage()
-                    DialogBox()
+                    // GifImage()
+                  //  DialogBox()
                 }
             }
         }
+    }
+
+
+}
+@Composable
+fun loginConnectionTest (){
+    val viewModel: LoginViewModel = hiltViewModel()
+    val state = viewModel.state.value
+    Log.v("loginResponse", state.error.toString())
+}
+
+@Composable
+fun checkConnection(status: ConnectivityObserver.Status) {
+    //Observe for unComposable activity
+    /*
+    *connectivityObserver.observe().onEach {
+    * println("Status is $it")
+    * }
+     */
+    Box(modifier = Modifier.fillMaxSize(),
+    contentAlignment = Alignment.Center){
+        Text(text = "Network status: $status")
     }
 }
 @Composable
@@ -83,8 +99,10 @@ fun GifImage(
         .build()
     Image(
         painter = rememberAsyncImagePainter(
-            ImageRequest.Builder(context).data(data =
-            R.raw.splash_gif).apply(block = {
+            ImageRequest.Builder(context).data(
+                data =
+                R.raw.splash_gif
+            ).apply(block = {
                 size(Size.ORIGINAL)
             }).build(), imageLoader = imageLoader
         ),
@@ -126,18 +144,18 @@ fun DialogBox(
                 .wrapContentHeight(),
             shape = RoundedCornerShape(size = 20.dp),
 
-        ) {
+            ) {
 
             Column(
-                modifier = Modifier) {
+                modifier = Modifier
+            ) {
 
                 Text(
 
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp, end = 16.dp, top = 20.dp, bottom = 20.dp),
-                    textAlign = TextAlign.Center
-                    ,
+                    textAlign = TextAlign.Center,
                     text = "Al Dawaa” Would Like to Access the Camera",
                     style = TextStyle(
                         color = Color.Black.copy(alpha = 0.95f),
@@ -160,15 +178,23 @@ fun DialogBox(
                 ) {
 
                     // Cancel button
-                        Text(
-                            modifier = Modifier.padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp).weight(0.5f),
-                            textAlign = TextAlign.Center,
-                            text = "Settings",
-                            style = TextStyle(
-                                fontSize = 16.sp),
-                            color = Color.Blue,
-
+                    Text(
+                        modifier = Modifier
+                            .padding(
+                                top = 20.dp,
+                                bottom = 20.dp,
+                                start = 24.dp,
+                                end = 24.dp
                             )
+                            .weight(0.5f),
+                        textAlign = TextAlign.Center,
+                        text = "Settings",
+                        style = TextStyle(
+                            fontSize = 16.sp
+                        ),
+                        color = Color.Blue,
+
+                        )
 
                     Divider(
                         color = Color.LightGray,
@@ -176,13 +202,20 @@ fun DialogBox(
                             .fillMaxHeight()
                             .width(1.dp)
                     )
-                        Text(
-                            modifier = Modifier.padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp).weight(0.5f),
-                            textAlign = TextAlign.Center,
-                            text = "Ok",
-                            style =  TextStyle(fontSize = 16.sp),
-                            color = Color.Blue,
-                        )
+                    Text(
+                        modifier = Modifier
+                            .padding(
+                                top = 20.dp,
+                                bottom = 20.dp,
+                                start = 24.dp,
+                                end = 24.dp
+                            )
+                            .weight(0.5f),
+                        textAlign = TextAlign.Center,
+                        text = "Ok",
+                        style = TextStyle(fontSize = 16.sp),
+                        color = Color.Blue,
+                    )
 
                 }
             }
