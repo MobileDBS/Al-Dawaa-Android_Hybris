@@ -1,20 +1,17 @@
 package com.kr.aldawaa.ui
 
+import android.app.DatePickerDialog
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
+import android.widget.CalendarView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.ImageLoader
@@ -38,6 +36,7 @@ import com.kr.network.ConnectivityObserver
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -50,10 +49,11 @@ class MainActivity : ComponentActivity() {
             AlDawaaHybrisTheme {
                // connectivityObserver = NetworkConnectivityObserver(applicationContext)
                 val status by connectivityObserver.observe().collectAsState(initial = ConnectivityObserver.Status.Unavailable)
-                checkConnection(status)
+              //  checkConnection(status)
                 //loginConnectionTest
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
+                    Greeting()
                     // GifImage()
                   //  DialogBox()
                 }
@@ -112,15 +112,55 @@ fun GifImage(
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello00 $name!")
+fun Greeting() {
+    val c = Calendar.getInstance()
+    val year = c.get(Calendar.YEAR)
+    val month = c.get(Calendar.MONTH)
+    val day = c.get(Calendar.DAY_OF_MONTH)
+
+    val context = LocalContext.current
+
+    var date by remember{
+        mutableStateOf("")
+    }
+    val datePickerDialog = DatePickerDialog(
+        context,  R.style.MyDatePickerDialogTheme,
+        { d, year1, month1, day1 ->
+            val month = month1 + 1
+            date = "$day1 - $month - $year1"
+        },year , month , day
+    )
+
+
+    Scaffold(
+        topBar = {
+            TopAppBar (
+                title = { Text(text = "Calender View")},
+                )
+        },
+        content = {
+            Column (verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize()
+            ){
+                AndroidView(factory = { CalendarView(it) }, update = {
+                    it.setOnDateChangeListener { calendarView, year, month, day ->
+                        date = "$day - ${month +1} - $year"
+                    }
+                })
+            //    datePickerDialog.show()
+
+                Text(text = date)
+            }
+        }
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     AlDawaaHybrisTheme {
-        Greeting("Android")
+        Greeting()
     }
 }
 

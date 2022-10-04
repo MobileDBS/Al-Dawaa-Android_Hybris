@@ -22,4 +22,32 @@
     <style name="Theme.AlDawaaHybris.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.AlDawaaHybris.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+   <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+    <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+<!--    <item name="android:textColorPrimaryInverse">#002544</item> &lt;!&ndash; header date, month color && calendar text highlight color &ndash;&gt;-->
+           <item name="android:textColorPrimaryInverse">#002544</item> <!-- header date, month color && calendar text highlight color -->
+       <item name="android:textColorSecondaryInverse">#002544</item> <!-- header year color -->
+    <item name="android:colorAccent">#ffc200</item> <!-- button color -->
+</style>
+
+<style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+<item name="android:headerBackground">#fff</item> <!-- header background color -->
+</style>
+
+
+
+
+
+    <style name="Theme.Custom" parent="Theme.AlDawaaHybris">
+        <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>
+    </style>
+
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">
+<!--        <item name="android:focusedMonthDateColor">@color/teal_200</item>-->
+<!--        <item name="android:weekNumberColor">@color/teal_200</item>-->
+<!--        <item name="android:weekDayTextAppearance">@style/TextAppearance.Medium</item>
+        <item name="android:dateTextAppearance">@style/TextAppearance.Medium</item>-->
+    </style>
 </resources>
