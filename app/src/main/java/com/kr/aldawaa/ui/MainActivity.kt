@@ -30,6 +30,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.ConnectivityObserver
@@ -123,8 +124,15 @@ fun Greeting() {
     var date by remember{
         mutableStateOf("")
     }
+/*    MaterialDatePicker
+        .Builder
+        .datePicker()
+        .setTitleText("Select date of birth")
+        .build()
+        .show(supportFragmentManager, "DATE_PICKER")*/
+
     val datePickerDialog = DatePickerDialog(
-        context,  R.style.MyDatePickerDialogTheme,
+        context,R.style.MyDatePickerDialogTheme,
         { d, year1, month1, day1 ->
             val month = month1 + 1
             date = "$day1 - $month - $year1"
@@ -143,12 +151,12 @@ fun Greeting() {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxSize()
             ){
-                AndroidView(factory = { CalendarView(it) }, update = {
+         /*       AndroidView(factory = { CalendarView(it) }, update = {
                     it.setOnDateChangeListener { calendarView, year, month, day ->
                         date = "$day - ${month +1} - $year"
                     }
-                })
-            //    datePickerDialog.show()
+                })*/
+               datePickerDialog.show()
 
                 Text(text = date)
             }
