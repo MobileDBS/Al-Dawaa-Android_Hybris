@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/authentication/authentication-datasource" />
             <option value="$PROJECT_DIR$/authentication/authentication-domain" />
             <option value="$PROJECT_DIR$/authentication/authentication-interactors" />
+            <option value="$PROJECT_DIR$/authentication/ui-entry" />
             <option value="$PROJECT_DIR$/authentication/ui-login" />
             <option value="$PROJECT_DIR$/authentication/ui-register" />
             <option value="$PROJECT_DIR$/buildSrc" />

@@ -1,4 +1,4 @@
-package com.kr.aldawaa.ui.theme
+package com.kr.components.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -10,4 +10,7 @@ val DropdownColor = Color(0xffe6eaed)
 val DropdownTextColor = Color(0xff161617)
 val SubscribeTextColor = Color(0xff181716)
 val InputTextColor = Color(0xff919293)
+val InputHint = Color(0xff979c9b)
+
+
 

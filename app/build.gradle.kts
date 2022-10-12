@@ -98,8 +98,7 @@ dependencies {
     kapt(Hilt.compiler)
     //  debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
-    implementation(project(Modules.ui_login))
-   // implementation(project(Modules.ui_register))
+    implementation(project(Modules.ui_entry))
 
 
 }
