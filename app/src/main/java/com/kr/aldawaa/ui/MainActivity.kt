@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
 //
 //                Log.v("loginResponse" , state.error.toString())
 
-                Navigatpage()
+                NavigationPage()
 
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {

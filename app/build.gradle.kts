@@ -77,6 +77,7 @@ dependencies {
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigation)
     implementation(Compose.preview)
+    implementation(Compose.material3)
 
     implementation(Google.material)
 
@@ -99,6 +100,15 @@ dependencies {
     //  debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
     implementation(project(Modules.ui_entry))
+    implementation(project(Modules.ui_forgetpassword))
+    implementation(project(Modules.ui_otp))
+    implementation(project(Modules.ui_home))
+    implementation(project(Modules.ui_services))
+    implementation(project(Modules.ui_shop))
+    implementation(project(Modules.ui_offers))
+    implementation(project(Modules.ui_cart))
+
+
 
 
 }

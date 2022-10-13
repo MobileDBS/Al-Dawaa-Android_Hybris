@@ -182,7 +182,9 @@ fun LoginScreen(navController: NavController) {
 
             Text(text = stringResource(id = R.string.forgetmypassword), color = PrimaryColor,
             modifier = Modifier.clickable {
-                navController.navigate("Forget_Password")
+                //navController.navigate("Forget_Password")
+                navController.navigate("MainUi")
+
             }
                 )
 
