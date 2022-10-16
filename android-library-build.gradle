@@ -67,6 +67,8 @@ dependencies{
     implementation Compose.tooling
     implementation Compose.navigation
     implementation Compose.hiltNavigation
+    implementation Compose.material3
+
 //    implementation(Compose.composeCompiler)
 
     //  implementation Compose.preview
@@ -88,4 +90,5 @@ dependencies{
    // kapt(Hilt.androidx)
     kapt(Hilt.compiler)
     implementation(Hilt.android)
+
 }

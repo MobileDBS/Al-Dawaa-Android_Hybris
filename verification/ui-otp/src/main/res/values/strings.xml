@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="forgetpassword">Forgot Password</string>
+    <string name="recendcode">Resend code</string>
+    <string name="forgetdontrec">Don\'t you receive any code</string>
+    <string name="forgetsend">Send</string>
+
+
+</resources>

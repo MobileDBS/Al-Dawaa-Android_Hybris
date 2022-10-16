@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="gender">Gender</string>
+<string name="male">Male</string>
+<string name="female">Female</string>
+    <string name="enteryouremail"> E-mail</string>
+    <string name="enteryourpass"> Password</string>
+    <string name="phonenumber">Phone number</string>
+    <string name="Subscribeto">Subscribe to e-mail newletters</string>
+    <string name="title">Title</string>
+    <string name="title1">title1</string>
+    <string name="title2">title2</string>
+    <string name="birthdate">BirthDay</string>
+    <string name="confirmpassword">Confirm password</string>
+    <string name="signuporg">Create account</string>
+    <string name="name">Name</string>
+
+
+</resources>

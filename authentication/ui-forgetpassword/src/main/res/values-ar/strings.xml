@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="forgetsend">ارسل</string>
+    <string name="phonenumber">"رقم الهاتف "</string>
+    <string name="forgetpassword">"تعيين الرقم السرى "</string>
+    <string name="enternewpass">ادخل رقم سرى جديد</string>
+    <string name="enternewpassagain">دخل رقم سرى جديد مرة اخرى</string>
+    <string name="yourpasswordchanged">"تم تغيير الرقم السرى "</string>
+    <string name="backtohome">"الى الصفحة الرئيسية "</string>
+    <string name="yourpasswordchanged2">بنجاح</string>
+
+</resources>

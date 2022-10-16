@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,23 +35,27 @@ import coil.request.ImageRequest
 import coil.size.Size
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+//import com.kr.ui_login.ui.LoginViewModel
+
 import com.kr.ui_categories.ui.screen.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
 //import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 @OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-      //      val viewModel: RegsterViewModel = hiltViewModel()
-       //     val viewModel: LoginViewModel = hiltViewModel()
-//            val state = viewModel.state.value
-//            Log.v("loginResponse" , state.user?.firstname.toString())
-//            Log.v("loginResponse" , state.error.toString())
+            AlDawaaHybrisTheme {
+//                val viewModel: LoginViewModel by hiltViewModel()
+//                            val state = viewModel.state.value
+//
+//                Log.v("loginResponse" , state.error.toString())
 
 
             AlDawaaHybrisTheme {
@@ -60,6 +65,7 @@ class MainActivity : ComponentActivity() {
                 val categoriesstate = categoriesViewModel.state.value
 
 
+                NavigationPage()
 
 
                 Log.v("categorieslist Response" , categoriesstate.Categorieslist.toString())
@@ -68,6 +74,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                    // GifImage()
+                  //  DialogBox()
                    // DialogBox()
                     Navigatpage()
                 }
@@ -169,7 +176,9 @@ fun DialogBox(
 
                     // Cancel button
                         Text(
-                            modifier = Modifier.padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp).weight(0.5f),
+                            modifier = Modifier
+                                .padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp)
+                                .weight(0.5f),
                             textAlign = TextAlign.Center,
                             text = "Settings",
                             style = TextStyle(
@@ -185,7 +194,9 @@ fun DialogBox(
                             .width(1.dp)
                     )
                         Text(
-                            modifier = Modifier.padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp).weight(0.5f),
+                            modifier = Modifier
+                                .padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp)
+                                .weight(0.5f),
                             textAlign = TextAlign.Center,
                             text = "Ok",
                             style =  TextStyle(fontSize = 16.sp),

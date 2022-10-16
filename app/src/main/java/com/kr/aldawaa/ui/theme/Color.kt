@@ -2,7 +2,12 @@ package com.kr.aldawaa.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val PrimaryColor= Color(0xff002544)
+val SecondaryColor = Color(0xffffc200)
+val InputColor = Color(0xfff3f5f6)
+val ErrorColor = Color(0xffe9514e)
+val DropdownColor = Color(0xffe6eaed)
+val DropdownTextColor = Color(0xff161617)
+val SubscribeTextColor = Color(0xff181716)
+val InputTextColor = Color(0xff919293)
+

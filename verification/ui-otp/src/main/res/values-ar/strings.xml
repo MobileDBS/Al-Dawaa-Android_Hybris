@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="forgetpassword">"تعيين الرقم السرى "</string>
+    <string name="recendcode">ارسل مرة اخرى</string>
+    <string name="forgetdontrec">لم تتلقى اى رمز امان</string>
+    <string name="forgetsend">ارسل</string>
+
+</resources>

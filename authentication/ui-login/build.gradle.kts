@@ -11,4 +11,7 @@ dependencies{
     "implementation"(project(Modules.authenticationInteractors))
     "implementation"(project(Modules.authenticationDomain))
     "implementation"(project(Modules.core))
+    "implementation"(project(Modules.components))
+
+
 }
