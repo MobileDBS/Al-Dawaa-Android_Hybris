@@ -1,6 +1,6 @@
 package com.kr.aldawaa.di
 
-import com.kr.authentication_datasource.network.AuthenticationRepoImp
+//import com.kr.authentication_datasource.network.AuthenticationRepoImp
 import dagger.Binds
 
 abstract class RepoModule {

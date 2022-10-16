@@ -90,6 +90,10 @@ dependencies {
 
     implementation(project(Modules.core))
     implementation(project(Modules.authenticationDataSource))
+    implementation(project(Modules.ui_categories))
+    implementation(project(Modules.categoriesDataSource))
+
+
 
 
 //    implementation(Hilt.lifecycle)
@@ -98,7 +102,7 @@ dependencies {
     kapt(Hilt.compiler)
     //  debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
-    implementation(project(Modules.ui_login))
+   implementation(project(Modules.ui_login))
    // implementation(project(Modules.ui_register))
 
 

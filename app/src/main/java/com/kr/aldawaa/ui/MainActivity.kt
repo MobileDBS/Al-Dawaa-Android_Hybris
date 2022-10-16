@@ -34,9 +34,12 @@ import coil.request.ImageRequest
 import coil.size.Size
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+import com.kr.ui_categories.ui.screen.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
+//import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -52,16 +55,21 @@ class MainActivity : ComponentActivity() {
 
             AlDawaaHybrisTheme {
                 val viewModel: LoginViewModel = hiltViewModel()
-                            val state = viewModel.state.value
+                           val state = viewModel.state.value
+                val categoriesViewModel: CategoriesViewModel = hiltViewModel()
+                val categoriesstate = categoriesViewModel.state.value
 
 
 
 
-            Log.v("loginResponse" , state.error.toString())
+                Log.v("categorieslist Response" , categoriesstate.Categorieslist.toString())
+                Log.v("Login Response" , state.error.toString())
+
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                    // GifImage()
-                    DialogBox()
+                   // DialogBox()
+                    Navigatpage()
                 }
             }
         }
