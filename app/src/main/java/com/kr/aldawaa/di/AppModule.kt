@@ -1,4 +1,3 @@
-/*
 package com.kr.aldawaa.di
 
 //import com.kr.authentication_datasource.network.ApiInterface
@@ -38,4 +37,3 @@ object AppModule {
 
 
 }
-*/
