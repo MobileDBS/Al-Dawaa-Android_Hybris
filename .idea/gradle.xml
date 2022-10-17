@@ -15,16 +15,31 @@
             <option value="$PROJECT_DIR$/authentication/authentication-datasource" />
             <option value="$PROJECT_DIR$/authentication/authentication-domain" />
             <option value="$PROJECT_DIR$/authentication/authentication-interactors" />
+            <option value="$PROJECT_DIR$/authentication/ui-entry" />
+            <option value="$PROJECT_DIR$/authentication/ui-forgetpassword" />
             <option value="$PROJECT_DIR$/authentication/ui-login" />
             <option value="$PROJECT_DIR$/authentication/ui-register" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/categories" />
-            <option value="$PROJECT_DIR$/categories/categories-datasource" />
-            <option value="$PROJECT_DIR$/categories/categories-domain" />
-            <option value="$PROJECT_DIR$/categories/categories-interactors" />
-            <option value="$PROJECT_DIR$/categories/ui-categories" />
+            <option value="$PROJECT_DIR$/cart" />
+            <option value="$PROJECT_DIR$/cart/ui-cart" />
             <option value="$PROJECT_DIR$/components" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/home" />
+            <option value="$PROJECT_DIR$/home/ui-home" />
+            <option value="$PROJECT_DIR$/offers" />
+            <option value="$PROJECT_DIR$/offers/ui-offers" />
+            <option value="$PROJECT_DIR$/services" />
+            <option value="$PROJECT_DIR$/services/ui-services" />
+            <option value="$PROJECT_DIR$/shop" />
+            <option value="$PROJECT_DIR$/shop/categories-datasource" />
+            <option value="$PROJECT_DIR$/shop/categories-domain" />
+            <option value="$PROJECT_DIR$/shop/categories-interactors" />
+            <option value="$PROJECT_DIR$/shop/ui-categories" />
+            <option value="$PROJECT_DIR$/verification" />
+            <option value="$PROJECT_DIR$/verification/ui-otp" />
+            <option value="$PROJECT_DIR$/verification/verification-datasource" />
+            <option value="$PROJECT_DIR$/verification/verification-domain" />
+            <option value="$PROJECT_DIR$/verification/verification-interactors" />
           </set>
         </option>
       </GradleProjectSettings>

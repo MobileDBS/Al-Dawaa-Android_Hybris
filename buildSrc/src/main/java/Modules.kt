@@ -21,11 +21,10 @@ object Modules {
     const val ui_services =":services:ui-services"
     const val ui_offers =":offers:ui-offers"
     const val ui_cart =":cart:ui-cart"
-    const val ui_shop =":shop:ui-shop"
-    const val categoriesDomain =":categories:categories-domain"
-    const val categoriesDataSource =":categories:categories-datasource"
-    const val categoriesInteractors =":categories:categories-interactors"
-    const val ui_categories =":categories:ui-categories"
+    const val categoriesDomain =":shop:categories-domain"
+    const val categoriesDataSource =":shop:categories-datasource"
+    const val categoriesInteractors =":shop:categories-interactors"
+    const val ui_categories =":shop:ui-categories"
 
 
 

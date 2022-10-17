@@ -21,7 +21,7 @@ import com.kr.ui_categories.ui.screen.component.CategoriesItems
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun Categories(navController: NavController, viewModel: CategoriesViewModel= hiltViewModel()
+fun CategoriesScreen(navController: NavController, viewModel: CategoriesViewModel= hiltViewModel()
 ) {
 
     val state = viewModel.state.value
