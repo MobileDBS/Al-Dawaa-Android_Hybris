@@ -1,7 +1,5 @@
-package com.kr.ui_categories.ui.screen.component
+package com.kr.ui_categories.ui.categoriesui.component
 
-import com.kr.categories_datasource.network.dto.ChildrenData
-import com.kr.categories_datasource.network.dto.categoriesResponse
 import com.kr.categories_domain.model.Categories
 
 //import com.kr.categories_domain.model.Categories

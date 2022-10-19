@@ -3,18 +3,13 @@ package com.kr.aldawaa.ui
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,12 +32,13 @@ import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
 //import com.kr.ui_login.ui.LoginViewModel
 
-import com.kr.ui_categories.ui.screen.CategoriesViewModel
+import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
 //import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 
+@ExperimentalMaterial3Api
 @OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

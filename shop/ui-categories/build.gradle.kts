@@ -12,5 +12,7 @@ dependencies{
     "implementation"(project(Modules.categoriesDataSource))
     "implementation"(project(Modules.categoriesDomain))
     "implementation"(project(Modules.core))
+    "implementation"(project(Modules.components))
+
 
 }

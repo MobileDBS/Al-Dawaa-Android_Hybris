@@ -3,34 +3,51 @@ package com.kr.aldawaa.ui
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kr.ui_cart.ui.CartScreen
-import com.kr.ui_categories.ui.screen.CategoriesScreen
+import com.kr.ui_categories.ui.categoriesdetailsui.CategoryDetailsScreen
+import com.kr.ui_categories.ui.categoriesui.CategoriesScreen
 import com.kr.ui_home.ui.HomeScreen
+import com.kr.ui_offers.ui.OffersScreen
+import com.kr.ui_services.ui.ServicesScreen
 
 
+@ExperimentalMaterial3Api
 @Composable
 fun BottomNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
 
-        startDestination = BottomBarScreen.Home.route
+        startDestination = BottomBarScreen.Home.path
     ) {
 
-        composable(route = BottomBarScreen.Home.route) {
+        composable(route = BottomBarScreen.Home.path) {
             HomeScreen(navController)
         }
-        composable(route = BottomBarScreen.Categories.route) {
+        composable(route = BottomBarScreen.Shop.path) {
             CategoriesScreen(navController)
         }
-        composable(route = BottomBarScreen.Settings.route) {
+        composable(route = BottomBarScreen.Offers.path) {
+            OffersScreen(navController)
+        }
+
+        composable(route = BottomBarScreen.Services.path) {
+            ServicesScreen(navController)
+        }
+
+        composable(route = BottomBarScreen.Cart.path) {
             CartScreen(navController)
         }
+        composable(route = BottomBarScreen.Cart.path) {
+            CartScreen(navController)
+        }
+        composable("Category_Items", content = { CategoryDetailsScreen(navController = navController) })
+
     }
 }
 /*
@@ -42,28 +59,45 @@ fun MainUi(navController: NavHostController) {
 }*/
 
 sealed class BottomBarScreen(
-    val route: String,
-    val title: String,
+    val name: String,
+    val path: String,
     val icon: ImageVector,
   //  val badgeCount: Int = 0
 ) {
-    object Categories : BottomBarScreen(
-        route = "Categories",
-        title = "Categories",
-        icon = Icons.Default.Settings
+    object Shop : BottomBarScreen(
+        name = "Shop",
+        path = "Categories",
+        icon = Icons.Filled.List
     )
+
+    object Offers : BottomBarScreen(
+        name = "Offers",
+        path = "offers",
+        icon = Icons.Filled.List
+    )
+
 
     object Home : BottomBarScreen(
-        route = "home",
-        title = "home",
-        icon = Icons.Default.List
+        name = "Home",
+        path = "home",
+        icon = Icons.Filled.List
     )
 
-    object Settings : BottomBarScreen(
-        route = "cart",
-        title = "cart",
-        icon = Icons.Default.Settings
+
+    object Services : BottomBarScreen(
+        name = "Service",
+        path = "service",
+        icon = Icons.Filled.List
     )
+
+
+    object Cart : BottomBarScreen(
+        name = "Cart",
+        path = "cart",
+        icon = Icons.Filled.Settings
+    )
+
+
 }
 
 

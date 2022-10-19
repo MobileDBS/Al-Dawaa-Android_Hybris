@@ -1,4 +1,4 @@
-package com.kr.ui_categories.ui.screen.component
+package com.kr.ui_categories.ui.categoriesui.component
 
 import android.os.Build
 import androidx.compose.foundation.Image
@@ -22,7 +22,6 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-import com.kr.categories_datasource.network.dto.ChildrenData
 import com.kr.categories_domain.model.Categories
 
 
@@ -63,7 +62,7 @@ fun CategoriesItems (result: Categories, onItemClick: (Categories) -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.Transparent)
-                .clickable { /*onItemClick(result)*/ }) {
+                .clickable { onItemClick(result) }) {
             Spacer(modifier = Modifier.padding(5.dp))
 
 

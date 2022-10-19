@@ -3,18 +3,15 @@
 package com.kr.aldawaa.ui
 
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.kr.ui_cart.ui.CartScreen
-import com.kr.ui_categories.ui.screen.CategoriesScreen
-import com.kr.ui_home.ui.HomeScreen
+import com.kr.ui_categories.ui.categoriesdetailsui.CategoryDetailsScreen
 import com.kr.ui_login.ui.EntryScreen
-import com.kr.ui_offers.ui.OffersScreen
 import com.kr.ui_otp.ui.OtpScreen
-import com.kr.ui_services.ui.ServicesScreen
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import ui_forgetpassword.ui.ForgetPasswordScreen
@@ -22,6 +19,7 @@ import ui_forgetpassword.ui.ForgetSuccess
 import ui_forgetpassword.ui.NewPasswordScreen
 
 
+@ExperimentalMaterial3Api
 @DelicateCoroutinesApi
 @ExperimentalMaterialApi
 @Preview
@@ -44,6 +42,8 @@ fun NavigationController() {
             composable("Forget_Success", content = { ForgetSuccess(navController = navController) })
 
             composable("MainUi", content = { MainScreen() })
+
+
 
 
            /* composable("MainUi", content = { MainUi(navController = navController) })

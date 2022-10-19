@@ -110,7 +110,7 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .height(53.dp)
-                .clip(shape = Shapes.small)
+                .clip(shape = ShapeTabButtons.small)
                 .background(
                     color = InputColor
                 ),

@@ -1,4 +1,4 @@
-package com.kr.ui_categories.ui.screen
+package com.kr.ui_categories.ui.categoriesui
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.*
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 //import com.kr.categories_domain.model.Categories
-import com.kr.ui_categories.ui.screen.component.CategoriesItems
+import com.kr.ui_categories.ui.categoriesui.component.CategoriesItems
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -46,27 +46,27 @@ fun CategoriesScreen(navController: NavController, viewModel: CategoriesViewMode
                 .background(color = Color.White)
 
         ) {
-            Spacer(modifier = Modifier.padding(30.dp))
 
 
             LazyVerticalGrid(columns = GridCells.Fixed(2), content = {
 
                 items(state.Categorieslist){ categor ->
-                    CategoriesItems(result = categor) {
+                    CategoriesItems(result = categor,onItemClick ={
+                        navController.navigate("Category_Items")
 
-                    }
+                    })
 
                 }
 
             }, userScrollEnabled = true,
                 modifier = Modifier.fillMaxHeight(0.9f)
-                    .fillMaxWidth(0.9f),
+                    .fillMaxWidth(0.9f)
+                    ,
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 horizontalArrangement = Arrangement.spacedBy(20.dp)
                // contentPadding = PaddingValues(10.dp)
                 )
 
-            Spacer(modifier = Modifier.padding(30.dp))
 
 
         }
