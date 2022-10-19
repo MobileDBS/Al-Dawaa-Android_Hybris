@@ -35,7 +35,7 @@ fun CategoryDetailsScreen(navController: NavController
 
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
-     val items = listOf("items of category",
+     val items = listOf(
          "items of category",
          "items of category",
          "items of category",
@@ -43,7 +43,9 @@ fun CategoryDetailsScreen(navController: NavController
          "items of category",
          "items of category",
          "items of category",
-     )
+         "items of category",
+         "items of category",
+         )
 
     Scaffold(
         modifier = Modifier
@@ -60,17 +62,37 @@ fun CategoryDetailsScreen(navController: NavController
                 .fillMaxHeight()
                 .background(color = Color.White)
 
+
+
         ) {
+            Spacer(modifier = Modifier.padding(20.dp))
+
+
             Card(
+                modifier = Modifier
+                    .height(56.dp)
+                    .fillMaxWidth(0.9f)
+                    .background(color = Color.White)
+                    .fillMaxSize(),
+                shape = RoundedCornerShape(28.dp),
+                elevation = 2.dp,
+                backgroundColor = Color.White
+                ) {
+
+            }/*Button(
                 modifier = Modifier
                     .height(40.dp)
                     .fillMaxWidth(0.9f)
                     .background(color = InputTextColor)
                     .fillMaxSize()
-                    .clip(shape = RoundedCornerShape(28.dp))
+                    .clip(shape = RoundedCornerShape(28.dp)),
+                backgroundColor = Color.White,
+                shape = RoundedCornerShape(28.dp),
+                elevation = 2.dp
+            
             ) {
 
-            }
+            }*/
 
             Row() {
 

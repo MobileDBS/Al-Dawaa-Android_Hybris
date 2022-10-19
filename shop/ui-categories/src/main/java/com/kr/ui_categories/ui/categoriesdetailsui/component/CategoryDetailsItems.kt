@@ -35,6 +35,8 @@ fun CategoryDetailsItems(categoryItems : String) {
         "sub of items",
         "sub of items",
         "sub of items",
+        "sub of items",
+        "sub of items",
     )
 
 
@@ -90,34 +92,37 @@ fun CategoryDetailsItems(categoryItems : String) {
             ) {
 
             }
-            Row() {
+
 
 
                 if (expandedState) {
-                    Spacer(modifier = Modifier.padding(bottom = 5.dp))
+                   // Spacer(modifier = Modifier.padding(top = 10.dp))
+/*
 
-                  /*  Text(
+                      Text(
                         text = itemssub.toString(),
-                    )*/
-
-                     LazyColumn(
-                    content = {
-
-                        items(itemssub) { categoryIS ->
-                            CategoryDetailsSubItems(categoryIS = categoryIS)
-
-                        }
-
-                    },
-                    modifier = Modifier
-                        .fillMaxHeight(0.9f)
-                        .fillMaxWidth(0.9f)
-                        .padding(start = 20.dp, end = 20.dp),
-
                     )
+*/
 
-                }
+
+
+                        LazyColumn(
+                            content = {
+
+                                items(itemssub) { categoryIS ->
+                                    CategoryDetailsSubItems(categoryIS = categoryIS)
+
+                                }
+
+                            },
+                            modifier = Modifier
+                                .padding(start = 20.dp, end = 20.dp),
+                            userScrollEnabled = false
+
+                            )
+
+                    }
+
             }
         }
     }
-}
