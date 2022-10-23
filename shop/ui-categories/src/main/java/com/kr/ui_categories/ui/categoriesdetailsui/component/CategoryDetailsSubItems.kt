@@ -1,6 +1,7 @@
 package com.kr.ui_categories.ui.categoriesdetailsui.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ButtonDefaults
@@ -24,14 +25,13 @@ fun CategoryDetailsSubItems(categoryIS : String) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(40.dp)
-                .clip(shape = RoundedCornerShape(20.dp)),
-            border = BorderStroke(1.dp, color = PrimaryColor
-            ),
+                .background(color = Color.White)
+            ,
             elevation = ButtonDefaults.elevation(
                 defaultElevation = 2.dp,
 
                 ),
-            colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
+            colors = ButtonDefaults.outlinedButtonColors(Color.White),
             shape = RoundedCornerShape(20.dp),
 
             onClick = {
@@ -42,10 +42,11 @@ fun CategoryDetailsSubItems(categoryIS : String) {
         ) {
             Text(
                 text = categoryIS,
-                color = Color.Black,
+                color = PrimaryColor,
 
                 )
 
         }
+
 
     }

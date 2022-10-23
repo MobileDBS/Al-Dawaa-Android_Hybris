@@ -1,12 +1,8 @@
 package com.kr.ui_categories.ui.categoriesdetailsui
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -14,17 +10,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.kr.components.ui.theme.InputTextColor
 import com.kr.ui_categories.ui.categoriesdetailsui.component.CategoryDetailsItems
-import com.kr.ui_categories.ui.categoriesdetailsui.component.CategoryDetailsSubItems
-//import com.kr.categories_domain.model.Categories
-import com.kr.ui_categories.ui.categoriesui.component.CategoriesItems
 
 
 @ExperimentalMaterial3Api
@@ -63,62 +54,58 @@ fun CategoryDetailsScreen(navController: NavController
                 .background(color = Color.White)
 
 
-
         ) {
-            Spacer(modifier = Modifier.padding(20.dp))
+                Spacer(modifier = Modifier.padding(20.dp))
+
+                Card(
+                    modifier = Modifier
+                        .height(56.dp)
+                        .fillMaxWidth(0.9f)
+                        .background(color = Color.White)
+                        .fillMaxSize(),
+                    shape = RoundedCornerShape(28.dp),
+                    elevation = 2.dp,
+                    backgroundColor = Color.White
+                ) {}
 
 
-            Card(
-                modifier = Modifier
-                    .height(56.dp)
-                    .fillMaxWidth(0.9f)
-                    .background(color = Color.White)
-                    .fillMaxSize(),
-                shape = RoundedCornerShape(28.dp),
-                elevation = 2.dp,
-                backgroundColor = Color.White
-                ) {
 
-            }/*Button(
-                modifier = Modifier
-                    .height(40.dp)
-                    .fillMaxWidth(0.9f)
-                    .background(color = InputTextColor)
-                    .fillMaxSize()
-                    .clip(shape = RoundedCornerShape(28.dp)),
-                backgroundColor = Color.White,
-                shape = RoundedCornerShape(28.dp),
-                elevation = 2.dp
-            
-            ) {
+                LazyColumn(
+                    content = {
 
-            }*/
-
-            Row() {
+                        items(items) { categoryI ->
+                            CategoryDetailsItems(categoryItems = categoryI)
 
 
-            LazyColumn(
-                content = {
+                        }
 
-                    items(items) { categoryI ->
-                        CategoryDetailsItems(categoryItems = categoryI)
-
-                    }
-
-                },
-                modifier = Modifier
-                    .fillMaxHeight(0.9f)
-                    .fillMaxWidth(0.9f)
-                    .padding(top = 20.dp, bottom = 20.dp)
-                    .background(Color.White)
-                    ,
-                verticalArrangement = Arrangement.spacedBy(3.dp)
-
-                )
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth(0.9f)
+                        .padding(top = 20.dp, bottom = 20.dp)
+                        .background(Color.White),
 
 
-        }
-    }
+                    )
+
+               /* if (state.error.isNotBlank()) {
+                    Text(
+                        text = state.error,
+                        color = MaterialTheme.colors.error,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 20.dp)
+                            .align(Alignment.Center)
+                    )
+                }
+                if (state.isLoading) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                }
+*/
+
+            }
+
         }
     }
 
@@ -128,13 +115,3 @@ fun CategoryDetailsScreen(navController: NavController
 
 
 
-/*
-
-content = {
-
-    items(items) { categoryI ->
-        CategoryDetailsItems(categoryItems = categoryI)
-
-    }
-
-}*/
