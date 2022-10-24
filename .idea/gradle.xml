@@ -28,6 +28,8 @@
             <option value="$PROJECT_DIR$/home/ui-home" />
             <option value="$PROJECT_DIR$/offers" />
             <option value="$PROJECT_DIR$/offers/ui-offers" />
+            <option value="$PROJECT_DIR$/product" />
+            <option value="$PROJECT_DIR$/product/productlist" />
             <option value="$PROJECT_DIR$/services" />
             <option value="$PROJECT_DIR$/services/ui-services" />
             <option value="$PROJECT_DIR$/shop" />

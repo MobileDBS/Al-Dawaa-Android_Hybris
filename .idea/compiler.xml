@@ -14,6 +14,8 @@
       <module name="AlDawaaHybris.components" target="11" />
       <module name="AlDawaaHybris.home.ui-home" target="11" />
       <module name="AlDawaaHybris.offers.ui-offers" target="11" />
+      <module name="AlDawaaHybris.product.productlist" target="11" />
+      <module name="AlDawaaHybris.productlist" target="11" />
       <module name="AlDawaaHybris.services.ui-services" target="11" />
       <module name="AlDawaaHybris.shop.ui-categories" target="11" />
       <module name="AlDawaaHybris.verification.ui-otp" target="11" />

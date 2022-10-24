@@ -11,10 +11,11 @@ import androidx.navigation.NavController
 
 @Composable
 fun OffersScreen(navController: NavController) {
-    Box(modifier = Modifier.fillMaxSize(),
+    navController.navigate("Product_List")
+ /*   Box(modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center){
         Text(text = "Offers Screen")
-    }
+    }*/
 }
 
 

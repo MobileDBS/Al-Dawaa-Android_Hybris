@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.productlist.ProductListScreen
 import com.kr.ui_cart.ui.CartScreen
 import com.kr.ui_categories.ui.categoriesdetailsui.CategoryDetailsScreen
 import com.kr.ui_categories.ui.categoriesui.CategoriesScreen
@@ -43,11 +44,10 @@ fun BottomNavGraph(navController: NavHostController) {
         composable(route = BottomBarScreen.Cart.path) {
             CartScreen(navController)
         }
-        composable(route = BottomBarScreen.Cart.path) {
-            CartScreen(navController)
-        }
+
         composable("Category_Items", content = { CategoryDetailsScreen(navController = navController) })
 
+        composable("Product_List", content = { ProductListScreen(navController=navController) })
     }
 }
 /*
@@ -96,8 +96,11 @@ sealed class BottomBarScreen(
         path = "cart",
         icon = Icons.Filled.Settings
     )
-
-
+  /*  object ProductList : BottomBarScreen(
+        name = "ProductList",
+        path = "Product_List",
+        icon = Icons.Filled.Settings
+    )*/
 }
 
 
