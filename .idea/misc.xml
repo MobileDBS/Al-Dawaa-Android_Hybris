@@ -4,6 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidProjects/Al-Dawaa-Android_Hybris/authentication/ui-login/src/main/res/drawable/ic_eye_hide.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Al-Dawaa-Android_Hybris/components/src/main/res/drawable/ic_aldawaa_logo.xml" value="0.1425" />
+        <entry key="..\:/AndroidProjects/Al-Dawaa-Android_Hybris/product/productlist/src/main/res/drawable-hdpi/res.xml" value="0.123" />
+        <entry key="..\:/AndroidProjects/Al-Dawaa-Android_Hybris/product/productlist/src/main/res/drawable-mdpi/res.xml" value="0.123" />
+        <entry key="..\:/AndroidProjects/Al-Dawaa-Android_Hybris/product/productlist/src/main/res/drawable-xhdpi/res.xml" value="0.123" />
+        <entry key="..\:/AndroidProjects/Al-Dawaa-Android_Hybris/product/productlist/src/main/res/drawable-xxhdpi/res.xml" value="0.1425" />
+        <entry key="..\:/AndroidProjects/Al-Dawaa-Android_Hybris/product/productlist/src/main/res/drawable-xxxhdpi/res.xml" value="0.1425" />
+        <entry key="..\:/AndroidProjects/Al-Dawaa-Android_Hybris/shop/ui-categories/src/main/res/drawable/dropdown_new.xml" value="0.1425" />
       </map>
     </option>
   </component>
