@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,28 +25,36 @@ import com.kr.components.ui.theme.PrimaryColor
 
 @Composable
 fun ProductListScreen(navController: NavController) {
+    Scaffold(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(), scaffoldState = rememberScaffoldState()
+    ){  Box(
+        modifier = Modifier
+            .padding(top = 32.dp, start = 16.dp, end = 16.dp, bottom = 32.dp)
+            .fillMaxHeight()
+            .fillMaxWidth()
 
-    Box(
-            modifier = Modifier.padding(top=32.dp, start = 22.dp,end=22.dp, bottom = 32.dp)
 
 
     ) {
 
         LazyVerticalGrid(
-          state =   rememberLazyGridState(),
+            state =   rememberLazyGridState(),
             columns = GridCells.Fixed(2),
             userScrollEnabled = true,
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
-                .scrollable(rememberLazyGridState(), orientation = Orientation.Vertical),
+                .scrollable(rememberLazyGridState(), orientation = Orientation.Vertical)
+                .fillMaxHeight()
+                .fillMaxWidth()
+            ,
             content = { items(7) { it-> ProductListItem()}
             }
-
-
-            // contentPadding = PaddingValues(10.dp)
         )
-    }
+    }}
+
 
 }
 

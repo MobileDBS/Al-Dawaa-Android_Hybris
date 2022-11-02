@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="unlike_icon_color">#ffc200</color>
+    <color name="dark_blue">#00254c</color>
+    <color name="product_list_red">#ff0036</color>
 </resources>
