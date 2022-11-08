@@ -68,6 +68,8 @@ dependencies{
     implementation Compose.navigation
     implementation Compose.hiltNavigation
     implementation Compose.material3
+    implementation Compose.flowLayout
+
 
 //    implementation(Compose.composeCompiler)
 

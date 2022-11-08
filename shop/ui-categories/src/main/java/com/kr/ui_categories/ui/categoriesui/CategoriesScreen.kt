@@ -68,6 +68,7 @@ fun CategoriesScreen(navController: NavController, viewModel: CategoriesViewMode
 
                 }, userScrollEnabled = true,
                     modifier = Modifier
+                        .padding(bottom = 70.dp)
                         .fillMaxHeight(0.9f)
                         .fillMaxWidth(0.9f),
                     verticalArrangement = Arrangement.spacedBy(20.dp),
@@ -93,7 +94,6 @@ fun CategoriesScreen(navController: NavController, viewModel: CategoriesViewMode
 
 
             }
-
 
         }
     }

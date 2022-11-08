@@ -19,10 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.kr.components.ui.theme.InputTextColor
+import com.kr.ui_categories.R
 import com.kr.ui_categories.ui.categoriesui.component.color
 
 @ExperimentalMaterial3Api
@@ -83,10 +85,9 @@ fun CategoryDetailsItems(categoryItems: String) {
                     onClick = {
                         expandedState = !expandedState
                     }) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowDropDown,
-                        contentDescription = "Drop-Down Arrow"
-                    )
+                    Icon(painter = painterResource(id = R.drawable.ic_arrow_right)
+                        , contentDescription ="Drop-Down Arrow" )
+
                 }
             }
 
@@ -107,6 +108,7 @@ fun CategoryDetailsItems(categoryItems: String) {
 
                     LazyColumn(
                         content = {
+
 
                             items(itemssub) { categoryIS ->
 

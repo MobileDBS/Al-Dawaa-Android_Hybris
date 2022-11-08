@@ -97,6 +97,7 @@ dependencies {
 
 
 
+
 //    implementation(Hilt.lifecycle)
 //    kapt(Hilt.androidx)
     implementation(Hilt.android)
@@ -108,7 +109,7 @@ dependencies {
     implementation(project(Modules.ui_otp))
     implementation(project(Modules.ui_home))
     implementation(project(Modules.ui_services))
-   // implementation(project(Modules.ui_shop))
+    implementation(project(Modules.ui_filter))
     implementation(project(Modules.ui_offers))
     implementation(project(Modules.ui_cart))
 

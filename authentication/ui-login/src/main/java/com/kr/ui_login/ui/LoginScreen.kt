@@ -172,7 +172,7 @@ fun LoginScreen(navController: NavController) {
                     },
                     colors = CheckboxDefaults.colors(
                         checkedColor = SecondaryColor,
-                        checkmarkColor = SecondaryColor,
+                        checkmarkColor = PrimaryColor,
                         uncheckedColor = PrimaryColor,
                     )
                 )
