@@ -40,33 +40,40 @@ import com.kr.components.ui.theme.Shapes
 
 @Composable
 fun ProductListItem() {
-   var itemToCart = rememberSaveable {
+    var itemToCart = rememberSaveable {
         mutableStateOf(1)
     }
 
-    val context= LocalContext.current
-    var offerText="1"
+    val context = LocalContext.current
+    var offerText = "1"
     val isLikedButtonPress = remember { mutableStateOf(false) }
-    Surface(elevation = 8.dp,shape = RoundedCornerShape(20.dp), modifier = Modifier
-        .padding(top = 4.dp, bottom = 6.dp)
-        .fillMaxWidth())
+    Surface(
+        elevation = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
+            .padding(top = 4.dp, bottom = 6.dp)
+            .fillMaxWidth()
+    )
 
 
     {
-        Column(modifier = Modifier
-            .height(325.dp)
-            // .width(162.dp)
-            .padding(8.dp)
-            .fillMaxWidth()
+        Column(
+            modifier = Modifier
+                .height(325.dp)
+                // .width(162.dp)
+                .padding(8.dp)
+                .wrapContentWidth()
 
 
-            ){
+        ) {
             Row(
                 Modifier
                     .padding(top = 3.dp)
                     .fillMaxWidth()
-                   ) {
-                Text(text = "$offerText+", textAlign = TextAlign.Center,color = Color.White, fontSize = 15.sp,
+            ) {
+                Text(
+                    text = "$offerText+",
+                    textAlign = TextAlign.Center,
+                    color = Color.White,
+                    fontSize = 15.sp,
                     modifier = Modifier
                         .background(color = Color.Red, shape = CircleShape)
                         //    .width(36.dp)
@@ -76,28 +83,31 @@ fun ProductListItem() {
                         .padding(all = 8.dp)
 
                 )
-               // Spacer(modifier = Modifier.padding(1.dp))
+                 Spacer(modifier = Modifier.padding(4.dp))
 
-                 Column(modifier = Modifier.wrapContentWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                     Image(
-                         painter = painterResource(R.drawable.image),
-                         contentDescription = "product image",
-                         contentScale = ContentScale.Crop,
-                         modifier = Modifier
-                             .width(80.dp)
-                             .height(116.dp)
-                         , alignment = Alignment.Center
-                     )
-                 }
+                Column(
+                    modifier = Modifier.wrapContentWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.image),
+                        contentDescription = "product image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .width(80.dp)
+                            .height(116.dp).align(Alignment.CenterHorizontally)
+                    )
+                }
 
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    IconButton(onClick = {
-                        Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
-                        isLikedButtonPress.value = !isLikedButtonPress.value
-                    }, modifier = Modifier
-                        .height(27.dp)
-                        .width(25.dp)
-                        .align(Alignment.End)
+                    IconButton(
+                        onClick = {
+                            Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
+                            isLikedButtonPress.value = !isLikedButtonPress.value
+                        }, modifier = Modifier
+                            .height(27.dp)
+                            .width(27.dp)
+                            .align(Alignment.End)
                     )
                     {
 
@@ -113,24 +123,56 @@ fun ProductListItem() {
                 }
 
             }
-            Text(text = "Rimmel London", overflow = TextOverflow.Ellipsis,
-                maxLines = 1, fontSize = 17.sp, modifier = Modifier.padding(0.dp), color = colorResource(id = R.color.dark_blue))
-            Text(text = "Finish Bay Kit Lipstick Dark Nude (1 pack)", overflow = TextOverflow.Ellipsis,
-                maxLines = 2, fontSize = 10.sp, modifier = Modifier.padding(0.dp), color = colorResource(id = R.color.dark_blue))
-            Text(text = "SAR 55.00", overflow = TextOverflow.Ellipsis,
-                maxLines = 1, fontSize = 16.sp, modifier = Modifier.padding(top=2.dp), color = colorResource(id = R.color.dark_blue))
-            Text(text = "Buy 1 Get One Free", overflow = TextOverflow.Ellipsis,
-                maxLines = 1, fontSize = 12.sp, modifier = Modifier.padding(top=0.dp), color = colorResource(id = R.color
-                    .product_list_red))
+            Text(
+                text = "Rimmel London",
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                fontSize = 17.sp,
+                modifier = Modifier.padding(0.dp),
+                color = colorResource(id = R.color.dark_blue)
+            )
+            Text(
+                text = "Finish Bay Kit Lipstick Dark Nude (1 pack)",
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 2,
+                fontSize = 10.sp,
+                modifier = Modifier.padding(0.dp),
+                color = colorResource(id = R.color.dark_blue)
+            )
+            Text(
+                text = "SAR 55.00",
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                fontSize = 16.sp,
+                modifier = Modifier.padding(top = 2.dp),
+                color = colorResource(id = R.color.dark_blue)
+            )
+            Text(
+                text = "Buy 1 Get One Free",
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 0.dp),
+                color = colorResource(
+                    id = R.color
+                        .product_list_red
+                )
+            )
             Row(modifier = Modifier.fillMaxWidth()) {
                 Image(
                     painter = painterResource(R.drawable.arbahy),
                     contentDescription = "product image",
                     contentScale = ContentScale.Crop,
                 )
-                Text(text = "0.8 Loyalty Points", overflow = TextOverflow.Ellipsis,
+                Text(
+                    text = "0.8 Loyalty Points",
+                    overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.End,
-                    maxLines = 1, fontSize = 12.sp, modifier = Modifier.padding(start=4.dp,top=6.dp), color = colorResource(id = R.color.dark_blue))
+                    maxLines = 1,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(start = 4.dp, top = 6.dp),
+                    color = colorResource(id = R.color.dark_blue)
+                )
             }
             Row(modifier = Modifier.fillMaxWidth()) {
                 Image(
@@ -138,37 +180,78 @@ fun ProductListItem() {
                     contentDescription = "product image",
                     contentScale = ContentScale.Crop, modifier = Modifier.padding(top = 4.dp)
                 )
-                Text(text = "0.8 Loyalty Points", overflow = TextOverflow.Ellipsis,
+                Text(
+                    text = "0.8 Loyalty Points", overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.Start,
                     maxLines = 1, fontSize = 12.sp, modifier = Modifier
-                        .padding(start=4.dp)
-                        , color = colorResource(id = R.color.dark_blue))
+                        .padding(start = 4.dp), color = colorResource(id = R.color.dark_blue)
+                )
 
             }
 
-            Row( modifier = Modifier.fillMaxWidth()) {
-                if (itemToCart.value>0)
-                {   IconButton(onClick = { itemToCart.value--}) {
-                    Icon(painter =painterResource(R.drawable.minus) , contentDescription = "minus")
-                }
-                }
-                else
-                    itemToCart.value=1
+            Row(modifier = Modifier.fillMaxSize()) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 2.dp)
+                        .align(Alignment.Bottom)
+                ) {
+                    IconButton(
+                        onClick = {
+                            if (itemToCart.value > 1) itemToCart.value--
+                            else
+                                itemToCart.value = 1
+                        }, Modifier
+                            .height(20.dp)
+                            .width(20.dp)
+                            .align(alignment = CenterVertically)
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.minus),
+                            contentDescription = "minus"
+                        )
+                    }
 
-                Text(text =itemToCart.value.toString() ,textAlign = TextAlign.Center,
-              modifier = Modifier.align(alignment = CenterVertically))
-            IconButton(onClick = { itemToCart.value++ }) {
-                    Icon(painter =painterResource(R.drawable.plus) , contentDescription = "plus")
+
+                    Text(
+                        text = itemToCart.value.toString(), textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .align(alignment = CenterVertically)
+                            .padding(start = 8.dp, end = 8.dp)
+                    )
+                    IconButton(
+                        onClick = { itemToCart.value++ }, Modifier
+                            .height(20.dp)
+                            .width(20.dp)
+                            .align(alignment = CenterVertically)
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.plus),
+                            contentDescription = "plus",
+                        )
+
+                    }
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(alignment = Bottom)
+                    ) {
+                        IconButton(
+                            onClick = { /*TODO*/ }, modifier = Modifier
+                                .align(Alignment.End)
+                                .height(27.dp)
+                                .width(27.dp)
+                                .padding(end = 2.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.cart),
+                                contentDescription = "cart",
+                            )
+                        }
+                    }
 
                 }
-
-            Column(modifier = Modifier.fillMaxWidth()) {
-                IconButton(onClick = { /*TODO*/ }, modifier = Modifier.align(Alignment.End)) {
-                    Icon(painter = painterResource(R.drawable.cart), contentDescription = "cart",
-                       )
-                }
-            }
-
             }
         }
     }
