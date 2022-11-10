@@ -2,6 +2,7 @@ package com.kr.aldawaa.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.kr.authentication_datasource.network.ApiInterface
+import com.kr.categories_datasource.network.CategoriesApiInterface
 import com.kr.core.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -66,4 +67,11 @@ object NetworkModule {
     fun provideApiService(retrofit: Retrofit): ApiInterface {
         return retrofit.create(ApiInterface::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun providApiService(retrofit: Retrofit): CategoriesApiInterface  {
+        return retrofit.create(CategoriesApiInterface::class.java)
+    }
+
 }

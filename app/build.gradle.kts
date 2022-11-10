@@ -91,6 +91,11 @@ dependencies {
 
     implementation(project(Modules.core))
     implementation(project(Modules.authenticationDataSource))
+    implementation(project(Modules.ui_categories))
+    implementation(project(Modules.categoriesDataSource))
+
+
+
 
 
 //    implementation(Hilt.lifecycle)
@@ -104,11 +109,13 @@ dependencies {
     implementation(project(Modules.ui_otp))
     implementation(project(Modules.ui_home))
     implementation(project(Modules.ui_services))
-    implementation(project(Modules.ui_shop))
+    implementation(project(Modules.ui_filter))
     implementation(project(Modules.ui_offers))
     implementation(project(Modules.ui_cart))
 
 
+   implementation(project(Modules.ui_login))
+   // implementation(project(Modules.ui_register))
 
 
 }

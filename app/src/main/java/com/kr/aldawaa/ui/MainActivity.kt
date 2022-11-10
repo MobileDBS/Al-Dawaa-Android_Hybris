@@ -3,18 +3,13 @@ package com.kr.aldawaa.ui
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,9 +32,14 @@ import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
 //import com.kr.ui_login.ui.LoginViewModel
 
+import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
+import com.kr.ui_login.ui.LoginViewModel
+//import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 
+@ExperimentalMaterial3Api
+@OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -53,110 +53,123 @@ class MainActivity : ComponentActivity() {
 //
 //                Log.v("loginResponse" , state.error.toString())
 
-                NavigationPage()
 
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                   // GifImage()
-                  //  DialogBox()
+                AlDawaaHybrisTheme {
+                    val viewModel: LoginViewModel = hiltViewModel()
+                    val state = viewModel.state.value
+                    val categoriesViewModel: CategoriesViewModel = hiltViewModel()
+                    val categoriesstate = categoriesViewModel.state.value
+
+                    Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
+                    Log.v("Login Response", state.error.toString())
+
+                    // A surface container using the 'background' color from the theme
+                    Surface(color = MaterialTheme.colors.background) {
+                        // GifImage()
+                        //  DialogBox()
+                        // DialogBox()
+                        NavigationController()
+                    }
                 }
             }
         }
     }
-}
-@Composable
-fun GifImage(
-    modifier: Modifier = Modifier,
-) {
-    val context = LocalContext.current
-    val imageLoader = ImageLoader.Builder(context)
-        .components {
-            if (SDK_INT >= 28) {
-                add(ImageDecoderDecoder.Factory())
-            } else {
-                add(GifDecoder.Factory())
+
+    @Composable
+    fun GifImage(
+        modifier: Modifier = Modifier,
+    ) {
+        val context = LocalContext.current
+        val imageLoader = ImageLoader.Builder(context)
+            .components {
+                if (SDK_INT >= 28) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
             }
-        }
-        .build()
-    Image(
-        painter = rememberAsyncImagePainter(
-            ImageRequest.Builder(context).data(data =
-            R.raw.splash_gif).apply(block = {
-                size(Size.ORIGINAL)
-            }).build(), imageLoader = imageLoader
-        ),
-        contentDescription = null,
-        modifier = modifier.fillMaxWidth(),
-    )
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello00 $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    AlDawaaHybrisTheme {
-        Greeting("Android")
+            .build()
+        Image(
+            painter = rememberAsyncImagePainter(
+                ImageRequest.Builder(context).data(
+                    data =
+                    R.raw.splash_gif
+                ).apply(block = {
+                    size(Size.ORIGINAL)
+                }).build(), imageLoader = imageLoader
+            ),
+            contentDescription = null,
+            modifier = modifier.fillMaxWidth(),
+        )
     }
-}
 
-@Preview()
-@Composable
-fun DialogBox(
-) {
+    @Composable
+    fun Greeting(name: String) {
+        Text(text = "Hello00 $name!")
+    }
 
-    val context = LocalContext.current.applicationContext
-
-    val buttonCorner = 6.dp
-
-    Dialog(
-        onDismissRequest = {
+    @Preview(showBackground = true)
+    @Composable
+    fun DefaultPreview() {
+        AlDawaaHybrisTheme {
+            Greeting("Android")
         }
+    }
+
+    @Preview()
+    @Composable
+    fun DialogBox(
     ) {
 
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            shape = RoundedCornerShape(size = 20.dp),
+        val context = LocalContext.current.applicationContext
 
+        val buttonCorner = 6.dp
+
+        Dialog(
+            onDismissRequest = {
+            }
         ) {
 
-            Column(
-                modifier = Modifier) {
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                shape = RoundedCornerShape(size = 20.dp),
 
-                Text(
-
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp, top = 20.dp, bottom = 20.dp),
-                    textAlign = TextAlign.Center
-                    ,
-                    text = "Al Dawaa” Would Like to Access the Camera",
-                    style = TextStyle(
-                        color = Color.Black.copy(alpha = 0.95f),
-                        fontSize = 16.sp,
-                        lineHeight = 22.sp
-                    )
-                )
-
-                Divider(color = Color.LightGray, thickness = 1.dp)
-
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(IntrinsicSize.Min),
-                    horizontalArrangement = Arrangement.spacedBy(
-                        space = 10.dp,
-                        alignment = Alignment.CenterHorizontally
-                    )
                 ) {
 
-                    // Cancel button
+                Column(
+                    modifier = Modifier
+                ) {
+
+                    Text(
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 16.dp, end = 16.dp, top = 20.dp, bottom = 20.dp),
+                        textAlign = TextAlign.Center,
+                        text = "Al Dawaa” Would Like to Access the Camera",
+                        style = TextStyle(
+                            color = Color.Black.copy(alpha = 0.95f),
+                            fontSize = 16.sp,
+                            lineHeight = 22.sp
+                        )
+                    )
+
+                    Divider(color = Color.LightGray, thickness = 1.dp)
+
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(IntrinsicSize.Min),
+                        horizontalArrangement = Arrangement.spacedBy(
+                            space = 10.dp,
+                            alignment = Alignment.CenterHorizontally
+                        )
+                    ) {
+
+                        // Cancel button
                         Text(
                             modifier = Modifier
                                 .padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp)
@@ -164,30 +177,32 @@ fun DialogBox(
                             textAlign = TextAlign.Center,
                             text = "Settings",
                             style = TextStyle(
-                                fontSize = 16.sp),
+                                fontSize = 16.sp
+                            ),
                             color = Color.Blue,
 
                             )
 
-                    Divider(
-                        color = Color.LightGray,
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .width(1.dp)
-                    )
+                        Divider(
+                            color = Color.LightGray,
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .width(1.dp)
+                        )
                         Text(
                             modifier = Modifier
                                 .padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp)
                                 .weight(0.5f),
                             textAlign = TextAlign.Center,
                             text = "Ok",
-                            style =  TextStyle(fontSize = 16.sp),
+                            style = TextStyle(fontSize = 16.sp),
                             color = Color.Blue,
                         )
 
+                    }
                 }
-            }
 
+            }
         }
     }
 }

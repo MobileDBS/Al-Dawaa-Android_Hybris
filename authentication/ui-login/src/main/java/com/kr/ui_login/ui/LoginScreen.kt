@@ -110,7 +110,7 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .height(53.dp)
-                .clip(shape = Shapes.small)
+                .clip(shape = ShapeTabButtons.small)
                 .background(
                     color = InputColor
                 ),
@@ -172,7 +172,7 @@ fun LoginScreen(navController: NavController) {
                     },
                     colors = CheckboxDefaults.colors(
                         checkedColor = SecondaryColor,
-                        checkmarkColor = SecondaryColor,
+                        checkmarkColor = PrimaryColor,
                         uncheckedColor = PrimaryColor,
                     )
                 )
@@ -182,8 +182,7 @@ fun LoginScreen(navController: NavController) {
 
             Text(text = stringResource(id = R.string.forgetmypassword), color = PrimaryColor,
             modifier = Modifier.clickable {
-                //navController.navigate("Forget_Password")
-                navController.navigate("MainUi")
+                navController.navigate("Forget_Password")
 
             }
                 )
@@ -201,6 +200,7 @@ fun LoginScreen(navController: NavController) {
             border = BorderStroke(2.dp, PrimaryColor),
 
             onClick = {
+                navController.navigate("MainUi")
 
 
             },

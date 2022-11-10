@@ -29,7 +29,10 @@ object CoilModule {
             .error(R.drawable.error_image)
             .placeholder(R.drawable.ic_100tb)
             .memoryCache { MemoryCache.Builder(app).maxSizePercent(0.25).build() } // Don't know what is recommended?
+
             .crossfade(true)
             .build()
     }
+
+
 }

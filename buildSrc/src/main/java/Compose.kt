@@ -21,6 +21,10 @@ object Compose {
     private const val material_3 = "1.0.0-alpha13"
     const val material3 = "androidx.compose.material3:material3:$material_3"
 
+    private const val flow = "0.17.0"
+    const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$flow"
+
+
 }
 
 object ComposeTest {
