@@ -6,6 +6,7 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -35,10 +36,8 @@ fun NavigationUi(
   @ExperimentalMaterialApi
   @Composable
   fun BottomNavigationBar(
-    items: List<NavigationBarItem>,
     navController: NavController,
     modifier: Modifier = Modifier,
-    onItemClick: (BottomNavItem) -> Unit
   ) {}
   Scaffold(
     bottomBar =
