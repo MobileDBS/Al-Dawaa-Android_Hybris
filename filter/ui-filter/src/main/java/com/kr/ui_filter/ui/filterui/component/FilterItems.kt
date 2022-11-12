@@ -1,7 +1,9 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3Api::class)
 
 package com.kr.ui_filter.ui.filterui.component
 
+import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
@@ -10,10 +12,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.material.*
 import androidx.compose.material.Card
+import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.SliderDefaults
@@ -36,7 +38,6 @@ import androidx.compose.ui.unit.sp
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
-import com.google.android.material.slider.Slider
 import com.kr.components.ui.theme.InputTextColor
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
@@ -57,7 +58,10 @@ fun FilterItems(filterItems : String) {
     val interactionSource = MutableInteractionSource()
     val colors = SliderDefaults.colors(thumbColor = PrimaryColor, activeTrackColor = PrimaryColor)
     var heigh :Int = 0
-    var filteritemssub : List<String> = listOf()
+    var filteritemssub : List<FilterState> = listOf()
+
+
+
 
     val popularbrands = listOf(
         "popular1",
@@ -69,6 +73,7 @@ fun FilterItems(filterItems : String) {
         "popular7",
     )
 
+
     val categoriesitemssub = listOf(
         "categories of items1",
         "categories of items2",
@@ -78,6 +83,16 @@ fun FilterItems(filterItems : String) {
         "categories of items6",
         "categories of items7",
     )
+    val categoriesitems by remember {
+        mutableStateOf(
+            (categoriesitemssub).map {
+                FilterState(
+                    title = it,
+                    isSelected = false
+                )
+            }
+        )
+    }
 
     val branditemssub = listOf(
         "brand of items1",
@@ -88,6 +103,16 @@ fun FilterItems(filterItems : String) {
         "brand of items6",
         "brand of items7",
     )
+    val branditems by remember {
+        mutableStateOf(
+            (branditemssub).map {
+                FilterState(
+                    title = it,
+                    isSelected = false
+                )
+            }
+        )
+    }
 
 
     Card(
@@ -151,12 +176,12 @@ fun FilterItems(filterItems : String) {
             when(filterItems){
                 "items of Filter categories" ->{
                     heigh= 44 * categoriesitemssub.size
-                    filteritemssub =categoriesitemssub
+                    filteritemssub =categoriesitems
 
                 }
                 "items of Filter brand"->{
                     heigh= 44 * branditemssub.size +330
-                    filteritemssub =branditemssub
+                    filteritemssub =branditems
 
                 }
                 "items of Filter price"->{
@@ -243,9 +268,58 @@ fun FilterItems(filterItems : String) {
                                 }
 
 
-                                items(filteritemssub) { filterIS ->
+                                itemsIndexed(filteritemssub) { index,filterIS ->
 
-                                    FilterSubItems(filterSubItems = filterIS)
+                                //    FilterSubItems(filterSubItems = categoriesitemssub , index = index)
+
+                                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.height(30.dp)
+                                        ) {
+
+
+
+                                        Checkbox(
+                                            checked = filteritemssub[index].isSelected,
+                                            onCheckedChange = {
+                                                filteritemssub =    filteritemssub.mapIndexed { j, item ->
+                                                    if(index == j) {
+                                                        item.copy(isSelected = !item.isSelected)
+                                                    } else item
+
+                                                }
+                                                //   categoriesitems[index].isSelected==it
+                                                           //
+                                                              //
+                                                              // Log.d("ListList","is $categoriesitems")
+
+                                                /*  filterSubItems.isSelected= it
+                                                  Toast.makeText(
+                                                      context,
+                                                      "user checked : ${filterSubItems.isSelected}",
+                                                      Toast.LENGTH_SHORT
+                                                  ).show()
+                                                  Log.d("ListList","is $filterSubItems")
+                                  */
+                                            },
+                                            colors = CheckboxDefaults.colors(
+                                                checkedColor = SecondaryColor,
+                                                checkmarkColor = PrimaryColor,
+                                                uncheckedColor = PrimaryColor,
+                                            )
+                                        )
+                                        Text(
+                                            text = categoriesitems[index].title,
+                                            color = PrimaryColor,
+
+                                            )
+
+
+
+
+                                    }
+
+                                    Log.d("ListList","is $categoriesitems")
+                                    Log.d("ListList","is $branditems")
+
                                     Spacer(modifier = Modifier.padding(7.dp))
 
                                 }

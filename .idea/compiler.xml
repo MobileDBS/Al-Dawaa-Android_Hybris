@@ -1,57 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7">
-      <module name="Al-Dawaa-Android_Hybris.buildSrc" target="11" />
-      <module name="Al-Dawaa-Android_Hybris.buildSrc.main" target="11" />
-      <module name="Al-Dawaa-Android_Hybris.buildSrc.test" target="11" />
-      <module name="AlDawaaHybris.app" target="11" />
-      <module name="AlDawaaHybris.authentication.authentication-datasource" target="1.8" />
-      <module name="AlDawaaHybris.authentication.authentication-datasource.main" target="1.8" />
-      <module name="AlDawaaHybris.authentication.authentication-datasource.test" target="1.8" />
-      <module name="AlDawaaHybris.authentication.authentication-domain" target="1.8" />
-      <module name="AlDawaaHybris.authentication.authentication-domain.main" target="1.8" />
-      <module name="AlDawaaHybris.authentication.authentication-domain.test" target="1.8" />
-      <module name="AlDawaaHybris.authentication.authentication-interactors" target="1.8" />
-      <module name="AlDawaaHybris.authentication.authentication-interactors.main" target="1.8" />
-      <module name="AlDawaaHybris.authentication.authentication-interactors.test" target="1.8" />
-      <module name="AlDawaaHybris.authentication.ui-entry" target="11" />
-      <module name="AlDawaaHybris.authentication.ui-forgetpassword" target="11" />
-      <module name="AlDawaaHybris.authentication.ui-login" target="11" />
-      <module name="AlDawaaHybris.authentication.ui-register" target="11" />
-      <module name="AlDawaaHybris.cart.ui-cart" target="11" />
-      <module name="AlDawaaHybris.components" target="11" />
-      <module name="AlDawaaHybris.core" target="1.8" />
-      <module name="AlDawaaHybris.core.main" target="1.8" />
-      <module name="AlDawaaHybris.core.test" target="1.8" />
-      <module name="AlDawaaHybris.filter.ui-filter" target="11" />
-      <module name="AlDawaaHybris.filter.ui-filters" target="11" />
-      <module name="AlDawaaHybris.home.ui-home" target="11" />
-      <module name="AlDawaaHybris.offers.ui-offers" target="11" />
-      <module name="AlDawaaHybris.services.ui-services" target="11" />
-      <module name="AlDawaaHybris.shop.categories-datasource" target="1.8" />
-      <module name="AlDawaaHybris.shop.categories-datasource.main" target="1.8" />
-      <module name="AlDawaaHybris.shop.categories-datasource.test" target="1.8" />
-      <module name="AlDawaaHybris.shop.categories-domain" target="1.8" />
-      <module name="AlDawaaHybris.shop.categories-domain.main" target="1.8" />
-      <module name="AlDawaaHybris.shop.categories-domain.test" target="1.8" />
-      <module name="AlDawaaHybris.shop.categories-interactors" target="1.8" />
-      <module name="AlDawaaHybris.shop.categories-interactors.main" target="1.8" />
-      <module name="AlDawaaHybris.shop.categories-interactors.test" target="1.8" />
-      <module name="AlDawaaHybris.shop.ui-categories" target="11" />
-      <module name="AlDawaaHybris.verification.ui-otp" target="11" />
-      <module name="AlDawaaHybris.verification.verification-datasource" target="1.8" />
-      <module name="AlDawaaHybris.verification.verification-datasource.main" target="1.8" />
-      <module name="AlDawaaHybris.verification.verification-datasource.test" target="1.8" />
-      <module name="AlDawaaHybris.verification.verification-domain" target="1.8" />
-      <module name="AlDawaaHybris.verification.verification-domain.main" target="1.8" />
-      <module name="AlDawaaHybris.verification.verification-domain.test" target="1.8" />
-      <module name="AlDawaaHybris.verification.verification-interactors" target="1.8" />
-      <module name="AlDawaaHybris.verification.verification-interactors.main" target="1.8" />
-      <module name="AlDawaaHybris.verification.verification-interactors.test" target="1.8" />
-      <module name="AlDawaaHybris_code.buildSrc" target="11" />
-      <module name="AlDawaaHybris_code.buildSrc.main" target="11" />
-      <module name="AlDawaaHybris_code.buildSrc.test" target="11" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7" />
   </component>
 </project>
