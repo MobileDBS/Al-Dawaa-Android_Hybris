@@ -51,12 +51,11 @@ fun FilterItems(filterItems : String) {
         targetValue = if (expandedState) 180f else 0f
     )
     var selectedInputChip by remember { mutableStateOf(false) }
-
+    val colors = SliderDefaults.colors(thumbColor = PrimaryColor, activeTrackColor = PrimaryColor)
     val sliderfrom by remember { mutableStateOf(0f) }
     val sliderto by remember { mutableStateOf(50000f) }
     var sliderPosition by remember { mutableStateOf(sliderfrom..sliderto) }
     val interactionSource = MutableInteractionSource()
-    val colors = SliderDefaults.colors(thumbColor = PrimaryColor, activeTrackColor = PrimaryColor)
     var heigh :Int = 0
     var filteritemssub : List<FilterState> = listOf()
 
@@ -74,18 +73,18 @@ fun FilterItems(filterItems : String) {
     )
 
 
-    val categoriesitemssub = listOf(
-        "categories of items1",
-        "categories of items2",
-        "categories of items3",
-        "categories of items4",
-        "categories of items5",
-        "categories of items6",
-        "categories of items7",
-    )
+
     val categoriesitems by remember {
         mutableStateOf(
-            (categoriesitemssub).map {
+            listOf(
+                "categories of items1",
+                "categories of items2",
+                "categories of items3",
+                "categories of items4",
+                "categories of items5",
+                "categories of items6",
+                "categories of items7",
+            ).map {
                 FilterState(
                     title = it,
                     isSelected = false
@@ -94,18 +93,17 @@ fun FilterItems(filterItems : String) {
         )
     }
 
-    val branditemssub = listOf(
-        "brand of items1",
-        "brand of items2",
-        "brand of items3",
-        "brand of items4",
-        "brand of items5",
-        "brand of items6",
-        "brand of items7",
-    )
     val branditems by remember {
         mutableStateOf(
-            (branditemssub).map {
+            listOf(
+                "brand of items1",
+                "brand of items2",
+                "brand of items3",
+                "brand of items4",
+                "brand of items5",
+                "brand of items6",
+                "brand of items7",
+            ).map {
                 FilterState(
                     title = it,
                     isSelected = false
@@ -175,12 +173,12 @@ fun FilterItems(filterItems : String) {
             )
             when(filterItems){
                 "items of Filter categories" ->{
-                    heigh= 44 * categoriesitemssub.size
+                    heigh= 44 * categoriesitems.size
                     filteritemssub =categoriesitems
 
                 }
                 "items of Filter brand"->{
-                    heigh= 44 * branditemssub.size +330
+                    heigh= 44 * branditems.size +330
                     filteritemssub =branditems
 
                 }
@@ -307,7 +305,7 @@ fun FilterItems(filterItems : String) {
                                             )
                                         )
                                         Text(
-                                            text = categoriesitems[index].title,
+                                            text = filteritemssub[index].title,
                                             color = PrimaryColor,
 
                                             )
@@ -317,12 +315,13 @@ fun FilterItems(filterItems : String) {
 
                                     }
 
-                                    Log.d("ListList","is $categoriesitems")
-                                    Log.d("ListList","is $branditems")
+
 
                                     Spacer(modifier = Modifier.padding(7.dp))
 
                                 }
+                                Log.d("ListList","is $categoriesitems")
+                                Log.d("ListList","is $branditems")
 
                             }else {
                                 item {
