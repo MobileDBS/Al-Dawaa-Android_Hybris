@@ -14,7 +14,7 @@ import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
 
 @Composable
-fun FilterSubItems(filterSubItems : List<String>, index :Int) {
+fun FilterSubItemsCategories(filterSubItems : List<String>, index :Int) {
  //   val context = LocalContext.current
    // val checkboxvalue = remember { mutableStateOf(false) }
     var categoriesitems by rememberSaveable {
@@ -28,33 +28,18 @@ fun FilterSubItems(filterSubItems : List<String>, index :Int) {
         )
     }
     Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.height(30.dp)
-        .clickable {
-            categoriesitems =    categoriesitems.mapIndexed { j, item ->
-                if(index == j) {
-                    item.copy(isSelected = !item.isSelected)
-                } else item
-
-            }
-        }) {
-
-        Log.d("ListList","is $categoriesitems")
-
+        ) {
 
         Checkbox(
             checked = categoriesitems[index].isSelected,
             onCheckedChange = {
 
-             //   categoriesitems[index].isSelected==it
-               // Log.d("ListList","is $categoriesitems")
+                categoriesitems = categoriesitems.mapIndexed { j, item ->
+                    if(index == j) {
+                        item.copy(isSelected = !item.isSelected)
+                    } else item
 
-                /*  filterSubItems.isSelected= it
-                  Toast.makeText(
-                      context,
-                      "user checked : ${filterSubItems.isSelected}",
-                      Toast.LENGTH_SHORT
-                  ).show()
-                  Log.d("ListList","is $filterSubItems")
-  */
+                }
             },
             colors = CheckboxDefaults.colors(
                 checkedColor = SecondaryColor,
@@ -72,4 +57,68 @@ fun FilterSubItems(filterSubItems : List<String>, index :Int) {
 
 
     }
+
+    Log.d("ListList","is $categoriesitems")
+
+}
+
+
+@Composable
+fun FilterSubItemsBrand(filterSubItemsBra : List<String>, index :Int) {
+    //   val context = LocalContext.current
+    // val checkboxvalue = remember { mutableStateOf(false) }
+    var branditems by rememberSaveable {
+        mutableStateOf(
+            (filterSubItemsBra).map {
+                FilterState(
+                    title = it,
+                    isSelected = false
+                )
+            }
+        )
+    }
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.height(30.dp)
+        ) {
+
+        Checkbox(
+            checked = branditems[index].isSelected,
+            onCheckedChange = {
+
+                branditems =    branditems.mapIndexed { j, item ->
+                    if(index == j) {
+                        item.copy(isSelected = !item.isSelected)
+                    } else item
+
+                }
+                //   categoriesitems[index].isSelected==it
+                // Log.d("ListList","is $categoriesitems")
+
+                /*  filterSubItems.isSelected= it
+                  Toast.makeText(
+                      context,
+                      "user checked : ${filterSubItems.isSelected}",
+                      Toast.LENGTH_SHORT
+                  ).show()
+                  Log.d("ListList","is $filterSubItems")
+  */
+            },
+            colors = CheckboxDefaults.colors(
+                checkedColor = SecondaryColor,
+                checkmarkColor = PrimaryColor,
+                uncheckedColor = PrimaryColor,
+            )
+        )
+        Text(
+            text = branditems[index].title,
+            color = PrimaryColor,
+
+            )
+
+
+
+
+    }
+
+    Log.d("ListList","is $branditems")
+
 }

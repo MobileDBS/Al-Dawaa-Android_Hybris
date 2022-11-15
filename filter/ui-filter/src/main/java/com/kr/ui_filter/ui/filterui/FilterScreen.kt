@@ -184,7 +184,7 @@ fun FilterScreen(
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .fillMaxHeight()
-                    .padding(top = 20.dp, bottom = 70.dp)
+                    .padding(top = 20.dp, bottom = 59.dp)
                     .background(Color.White),
 
 
