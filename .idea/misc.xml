@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable-v24/ic_home.xml" value="0.1" />
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable/ic_calender.xml" value="0.1" />
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable/ic_cart.xml" value="0.1" />
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable/ic_category_new.xml" value="0.1" />
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable/ic_home.xml" value="0.1" />
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable/ic_offer_unselected.xml" value="0.1" />
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable/ic_offers.xml" value="0.1" />
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable/ic_shop.xml" value="0.1" />
+        <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/app/src/main/res/drawable/ic_shop_unselected.xml" value="0.1" />
         <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/authentication/ui-entry/src/main/res/drawable/aldawaaaaa.xml" value="0.1" />
         <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/authentication/ui-entry/src/main/res/drawable/drawable.xml" value="0.1" />
         <entry key="..\:/DBSProjects/hybris/Al-Dawaa-Android_Hybris/authentication/ui-entry/src/main/res/drawable/ic_aldawaa_logo.xml" value="0.1" />

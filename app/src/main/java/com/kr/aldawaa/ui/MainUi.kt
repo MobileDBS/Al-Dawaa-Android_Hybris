@@ -3,21 +3,18 @@
 package com.kr.aldawaa.ui
 
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.kr.aldawaa.R
 import com.kr.ui_cart.ui.CartScreen
 import com.kr.ui_categories.ui.categoriesdetailsui.CategoryDetailsScreen
 import com.kr.ui_categories.ui.categoriesui.CategoriesScreen
 import com.kr.ui_filter.ui.filterui.FilterScreen
 import com.kr.ui_home.ui.HomeScreen
-import com.kr.ui_offers.ui.OffersScreen
+
 import com.kr.ui_services.ui.ServicesScreen
 
 
@@ -67,40 +64,40 @@ fun MainUi(navController: NavHostController) {
 sealed class BottomBarScreen(
     val name: String,
     val path: String,
-    val icon: ImageVector,
+    val icon: Int,
   //  val badgeCount: Int = 0
 ) {
     object Shop : BottomBarScreen(
         name = "Shop",
         path = "Categories",
-        icon = Icons.Filled.List
+        icon = R.drawable.ic_shop
     )
 
     object Offers : BottomBarScreen(
         name = "Offers",
         path = "FilterScreen",
-        icon = Icons.Filled.List
+        icon = R.drawable.ic_offers
     )
 
 
     object Home : BottomBarScreen(
         name = "Home",
         path = "home",
-        icon = Icons.Filled.List
+        icon =R.drawable.ic_home
     )
 
 
     object Services : BottomBarScreen(
         name = "Service",
         path = "service",
-        icon = Icons.Filled.List
+        icon = R.drawable.ic_services
     )
 
 
     object Cart : BottomBarScreen(
         name = "Cart",
         path = "cart",
-        icon = Icons.Filled.Settings
+        icon = R.drawable.ic_cart
     )
 
 
