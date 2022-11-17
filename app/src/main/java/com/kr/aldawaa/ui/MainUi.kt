@@ -9,12 +9,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kr.aldawaa.R
-import com.example.productlist.ProductListScreen
+import com.kr.productlist.ProductListScreen
 import com.kr.ui_cart.ui.CartScreen
 import com.kr.ui_categories.ui.categoriesdetailsui.CategoryDetailsScreen
 import com.kr.ui_categories.ui.categoriesui.CategoriesScreen
-import com.kr.ui_filter.ui.filterui.FilterScreen
+import com.kr.ui_filter.FilterScreen
 import com.kr.ui_home.ui.HomeScreen
+import com.kr.ui_offers.ui.OffersScreen
 
 import com.kr.ui_services.ui.ServicesScreen
 
@@ -35,7 +36,8 @@ fun BottomNavGraph(navController: NavHostController) {
             CategoriesScreen(navController)
         }
         composable(route = BottomBarScreen.Offers.path) {
-            FilterScreen(navController)
+            OffersScreen(navController = navController)
+//            FilterScreen(navController)
         }
 
         composable(route = BottomBarScreen.Services.path) {
@@ -51,6 +53,8 @@ fun BottomNavGraph(navController: NavHostController) {
         composable("Category_Items", content = {
             CategoryDetailsScreen(navController = navController) })
 
+
+        composable("Filter_Screen", content = { FilterScreen(navController = navController) })
 
         composable("Category_Items", content = { CategoryDetailsScreen(navController = navController) })
 

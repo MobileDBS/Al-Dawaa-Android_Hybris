@@ -12,9 +12,6 @@ import androidx.navigation.NavController
 
 @Composable
 fun OffersScreen(navController: NavController) {
-    OutlinedButton(onClick = { navController.navigate("Product_List") }) {
-        Text("I'm an Outlined Button")
-    }
  /*   Box(modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center){
         Text(text = "Offers Screen")
