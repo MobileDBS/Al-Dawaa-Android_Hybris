@@ -7,6 +7,7 @@ import androidx.compose.animation.AnimatedContentScope.SlideDirection.Companion.
 import androidx.compose.animation.AnimatedContentScope.SlideDirection.Companion.Start
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +22,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Alignment.Companion.Top
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -47,10 +49,12 @@ fun ProductListItem() {
     val context = LocalContext.current
     var offerText = "1"
     val isLikedButtonPress = remember { mutableStateOf(false) }
+    val isItemInProductList = remember { mutableStateOf(true) }
     Surface(
         elevation = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
             .padding(top = 4.dp, bottom = 6.dp)
             .fillMaxWidth()
+
     )
 
 
@@ -61,8 +65,7 @@ fun ProductListItem() {
                 // .width(162.dp)
                 .padding(8.dp)
                 .wrapContentWidth()
-
-
+              //  .alpha(0.5f)
         ) {
             Row(
                 Modifier
@@ -90,24 +93,31 @@ fun ProductListItem() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Image(
+                        modifier = Modifier
+                            .width(80.dp)
+                            .height(116.dp).align(Alignment.CenterHorizontally),
                         painter = painterResource(R.drawable.image),
                         contentDescription = "product image",
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .width(80.dp)
-                            .height(116.dp).align(Alignment.CenterHorizontally)
+
                     )
                 }
 
                 Column(modifier = Modifier.fillMaxWidth()) {
+
                     IconButton(
-                        onClick = {
-                            Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
-                            isLikedButtonPress.value = !isLikedButtonPress.value
-                        }, modifier = Modifier
+
+                        modifier = Modifier
                             .height(27.dp)
                             .width(27.dp)
-                            .align(Alignment.End)
+                            .align(Alignment.End),
+                        onClick = {
+                            if (isItemInProductList.value){
+                                Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
+                                isLikedButtonPress.value = !isLikedButtonPress.value
+                            }
+
+                        }
                     )
                     {
 
