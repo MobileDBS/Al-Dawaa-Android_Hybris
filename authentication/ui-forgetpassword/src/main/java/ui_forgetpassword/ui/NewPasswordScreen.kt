@@ -152,7 +152,8 @@ fun NewPasswordScreen (navController: NavController) {
                         }) {
 
                             Icon(
-                                painter = if (passwordvisibilityforget.value) painterResource(R.drawable.ic_eye_show) else painterResource(
+                                painter = if (passwordvisibilityforget.value)
+                                    painterResource(R.drawable.ic_eye_show) else painterResource(
                                     R.drawable.ic_eye_hide
                                 ),
                                 contentDescription = "password",

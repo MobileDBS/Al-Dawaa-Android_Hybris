@@ -25,11 +25,9 @@ object Modules {
     const val categoriesDataSource =":shop:categories-datasource"
     const val categoriesInteractors =":shop:categories-interactors"
     const val ui_categories =":shop:ui-categories"
-    const val ui_filter =":filter:ui-filter"
-    const val filterDomain =":filter:filter-domain"
-    const val filterDataSource =":filter:filter-datasource"
-    const val filterInteractors =":filter:filter-interactors"
+    const val ui_filter =":product:ui-filter"
 
+    const val ui_productList=":product:ui-productlist"
 
 
 

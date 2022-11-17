@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="Al-Dawaa-Android_Hybris.buildSrc" target="11" />
+      <module name="Al-Dawaa-Android_Hybris.buildSrc.main" target="11" />
+      <module name="Al-Dawaa-Android_Hybris.buildSrc.test" target="11" />
+      <module name="AlDawaaHybris.app" target="11" />
+      <module name="AlDawaaHybris.authentication.ui-entry" target="11" />
+      <module name="AlDawaaHybris.authentication.ui-forgetpassword" target="11" />
+      <module name="AlDawaaHybris.authentication.ui-login" target="11" />
+      <module name="AlDawaaHybris.authentication.ui-register" target="11" />
+      <module name="AlDawaaHybris.cart.ui-cart" target="11" />
+      <module name="AlDawaaHybris.components" target="11" />
+      <module name="AlDawaaHybris.home.ui-home" target="11" />
+      <module name="AlDawaaHybris.offers.ui-offers" target="11" />
+      <module name="AlDawaaHybris.product.ui-filter" target="11" />
+      <module name="AlDawaaHybris.product.ui-productlist" target="11" />
+      <module name="AlDawaaHybris.productlist" target="11" />
+      <module name="AlDawaaHybris.services.ui-services" target="11" />
+      <module name="AlDawaaHybris.shop.ui-categories" target="11" />
+      <module name="AlDawaaHybris.verification.ui-otp" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

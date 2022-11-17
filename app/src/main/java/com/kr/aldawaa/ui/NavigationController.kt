@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.kr.ui_categories.ui.categoriesdetailsui.CategoryDetailsScreen
+import com.kr.productlist.ProductListScreen
 import com.kr.ui_login.ui.EntryScreen
 import com.kr.ui_otp.ui.OtpScreen
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -43,8 +43,7 @@ fun NavigationController() {
 
             composable("MainUi", content = { MainScreen() })
 
-
-
+            composable("Product_List", content = { ProductListScreen(navController=navController) })
 
            /* composable("MainUi", content = { MainUi(navController = navController) })
 
