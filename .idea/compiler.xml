@@ -27,6 +27,8 @@
       <module name="AlDawaaHybris.filter.ui-filter" target="11" />
       <module name="AlDawaaHybris.home.ui-home" target="11" />
       <module name="AlDawaaHybris.offers.ui-offers" target="11" />
+      <module name="AlDawaaHybris.product.productlist" target="11" />
+      <module name="AlDawaaHybris.productlist" target="11" />
       <module name="AlDawaaHybris.services.ui-services" target="11" />
       <module name="AlDawaaHybris.shop.categories-datasource" target="1.8" />
       <module name="AlDawaaHybris.shop.categories-datasource.main" target="1.8" />

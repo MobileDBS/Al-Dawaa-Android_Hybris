@@ -30,6 +30,7 @@ object Modules {
     const val filterDataSource =":filter:filter-datasource"
     const val filterInteractors =":filter:filter-interactors"
 
+    const val ui_productList=":product:productlist"
 
 
 

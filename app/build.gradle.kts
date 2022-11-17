@@ -113,9 +113,8 @@ dependencies {
     implementation(project(Modules.ui_filter))
     implementation(project(Modules.ui_offers))
     implementation(project(Modules.ui_cart))
-
-
    implementation(project(Modules.ui_login))
+    implementation(project(Modules.ui_productList))
    // implementation(project(Modules.ui_register))
 
 
