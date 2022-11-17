@@ -15,11 +15,9 @@
 <string name="forgetmypassword">Forgot Password ?</string>
 <string name="rememberme">Remember me</string>
 <string name="Subscribeto">Subscribe to e-mail newletters</string>
-<string name="title">Title</string>
-<string name="title1">title1</string>
+    <string name="title1">title1</string>
 <string name="title2">title2</string>
-<string name="gender">Gender</string>
-<string name="male">Male</string>
+    <string name="male">Male</string>
 <string name="female">Female</string>
 
 </resources>

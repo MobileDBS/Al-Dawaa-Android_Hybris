@@ -51,7 +51,6 @@ fun FilterSubItemsCategories(filterSubItems : MutableState<List<FilterState>>, i
       filterSubItems.value.containsAll(listOf(FilterState(isSelected = true, title = filterSubItems.value[index].title)))
 
     }
-    Log.d("ListList","is ${filterSubItems.value.contains(FilterState(isSelected = true, title = filterSubItems.value[index].title))}")
 
     Log.d("ListList","is ${filterSubItems.value}")
 
