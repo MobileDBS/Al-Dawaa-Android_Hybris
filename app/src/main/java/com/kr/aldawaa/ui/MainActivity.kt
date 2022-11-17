@@ -53,9 +53,9 @@ class MainActivity : ComponentActivity() {
             AlDawaaHybrisTheme {
 
                 //BottomSheet
-                Surface(color = MaterialTheme.colors.background) {
-                    CustomModalBottomSheet(list)
-                }
+//                Surface(color = MaterialTheme.colors.background) {
+//                    CustomModalBottomSheet(list)
+//                }
 
 
 //                val viewModel: LoginViewModel by hiltViewModel()
@@ -65,22 +65,22 @@ class MainActivity : ComponentActivity() {
 
                     /////////////////Start Navigation Bar////////////////
 
-//                    val viewModel: LoginViewModel = hiltViewModel()
-//                    val state = viewModel.state.value
-//                    val categoriesViewModel: CategoriesViewModel = hiltViewModel()
-//                    val categoriesstate = categoriesViewModel.state.value
-//
-//                    Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
-//                    Log.v("Login Response", state.error.toString())
-//
-//                    // A surface container using the 'background' color from the theme
-//                    Surface(color = MaterialTheme.colors.background) {
-//                        // GifImage()
-//                        //  DialogBox()
-//                        // DialogBox()
-//                        NavigationController()
-//                    }
-//
+                    val viewModel: LoginViewModel = hiltViewModel()
+                    val state = viewModel.state.value
+                    val categoriesViewModel: CategoriesViewModel = hiltViewModel()
+                    val categoriesstate = categoriesViewModel.state.value
+
+                    Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
+                    Log.v("Login Response", state.error.toString())
+
+                    // A surface container using the 'background' color from the theme
+                    Surface(color = MaterialTheme.colors.background) {
+                        // GifImage()
+                        //  DialogBox()
+                        // DialogBox()
+                        NavigationController()
+                    }
+
                     ///////////////End Navigation Bar///////////////////////
                 }
             }
