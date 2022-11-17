@@ -353,12 +353,6 @@ fun FilterScreen(
                     }
                 }
 
-                */
-/*items(filterRowitems) { filterRI ->
-                    SortByItems(sortByItems = filterRI)
-
-                }
-*//*
 
             },
                 horizontalArrangement = Arrangement.spacedBy(10.dp)

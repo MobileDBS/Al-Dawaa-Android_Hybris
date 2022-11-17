@@ -1,5 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
-    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
+    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3Api::class)
 
 package com.kr.ui_filter.ui.filterui.component
 
@@ -30,6 +31,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
@@ -71,7 +73,9 @@ fun FilterItems(filterItems: String) {
         "popular7",
     )
 
-    val categoriesitems =listOf(
+    var categoriesitems :MutableState<List<FilterState>> = rememberSaveable {
+        mutableStateOf(
+            listOf(
                 "categories of items1",
                 "categories of items2",
                 "categories of items3",
@@ -79,17 +83,43 @@ fun FilterItems(filterItems: String) {
                 "categories of items5",
                 "categories of items6",
                 "categories of items7",
-            )
+            ).map {
+                FilterState(
+                    title = it,
+                    isSelected = false
+                )
+            }
+        )
+    }
 
 
-    val branditems = listOf(
+
+   /* val branditems = listOf(
                 "brand of items1",
                 "brand of items2",
                 "brand of items3",
                 "brand of items4",
                 "brand of items5",
 
+                )*/
+
+
+    val branditems :MutableState<List<FilterState>> = rememberSaveable {
+        mutableStateOf(
+            listOf(
+            "brand of items1",
+            "brand of items2",
+            "brand of items3",
+            "brand of items4",
+            "brand of items5",
+                ).map {
+                FilterState(
+                    title = it,
+                    isSelected = false
                 )
+            }
+        )
+    }
 
     Card(
         modifier = Modifier
@@ -163,11 +193,11 @@ fun FilterItems(filterItems: String) {
                         when (filterItems) {
                             "items of Filter categories" -> {
 
-                                heigh = 44 * categoriesitems.size
+                                heigh = 44 * categoriesitems.value.size
 
-                                itemsIndexed(categoriesitems) { index, filterIS ->
+                                itemsIndexed(categoriesitems.value) { index, filterIS ->
 
-                                    FilterSubItemsCategories(filterSubItems = categoriesitems,
+                                   categoriesitems = FilterSubItemsCategories(filterSubItems = categoriesitems,
                                         index = index)
 
 
@@ -175,11 +205,12 @@ fun FilterItems(filterItems: String) {
 
                                 }
 
+                                Log.d("catcat","is ${categoriesitems.value}")
 
                             }
                             "items of Filter brand" -> {
 
-                                heigh = 44 * branditems.size + 330
+                                heigh = 44 * branditems.value.size + 330
 
                                 item {
                                     Spacer(modifier = Modifier.padding(8.dp))
@@ -249,7 +280,7 @@ fun FilterItems(filterItems: String) {
 
 
 
-                                itemsIndexed(branditems) { index, filterIS ->
+                                itemsIndexed(branditems.value) { index, filterIS ->
 
                                     FilterSubItemsBrand(filterSubItemsBra = branditems,
                                         index = index)
@@ -258,6 +289,7 @@ fun FilterItems(filterItems: String) {
                                     Spacer(modifier = Modifier.padding(7.dp))
 
                                 }
+                                Log.d("catcat","is ${branditems.value}")
 
 
                             }
