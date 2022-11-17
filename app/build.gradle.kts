@@ -94,6 +94,7 @@ dependencies {
     implementation(project(Modules.ui_categories))
     implementation(project(Modules.categoriesDataSource))
 
+    implementation(project(Modules.components))
 
 
 

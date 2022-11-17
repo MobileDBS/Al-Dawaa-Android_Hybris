@@ -30,6 +30,7 @@ import coil.request.ImageRequest
 import coil.size.Size
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+import com.kr.components.CustomModalBottomSheet
 //import com.kr.ui_login.ui.LoginViewModel
 
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
@@ -47,32 +48,46 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val list = listOf("Liked products" ,"Makeup" , "Create new")
+
             AlDawaaHybrisTheme {
+
+                //BottomSheet
+                Surface(color = MaterialTheme.colors.background) {
+                    CustomModalBottomSheet(list)
+                }
+
+
 //                val viewModel: LoginViewModel by hiltViewModel()
 //                            val state = viewModel.state.value
 //
 //                Log.v("loginResponse" , state.error.toString())
 
+                    /////////////////Start Navigation Bar////////////////
 
-                AlDawaaHybrisTheme {
-                    val viewModel: LoginViewModel = hiltViewModel()
-                    val state = viewModel.state.value
-                    val categoriesViewModel: CategoriesViewModel = hiltViewModel()
-                    val categoriesstate = categoriesViewModel.state.value
-
-                    Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
-                    Log.v("Login Response", state.error.toString())
-
-                    // A surface container using the 'background' color from the theme
-                    Surface(color = MaterialTheme.colors.background) {
-                        // GifImage()
-                        //  DialogBox()
-                        // DialogBox()
-                        NavigationController()
-                    }
+//                    val viewModel: LoginViewModel = hiltViewModel()
+//                    val state = viewModel.state.value
+//                    val categoriesViewModel: CategoriesViewModel = hiltViewModel()
+//                    val categoriesstate = categoriesViewModel.state.value
+//
+//                    Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
+//                    Log.v("Login Response", state.error.toString())
+//
+//                    // A surface container using the 'background' color from the theme
+//                    Surface(color = MaterialTheme.colors.background) {
+//                        // GifImage()
+//                        //  DialogBox()
+//                        // DialogBox()
+//                        NavigationController()
+//                    }
+//
+                    ///////////////End Navigation Bar///////////////////////
                 }
             }
         }
+
+
+
     }
 
     @Composable
@@ -205,4 +220,3 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
