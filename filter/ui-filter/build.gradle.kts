@@ -3,13 +3,12 @@ apply{
 }
 plugins {
     kotlin(KotlinPlugins.serialization) version Kotlin.version
+    id("org.jetbrains.kotlin.android")
 }
 dependencies{
 
     "implementation"(project(Modules.core))
     "implementation"(project(Modules.components))
-
-
 
 
 }

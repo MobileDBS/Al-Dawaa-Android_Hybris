@@ -30,7 +30,6 @@ include ':shop:categories-domain'
 include ':shop:ui-categories'
 include ':shop:categories-interactors'
 include ':filter'
-
 include ':filter:filter-datasource'
 include ':filter:filter-domain'
 include ':filter:filter-interactors'
