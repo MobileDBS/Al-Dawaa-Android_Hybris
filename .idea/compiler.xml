@@ -12,6 +12,7 @@
       <module name="AlDawaaHybris.authentication.ui-register" target="11" />
       <module name="AlDawaaHybris.cart.ui-cart" target="11" />
       <module name="AlDawaaHybris.components" target="11" />
+      <module name="AlDawaaHybris.filter.ui-filter" target="11" />
       <module name="AlDawaaHybris.home.ui-home" target="11" />
       <module name="AlDawaaHybris.offers.ui-offers" target="11" />
       <module name="AlDawaaHybris.product.ui-filter" target="11" />

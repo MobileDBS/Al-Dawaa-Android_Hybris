@@ -7,6 +7,15 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 dependencies{
+
     "implementation"(project(Modules.components))
+    "implementation"(Camera.camerax)
+    "implementation"(Camera.cameraview)
+    "implementation"(Camera.cameraxlife)
+    "implementation"(Camera.permission)
+
+
+
+
 
 }

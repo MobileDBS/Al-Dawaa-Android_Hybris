@@ -16,6 +16,7 @@ import com.kr.ui_categories.ui.categoriesui.CategoriesScreen
 import com.kr.ui_filter.FilterScreen
 import com.kr.ui_home.ui.HomeScreen
 import com.kr.ui_offers.ui.OffersScreen
+import com.kr.ui_services.ui.CameraScreen
 
 import com.kr.ui_services.ui.ServicesScreen
 
@@ -59,6 +60,8 @@ fun BottomNavGraph(navController: NavHostController) {
         composable("Category_Items", content = { CategoryDetailsScreen(navController = navController) })
 
         composable("Product_List", content = { ProductListScreen(navController=navController) })
+        composable("Camera_Screen", content = { CameraScreen(navController=navController) })
+
     }
 }
 /*
