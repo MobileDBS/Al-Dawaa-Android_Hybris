@@ -1,5 +1,6 @@
 package com.kr.aldawaa.ui
 
+  import android.location.Location
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
@@ -28,9 +29,9 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
-import com.kr.components.CustomModalBottomSheet
 //import com.kr.ui_login.ui.LoginViewModel
 
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
@@ -42,14 +43,14 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @ExperimentalMaterial3Api
 @OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-
+class MainActivity : ComponentActivity(),LocationClass.Interface {
+    var locationClass=LocationClass(this)
     @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val list = listOf("Liked products" ,"Makeup" , "Create new")
-
+            locationClass.GetLastLocation()
             AlDawaaHybrisTheme {
 
                 //BottomSheet
@@ -86,9 +87,12 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-
-
+    override fun findLocation(location: Location) {
+        Log.v("LocationFromHomeActivity",location.toString())
     }
+
+
+}
 
     @Composable
     fun GifImage(
