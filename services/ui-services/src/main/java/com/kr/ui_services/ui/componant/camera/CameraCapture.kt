@@ -76,6 +76,7 @@ fun CameraCapture(
                     ImageCapture.Builder()
                         .setCaptureMode(CAPTURE_MODE_MAXIMIZE_QUALITY)
                         .build()
+
                 )
             }
             Box {

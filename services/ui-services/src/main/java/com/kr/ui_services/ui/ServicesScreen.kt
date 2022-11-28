@@ -2,18 +2,24 @@
 
 package com.kr.ui_services.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import androidx.navigation.NavController
+import coil.compose.rememberImagePainter
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.kr.ui_services.R
+import com.kr.ui_services.ui.componant.camera.CameraCapture
 import com.kr.ui_services.ui.componant.gallery.GallerySelect
 
 
@@ -49,18 +55,10 @@ fun ServicesScreen(navController: NavController,modifier: Modifier = Modifier) {
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = modifier.fillMaxWidth()) {
 
-                            if (showGallerySelect) {
-                                GallerySelect(
-                                    modifier = Modifier.fillMaxSize(),
-                                    onImageUri = { uri ->
-                                        showGallerySelect = false
-                                        imageUri = uri
-                                    }
-                                )
-                            }
                                 IconButton(onClick = {
-
                                     showGallerySelect = true
+                                    navController.navigate("Camera_Screen?showvalu=$showGallerySelect")
+
 
                                 },
                                     modifier = modifier.weight(5f)) {
@@ -85,7 +83,11 @@ fun ServicesScreen(navController: NavController,modifier: Modifier = Modifier) {
 
 
 
-                                IconButton(onClick = { navController.navigate("Camera_Screen")},
+                                IconButton(onClick = {
+                                    showGallerySelect= false
+                                    navController.navigate("Camera_Screen?showvalu=$showGallerySelect")
+
+                                },
                                     modifier = Modifier.weight(5f)) {
                                     Column(horizontalAlignment = Alignment.CenterHorizontally,
                                         verticalArrangement = Arrangement.Center,

@@ -3,6 +3,7 @@
 package com.kr.ui_services.ui
 
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.kr.components.ui.theme.PrimaryColor
@@ -31,7 +33,10 @@ import com.kr.ui_services.ui.componant.gallery.GallerySelect
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @Composable
-fun CameraScreen(navController: NavController) {
+fun CameraScreen(navController: NavController, showGallery :Boolean) {
+
+    var showGallerySelect by remember { mutableStateOf(false) }
+
     Scaffold() {
 
         Column(horizontalAlignment = Alignment.CenterHorizontally,modifier = Modifier
@@ -39,6 +44,7 @@ fun CameraScreen(navController: NavController) {
             .verticalScroll(rememberScrollState())) {
             var imageUri by remember { mutableStateOf(EMPTY_IMAGE_URI) }
 
+            Log.d("select gallery ", "select value $showGallery")
 
             Surface(color = MaterialTheme.colors.background,
                 modifier = Modifier
@@ -46,10 +52,13 @@ fun CameraScreen(navController: NavController) {
                     .height(425.dp),
                 shape = RoundedCornerShape(24.dp)) {
                 if (imageUri != EMPTY_IMAGE_URI) {
+
+                    Log.d("select gallery ", "photo url $imageUri")
+
                     Box(modifier = Modifier.fillMaxSize()) {
                         Image(
                             modifier = Modifier.fillMaxSize(),
-                            painter = rememberImagePainter(imageUri),
+                            painter = rememberAsyncImagePainter(imageUri),
                             contentDescription = "Captured image"
                         )
                         IconButton(
@@ -62,13 +71,16 @@ fun CameraScreen(navController: NavController) {
                         }
                     }
                 } else {
-                    var showGallerySelect by remember { mutableStateOf(false) }
+                    showGallerySelect= showGallery
+
                     if (showGallerySelect) {
                         GallerySelect(
                             modifier = Modifier.fillMaxSize(),
                             onImageUri = { uri ->
                                 showGallerySelect = false
                                 imageUri = uri
+                                Log.d("select gallery ", "photo url $imageUri")
+
                             }
                         )
                     } else {
@@ -79,16 +91,7 @@ fun CameraScreen(navController: NavController) {
                                     imageUri = file.toUri()
                                 }
                             )
-                            /*Button(
-                                modifier = Modifier
-                                    .align(Alignment.TopCenter)
-                                    .padding(4.dp),
-                                onClick = {
-                                    showGallerySelect = true
-                                }
-                            ) {
-                                Text("Select from Gallery")
-                            }*/
+
                         }
                     }
                 }
@@ -98,6 +101,17 @@ fun CameraScreen(navController: NavController) {
 
             Row() {
                 Spacer(modifier = Modifier.padding(20.dp))
+
+               /* Button(
+                    modifier = Modifier
+                      //  .align(Alignment.TopCenter)
+                        .padding(4.dp),
+                    onClick = {
+                        showGallerySelect = true
+                    }
+                ) {
+                    Text("Select from Gallery")
+                }*/
             }
 
             OutlinedButton(

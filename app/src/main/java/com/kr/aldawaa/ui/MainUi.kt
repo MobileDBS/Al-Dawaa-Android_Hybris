@@ -6,8 +6,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.kr.aldawaa.R
 import com.kr.productlist.ProductListScreen
 import com.kr.ui_cart.ui.CartScreen
@@ -60,7 +62,11 @@ fun BottomNavGraph(navController: NavHostController) {
         composable("Category_Items", content = { CategoryDetailsScreen(navController = navController) })
 
         composable("Product_List", content = { ProductListScreen(navController=navController) })
-        composable("Camera_Screen", content = { CameraScreen(navController=navController) })
+        composable("Camera_Screen?showvalu={showvalu}", arguments = listOf(navArgument(name ="showvalu" ){
+            type = NavType.BoolType
+        }), content = {
+            val show = it.arguments?.getBoolean("showvalu",false)
+            CameraScreen(navController=navController, showGallery = show!!) })
 
     }
 }
