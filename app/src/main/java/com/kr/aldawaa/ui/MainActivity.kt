@@ -37,6 +37,7 @@ import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.ConnectivityObserver
 import com.kr.network.NetworkConnectivityObserver
+import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
