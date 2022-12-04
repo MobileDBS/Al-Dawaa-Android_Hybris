@@ -90,6 +90,7 @@ dependencies {
     implementation (Retrofit.moshiCodegen)
 
     implementation(project(Modules.core))
+    implementation(project(Modules.components))
     implementation(project(Modules.authenticationDataSource))
     implementation(project(Modules.ui_categories))
     implementation(project(Modules.categoriesDataSource))
@@ -98,6 +99,7 @@ dependencies {
 
 
 
+    implementation(project(Modules.ui_login))
 
 //    implementation(Hilt.lifecycle)
 //    kapt(Hilt.androidx)

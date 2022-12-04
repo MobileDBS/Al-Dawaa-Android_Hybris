@@ -1,8 +1,10 @@
 package com.kr.aldawaa.ui
 
+import android.app.DatePickerDialog
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
+import android.widget.CalendarView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -11,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.ImageLoader
@@ -28,20 +32,23 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
-//import com.kr.ui_login.ui.LoginViewModel
-
-import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
+import com.kr.network.ConnectivityObserver
+import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_login.ui.LoginViewModel
-//import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import javax.inject.Inject
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 @ExperimentalMaterial3Api
 @OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+@Inject
+     lateinit var connectivityObserver: NetworkConnectivityObserver
 
     @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +76,7 @@ class MainActivity : ComponentActivity() {
                         // GifImage()
                         //  DialogBox()
                         // DialogBox()
+                        Greeting()
                         NavigationController()
                     }
 
@@ -110,11 +118,65 @@ class MainActivity : ComponentActivity() {
         )
     }
 
-    @Composable
-    fun Greeting(name: String) {
-        Text(text = "Hello00 $name!")
-    }
+@Composable
+fun Greeting() {
+    val c = Calendar.getInstance()
+    val year = c.get(Calendar.YEAR)
+    val month = c.get(Calendar.MONTH)
+    val day = c.get(Calendar.DAY_OF_MONTH)
 
+    val context = LocalContext.current
+
+    var date by remember{
+        mutableStateOf("")
+    }
+/*    MaterialDatePicker
+        .Builder
+        .datePicker()
+        .setTitleText("Select date of birth")
+        .build()
+        .show(supportFragmentManager, "DATE_PICKER")*/
+
+    val datePickerDialog = DatePickerDialog(
+        context,R.style.MyDatePickerDialogTheme,
+        { d, year1, month1, day1 ->
+            val month = month1 + 1
+            date = "$day1 - $month - $year1"
+        },year , month , day
+    )
+
+
+    Scaffold(
+        topBar = {
+            TopAppBar (
+                title = { Text(text = "Calender View")},
+                )
+        },
+        content = {
+            Column (verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize()
+            ){
+         /*       AndroidView(factory = { CalendarView(it) }, update = {
+                    it.setOnDateChangeListener { calendarView, year, month, day ->
+                        date = "$day - ${month +1} - $year"
+                    }
+                })*/
+               datePickerDialog.show()
+
+                Text(text = date)
+            }
+        }
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    AlDawaaHybrisTheme {
+        Greeting()
+    }
+}
 
     @Preview()
     @Composable
