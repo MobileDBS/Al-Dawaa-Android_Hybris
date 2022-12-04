@@ -23,8 +23,6 @@ object Compose {
 
     private const val flow = "0.17.0"
     const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$flow"
-
-
 }
 
 object ComposeTest {

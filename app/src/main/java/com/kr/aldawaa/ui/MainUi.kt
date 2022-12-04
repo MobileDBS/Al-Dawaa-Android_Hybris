@@ -9,8 +9,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
 import com.kr.aldawaa.R
+import com.kr.components.CustomModalBottomSheet
+import com.kr.components.CustomModalBottomSheet2
+import com.kr.components.CustomModalBottomSheet3
 import com.kr.productlist.ProductListScreen
 import com.kr.ui_cart.ui.CartScreen
 import com.kr.ui_categories.ui.categoriesdetailsui.CategoryDetailsScreen
@@ -68,7 +72,27 @@ fun BottomNavGraph(navController: NavHostController) {
             val show = it.arguments?.getBoolean("showvalu",false)
             CameraScreen(navController=navController, showGallery = show!!) })
 
+
+
+        dialog("CustomModalBottomSheet") {
+            CustomModalBottomSheet(navController=navController , null)
+        }
+
+        dialog("CustomModalBottomSheet2") {
+            // The content here will be added to a Dialog() Composable
+            CustomModalBottomSheet2(navController=navController )
+        }
+
+        dialog("CustomModalBottomSheet3") {
+            // The content here will be added to a Dialog() Composable
+            CustomModalBottomSheet3(navController=navController)
+        }
+
+
     }
+
+
+
 }
 /*
 @Composable

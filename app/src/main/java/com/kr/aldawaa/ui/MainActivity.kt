@@ -30,7 +30,6 @@ import coil.request.ImageRequest
 import coil.size.Size
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
-import com.kr.components.CustomModalBottomSheet
 //import com.kr.ui_login.ui.LoginViewModel
 
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
@@ -48,15 +47,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val list = listOf("Liked products" ,"Makeup" , "Create new")
-
-            AlDawaaHybrisTheme {
-
-                //BottomSheet
-//                Surface(color = MaterialTheme.colors.background) {
-//                    CustomModalBottomSheet(list)
-//                }
-
+            AlDawaaHybrisTheme{
 
 //                val viewModel: LoginViewModel by hiltViewModel()
 //                            val state = viewModel.state.value
@@ -85,10 +76,11 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        }
 
 
 
-    }
+
 
     @Composable
     fun GifImage(
@@ -123,13 +115,6 @@ class MainActivity : ComponentActivity() {
         Text(text = "Hello00 $name!")
     }
 
-    @Preview(showBackground = true)
-    @Composable
-    fun DefaultPreview() {
-        AlDawaaHybrisTheme {
-            Greeting("Android")
-        }
-    }
 
     @Preview()
     @Composable
