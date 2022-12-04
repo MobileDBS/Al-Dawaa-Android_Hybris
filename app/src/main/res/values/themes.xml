@@ -28,15 +28,26 @@
        <!--    <item name="android:textColorPrimaryInverse">#002544</item> &lt;!&ndash; header date, month color && calendar text highlight color &ndash;&gt;-->
            <item name="android:textColorPrimaryInverse">#002544</item> <!-- header date, month color && calendar text highlight color -->
        <item name="android:textColorSecondaryInverse">#002544</item> <!-- header year color -->
-<!--    <item name="android:colorAccent">#ffc200</item> &lt;!&ndash; button color &ndash;&gt;-->
+    <item name="android:colorAccent">#002544</item> <!-- button color -->
        <item name="dialogCornerRadius">20dp</item>
        <item name="colorAccent">#ffc200</item>
+       <item name="android:colorButtonNormal">#002544</item>
+       <item name="colorOnPrimary">#002544</item>
+       <item name="colorOnSecondary">#002544</item>
+       <item name="colorBackgroundFloating">#002544</item>
+       <item name="colorContainer">#002544</item>
+
 
 
    </style>
 
 <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
 <item name="android:headerBackground">#fff</item> <!-- header background color -->
+    <item name="android:colorButtonNormal">#002544</item>
+    <item name="colorBackgroundFloating">#002544</item>
+
+    <item name="colorOnPrimary">#002544</item>
+    <item name="colorOnSecondary">#002544</item>
 </style>
 
 

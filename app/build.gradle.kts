@@ -96,9 +96,6 @@ dependencies {
     implementation(project(Modules.categoriesDataSource))
 
     implementation(project(Modules.components))
-
-
-
     implementation(project(Modules.ui_login))
 
 //    implementation(Hilt.lifecycle)
