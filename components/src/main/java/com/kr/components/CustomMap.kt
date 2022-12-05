@@ -99,8 +99,11 @@ fun CustomMap() {
             mutableStateOf(
                 MapUiSettings(
                     compassEnabled = true,
-                    zoomControlsEnabled = true
-                )
+                    zoomControlsEnabled = true,
+                    myLocationButtonEnabled = true
+
+
+            )
             )
         }
         var properties by remember {
