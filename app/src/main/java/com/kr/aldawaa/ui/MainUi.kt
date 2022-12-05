@@ -86,7 +86,7 @@ fun BottomNavGraph(navController: NavHostController) {
 
         dialog("CustomModalBottomSheet3") {
             // The content here will be added to a Dialog() Composable
-            CustomModalBottomSheet3(navController=navController)
+            CustomModalBottomSheet3(navController=navController  )
         }
 
         composable("Map", content = { CustomMap() })

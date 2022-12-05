@@ -26,8 +26,6 @@ fun CustomModalBottomSheet(
     val modalBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Expanded
     )
-    val modalBottomSheetScope = rememberCoroutineScope()
-
 
     ModalBottomSheetLayout(
         sheetState = modalBottomSheetState,

@@ -63,7 +63,6 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
             val list = listOf("Liked products" ,"Makeup" , "Create new")
             locationClass.GetLastLocation()
             AlDawaaHybrisTheme {
-            AlDawaaHybrisTheme{
 
                 //BottomSheet
 //                Surface(color = MaterialTheme.colors.background) {
@@ -98,7 +97,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                     ///////////////End Navigation Bar///////////////////////
                 }
             }
-        }
+
         }
 
     override fun findLocation(location: Location) {
