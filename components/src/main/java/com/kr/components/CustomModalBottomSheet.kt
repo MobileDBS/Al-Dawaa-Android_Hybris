@@ -26,13 +26,11 @@ fun CustomModalBottomSheet(
     val modalBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Expanded
     )
-    val modalBottomSheetScope = rememberCoroutineScope()
-
 
     ModalBottomSheetLayout(
         sheetState = modalBottomSheetState,
         sheetContent = {
-                Column(modifier = Modifier.padding(24.dp)) {
+                Column(modifier = Modifier.padding(16.dp)) {
                     Text(text = "Save to")
                     Divider(color = Color.LightGray, thickness = 1.dp)
 
@@ -48,6 +46,7 @@ fun CustomModalBottomSheet(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             navController.navigate("CustomModalBottomSheet2")
+
                         } ,
                         border = BorderStroke(2.dp, PrimaryColor),
                         shape = RoundedCornerShape(50),

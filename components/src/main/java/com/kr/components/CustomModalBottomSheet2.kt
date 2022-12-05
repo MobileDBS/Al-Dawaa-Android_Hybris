@@ -30,7 +30,7 @@ fun CustomModalBottomSheet2(
     ModalBottomSheetLayout(
         sheetState = modalBottomSheetState,
         sheetContent = {
-                Column(modifier = Modifier.padding(24.dp)) {
+                Column(modifier = Modifier.padding(16.dp)) {
                     Row() {
                         Text(text = "Create New")
                         Text(text = "Cancel")

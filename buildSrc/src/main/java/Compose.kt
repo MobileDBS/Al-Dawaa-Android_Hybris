@@ -23,6 +23,23 @@ object Compose {
 
     private const val flow = "0.17.0"
     const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$flow"
+
+    private const val maps_compose = "2.7.2"
+    const val maps ="com.google.maps.android:maps-compose:$maps_compose"
+
+    private const val play_services= "18.1.0"
+    const val playServices ="com.google.android.gms:play-services-maps:$play_services"
+
+     private const val  accompanistPermissionsVersion = "0.23.1"
+    const val  Permissions= "com.google.accompanist:accompanist-permissions:$accompanistPermissionsVersion"
+
+    private const val places="2.7.0"
+    const val googlePlaces="com.google.android.libraries.places:places:$places"
+
+    private const val service_location="21.0.1"
+    const val playServicesLocation="com.google.android.gms:play-services-location:$service_location"
+
+
 }
 
 object ComposeTest {

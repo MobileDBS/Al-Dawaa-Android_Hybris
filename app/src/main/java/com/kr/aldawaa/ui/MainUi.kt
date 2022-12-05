@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
 import com.kr.aldawaa.R
+import com.kr.components.CustomMap
 import com.kr.components.CustomModalBottomSheet
 import com.kr.components.CustomModalBottomSheet2
 import com.kr.components.CustomModalBottomSheet3
@@ -85,8 +86,11 @@ fun BottomNavGraph(navController: NavHostController) {
 
         dialog("CustomModalBottomSheet3") {
             // The content here will be added to a Dialog() Composable
-            CustomModalBottomSheet3(navController=navController)
+            CustomModalBottomSheet3(navController=navController  )
         }
+
+        composable("Map", content = { CustomMap() })
+
 
 
     }
