@@ -90,6 +90,7 @@ class Activity : ComponentActivity() {
 
 @Composable
 fun CustomMap() {
+
     Column() {
 
         val cameraPositionState = rememberCameraPositionState {
@@ -99,15 +100,12 @@ fun CustomMap() {
             mutableStateOf(
                 MapUiSettings(
                     compassEnabled = true,
-                    zoomControlsEnabled = true,
-                    myLocationButtonEnabled = true
-
-
-            )
+                    zoomControlsEnabled = true
+                )
             )
         }
         var properties by remember {
-            mutableStateOf(MapProperties(mapType = MapType.NORMAL))
+            mutableStateOf(MapProperties(mapType = MapType.NORMAL, isMyLocationEnabled = true))
         }
         GoogleMap(
             cameraPositionState = cameraPositionState,
