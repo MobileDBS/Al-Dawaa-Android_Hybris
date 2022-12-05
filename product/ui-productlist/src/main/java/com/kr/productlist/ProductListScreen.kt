@@ -6,21 +6,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
-import com.kr.components.Activity
 import com.kr.components.CustomMap
 
 
 
     lateinit var currentLocation:Location
-  //  var interfaceListener=LocationClass(this)
     @Composable
     fun ProductListScreen(navController: NavController){
-      val context = LocalContext.current
-        // val location= GetLastLocation()
-        //  Log.v("locationfromproductlist",location.toString())
         Column {
-            context.startActivity(Intent(context,Activity::class.java))
-             //  CustomMap(currentLocation)
+       //     context.startActivity(Intent(context,Activity::class.java))
+               CustomMap()
             /*     OutlinedButton(onClick = {navController.navigate("Filter_Screen") }) {
                      androidx.compose.material.Text("Open filter")
                  }

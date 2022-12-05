@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.maps.android.compose.*
 import java.util.jar.Manifest
+
 /*class LocationClass{
     var currentLocation: Location? = null
     @OptIn(ExperimentalPermissionsApi::class)
@@ -77,83 +78,59 @@ import java.util.jar.Manifest
 
 
 //@OptIn(ExperimentalPermissionsApi::class)
-class Activity : ComponentActivity(){
+class Activity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { Toast.makeText(this, "This is Activity", Toast.LENGTH_SHORT).show()
+        setContent {
+            Toast.makeText(this, "This is Activity", Toast.LENGTH_SHORT).show()
             //CustomMap()
         }
     }
 }
+
 @Composable
-fun CustomMap(locatio: Location?){
+fun CustomMap() {
 
+    Column() {
 
-/*    val multiplePermissionState = rememberMultiplePermissionsState(
-        permissions = listOf(
-            ACCESS_COARSE_LOCATION,
-            ACCESS_FINE_LOCATION
-        )
-    )
-    LaunchedEffect(Unit) {
-        multiplePermissionState.launchMultiplePermissionRequest()
-    }*/
+        val cameraPositionState = rememberCameraPositionState {
+            position = CameraPosition.fromLatLngZoom(LatLng(30.026348, 31.482875), 17f)
+        }
+        var uiSettings by remember {
+            mutableStateOf(
+                MapUiSettings(
+                    compassEnabled = true,
+                    zoomControlsEnabled = true
+                )
+            )
+        }
+        var properties by remember {
+            mutableStateOf(MapProperties(mapType = MapType.NORMAL))
+        }
+        GoogleMap(
+            cameraPositionState = cameraPositionState,
+            modifier = Modifier.weight(1f),
+            properties = properties,
+            uiSettings = uiSettings
+        ) {
+            /*   Marker(
+                   state = rememberMarkerState(position = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)),
+                   title = "Marker1",
+                   icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
+               )*/
+            GoogleMarkers()
+        }
+    }
+}
 
-  //  Log.v("currentLocation",currentLocation!!.latitude.toString())
-  Column() {
-   /*   PermissionsRequired(
-          multiplePermissionsState = multiplePermissionState,
-          permissionsNotGrantedContent = { *//* ... *//* },
-          permissionsNotAvailableContent = { *//* ... *//* }
-      ) {*/
-       /*   lateinit var fusedLocationClient: FusedLocationProviderClient
-          var currentLocation:Location?=null
-          fusedLocationClient = LocationServices.getFusedLocationProviderClient(LocalContext.current)
-          fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
-              // Got last known location. In some rare situations this can be null.
-              if (location!=null)
-              {
-                  currentLocation=location
-                  Log.v("location",currentLocation!!.latitude.toString())
-              }
-
-              else
-                  currentLocation==null
-          }*/
-
-          val cameraPositionState = rememberCameraPositionState {
-                  position = CameraPosition.
-                  fromLatLngZoom(LatLng(locatio!!.latitude,locatio!!.longitude), 17f)
-          }
-          GoogleMap(
-             cameraPositionState = cameraPositionState,
-              modifier = Modifier.weight(1f),
-              properties = MapProperties(isMyLocationEnabled = true),
-              uiSettings = MapUiSettings(compassEnabled = true)
-          ) {
-           /*   Marker(
-                  state = rememberMarkerState(position = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)),
-                  title = "Marker1",
-                  icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
-              )*/
-             // GoogleMarkers(currentLocation)
-          }
-      }
-  }
-//}
 @Composable
-fun GoogleMarkers(locatio:Location?) {
+fun GoogleMarkers() {
     Marker(
-        state = rememberMarkerState(position = LatLng(locatio!!.latitude, locatio!!.longitude)),
-        title = "Marker1",
-        icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
-    )
-  /*  Marker(
         state = rememberMarkerState(position = LatLng(44.811058, 20.4627586)),
         title = "Marker2",
         icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)
-    )*/
- /*   Marker(
+    )
+    Marker(
         state = rememberMarkerState(position = LatLng(44.810058, 20.4627586)),
         title = "Marker3",
         icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)
@@ -161,13 +138,12 @@ fun GoogleMarkers(locatio:Location?) {
     Marker(
         state = rememberMarkerState(position = LatLng(44.809058, 20.4627586)),
         title = "Marker4",
-        icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)
     )
     Marker(
         state = rememberMarkerState(position = LatLng(44.809058, 20.4617586)),
         title = "Marker5",
         icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)
-    )*/
+    )
 }
 
 
