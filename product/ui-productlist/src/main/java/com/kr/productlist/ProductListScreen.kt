@@ -22,6 +22,12 @@ fun ProductListScreen(navController: NavController) {
             androidx.compose.material.Text("Open filter")
         }
 
+
+        OutlinedButton(onClick = {navController.navigate("CustomModalBottomSheet") }) {
+            androidx.compose.material.Text("Bottom Sheet")
+        }
+
+
         Scaffold(
             modifier = Modifier
                 .fillMaxWidth()

@@ -45,20 +45,20 @@ fun NavigationController() {
 
             composable("Product_List", content = { ProductListScreen(navController=navController) })
 
-           /* composable("MainUi", content = { MainUi(navController = navController) })
+            /* composable("MainUi", content = { MainUi(navController = navController) })
 
-            composable(route = BottomBarScreen.Home.route) {
-                CategoriesScreen(navController = navController)
+             composable(route = BottomBarScreen.Home.route) {
+                 CategoriesScreen(navController = navController)
 
-            }
-            composable(route = BottomBarScreen.Home.route) {
-                HomeScreen(navController = navController)
+             }
+             composable(route = BottomBarScreen.Home.route) {
+                 HomeScreen(navController = navController)
 
-            }
-            composable(route = BottomBarScreen.Settings.route) {
-                OffersScreen(navController = navController)
+             }
+             composable(route = BottomBarScreen.Settings.route) {
+                 OffersScreen(navController = navController)
 
-            }*/
+             }*/
 
            /* composable(route = BottomBarScreen.Services.path) {
                 ServicesScreen(navController = navController)

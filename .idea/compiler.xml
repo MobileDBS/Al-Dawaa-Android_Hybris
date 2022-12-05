@@ -21,6 +21,9 @@
       <module name="AlDawaaHybris.services.ui-services" target="11" />
       <module name="AlDawaaHybris.shop.ui-categories" target="11" />
       <module name="AlDawaaHybris.verification.ui-otp" target="11" />
+      <module name="AlDawaaHybris_code.buildSrc" target="11" />
+      <module name="AlDawaaHybris_code.buildSrc.main" target="11" />
+      <module name="AlDawaaHybris_code.buildSrc.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

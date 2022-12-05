@@ -6,17 +6,35 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
-    primary = PrimaryColor,
-    primaryVariant = PrimaryColor,
-    secondary = SecondaryColor
-)
 
 private val LightColorPalette = lightColors(
     primary = PrimaryColor,
     primaryVariant = PrimaryColor,
-    secondary = SecondaryColor
+    secondary = SecondaryColor,
+    secondaryVariant = SecondaryColor ,
+    background = BackgroundColorLight ,
+    surface = SurfaceColorLight,
+    error = ErrorColorLight ,
+    onPrimary = WhiteColor ,
+    onSecondary = PrimaryColor ,
+    onBackground = BlackColor ,
+    onSurface = BlackColor ,
+    onError = WhiteColor ,
 )
+private val DarkColorPalette = darkColors(
+    primary = PrimaryColor,
+    primaryVariant = PrimaryColor,
+    secondary = SecondaryColor,
+    secondaryVariant = SecondaryColor ,
+    background = BackgroundColorDark ,
+    surface = SurfaceColorDark,
+    error = ErrorColorDark ,
+    onPrimary = PrimaryColor ,
+    onSecondary = PrimaryColor ,
+    onBackground = WhiteColor ,
+    onSurface = WhiteColor ,
+    onError = BlackColor ,
+    )
 
 @Composable
 fun AlDawaaHybrisTheme(
@@ -36,3 +54,4 @@ fun AlDawaaHybrisTheme(
         content = content
     )
 }
+

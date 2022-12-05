@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AlDawaaHybris" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.AlDawaaHybris" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -19,4 +19,49 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.AlDawaaHybris.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.AlDawaaHybris.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+   <style name="MyDatePickerDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+    <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+<!--       <item name="android:windowBackground">@drawable/date_picker_background</item>-->
+       <!--    <item name="android:textColorPrimaryInverse">#002544</item> &lt;!&ndash; header date, month color && calendar text highlight color &ndash;&gt;-->
+           <item name="android:textColorPrimaryInverse">#002544</item> <!-- header date, month color && calendar text highlight color -->
+       <item name="android:textColorSecondaryInverse">#002544</item> <!-- header year color -->
+    <item name="android:colorAccent">#002544</item> <!-- button color -->
+       <item name="dialogCornerRadius">20dp</item>
+       <item name="colorAccent">#ffc200</item>
+       <item name="android:colorButtonNormal">#002544</item>
+       <item name="colorOnPrimary">#002544</item>
+       <item name="colorOnSecondary">#002544</item>
+       <item name="colorBackgroundFloating">#002544</item>
+       <item name="colorContainer">#002544</item>
+
+
+
+   </style>
+
+<style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+<item name="android:headerBackground">#fff</item> <!-- header background color -->
+    <item name="android:colorButtonNormal">#002544</item>
+    <item name="colorBackgroundFloating">#002544</item>
+
+    <item name="colorOnPrimary">#002544</item>
+    <item name="colorOnSecondary">#002544</item>
+</style>
+
+
+
+
+
+    <style name="Theme.Custom" parent="Theme.AlDawaaHybris">
+        <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>
+    </style>
+
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">
+<!--        <item name="android:focusedMonthDateColor">@color/teal_200</item>-->
+<!--        <item name="android:weekNumberColor">@color/teal_200</item>-->
+<!--        <item name="android:weekDayTextAppearance">@style/TextAppearance.Medium</item>
+        <item name="android:dateTextAppearance">@style/TextAppearance.Medium</item>-->
+    </style>
 </resources>

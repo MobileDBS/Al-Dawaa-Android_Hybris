@@ -16,12 +16,10 @@ import com.kr.components.ui.theme.PrimaryColor
 import kotlinx.coroutines.launch
 @Composable
 @ExperimentalMaterialApi
-fun CustomModalBottomSheet(
-    navController: NavController,
-    onClickItem: ((String) -> Unit)?
+fun CustomModalBottomSheet2(
+    navController: NavController
 ) {
-
-    val list = listOf("Liked products" ,"Makeup" , "Create new")
+    val list = listOf("My Fav")
 
     val modalBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Expanded
@@ -33,7 +31,11 @@ fun CustomModalBottomSheet(
         sheetState = modalBottomSheetState,
         sheetContent = {
                 Column(modifier = Modifier.padding(24.dp)) {
-                    Text(text = "Save to")
+                    Row() {
+                        Text(text = "Create New")
+                        Text(text = "Cancel")
+
+                    }
                     Divider(color = Color.LightGray, thickness = 1.dp)
 
                     LazyColumn {
@@ -47,8 +49,9 @@ fun CustomModalBottomSheet(
                     Button(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
-                            navController.navigate("CustomModalBottomSheet2")
-                        } ,
+                            navController.navigate("CustomModalBottomSheet3")
+
+                                  } ,
                         border = BorderStroke(2.dp, PrimaryColor),
                         shape = RoundedCornerShape(50),
                         colors = ButtonDefaults.outlinedButtonColors(contentColor = PrimaryColor)
@@ -62,5 +65,6 @@ fun CustomModalBottomSheet(
         sheetShape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp)
 
     ) {
+
     }
 }

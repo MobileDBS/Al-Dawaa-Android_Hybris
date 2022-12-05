@@ -1,14 +1,21 @@
 package com.kr.aldawaa.di
 
+import android.app.Application
+import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.kr.authentication_datasource.network.ApiInterface
+import com.kr.authentication_datasource.network.AuthenticationRepoImp
 import com.kr.categories_datasource.network.CategoriesApiInterface
 import com.kr.core.Constants.BASE_URL
+import com.kr.network.ConnectivityObserver
+import com.kr.network.NetworkConnectivityObserver
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Converter
@@ -66,6 +73,12 @@ object NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiInterface {
         return retrofit.create(ApiInterface::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideConnectivityObserver(@ApplicationContext application: Context): NetworkConnectivityObserver {
+        return NetworkConnectivityObserver(application)
     }
 
     @Provides
