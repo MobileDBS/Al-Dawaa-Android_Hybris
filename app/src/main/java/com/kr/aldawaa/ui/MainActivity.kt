@@ -1,5 +1,6 @@
 package com.kr.aldawaa.ui
 
+  import android.location.Location
 import android.app.DatePickerDialog
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
@@ -33,8 +34,11 @@ import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+//import com.kr.ui_login.ui.LoginViewModel
+
 import com.kr.network.ConnectivityObserver
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
@@ -47,7 +51,8 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @ExperimentalMaterial3Api
 @OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(),LocationClass.Interface {
+    var locationClass=LocationClass(this)
 @Inject
      lateinit var connectivityObserver: NetworkConnectivityObserver
 
@@ -55,7 +60,21 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val list = listOf("Liked products" ,"Makeup" , "Create new")
+            locationClass.GetLastLocation()
+            AlDawaaHybrisTheme {
             AlDawaaHybrisTheme{
+
+                //BottomSheet
+//                Surface(color = MaterialTheme.colors.background) {
+//                    CustomModalBottomSheet(list)
+//                }
+
+
+//                val viewModel: LoginViewModel by hiltViewModel()
+//                            val state = viewModel.state.value
+//
+//                Log.v("loginResponse" , state.error.toString())
 
                     /////////////////Start Navigation Bar////////////////
 
@@ -82,8 +101,12 @@ class MainActivity : ComponentActivity() {
         }
         }
 
+    override fun findLocation(location: Location) {
+        Log.v("LocationFromHomeActivity",location.toString())
+    }
 
 
+}
 
 
     @Composable
