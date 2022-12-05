@@ -125,7 +125,8 @@ fun CategoryDetailsScreen(navController: NavController
                                     Icon(painter = painterResource(id = R.drawable.ic_giftcard),
                                         contentDescription = "Drop-Down Arrow",
                                         modifier = Modifier
-                                            .weight(1f))
+                                            .weight(1f)
+                                    , tint = Color.Unspecified)
                                     Text(text = "Buy gift card",
                                         modifier = Modifier
                                             .weight(6f))

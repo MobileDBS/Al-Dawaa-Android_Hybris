@@ -26,8 +26,11 @@ object Modules {
     const val categoriesInteractors =":shop:categories-interactors"
     const val ui_categories =":shop:ui-categories"
     const val ui_filter =":product:ui-filter"
-
+    const val productDataSource=":product:product-datasource"
+    const val productDomain=":product:product-domain"
+    const val productInteractors=":product:ui-interactors"
     const val ui_productList=":product:ui-productlist"
+
 
 
 

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".ui.AlDawaaApplication"
-        android:theme="@style/Theme.AlDawaaHybris">
+        android:theme="@style/Theme.AlDawaaHybris"
+        >
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"

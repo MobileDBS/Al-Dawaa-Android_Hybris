@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY
+import androidx.camera.core.ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY
 import androidx.camera.core.Preview
 import androidx.camera.core.UseCase
 import androidx.compose.foundation.layout.Box
@@ -75,10 +76,14 @@ fun CameraCapture(
                 mutableStateOf(
                     ImageCapture.Builder()
                         .setCaptureMode(CAPTURE_MODE_MAXIMIZE_QUALITY)
+                        .setJpegQuality(60)
                         .build()
+
+
 
                 )
             }
+
             Box {
                 CameraPreview(
                     modifier = Modifier.fillMaxSize(),
@@ -95,6 +100,12 @@ fun CameraCapture(
                         coroutineScope.launch {
                             imageCaptureUseCase.takePicture(context.executor).let {
                                 onImageFile(it)
+                                Log.e("CameraCapture", " Sized ${imageCaptureUseCase.currentConfig.defaultCaptureConfig}")
+                                Log.e("CameraCapture", " Sized ${imageCaptureUseCase.camera?.cameraInfo}")
+
+
+
+
                             }
                         }
                     }
@@ -110,8 +121,10 @@ fun CameraCapture(
                     )
                 } catch (ex: Exception) {
                     Log.e("CameraCapture", "Failed to bind camera use cases", ex)
+
                 }
             }
+
         }
     }
 }

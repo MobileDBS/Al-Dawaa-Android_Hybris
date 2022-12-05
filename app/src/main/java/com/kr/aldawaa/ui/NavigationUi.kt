@@ -81,6 +81,7 @@ fun RowScope.AddItem(
                // imageVector = screen.icon,
                 painter = painterResource(id = screen.icon),
                 contentDescription = "Navigation Icon",
+                tint = Color.Unspecified
             )
         },
         selected = currentDestination?.hierarchy?.any {
