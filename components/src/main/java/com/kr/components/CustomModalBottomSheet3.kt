@@ -37,7 +37,7 @@ fun CustomModalBottomSheet3(
     ModalBottomSheetLayout(
         sheetState = modalBottomSheetState,
         sheetContent = {
-                Column(modifier = Modifier.padding(24.dp)) {
+                Column(modifier = Modifier.padding(16.dp)) {
                     Row() {
                         Text(text = "Select an icon  ")
                         Text(text = "Cancel")
@@ -52,7 +52,8 @@ fun CustomModalBottomSheet3(
 
                                 Icon(
                                     painter = painterResource(list),
-                                    contentDescription = null
+                                    contentDescription = null ,
+                                    tint = Color.Unspecified
                             )
                         }
 

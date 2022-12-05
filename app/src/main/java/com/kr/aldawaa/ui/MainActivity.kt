@@ -57,11 +57,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             AlDawaaHybrisTheme{
 
-//                val viewModel: LoginViewModel by hiltViewModel()
-//                            val state = viewModel.state.value
-//
-//                Log.v("loginResponse" , state.error.toString())
-
                     /////////////////Start Navigation Bar////////////////
 
                     val viewModel: LoginViewModel = hiltViewModel()
