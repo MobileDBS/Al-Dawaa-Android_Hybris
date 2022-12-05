@@ -90,7 +90,6 @@ class Activity : ComponentActivity() {
 
 @Composable
 fun CustomMap() {
-
     Column() {
 
         val cameraPositionState = rememberCameraPositionState {

@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.kr.components.CustomMap
 
 @Composable
 fun ProductListScreen(navController: NavController) {
@@ -24,7 +25,13 @@ fun ProductListScreen(navController: NavController) {
 
 
         OutlinedButton(onClick = {navController.navigate("CustomModalBottomSheet") }) {
-            androidx.compose.material.Text("Bottom Sheet")
+            androidx.compose.material.Text("Open BottomSheet")
+        }
+
+
+        OutlinedButton(onClick = {navController.navigate("Map") }) {
+            androidx.compose.material.Text("Open Map")
+
         }
 
 
