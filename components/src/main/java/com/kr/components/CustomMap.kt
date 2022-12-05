@@ -100,12 +100,13 @@ fun CustomMap() {
             mutableStateOf(
                 MapUiSettings(
                     compassEnabled = true,
-                    zoomControlsEnabled = true
+                    zoomControlsEnabled = true,
+                    myLocationButtonEnabled = true
                 )
             )
         }
         var properties by remember {
-            mutableStateOf(MapProperties(mapType = MapType.NORMAL))
+            mutableStateOf(MapProperties(mapType = MapType.NORMAL, isMyLocationEnabled = true))
         }
         GoogleMap(
             cameraPositionState = cameraPositionState,
