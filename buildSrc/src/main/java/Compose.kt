@@ -1,7 +1,7 @@
 object Compose {
     private const val activityComposeVersion = "1.5.1"
     const val activity = "androidx.activity:activity-compose:$activityComposeVersion"
-    const val composeVersion = "1.2.1"
+    const val composeVersion = "1.4.0-alpha02"
     const val kotlinCompilerExtensionVersion = "1.3.1"
 
     const val ui = "androidx.compose.ui:ui:$composeVersion"

@@ -1,7 +1,8 @@
-@file:OptIn(ExperimentalMaterialApi::class)
+@file:OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
 
 package com.kr.aldawaa.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -12,10 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
 import com.kr.aldawaa.R
-import com.kr.components.CustomMap
-import com.kr.components.CustomModalBottomSheet
-import com.kr.components.CustomModalBottomSheet2
-import com.kr.components.CustomModalBottomSheet3
+import com.kr.components.*
 import com.kr.productlist.ProductListScreen
 import com.kr.ui_cart.ui.CartScreen
 import com.kr.ui_categories.ui.categoriesdetailsui.CategoryDetailsScreen
@@ -74,9 +72,12 @@ fun BottomNavGraph(navController: NavHostController) {
             CameraScreen(navController=navController, showGallery = show!!) })
 
 
+//        dialog("BottomSheetScaffold") {
+//            BottomSheetScaffold(navController=navController)
+//        }
 
         dialog("CustomModalBottomSheet") {
-            CustomModalBottomSheet(navController=navController , null)
+            CustomModalBottomSheet()
         }
 
         dialog("CustomModalBottomSheet2") {

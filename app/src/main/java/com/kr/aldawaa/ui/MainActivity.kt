@@ -37,6 +37,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+  import com.kr.components.CustomModalBottomSheet
 //import com.kr.ui_login.ui.LoginViewModel
 
 import com.kr.network.ConnectivityObserver
@@ -60,10 +61,8 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val list = listOf("Liked products" ,"Makeup" , "Create new")
             locationClass.GetLastLocation()
             AlDawaaHybrisTheme {
-
                 //BottomSheet
 //                Surface(color = MaterialTheme.colors.background) {
 //                    CustomModalBottomSheet(list)

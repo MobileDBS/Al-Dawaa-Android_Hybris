@@ -74,7 +74,7 @@ fun CameraCapture(
             val imageCaptureUseCase by remember {
                 mutableStateOf(
                     ImageCapture.Builder()
-                        .setCaptureMode(CAPTURE_MODE_MAXIMIZE_QUALITY)
+                        .setCaptureMode(CAPTURE_MODE_MAXIMIZE_QUALITY).setJpegQuality(60)
                         .build()
 
                 )

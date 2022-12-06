@@ -5,10 +5,7 @@ package com.kr.aldawaa.ui
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -24,8 +21,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kr.aldawaa.R
+import com.kr.components.CustomModalBottomSheet
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -38,9 +37,12 @@ fun MainScreen() {
             BottomNavGraph(navController = navController)
         }
 
+
     }
+
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
@@ -63,6 +65,9 @@ fun BottomBar(navController: NavHostController) {
             )
         }
     }
+
+
+
 }
 
 @Composable
