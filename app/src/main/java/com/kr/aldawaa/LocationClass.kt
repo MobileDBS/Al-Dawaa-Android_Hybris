@@ -13,6 +13,7 @@ import com.google.accompanist.permissions.PermissionsRequired
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.kr.components.CustomDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -25,7 +26,7 @@ this.interfaceListener=interfaceListener
     @OptIn(ExperimentalPermissionsApi::class)
     @Composable
     fun GetLastLocation() {
-
+        val context = LocalContext.current.applicationContext
         val multiplePermissionState = rememberMultiplePermissionsState(
             permissions = listOf(
                 Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -37,8 +38,12 @@ this.interfaceListener=interfaceListener
         }
         PermissionsRequired(
             multiplePermissionsState = multiplePermissionState,
-            permissionsNotGrantedContent = { /* ... */ },
-            permissionsNotAvailableContent = { /* ... */ }
+            permissionsNotGrantedContent = {
+                Log.v("location_permission" , "not granted")
+            },
+            permissionsNotAvailableContent = {
+                Log.v("location_permission" , "not available")
+            }
         ) {
 
             lateinit var fusedLocationClient: FusedLocationProviderClient

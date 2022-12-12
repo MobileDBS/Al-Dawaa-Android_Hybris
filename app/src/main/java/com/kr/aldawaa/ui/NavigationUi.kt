@@ -26,11 +26,12 @@ import com.kr.components.CustomModalBottomSheet
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
+
 fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomBar(navController = navController)
-                    },
+                    } ,
     ) {
         innerPadding->
         Box(modifier = Modifier.padding(innerPadding)){
@@ -45,6 +46,7 @@ fun MainScreen() {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BottomBar(navController: NavHostController) {
+
     val screens = listOf(
         BottomBarScreen.Shop,
         BottomBarScreen.Offers,
@@ -92,7 +94,7 @@ fun RowScope.AddItem(
         selected = currentDestination?.hierarchy?.any {
             it.route == screen.path
         } == true,
-        unselectedContentColor = androidx.compose.material.LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
+        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
         onClick = {
             navController.navigate(screen.path) {
                 popUpTo(navController.graph.findStartDestination().id)

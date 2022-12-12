@@ -19,10 +19,9 @@ import kotlinx.coroutines.launch
 
 @Composable
 @ExperimentalMaterialApi
-fun CustomModalBottomSheet() {
+fun CustomModalBottomSheet(navController: NavController) {
 
     val list = listOf("Liked products" ,"Makeup" , "Create new")
-
     val modalBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Expanded
     )
@@ -50,7 +49,7 @@ fun CustomModalBottomSheet() {
                     Button(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
-                          //  navController.navigate("CustomModalBottomSheet2")
+                            navController.navigate("CustomModalBottomSheet2")
 
                         } ,
                         border = BorderStroke(2.dp, PrimaryColor),
@@ -66,6 +65,7 @@ fun CustomModalBottomSheet() {
         sheetShape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp)
 
     ) {
+
 
     }
 }

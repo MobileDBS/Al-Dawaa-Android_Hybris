@@ -27,7 +27,7 @@ import com.kr.ui_productlist.R
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ProductListItem() {
+fun ProductListItem(showBottomSheet: (Boolean) -> Unit) {
 
     var itemToCart = rememberSaveable {
         mutableStateOf(1)
@@ -42,9 +42,7 @@ fun ProductListItem() {
     Surface(
         elevation = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
             .padding(top = 4.dp, bottom = 6.dp)
-            .fillMaxWidth()
-
-    )
+            .fillMaxWidth())
 
 
     {
@@ -102,6 +100,8 @@ fun ProductListItem() {
                             .width(27.dp)
                             .align(Alignment.End),
                         onClick = {
+                            //added here
+                            showBottomSheet ( true)
                             if (isItemInProductList.value){
                                 Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
                                 isLikedButtonPress.value = !isLikedButtonPress.value

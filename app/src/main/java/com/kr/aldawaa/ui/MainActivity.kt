@@ -5,27 +5,18 @@ import android.app.DatePickerDialog
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
-import android.widget.CalendarView
-import androidx.activity.ComponentActivity
+  import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
@@ -33,15 +24,13 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-import com.google.android.material.datepicker.MaterialDatePicker
-import com.kr.aldawaa.LocationClass
+  import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
-  import com.kr.components.CustomModalBottomSheet
+  import com.kr.components.CustomDialog
 //import com.kr.ui_login.ui.LoginViewModel
 
-import com.kr.network.ConnectivityObserver
-import com.kr.network.NetworkConnectivityObserver
+  import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -87,10 +76,9 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                     // A surface container using the 'background' color from the theme
                     Surface(color = MaterialTheme.colors.background) {
                         // GifImage()
-                        //  DialogBox()
-                        // DialogBox()
-                        Greeting()
-                        NavigationController()
+                      //  Greeting()
+                        NavigationController ()
+                       // test()
                     }
 
                     ///////////////End Navigation Bar///////////////////////
@@ -195,92 +183,3 @@ fun DefaultPreview() {
     }
 }
 
-    @Preview()
-    @Composable
-    fun DialogBox(
-    ) {
-
-        val context = LocalContext.current.applicationContext
-
-        val buttonCorner = 6.dp
-
-        Dialog(
-            onDismissRequest = {
-            }
-        ) {
-
-            Surface(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                shape = RoundedCornerShape(size = 20.dp),
-
-                ) {
-
-                Column(
-                    modifier = Modifier
-                ) {
-
-                    Text(
-
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 16.dp, end = 16.dp, top = 20.dp, bottom = 20.dp),
-                        textAlign = TextAlign.Center,
-                        text = "Al Dawaa” Would Like to Access the Camera",
-                        style = TextStyle(
-                            color = Color.Black.copy(alpha = 0.95f),
-                            fontSize = 16.sp,
-                            lineHeight = 22.sp
-                        )
-                    )
-
-                    Divider(color = Color.LightGray, thickness = 1.dp)
-
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(IntrinsicSize.Min),
-                        horizontalArrangement = Arrangement.spacedBy(
-                            space = 10.dp,
-                            alignment = Alignment.CenterHorizontally
-                        )
-                    ) {
-
-                        // Cancel button
-                        Text(
-                            modifier = Modifier
-                                .padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp)
-                                .weight(0.5f),
-                            textAlign = TextAlign.Center,
-                            text = "Settings",
-                            style = TextStyle(
-                                fontSize = 16.sp
-                            ),
-                            color = Color.Blue,
-
-                            )
-
-                        Divider(
-                            color = Color.LightGray,
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .width(1.dp)
-                        )
-                        Text(
-                            modifier = Modifier
-                                .padding(top = 20.dp, bottom = 20.dp, start = 24.dp, end = 24.dp)
-                                .weight(0.5f),
-                            textAlign = TextAlign.Center,
-                            text = "Ok",
-                            style = TextStyle(fontSize = 16.sp),
-                            color = Color.Blue,
-                        )
-
-                    }
-                }
-
-            }
-        }
-    }

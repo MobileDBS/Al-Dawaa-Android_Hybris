@@ -11,6 +11,7 @@ dependencies{
     "implementation"(Compose.playServices)
    // "implementation"(Compose.Permissions)
     "implementation"(Compose.googlePlaces)
+    "implementation"(Compose.Permissions)
    // "implementation"(Compose.playServicesLocation)
 
 }
