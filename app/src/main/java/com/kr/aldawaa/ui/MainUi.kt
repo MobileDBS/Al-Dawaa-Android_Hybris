@@ -129,7 +129,7 @@ sealed class BottomBarScreen(
     object Home : BottomBarScreen(
         name = "Home",
         path = "home",
-        icon =R.drawable.ic_home
+        icon = R.drawable.ic_home
     )
 
 

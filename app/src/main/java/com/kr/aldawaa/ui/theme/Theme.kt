@@ -1,5 +1,6 @@
 package com.kr.aldawaa.ui.theme
 
+import android.view.Window
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
@@ -51,7 +52,8 @@ fun AlDawaaHybrisTheme(
         colors = colors,
         typography = Typography,
         shapes = Shapes,
-        content = content
+        content = content,
+
     )
 }
 

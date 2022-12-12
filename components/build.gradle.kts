@@ -13,5 +13,10 @@ dependencies{
     "implementation"(Compose.googlePlaces)
     "implementation"(Compose.Permissions)
    // "implementation"(Compose.playServicesLocation)
+    //Slider
+    "implementation"(Compose.accompanistPager)
+    "implementation"(Compose.accompanistPagerIndicator)
+    "implementation"(Compose.composeUtil)
+
 
 }
