@@ -110,7 +110,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                         // DialogBox()
                       //  Greeting()
                       //  AutoSliding()
-                      //  NavigationController() //Uncomment this after finishing the slider
+                        NavigationController() //Uncomment this after finishing the slider
 
                     }
 
