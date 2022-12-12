@@ -38,7 +38,7 @@ fun CustomModalBottomSheet3(
 
 
     val list = listOf(R.drawable.ic_wishlist_arm, R.drawable.ic_wishlist_apple,
-        R.drawable.ic_wishlist_baby , R.drawable.ic_wishlist_ball, R.drawable.ic_wishlist_brush
+        R.drawable.ic_wishlist_baby ,  R.drawable.image_1, R.drawable.ic_wishlist_brush
     , R.drawable.ic_wishlist_cloud , R.drawable.ic_wishlist_cream, R.drawable.ic_wishlist_eye ,
         R.drawable.ic_wishlist_face ,  R.drawable.ic_wishlist_hair)
 

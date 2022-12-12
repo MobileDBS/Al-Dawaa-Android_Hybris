@@ -22,7 +22,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
-import androidx.compose.material.SliderDefaults
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*

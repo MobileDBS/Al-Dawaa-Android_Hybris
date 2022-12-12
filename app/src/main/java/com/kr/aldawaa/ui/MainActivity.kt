@@ -2,14 +2,18 @@ package com.kr.aldawaa.ui
 
   import android.location.Location
 import android.app.DatePickerDialog
-import android.os.Build.VERSION.SDK_INT
+  import android.graphics.PorterDuff
+  import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
 import android.widget.CalendarView
-import androidx.activity.ComponentActivity
+  import android.widget.RatingBar
+  import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+  import androidx.compose.animation.core.tween
+  import androidx.compose.foundation.Image
+  import androidx.compose.foundation.background
+  import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -18,13 +22,18 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
+  import androidx.compose.ui.graphics.graphicsLayer
+  import androidx.compose.ui.layout.ContentScale
+  import androidx.compose.ui.platform.LocalContext
+  import androidx.compose.ui.res.painterResource
+  import androidx.compose.ui.text.TextStyle
+  import androidx.compose.ui.text.font.FontWeight
+  import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
+  import androidx.compose.ui.util.lerp
+  import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.ImageLoader
@@ -33,10 +42,13 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-import com.google.android.material.datepicker.MaterialDatePicker
+  import com.google.accompanist.pager.*
+  import com.google.android.material.datepicker.MaterialDatePicker
 import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+  import com.kr.components.AutoSliding
+  import com.kr.components.slider.natural
 //import com.kr.ui_login.ui.LoginViewModel
 
 import com.kr.network.ConnectivityObserver
@@ -47,6 +59,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
 import kotlinx.coroutines.DelicateCoroutinesApi
+  import kotlinx.coroutines.delay
+  import kotlinx.coroutines.launch
+  import kotlinx.coroutines.yield
+  import kotlin.math.absoluteValue
 
 @ExperimentalMaterial3Api
 @OptIn(ExperimentalMaterialApi::class)
@@ -56,7 +72,9 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 @Inject
      lateinit var connectivityObserver: NetworkConnectivityObserver
 
-    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
+    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class,
+        ExperimentalPagerApi::class
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -90,8 +108,10 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                         // GifImage()
                         //  DialogBox()
                         // DialogBox()
-                        Greeting()
-                        NavigationController()
+                      //  Greeting()
+                      //  AutoSliding()
+                      //  NavigationController() //Uncomment this after finishing the slider
+
                     }
 
                     ///////////////End Navigation Bar///////////////////////
@@ -285,3 +305,5 @@ fun DefaultPreview() {
             }
         }
     }
+
+

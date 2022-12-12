@@ -113,9 +113,14 @@ dependencies {
     implementation(project(Modules.ui_cart))
    implementation(project(Modules.ui_login))
     implementation(project(Modules.ui_productList))
-    "implementation"(Compose.Permissions)
-    "implementation"(Compose.playServicesLocation)
-   // implementation(project(Modules.ui_register))
+    implementation(Compose.Permissions)
+    implementation(Compose.playServicesLocation)
+    //Slider
+    implementation(Compose.accompanistPager)
+    implementation(Compose.accompanistPagerIndicator)
+    implementation(Compose.composeUtil)
+
+    // implementation(project(Modules.ui_register))
 
 
 }
