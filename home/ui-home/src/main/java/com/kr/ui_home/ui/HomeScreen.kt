@@ -18,14 +18,10 @@ fun HomeScreen(navController: NavController) {
     Box(modifier = Modifier.fillMaxSize(),
     contentAlignment = Alignment.Center){
        Column() {
-
            Text(text = "Home Screen", color= PrimaryColor)
-
            OutlinedButton(onClick = { navController.navigate("Product_List") }) {
                Text("Open ProductList")
            }
        }
     }
 }
-
-

@@ -1,22 +1,26 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.kr.aldawaa.ui
-
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Scaffold
+import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -24,12 +28,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kr.aldawaa.R
+import com.kr.aldawaa.ui.theme.ErrorColorLight
+import com.kr.aldawaa.ui.theme.SecondaryColor
+import com.kr.components.ui.theme.PrimaryColor
 
 
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
+        topBar = {TopAppBarCompose()},
         bottomBar = { BottomBar(navController = navController)
                     },
     ) {
@@ -97,87 +105,26 @@ fun RowScope.AddItem(
     )
 }
 
-
-
-/*
-
 @Composable
-fun NavigationUi(
-  navController: NavHostController,
-) {
-  val bottomBarVisibility = rememberSaveable { (mutableStateOf(true)) }
-  val items = listOf(Screen.Shop, Screen.Offers , Screen.Home , Screen.Services , Screen.Cart)
-  */
-/*@ExperimentalMaterialApi
-  @Composable
-  fun BottomNavigationBar(
-    items: List<NavigationBarItem>,
-    navController: NavController,
-    modifier: Modifier = Modifier,
-    onItemClick: (BottomNavItem) -> Unit
-  ) {}*//*
-
-
-  Scaffold(
-    bottomBar =
-    {
-      AnimatedVisibility(
-        visible = bottomBarVisibility.value,
-        enter = slideInVertically(initialOffsetY = { it }),
-        exit = slideOutVertically(targetOffsetY = { it }),
-        content = {
-          NavigationBar(Modifier.background(color = MaterialTheme.colorScheme.primary)) {
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentDestination = navBackStackEntry?.destination
-            items.forEach { screen ->
-              NavigationBarItem(
-                icon = {
-                  Icon(
-                    imageVector = screen.icon,
-                    contentDescription = screen.name
-                  )
-                },
-                label = { Text(text = screen.name) },
-                selected = currentDestination?.hierarchy?.any { it.route == screen.path } == true,
-                onClick = {
-                  navController.navigate(screen.path) {
-                    popUpTo(navController.graph.findStartDestination().id) {
-                      saveState = true
-                    }
-                    launchSingleTop = true
-                    restoreState = true
-                  }
-                })
-            }
-          }
-        })
-    }
-
-  ) { innerPadding ->
-//    NavHost(
-//      navController = navController,
-//      startDestination = Screen.Home.path,
-//      modifier = Modifier.padding(innerPadding)
-//    ) {
-//      composable(Screen.Home.path) {
-//        HomeScreen(navController = navController)
-//      }
-//      composable(route = Screen.Shop.path) {
-//        ShopScreen(navController = navController)
-//      }
-//      composable(route = Screen.Offers.path) {
-//        OffersScreen(navController = navController)
-//
-//      }
-//      composable(route = Screen.Services.path) {
-//        ServicesScreen(navController = navController)
-//
-//      }
-//      composable(route = Screen.Cart.path) {
-//        CartScreen(navController = navController)
-//
-//      }
-//    }
+fun TopAppBarCompose(){
+    val context = LocalContext.current
+  TopAppBar(title = {
+      Box(modifier = Modifier.fillMaxSize()) {
+          Image(painterResource(id = R.drawable.arbahy),
+              "logo",
+          modifier = Modifier.size(80.dp)
+              .align(Alignment.Center).clickable { Toast.makeText(context,"Logo",Toast.LENGTH_SHORT).show() })}
 
   }
-}*/
+//  { Text(text = "Al-Dawaa", fontSize = 20.sp, color = SecondaryColor)}
+      ,
+  navigationIcon = {},
+  actions = {
+      IconButton(onClick = { Toast.makeText(context,"wishIcon",Toast.LENGTH_LONG) }) {
+          Icon( Icons.Default.Favorite, contentDescription = "favorite", tint = Color.Yellow)
+      }
+  },
+      backgroundColor = Color.White,
+      contentColor = ErrorColorLight
+  )
+}
