@@ -42,6 +42,7 @@ import com.google.accompanist.flowlayout.MainAxisAlignment
 import com.kr.components.ui.theme.InputTextColor
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
+import com.kr.product_datasource.dto.Filter
 import com.kr.ui_filter.ui.filterui.component.FilterState
 import com.kr.ui_filter.ui.filterui.component.FilterSubItemsBrand
 import com.kr.ui_filter.ui.filterui.component.FilterSubItemsCategories
@@ -62,64 +63,82 @@ fun FilterItems(filterItems: String) {
     var sliderPosition by remember { mutableStateOf(sliderfrom..sliderto) }
     val interactionSource = MutableInteractionSource()
     var heigh: Int = 0
+    val filter = Filter.Filteritems()
+    // val popularbrands = filter.filtersubpop
 
-    val popularbrands = listOf(
-        "popular1",
-        "popular2",
-        "popular3",
-        "popular4",
-        "popular5",
-        "popular6",
-        "popular7",
+    /* val popularbrands = listOf(
+         "popular1",
+         "popular2",
+         "popular3",
+         "popular4",
+         "popular5",
+         "popular6",
+         "popular7",
+     )*/
+
+    val itemssub: MutableState<List<Filter.Filteritems.Filtersub>> = rememberSaveable {
+        mutableStateOf(
+            listOf(
+                Filter.Filteritems.Filtersub("popular", "popular1", false),
+                Filter.Filteritems.Filtersub("popular", "popular2", false),
+                Filter.Filteritems.Filtersub("popular", "popular3", false),
+                Filter.Filteritems.Filtersub("popular", "popular4", false),
+                Filter.Filteritems.Filtersub("popular", "popular5", false),
+                Filter.Filteritems.Filtersub("category", "categories of items1", false),
+                Filter.Filteritems.Filtersub("category", "categories of items2", false),
+                Filter.Filteritems.Filtersub("category", "categories of items3", false),
+                Filter.Filteritems.Filtersub("category", "categories of items4", false),
+                Filter.Filteritems.Filtersub("category", "categories of items5", false),
+                Filter.Filteritems.Filtersub("category", "categories of items6", false),
+                Filter.Filteritems.Filtersub("category", "categories of items7", false),
+                Filter.Filteritems.Filtersub("brand", "brand of items1", false),
+                Filter.Filteritems.Filtersub("brand", "brand of items2", false),
+                Filter.Filteritems.Filtersub("brand", "brand of items3", false),
+                Filter.Filteritems.Filtersub("brand", "brand of items4", false),
+                Filter.Filteritems.Filtersub("brand", "brand of items5", false)
+
+            ).map {
+                Filter.Filteritems.Filtersub(
+                    key = it.key,
+                    filtersubname = it.filtersubname,
+                    filtersubbolean = false
+                )
+            }
+        )
+    }
+
+    val popularbrands: MutableState<ArrayList<Filter.Filteritems.Filtersub>> = mutableStateOf(
+        arrayListOf()
     )
 
-    var categoriesitems :MutableState<List<FilterState>> = rememberSaveable {
-        mutableStateOf(
-            listOf(
-                "categories of items1",
-                "categories of items2",
-                "categories of items3",
-                "categories of items4",
-                "categories of items5",
-                "categories of items6",
-                "categories of items7",
-            ).map {
-                FilterState(
-                    title = it,
-                    isSelected = false
-                )
+    var categoriesitems: MutableState<ArrayList<Filter.Filteritems.Filtersub>> = mutableStateOf(
+        arrayListOf()
+    )
+    val branditems: MutableState<ArrayList<Filter.Filteritems.Filtersub>> = mutableStateOf(
+        arrayListOf()
+    )
+
+    itemssub.value.forEach { itemssubn->
+        when(itemssubn.key){
+            "popular" ->{
+
+                popularbrands.value.add(itemssubn)
+
             }
-        )
+            "category" ->{
+
+                categoriesitems.value.add(itemssubn)
+
+            }
+            "brand" ->{
+
+                branditems.value.add(itemssubn)
+
+            }
+        }
     }
 
 
-
-   /* val branditems = listOf(
-                "brand of items1",
-                "brand of items2",
-                "brand of items3",
-                "brand of items4",
-                "brand of items5",
-
-                )*/
-
-
-    val branditems :MutableState<List<FilterState>> = rememberSaveable {
-        mutableStateOf(
-            listOf(
-            "brand of items1",
-            "brand of items2",
-            "brand of items3",
-            "brand of items4",
-            "brand of items5",
-                ).map {
-                FilterState(
-                    title = it,
-                    isSelected = false
-                )
-            }
-        )
-    }
 
     Card(
         modifier = Modifier
@@ -148,7 +167,7 @@ fun FilterItems(filterItems: String) {
                 val pbrandsize: String
 
                 if (filterItems == "items of Filter brand") {
-                    pbrandsize = "( ${popularbrands.size} )"
+                    pbrandsize = "( ${popularbrands.value.size} )"
                 } else {
                     pbrandsize = ""
                 }
@@ -168,8 +187,10 @@ fun FilterItems(filterItems: String) {
                     onClick = {
                         expandedState = !expandedState
                     }) {
-                    androidx.compose.material3.Icon(painter = painterResource(id = R.drawable.ic_arrow_right),
-                        contentDescription = "Drop-Down Arrow")
+                    androidx.compose.material3.Icon(
+                        painter = painterResource(id = R.drawable.ic_arrow_right),
+                        contentDescription = "Drop-Down Arrow"
+                    )
                 }
             }
 
@@ -185,10 +206,12 @@ fun FilterItems(filterItems: String) {
             if (expandedState) {
                 Spacer(modifier = Modifier.padding(10.dp))
 
-                Box(modifier = Modifier
-                    .height(heigh.dp)
-                    .fillMaxWidth()
-                    .background(Color.White)) {
+                Box(
+                    modifier = Modifier
+                        .height(heigh.dp)
+                        .fillMaxWidth()
+                        .background(Color.White)
+                ) {
                     LazyColumn(content = {
                         when (filterItems) {
                             "items of Filter categories" -> {
@@ -197,15 +220,17 @@ fun FilterItems(filterItems: String) {
 
                                 itemsIndexed(categoriesitems.value) { index, filterIS ->
 
-                                   categoriesitems = FilterSubItemsCategories(filterSubItems = categoriesitems,
-                                        index = index)
+                                    categoriesitems = FilterSubItemsCategories(
+                                        filterSubItems = categoriesitems,
+                                        index = index
+                                    )
 
 
                                     Spacer(modifier = Modifier.padding(7.dp))
 
                                 }
 
-                                Log.d("catcat","is ${categoriesitems.value}")
+                                Log.d("catcat", "is ${categoriesitems.value}")
 
                             }
                             "items of Filter brand" -> {
@@ -233,7 +258,7 @@ fun FilterItems(filterItems: String) {
                                             .fillMaxWidth()
                                             .fillMaxHeight()
                                     ) {
-                                        popularbrands.forEach { items ->
+                                        popularbrands.value.forEach { items ->
 
                                             InputChip(
 
@@ -241,7 +266,8 @@ fun FilterItems(filterItems: String) {
                                                     selectedInputChip = !selectedInputChip
                                                 },
                                                 label = {
-                                                    Text(items,
+                                                    Text(
+                                                        items.filtersubname,
                                                         modifier = Modifier.padding(10.dp)
                                                     )
                                                 },
@@ -282,14 +308,16 @@ fun FilterItems(filterItems: String) {
 
                                 itemsIndexed(branditems.value) { index, filterIS ->
 
-                                    FilterSubItemsBrand(filterSubItemsBra = branditems,
-                                        index = index)
+                                    FilterSubItemsBrand(
+                                        filterSubItemsBra = branditems,
+                                        index = index
+                                    )
 
 
                                     Spacer(modifier = Modifier.padding(7.dp))
 
                                 }
-                                Log.d("catcat","is ${branditems.value}")
+                                Log.d("catcat", "is ${branditems.value}")
 
 
                             }
@@ -334,7 +362,8 @@ fun FilterItems(filterItems: String) {
                                         )
                                         Spacer(modifier = Modifier.padding(10.dp))
 
-                                        Row(horizontalArrangement = Arrangement.Center,
+                                        Row(
+                                            horizontalArrangement = Arrangement.Center,
                                             verticalAlignment = Alignment.CenterVertically,
                                             modifier = Modifier
                                                 .fillMaxWidth()
@@ -345,31 +374,43 @@ fun FilterItems(filterItems: String) {
                                                     .weight(1f)
                                                     .height(40.dp),
                                                 shape = RoundedCornerShape(20.dp),
-                                                border = BorderStroke(width = 2.dp,
-                                                    color = com.kr.components.ui.theme.FilterChip),
+                                                border = BorderStroke(
+                                                    width = 2.dp,
+                                                    color = com.kr.components.ui.theme.FilterChip
+                                                ),
                                                 contentColor = PrimaryColor,
 
                                                 ) {
-                                                Text(text = "${sliderPosition.start.toInt()} SAR",
-                                                    modifier = Modifier.padding(top = 10.dp,
+                                                Text(
+                                                    text = "${sliderPosition.start.toInt()} SAR",
+                                                    modifier = Modifier.padding(
+                                                        top = 10.dp,
                                                         start = 40.dp,
-                                                        end = 25.dp))
+                                                        end = 25.dp
+                                                    )
+                                                )
                                             }
                                             Spacer(modifier = Modifier.padding(7.dp))
 
-                                            Surface(modifier = Modifier
-                                                .weight(1f)
-                                                .height(40.dp),
+                                            Surface(
+                                                modifier = Modifier
+                                                    .weight(1f)
+                                                    .height(40.dp),
                                                 shape = RoundedCornerShape(20.dp),
-                                                border = BorderStroke(width = 2.dp,
-                                                    color = com.kr.components.ui.theme.FilterChip),
+                                                border = BorderStroke(
+                                                    width = 2.dp,
+                                                    color = com.kr.components.ui.theme.FilterChip
+                                                ),
                                                 contentColor = PrimaryColor
 
                                             ) {
-                                                Text(text = "${sliderPosition.endInclusive.toInt()} SAR",
-                                                    modifier = Modifier.padding(top = 10.dp,
+                                                Text(
+                                                    text = "${sliderPosition.endInclusive.toInt()} SAR",
+                                                    modifier = Modifier.padding(
+                                                        top = 10.dp,
                                                         start = 40.dp,
-                                                        end = 25.dp)
+                                                        end = 25.dp
+                                                    )
                                                 )
                                             }
                                         }

@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.kr.ui_services.ui.componant.util.Permission
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import java.io.File
@@ -101,7 +102,7 @@ fun CameraCapture(
                             imageCaptureUseCase.takePicture(context.executor).let {
                                 onImageFile(it)
                                 Log.e("CameraCapture", " Sized ${imageCaptureUseCase.currentConfig.defaultCaptureConfig}")
-                                Log.e("CameraCapture", " Sized ${imageCaptureUseCase.camera?.cameraInfo}")
+                                Log.e("CameraCapture", " Sized ${it.toUri().userInfo}")
 
 
 
