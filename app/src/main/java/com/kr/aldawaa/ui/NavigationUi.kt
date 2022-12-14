@@ -5,10 +5,7 @@ package com.kr.aldawaa.ui
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -24,25 +21,32 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kr.aldawaa.R
+import com.kr.components.CustomModalBottomSheet
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
+
 fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomBar(navController = navController)
-                    },
+                    } ,
     ) {
         innerPadding->
         Box(modifier = Modifier.padding(innerPadding)){
             BottomNavGraph(navController = navController)
         }
 
+
     }
+
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BottomBar(navController: NavHostController) {
+
     val screens = listOf(
         BottomBarScreen.Shop,
         BottomBarScreen.Offers,
@@ -63,6 +67,9 @@ fun BottomBar(navController: NavHostController) {
             )
         }
     }
+
+
+
 }
 
 @Composable
@@ -87,7 +94,7 @@ fun RowScope.AddItem(
         selected = currentDestination?.hierarchy?.any {
             it.route == screen.path
         } == true,
-        unselectedContentColor = androidx.compose.material.LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
+        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
         onClick = {
             navController.navigate(screen.path) {
                 popUpTo(navController.graph.findStartDestination().id)

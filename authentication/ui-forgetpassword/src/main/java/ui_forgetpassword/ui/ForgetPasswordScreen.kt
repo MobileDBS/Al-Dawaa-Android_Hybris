@@ -153,14 +153,11 @@ fun ForgetPasswordScreen (navController: NavController) {
                         border = BorderStroke(2.dp, PrimaryColor),
 
                         onClick = {
-
-
                                 if (!validationHelper.phonenumvalidation(forgetphone.value)){
                                     isErrorforget = true
                                 }
                                 else {
                                     navController.navigate("Forget_Password_Otp")
-
                                     Toast.makeText(context, "code sent ", Toast.LENGTH_SHORT).show()
                                 }
 
@@ -177,6 +174,7 @@ fun ForgetPasswordScreen (navController: NavController) {
 
                     }
                 }
+
             }
         }
     }

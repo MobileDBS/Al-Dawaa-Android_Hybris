@@ -20,4 +20,6 @@
     <string name="male">Male</string>
 <string name="female">Female</string>
 
+    <string name="access_location_msg">“Al Dawaa” Would Like to Access the location</string>
+
 </resources>

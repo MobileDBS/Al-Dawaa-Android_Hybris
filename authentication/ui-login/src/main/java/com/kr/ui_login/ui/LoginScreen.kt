@@ -201,9 +201,7 @@ fun LoginScreen(navController: NavController) {
 
             onClick = {
                 navController.navigate("MainUi")
-
-
-            },
+                      },
 
 
             ) {

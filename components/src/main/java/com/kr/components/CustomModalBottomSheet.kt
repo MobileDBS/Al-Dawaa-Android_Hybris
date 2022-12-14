@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -14,24 +15,27 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.ui.theme.PrimaryColor
 import kotlinx.coroutines.launch
+
+
 @Composable
 @ExperimentalMaterialApi
-fun CustomModalBottomSheet(
-    navController: NavController,
-    onClickItem: ((String) -> Unit)?
-) {
+fun CustomModalBottomSheet(navController: NavController) {
 
     val list = listOf("Liked products" ,"Makeup" , "Create new")
-
     val modalBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Expanded
     )
 
     ModalBottomSheetLayout(
+        modifier = Modifier.fillMaxSize(),
         sheetState = modalBottomSheetState,
         sheetContent = {
-                Column(modifier = Modifier.padding(16.dp)) {
+                Column(modifier = Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+
+                    ) {
                     Text(text = "Save to")
+
                     Divider(color = Color.LightGray, thickness = 1.dp)
 
                     LazyColumn {
@@ -41,7 +45,7 @@ fun CustomModalBottomSheet(
                             )
                         }
                     }
-                    
+
                     Button(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
@@ -53,7 +57,7 @@ fun CustomModalBottomSheet(
                         colors = ButtonDefaults.outlinedButtonColors(contentColor = PrimaryColor)
                     ) {
                         Text(text = "Submit")
-                        
+
                     }
                 }
 
@@ -61,5 +65,7 @@ fun CustomModalBottomSheet(
         sheetShape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp)
 
     ) {
+
+
     }
 }

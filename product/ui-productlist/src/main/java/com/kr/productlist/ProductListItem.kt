@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -24,8 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kr.ui_productlist.R
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ProductListItem() {
+fun ProductListItem(showBottomSheet: (Boolean) -> Unit) {
+
     var itemToCart = rememberSaveable {
         mutableStateOf(1)
     }
@@ -34,12 +37,12 @@ fun ProductListItem() {
     var offerText = "1"
     val isLikedButtonPress = remember { mutableStateOf(false) }
     val isItemInProductList = remember { mutableStateOf(true) }
+
+
     Surface(
         elevation = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
             .padding(top = 4.dp, bottom = 6.dp)
-            .fillMaxWidth()
-
-    )
+            .fillMaxWidth())
 
 
     {
@@ -79,7 +82,8 @@ fun ProductListItem() {
                     Image(
                         modifier = Modifier
                             .width(80.dp)
-                            .height(116.dp).align(Alignment.CenterHorizontally),
+                            .height(116.dp)
+                            .align(Alignment.CenterHorizontally),
                         painter = painterResource(R.drawable.image),
                         contentDescription = "product image",
                         contentScale = ContentScale.Crop,
@@ -96,6 +100,8 @@ fun ProductListItem() {
                             .width(27.dp)
                             .align(Alignment.End),
                         onClick = {
+                            //added here
+                            showBottomSheet ( true)
                             if (isItemInProductList.value){
                                 Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
                                 isLikedButtonPress.value = !isLikedButtonPress.value
@@ -107,11 +113,12 @@ fun ProductListItem() {
 
                         Icon(
                             painter = if (!isLikedButtonPress.value)
-                                painterResource(R.drawable.unlike) else painterResource(
-                                R.drawable.liked
-                            ),
+                                painterResource(R.drawable.unlike)
+                            else{
+                                painterResource(R.drawable.liked)
+                                },
                             contentDescription = "likedproduct",
-                            tint = colorResource(id = R.color.unlike_icon_color)
+                            tint = colorResource(id = R.color.unlike_icon_color),
                         )
                     }
                 }
@@ -250,3 +257,4 @@ fun ProductListItem() {
         }
     }
 }
+

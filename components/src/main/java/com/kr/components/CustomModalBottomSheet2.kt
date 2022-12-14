@@ -16,6 +16,7 @@ import com.kr.components.ui.theme.PrimaryColor
 import kotlinx.coroutines.launch
 @Composable
 @ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 fun CustomModalBottomSheet2(
     navController: NavController
 ) {
@@ -50,7 +51,6 @@ fun CustomModalBottomSheet2(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             navController.navigate("CustomModalBottomSheet3")
-
                                   } ,
                         border = BorderStroke(2.dp, PrimaryColor),
                         shape = RoundedCornerShape(50),
