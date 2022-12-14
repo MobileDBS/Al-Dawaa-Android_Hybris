@@ -1,5 +1,9 @@
 package com.kr.ui_filter.component
 
+import InputTextColor
+import PrimaryColor
+import SecondaryColor
+import FilterChip
 import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.*
@@ -39,9 +43,6 @@ import androidx.compose.ui.unit.sp
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.MainAxisAlignment
-import com.kr.components.ui.theme.InputTextColor
-import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.SecondaryColor
 import com.kr.ui_filter.ui.filterui.component.FilterState
 import com.kr.ui_filter.ui.filterui.component.FilterSubItemsBrand
 import com.kr.ui_filter.ui.filterui.component.FilterSubItemsCategories
@@ -345,8 +346,7 @@ fun FilterItems(filterItems: String) {
                                                     .weight(1f)
                                                     .height(40.dp),
                                                 shape = RoundedCornerShape(20.dp),
-                                                border = BorderStroke(width = 2.dp,
-                                                    color = com.kr.components.ui.theme.FilterChip),
+                                                border = BorderStroke(width = 2.dp, color = FilterChip),
                                                 contentColor = PrimaryColor,
 
                                                 ) {
@@ -362,7 +362,7 @@ fun FilterItems(filterItems: String) {
                                                 .height(40.dp),
                                                 shape = RoundedCornerShape(20.dp),
                                                 border = BorderStroke(width = 2.dp,
-                                                    color = com.kr.components.ui.theme.FilterChip),
+                                                    color = FilterChip),
                                                 contentColor = PrimaryColor
 
                                             ) {

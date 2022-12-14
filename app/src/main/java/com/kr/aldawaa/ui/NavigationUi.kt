@@ -30,7 +30,9 @@ import androidx.navigation.compose.rememberNavController
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.ErrorColorLight
 import com.kr.aldawaa.ui.theme.SecondaryColor
-import com.kr.components.ui.theme.PrimaryColor
+import WhiteColor
+import PrimaryColor
+import androidx.compose.ui.text.style.TextOverflow
 
 
 @Composable
@@ -112,19 +114,61 @@ fun TopAppBarCompose(){
       Box(modifier = Modifier.fillMaxSize()) {
           Image(painterResource(id = R.drawable.arbahy),
               "logo",
-          modifier = Modifier.size(80.dp)
-              .align(Alignment.Center).clickable { Toast.makeText(context,"Logo",Toast.LENGTH_SHORT).show() })}
+          modifier = Modifier
+              .size(80.dp)
+              .align(Alignment.Center)
+              .clickable {
+                  Toast
+                      .makeText(context, "Logo", Toast.LENGTH_SHORT)
+                      .show()
+              })}
 
   }
 //  { Text(text = "Al-Dawaa", fontSize = 20.sp, color = SecondaryColor)}
       ,
-  navigationIcon = {},
+  navigationIcon = {
+                   IconButton(onClick = {
+                       Toast.makeText(context, "Login", Toast.LENGTH_LONG).show()
+                   }) {
+                       userAvatarStatus("userWithAvatar")
+                   }
+  },
   actions = {
       IconButton(onClick = { Toast.makeText(context,"wishIcon",Toast.LENGTH_LONG) }) {
-          Icon( Icons.Default.Favorite, contentDescription = "favorite", tint = Color.Yellow)
+          Icon( painterResource(id = R.drawable.ic_home_heart), contentDescription = "favorite", tint = Color.Unspecified)
       }
   },
-      backgroundColor = Color.White,
-      contentColor = ErrorColorLight
+      backgroundColor = PrimaryColor
   )
+}
+@Composable
+fun userAvatarStatus(status:String){
+    when(status){
+        "userWithAvatar" -> {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+            Image(painterResource(id = R.drawable.ic_user_avatar),"avatar")
+            Column (modifier = Modifier.padding(5.dp)){
+                Text(text = "Hi", color = WhiteColor)
+                Text(text = "AbdElrahman", color = WhiteColor,maxLines = 1, overflow = TextOverflow.Ellipsis)
+            }
+        }}
+        "userWithoutAvatar" -> {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(painterResource(id = R.drawable.ic_user_avatar),"avatar")
+                Column {
+                    Text(text = "Hi", color = WhiteColor)
+                    Text(text = "AbdElrahman", color = WhiteColor,maxLines = 1, overflow = TextOverflow.Ellipsis)
+                }
+            }
+//maxLines = 1, overflow = TextOverflow.Ellipsis
+        }
+        "guest" -> {
+            Text(text = "Login", fontSize = 20.sp, color = WhiteColor, modifier = Modifier.padding(start = 10.dp))
+
+        }
+        else -> {
+
+        }
+    }
+
 }

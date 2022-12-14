@@ -37,6 +37,11 @@ object Compose {
     private const val accompanistPagerIndicatorVersion = "0.28.0"
     const val accompanistPagerIndicator = "com.google.accompanist:accompanist-pager-indicators:$accompanistPagerIndicatorVersion"
 
+    private const val accompanistSystemUiControllerVersion = "0.28.0"
+    const val accompanistSystemUiController = "com.google.accompanist:accompanist-systemuicontroller:$accompanistSystemUiControllerVersion"
+
+
+
     private const val maps_compose = "2.7.2"
     const val maps ="com.google.maps.android:maps-compose:$maps_compose"
 

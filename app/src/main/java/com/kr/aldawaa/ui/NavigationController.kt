@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kr.productlist.ProductListScreen
-import com.kr.ui_login.ui.EntryScreen
+import com.kr.ui_entry.ui.EntryScreen
 import com.kr.ui_otp.ui.OtpScreen
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi

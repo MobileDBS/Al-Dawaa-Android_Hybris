@@ -1,5 +1,10 @@
 package com.kr.ui_login.ui
 
+import ErrorColor
+import InputColor
+import InputHint
+import PrimaryColor
+import SecondaryColor
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background

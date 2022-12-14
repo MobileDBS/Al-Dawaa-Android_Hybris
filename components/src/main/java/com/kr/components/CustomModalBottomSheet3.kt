@@ -1,4 +1,5 @@
 package com.kr.components
+import PrimaryColor
 import android.view.ViewGroup
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
@@ -22,7 +23,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.kr.components.ui.theme.PrimaryColor
 import kotlinx.coroutines.launch
 @Composable
 @ExperimentalMaterialApi

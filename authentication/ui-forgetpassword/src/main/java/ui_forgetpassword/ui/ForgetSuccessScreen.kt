@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.kr.components.ui.theme.PrimaryColor
+import PrimaryColor
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.ui_forgetpassword.R
 

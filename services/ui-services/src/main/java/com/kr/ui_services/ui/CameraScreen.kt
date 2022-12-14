@@ -26,7 +26,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.kr.components.ui.theme.PrimaryColor
+import PrimaryColor
 import com.kr.ui_services.R
 import com.kr.ui_services.ui.componant.camera.CameraCapture
 import com.kr.ui_services.ui.componant.gallery.GallerySelect

@@ -1,4 +1,5 @@
 package com.kr.components
+import PrimaryColor
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.kr.components.ui.theme.PrimaryColor
 import kotlinx.coroutines.launch
 @Composable
 @ExperimentalMaterialApi

@@ -6,6 +6,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 private val LightColorPalette = lightColors(
@@ -42,9 +43,16 @@ fun AlDawaaHybrisTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {
+    val systemUiController = rememberSystemUiController()
     val colors = if (darkTheme) {
+        systemUiController.setSystemBarsColor(
+            color = PrimaryColor
+        )
         DarkColorPalette
     } else {
+        systemUiController.setSystemBarsColor(
+            color = PrimaryColor
+        )
         LightColorPalette
     }
 

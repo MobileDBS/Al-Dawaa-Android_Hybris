@@ -119,6 +119,7 @@ dependencies {
     implementation(Compose.accompanistPager)
     implementation(Compose.accompanistPagerIndicator)
     implementation(Compose.composeUtil)
+    implementation(Compose.accompanistSystemUiController)
 
     // implementation(project(Modules.ui_register))
 

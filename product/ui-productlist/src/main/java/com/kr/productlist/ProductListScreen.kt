@@ -60,7 +60,7 @@ fun ProductListScreen(navController: NavController) {
                     .fillMaxHeight()
                     .fillMaxWidth()
                 ,
-                content = { items(7) { it-> ProductListItem() }
+                content = { items(7) { ProductListItem() }
                 }
             )
         }}
