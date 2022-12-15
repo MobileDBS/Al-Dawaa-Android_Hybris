@@ -1,14 +1,17 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.kr.aldawaa.ui
+
+import PrimaryColor
+import WhiteColor
+import android.content.Context
+import android.os.Build
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -16,9 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
@@ -27,24 +33,36 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import coil.ImageLoader
+import coil.compose.rememberAsyncImagePainter
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
+import coil.request.ImageRequest
+import coil.size.Size
 import com.kr.aldawaa.R
-import com.kr.aldawaa.ui.theme.ErrorColorLight
-import com.kr.aldawaa.ui.theme.SecondaryColor
-import WhiteColor
-import PrimaryColor
-import androidx.compose.ui.text.style.TextOverflow
+import dagger.hilt.android.AndroidEntryPoint
 
 
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
+    val context = LocalContext.current
+    val imageLoader = ImageLoader.Builder(context)
+        .components {
+            if (Build.VERSION.SDK_INT >= 28) {
+                add(ImageDecoderDecoder.Factory())
+            } else {
+                add(GifDecoder.Factory())
+            }
+        }
+        .build()
     Scaffold(
-        topBar = {TopAppBarCompose()},
-        bottomBar = { BottomBar(navController = navController)
-                    },
-    ) {
-        innerPadding->
-        Box(modifier = Modifier.padding(innerPadding)){
+        topBar = { TopAppBarCompose(context,imageLoader) },
+        bottomBar = {
+            BottomBar(navController = navController)
+        },
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding)) {
             BottomNavGraph(navController = navController)
         }
 
@@ -59,7 +77,7 @@ fun BottomBar(navController: NavHostController) {
         BottomBarScreen.Home,
         BottomBarScreen.Services,
         BottomBarScreen.Cart,
-        )
+    )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
@@ -88,7 +106,7 @@ fun RowScope.AddItem(
         icon = {
 
             Icon(
-               // imageVector = screen.icon,
+                // imageVector = screen.icon,
                 painter = painterResource(id = screen.icon),
                 contentDescription = "Navigation Icon",
                 tint = Color.Unspecified
@@ -97,7 +115,7 @@ fun RowScope.AddItem(
         selected = currentDestination?.hierarchy?.any {
             it.route == screen.path
         } == true,
-        unselectedContentColor = androidx.compose.material.LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
+        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
         onClick = {
             navController.navigate(screen.path) {
                 popUpTo(navController.graph.findStartDestination().id)
@@ -108,62 +126,108 @@ fun RowScope.AddItem(
 }
 
 @Composable
-fun TopAppBarCompose(){
-    val context = LocalContext.current
-  TopAppBar(title = {
-      Box(modifier = Modifier.fillMaxSize()) {
-          Image(painterResource(id = R.drawable.arbahy),
-              "logo",
-          modifier = Modifier
-              .size(80.dp)
-              .align(Alignment.Center)
-              .clickable {
-                  Toast
-                      .makeText(context, "Logo", Toast.LENGTH_SHORT)
-                      .show()
-              })}
+fun TopAppBarCompose(context: Context, imageLoader: ImageLoader) {
+    TopAppBar(title = {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(painterResource(id = R.drawable.arbahy),
+                "logo",
+                modifier = Modifier
+                    .size(80.dp)
+                    .align(Alignment.Center)
+                    .clickable {
+                        Toast
+                            .makeText(context, "Logo", Toast.LENGTH_SHORT)
+                            .show()
+                    })
+        }
 
-  }
-//  { Text(text = "Al-Dawaa", fontSize = 20.sp, color = SecondaryColor)}
-      ,
-  navigationIcon = {
-                   IconButton(onClick = {
-                       Toast.makeText(context, "Login", Toast.LENGTH_LONG).show()
-                   }) {
-                       userAvatarStatus("userWithAvatar")
-                   }
-  },
-  actions = {
-      IconButton(onClick = { Toast.makeText(context,"wishIcon",Toast.LENGTH_LONG) }) {
-          Icon( painterResource(id = R.drawable.ic_home_heart), contentDescription = "favorite", tint = Color.Unspecified)
-      }
-  },
-      backgroundColor = PrimaryColor
-  )
-}
-@Composable
-fun userAvatarStatus(status:String){
-    when(status){
-        "userWithAvatar" -> {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-            Image(painterResource(id = R.drawable.ic_user_avatar),"avatar")
-            Column (modifier = Modifier.padding(5.dp)){
-                Text(text = "Hi", color = WhiteColor)
-                Text(text = "AbdElrahman", color = WhiteColor,maxLines = 1, overflow = TextOverflow.Ellipsis)
+    },
+        navigationIcon = {
+            IconButton(onClick = {
+            }) {
+                userAvatarStatus(context, imageLoader,"userWithImg")
             }
-        }}
-        "userWithoutAvatar" -> {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image(painterResource(id = R.drawable.ic_user_avatar),"avatar")
-                Column {
+        },
+        actions = {
+            IconButton(onClick = { Toast.makeText(context, "wishIcon", Toast.LENGTH_LONG) }) {
+                Icon(
+                    painterResource(id = R.drawable.ic_home_heart),
+                    contentDescription = "favorite",
+                    tint = Color.Unspecified
+                )
+            }
+        },
+        backgroundColor = PrimaryColor
+    )
+}
+
+@Composable
+fun userAvatarStatus(context: Context, imageLoader: ImageLoader,status: String) {
+    when (status) {
+        "userWithImg" -> {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.clickable {
+                Toast
+                    .makeText(context, "Go To Profile img", Toast.LENGTH_SHORT)
+                    .show()
+            }) {
+                //TODO:Add click action --> go to profile
+                Image(
+                    painter = rememberAsyncImagePainter(
+                        ImageRequest.Builder(context)
+                            .data(data = "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80")
+                            .crossfade(true)
+                                .apply(block = {
+                            size(Size.ORIGINAL)
+                        }).build(), imageLoader = imageLoader
+                    ),
+                    contentScale = ContentScale.FillBounds,
+                    contentDescription = "userImg",
+                    modifier = Modifier
+                        .size(30.dp)
+                        .clip(CircleShape)
+                )
+                Column(modifier = Modifier.padding(5.dp)) {
                     Text(text = "Hi", color = WhiteColor)
-                    Text(text = "AbdElrahman", color = WhiteColor,maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    Text(
+                        text = "AbdElrahman",
+                        color = WhiteColor,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
             }
-//maxLines = 1, overflow = TextOverflow.Ellipsis
+        }
+        "userWithAvatar" -> {
+            Row(verticalAlignment = Alignment.CenterVertically ,modifier = Modifier.clickable {
+                Toast
+                    .makeText(context, "Go To Profile avatar", Toast.LENGTH_SHORT)
+                    .show()
+            }) {
+                //TODO:Add click action --> go to profile
+                Image(painterResource(id = R.drawable.ic_user_avatar), "avatar")
+                Column {
+                    Text(text = "Hi", color = WhiteColor)
+                    Text(
+                        text = "AbdElrahman",
+                        color = WhiteColor,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
         }
         "guest" -> {
-            Text(text = "Login", fontSize = 20.sp, color = WhiteColor, modifier = Modifier.padding(start = 10.dp))
+            Text(
+                //TODO:Add click action --> go to login
+                text = "Login",
+                fontSize = 20.sp,
+                color = WhiteColor,
+                modifier = Modifier.padding(start = 10.dp).clickable {
+                    Toast
+                        .makeText(context, "Go To Login", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            )
 
         }
         else -> {
