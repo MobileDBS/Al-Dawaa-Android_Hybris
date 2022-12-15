@@ -19,7 +19,6 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.material.*
 import androidx.compose.material.Card
-import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material3.SliderDefaults
@@ -27,9 +26,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.saveable.rememberSaveableStateHolder
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -42,10 +38,7 @@ import com.google.accompanist.flowlayout.MainAxisAlignment
 import com.kr.components.ui.theme.InputTextColor
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
-import com.kr.product_datasource.dto.Filter
-import com.kr.ui_filter.ui.filterui.component.FilterState
-import com.kr.ui_filter.ui.filterui.component.FilterSubItemsBrand
-import com.kr.ui_filter.ui.filterui.component.FilterSubItemsCategories
+import com.kr.product_datasource.dto.FilterModel
 import com.kr.ui_filter.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,7 +56,7 @@ fun FilterItems(filterItems: String) {
     var sliderPosition by remember { mutableStateOf(sliderfrom..sliderto) }
     val interactionSource = MutableInteractionSource()
     var heigh: Int = 0
-    val filter = Filter.Filteritems()
+    val filter = FilterModel.Filteritems()
     // val popularbrands = filter.filtersubpop
 
     /* val popularbrands = listOf(
@@ -76,29 +69,29 @@ fun FilterItems(filterItems: String) {
          "popular7",
      )*/
 
-    val itemssub: MutableState<List<Filter.Filteritems.Filtersub>> = rememberSaveable {
+    val itemssub: MutableState<List<FilterModel.Filteritems.Filtersub>> = rememberSaveable {
         mutableStateOf(
             listOf(
-                Filter.Filteritems.Filtersub("popular", "popular1", false),
-                Filter.Filteritems.Filtersub("popular", "popular2", false),
-                Filter.Filteritems.Filtersub("popular", "popular3", false),
-                Filter.Filteritems.Filtersub("popular", "popular4", false),
-                Filter.Filteritems.Filtersub("popular", "popular5", false),
-                Filter.Filteritems.Filtersub("category", "categories of items1", false),
-                Filter.Filteritems.Filtersub("category", "categories of items2", false),
-                Filter.Filteritems.Filtersub("category", "categories of items3", false),
-                Filter.Filteritems.Filtersub("category", "categories of items4", false),
-                Filter.Filteritems.Filtersub("category", "categories of items5", false),
-                Filter.Filteritems.Filtersub("category", "categories of items6", false),
-                Filter.Filteritems.Filtersub("category", "categories of items7", false),
-                Filter.Filteritems.Filtersub("brand", "brand of items1", false),
-                Filter.Filteritems.Filtersub("brand", "brand of items2", false),
-                Filter.Filteritems.Filtersub("brand", "brand of items3", false),
-                Filter.Filteritems.Filtersub("brand", "brand of items4", false),
-                Filter.Filteritems.Filtersub("brand", "brand of items5", false)
+                FilterModel.Filteritems.Filtersub("popular", "popular1", false),
+                FilterModel.Filteritems.Filtersub("popular", "popular2", false),
+                FilterModel.Filteritems.Filtersub("popular", "popular3", false),
+                FilterModel.Filteritems.Filtersub("popular", "popular4", false),
+                FilterModel.Filteritems.Filtersub("popular", "popular5", false),
+                FilterModel.Filteritems.Filtersub("category", "categories of items1", false),
+                FilterModel.Filteritems.Filtersub("category", "categories of items2", false),
+                FilterModel.Filteritems.Filtersub("category", "categories of items3", false),
+                FilterModel.Filteritems.Filtersub("category", "categories of items4", false),
+                FilterModel.Filteritems.Filtersub("category", "categories of items5", false),
+                FilterModel.Filteritems.Filtersub("category", "categories of items6", false),
+                FilterModel.Filteritems.Filtersub("category", "categories of items7", false),
+                FilterModel.Filteritems.Filtersub("brand", "brand of items1", false),
+                FilterModel.Filteritems.Filtersub("brand", "brand of items2", false),
+                FilterModel.Filteritems.Filtersub("brand", "brand of items3", false),
+                FilterModel.Filteritems.Filtersub("brand", "brand of items4", false),
+                FilterModel.Filteritems.Filtersub("brand", "brand of items5", false)
 
             ).map {
-                Filter.Filteritems.Filtersub(
+                FilterModel.Filteritems.Filtersub(
                     key = it.key,
                     filtersubname = it.filtersubname,
                     filtersubbolean = false
@@ -107,14 +100,14 @@ fun FilterItems(filterItems: String) {
         )
     }
 
-    val popularbrands: MutableState<ArrayList<Filter.Filteritems.Filtersub>> = mutableStateOf(
+    val popularbrands: MutableState<ArrayList<FilterModel.Filteritems.Filtersub>> = mutableStateOf(
         arrayListOf()
     )
 
-    var categoriesitems: MutableState<ArrayList<Filter.Filteritems.Filtersub>> = mutableStateOf(
+    var categoriesitems: MutableState<ArrayList<FilterModel.Filteritems.Filtersub>> = mutableStateOf(
         arrayListOf()
     )
-    val branditems: MutableState<ArrayList<Filter.Filteritems.Filtersub>> = mutableStateOf(
+    val branditems: MutableState<ArrayList<FilterModel.Filteritems.Filtersub>> = mutableStateOf(
         arrayListOf()
     )
 

@@ -1,6 +1,6 @@
 package com.kr.product_datasource.dto
 
-data class Filter(
+data class FilterModel(
     val filterrow: List<String> = listOf(),
     val filter: List<Filteritems> = listOf()
 
