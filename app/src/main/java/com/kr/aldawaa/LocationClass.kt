@@ -8,14 +8,12 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.PermissionsRequired
-import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 
 
+/*
 class LocationClass(interfaceListener: Interface){
     var currentLocation: Location? = null
     private  var interfaceListener: Interface
@@ -37,8 +35,12 @@ this.interfaceListener=interfaceListener
         }
         PermissionsRequired(
             multiplePermissionsState = multiplePermissionState,
-            permissionsNotGrantedContent = { /* ... */ },
-            permissionsNotAvailableContent = { /* ... */ }
+            permissionsNotGrantedContent = { */
+/* ... *//*
+ },
+            permissionsNotAvailableContent = { */
+/* ... *//*
+ }
         ) {
 
             lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -64,4 +66,4 @@ this.interfaceListener=interfaceListener
         fun  findLocation(location: Location)
     }
 
-}
+}*/

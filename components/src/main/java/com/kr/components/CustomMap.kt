@@ -12,6 +12,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionsRequired
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -89,6 +92,7 @@ class Activity : ComponentActivity() {
 }
 
 @Composable
+@OptIn(ExperimentalPermissionsApi::class)
 fun CustomMap() {
 
     Column() {
@@ -99,7 +103,6 @@ fun CustomMap() {
         var uiSettings by remember {
             mutableStateOf(
                 MapUiSettings(
-                    compassEnabled = true,
                     zoomControlsEnabled = true,
                     myLocationButtonEnabled = true
                 )
@@ -108,18 +111,33 @@ fun CustomMap() {
         var properties by remember {
             mutableStateOf(MapProperties(mapType = MapType.NORMAL, isMyLocationEnabled = true))
         }
-        GoogleMap(
-            cameraPositionState = cameraPositionState,
-            modifier = Modifier.weight(1f),
-            properties = properties,
-            uiSettings = uiSettings
+        val multiplePermissionState = rememberMultiplePermissionsState(
+            permissions = listOf(
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            )
+        )
+        LaunchedEffect(Unit) {
+            multiplePermissionState.launchMultiplePermissionRequest()
+        }
+        PermissionsRequired(
+            multiplePermissionsState = multiplePermissionState,
+            permissionsNotGrantedContent = { /* ... */ },
+            permissionsNotAvailableContent = { /* ... */ }
         ) {
-            /*   Marker(
+            GoogleMap(
+                cameraPositionState = cameraPositionState,
+                modifier = Modifier.weight(1f),
+                properties = properties,
+                uiSettings = uiSettings
+            ) {
+                /*   Marker(
                    state = rememberMarkerState(position = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)),
                    title = "Marker1",
                    icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
                )*/
-            GoogleMarkers()
+                GoogleMarkers()
+            }
         }
     }
 }

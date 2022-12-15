@@ -114,7 +114,7 @@ dependencies {
     implementation(project(Modules.ui_cart))
    implementation(project(Modules.ui_login))
     implementation(project(Modules.ui_productList))
-    "implementation"(Compose.Permissions)
+    //"implementation"(Compose.Permissions)
     "implementation"(Compose.playServicesLocation)
    // implementation(project(Modules.ui_register))
 

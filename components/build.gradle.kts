@@ -9,7 +9,7 @@ apply(plugin = "org.jetbrains.kotlin.android")
 dependencies{
     "implementation"(Compose.maps)
     "implementation"(Compose.playServices)
-   // "implementation"(Compose.Permissions)
+    "implementation"(Compose.Permissions)
     "implementation"(Compose.googlePlaces)
    // "implementation"(Compose.playServicesLocation)
 

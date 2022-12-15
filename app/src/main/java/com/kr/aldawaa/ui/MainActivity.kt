@@ -29,7 +29,6 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
 //import com.kr.ui_login.ui.LoginViewModel
@@ -43,14 +42,14 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @ExperimentalMaterial3Api
 @OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
-class MainActivity : ComponentActivity(),LocationClass.Interface {
-    var locationClass=LocationClass(this)
+class MainActivity : ComponentActivity() {
+    //var locationClass=LocationClass(this)
     @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val list = listOf("Liked products" ,"Makeup" , "Create new")
-            locationClass.GetLastLocation()
+           // locationClass.GetLastLocation()
             AlDawaaHybrisTheme {
 
                 //BottomSheet
@@ -87,9 +86,9 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
             }
         }
 
-    override fun findLocation(location: Location) {
+ /*   override fun findLocation(location: Location) {
         Log.v("LocationFromHomeActivity",location.toString())
-    }
+    }*/
 
 
 }
