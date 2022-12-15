@@ -8,6 +8,6 @@ plugins {
 }
 dependencies{
     "implementation"(project(Modules.components))
-
+    "implementation"(project(Modules.servicesDomain))
 
 }

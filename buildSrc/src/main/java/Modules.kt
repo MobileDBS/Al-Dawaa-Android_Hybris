@@ -29,6 +29,13 @@ object Modules {
 
     const val ui_productList=":product:ui-productlist"
 
+    const val homeDomain=":home:home-domain"
+    const val homeInteractors =":home:home-interactors"
+
+    const val servicesInteractors =":services:services-interactors"
+    const val servicesDomain =":services:services-domain"
+
+
 
 
 

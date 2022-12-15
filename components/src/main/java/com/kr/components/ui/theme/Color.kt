@@ -13,6 +13,8 @@ val InputTextColor = Color(0xff919293)
 val InputHint = Color(0xff979c9b)
 val FilterChip = Color(0x19002544)
 val LightBlue = Color(0xff007AFF)
+val WhiteColor = Color(0xffffffff)
+
 
 
 
