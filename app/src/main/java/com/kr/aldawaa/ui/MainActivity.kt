@@ -1,12 +1,13 @@
 package com.kr.aldawaa.ui
 
-  import android.location.Location
+import android.location.Location
 import android.app.DatePickerDialog
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
-  import androidx.activity.ComponentActivity
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -24,13 +25,13 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-  import com.kr.aldawaa.LocationClass
+import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
-  import com.kr.components.CustomDialog
+import com.kr.components.CustomDialog
 //import com.kr.ui_login.ui.LoginViewModel
 
-  import com.kr.network.NetworkConnectivityObserver
+import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,10 +44,12 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(),LocationClass.Interface {
     var locationClass=LocationClass(this)
-@Inject
-     lateinit var connectivityObserver: NetworkConnectivityObserver
+    @Inject
+    lateinit var connectivityObserver: NetworkConnectivityObserver
 
-    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
+    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class,
+        ExperimentalFoundationApi::class
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -63,29 +66,30 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 //
 //                Log.v("loginResponse" , state.error.toString())
 
-                    /////////////////Start Navigation Bar////////////////
+                /////////////////Start Navigation Bar////////////////
 
-                    val viewModel: LoginViewModel = hiltViewModel()
-                    val state = viewModel.state.value
-                    val categoriesViewModel: CategoriesViewModel = hiltViewModel()
-                    val categoriesstate = categoriesViewModel.state.value
+                val viewModel: LoginViewModel = hiltViewModel()
+                val state = viewModel.state.value
+                val categoriesViewModel: CategoriesViewModel = hiltViewModel()
+                val categoriesstate = categoriesViewModel.state.value
 
-                    Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
-                    Log.v("Login Response", state.error.toString())
+                Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
+                Log.v("Login Response", state.error.toString())
 
-                    // A surface container using the 'background' color from the theme
-                    Surface(color = MaterialTheme.colors.background) {
-                        // GifImage()
-                      //  Greeting()
-                        NavigationController ()
-                       // test()
-                    }
-
-                    ///////////////End Navigation Bar///////////////////////
+                // A surface container using the 'background' color from the theme
+                Surface(color = MaterialTheme.colors.background) {
+                    // GifImage()
+                    //  Greeting()
+                 //   NavigationController ()
+                    com.kr.components.FloatingActionButton()
+                    // test()
                 }
-            }
 
+                ///////////////End Navigation Bar///////////////////////
+            }
         }
+
+    }
 
     override fun findLocation(location: Location) {
         Log.v("LocationFromHomeActivity",location.toString())
@@ -95,33 +99,33 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 }
 
 
-    @Composable
-    fun GifImage(
-        modifier: Modifier = Modifier,
-    ) {
-        val context = LocalContext.current
-        val imageLoader = ImageLoader.Builder(context)
-            .components {
-                if (SDK_INT >= 28) {
-                    add(ImageDecoderDecoder.Factory())
-                } else {
-                    add(GifDecoder.Factory())
-                }
+@Composable
+fun GifImage(
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+    val imageLoader = ImageLoader.Builder(context)
+        .components {
+            if (SDK_INT >= 28) {
+                add(ImageDecoderDecoder.Factory())
+            } else {
+                add(GifDecoder.Factory())
             }
-            .build()
-        Image(
-            painter = rememberAsyncImagePainter(
-                ImageRequest.Builder(context).data(
-                    data =
-                    R.raw.splash_gif
-                ).apply(block = {
-                    size(Size.ORIGINAL)
-                }).build(), imageLoader = imageLoader
-            ),
-            contentDescription = null,
-            modifier = modifier.fillMaxWidth(),
-        )
-    }
+        }
+        .build()
+    Image(
+        painter = rememberAsyncImagePainter(
+            ImageRequest.Builder(context).data(
+                data =
+                R.raw.splash_gif
+            ).apply(block = {
+                size(Size.ORIGINAL)
+            }).build(), imageLoader = imageLoader
+        ),
+        contentDescription = null,
+        modifier = modifier.fillMaxWidth(),
+    )
+}
 
 @Composable
 fun Greeting() {
@@ -155,19 +159,19 @@ fun Greeting() {
         topBar = {
             TopAppBar (
                 title = { Text(text = "Calender View")},
-                )
+            )
         },
         content = {
             Column (verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxSize()
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize()
             ){
-         /*       AndroidView(factory = { CalendarView(it) }, update = {
-                    it.setOnDateChangeListener { calendarView, year, month, day ->
-                        date = "$day - ${month +1} - $year"
-                    }
-                })*/
-               datePickerDialog.show()
+                /*       AndroidView(factory = { CalendarView(it) }, update = {
+                           it.setOnDateChangeListener { calendarView, year, month, day ->
+                               date = "$day - ${month +1} - $year"
+                           }
+                       })*/
+                datePickerDialog.show()
 
                 Text(text = date)
             }
@@ -181,5 +185,6 @@ fun DefaultPreview() {
     AlDawaaHybrisTheme {
         Greeting()
     }
+
 }
 

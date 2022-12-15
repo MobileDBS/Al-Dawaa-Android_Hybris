@@ -120,7 +120,7 @@ dependencies {
     implementation(Compose.accompanistPagerIndicator)
     implementation(Compose.composeUtil)
 
-    // implementation(project(Modules.ui_register))
+    "implementation"("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
 
 
 }
