@@ -2,6 +2,7 @@
 
 package com.kr.aldawaa.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
@@ -12,6 +13,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -22,18 +26,35 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.kr.components.CustomFloatingActionButton
+import com.kr.components.FloatingButton
+
+@OptIn(ExperimentalFoundationApi::class,
+    ExperimentalMaterialApi::class)
 @Composable
 
 fun MainScreen() {
     val navController = rememberNavController()
+    var isFloatingButtonClicked by rememberSaveable { mutableStateOf(false) }
+    var isExtendedFloatingButtonClicked by rememberSaveable { mutableStateOf(false) }
+
     Scaffold(
         bottomBar = { BottomBar(navController = navController )
                     } ,
     ) {
         innerPadding->
         Box(modifier = Modifier.padding(innerPadding)){
+
             BottomNavGraph(navController = navController)
+            CustomFloatingActionButton( {
+
+
+            })
+          //  FloatingButton(result: Services, onItemClick: (Services) -> Unit)
+
         }
+
+
 
 
     }

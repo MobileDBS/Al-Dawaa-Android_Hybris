@@ -28,9 +28,6 @@ import coil.size.Size
 import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
-import com.kr.components.CustomDialog
-//import com.kr.ui_login.ui.LoginViewModel
-
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
@@ -80,9 +77,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                 Surface(color = MaterialTheme.colors.background) {
                     // GifImage()
                     //  Greeting()
-                 //   NavigationController ()
-                    com.kr.components.FloatingActionButton()
-                    // test()
+                    NavigationController ()
                 }
 
                 ///////////////End Navigation Bar///////////////////////
