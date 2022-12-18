@@ -24,6 +24,7 @@ import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.WhiteColor
 import com.kr.services_domain.model.Services
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ServicesHomeItem(result: Services, onItemClick: (Services) -> Unit) {
     val context = LocalContext.current
@@ -39,7 +40,8 @@ fun ServicesHomeItem(result: Services, onItemClick: (Services) -> Unit) {
 
     Surface(
         shape = RoundedCornerShape(20.dp), modifier = Modifier
-            .padding(top = 4.dp, bottom = 6.dp).background(color =  WhiteColor), shadowElevation = 5.dp)
+            .padding(top = 4.dp, bottom = 6.dp).background(color =  WhiteColor),
+        shadowElevation = 5.dp , onClick = {onItemClick(result)})
     {
         Column(modifier = Modifier.width(160.dp)
         ){
@@ -67,8 +69,6 @@ fun ServicesHomeItem(result: Services, onItemClick: (Services) -> Unit) {
                 textAlign = TextAlign.Center,
                 color = PrimaryColor,
                 fontSize = 16.sp,
-                maxLines= 3,
-                 minLines = 2 ,
                  modifier = Modifier
                     .fillMaxWidth()
                     .padding(all = 5.dp)
