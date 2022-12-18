@@ -3,19 +3,15 @@
 package com.kr.aldawaa.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.R
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -26,8 +22,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.kr.components.CustomFloatingActionButton
 import com.kr.components.FloatingButton
+import com.kr.components.ExtendedFloatingActionButton
+import com.kr.components.FloatingButtonWithContent
 
 @OptIn(ExperimentalFoundationApi::class,
     ExperimentalMaterialApi::class)
@@ -46,11 +43,18 @@ fun MainScreen() {
         Box(modifier = Modifier.padding(innerPadding)){
 
             BottomNavGraph(navController = navController)
-            CustomFloatingActionButton( {
 
+            FloatingButton(onItemClick = {isFloatingButtonClicked = true })
 
-            })
-          //  FloatingButton(result: Services, onItemClick: (Services) -> Unit)
+            if (isFloatingButtonClicked) {
+                FloatingButton(onItemClick = { isFloatingButtonClicked = false })
+                ExtendedFloatingActionButton(onItemClick = {isExtendedFloatingButtonClicked = true })
+            }
+
+            if (isExtendedFloatingButtonClicked) {
+                ExtendedFloatingActionButton(onItemClick = { isExtendedFloatingButtonClicked = false })
+                FloatingButtonWithContent()
+            }
 
         }
 
@@ -121,87 +125,3 @@ fun RowScope.AddItem(
     )
 }
 
-
-
-/*
-
-@Composable
-fun NavigationUi(
-  navController: NavHostController,
-) {
-  val bottomBarVisibility = rememberSaveable { (mutableStateOf(true)) }
-  val items = listOf(Screen.Shop, Screen.Offers , Screen.Home , Screen.Services , Screen.Cart)
-  */
-/*@ExperimentalMaterialApi
-  @Composable
-  fun BottomNavigationBar(
-    items: List<NavigationBarItem>,
-    navController: NavController,
-    modifier: Modifier = Modifier,
-    onItemClick: (BottomNavItem) -> Unit
-  ) {}*//*
-
-
-  Scaffold(
-    bottomBar =
-    {
-      AnimatedVisibility(
-        visible = bottomBarVisibility.value,
-        enter = slideInVertically(initialOffsetY = { it }),
-        exit = slideOutVertically(targetOffsetY = { it }),
-        content = {
-          NavigationBar(Modifier.background(color = MaterialTheme.colorScheme.primary)) {
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentDestination = navBackStackEntry?.destination
-            items.forEach { screen ->
-              NavigationBarItem(
-                icon = {
-                  Icon(
-                    imageVector = screen.icon,
-                    contentDescription = screen.name
-                  )
-                },
-                label = { Text(text = screen.name) },
-                selected = currentDestination?.hierarchy?.any { it.route == screen.path } == true,
-                onClick = {
-                  navController.navigate(screen.path) {
-                    popUpTo(navController.graph.findStartDestination().id) {
-                      saveState = true
-                    }
-                    launchSingleTop = true
-                    restoreState = true
-                  }
-                })
-            }
-          }
-        })
-    }
-
-  ) { innerPadding ->
-//    NavHost(
-//      navController = navController,
-//      startDestination = Screen.Home.path,
-//      modifier = Modifier.padding(innerPadding)
-//    ) {
-//      composable(Screen.Home.path) {
-//        HomeScreen(navController = navController)
-//      }
-//      composable(route = Screen.Shop.path) {
-//        ShopScreen(navController = navController)
-//      }
-//      composable(route = Screen.Offers.path) {
-//        OffersScreen(navController = navController)
-//
-//      }
-//      composable(route = Screen.Services.path) {
-//        ServicesScreen(navController = navController)
-//
-//      }
-//      composable(route = Screen.Cart.path) {
-//        CartScreen(navController = navController)
-//
-//      }
-//    }
-
-  }
-}*/
