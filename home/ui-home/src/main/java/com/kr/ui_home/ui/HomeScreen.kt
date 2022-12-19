@@ -1,5 +1,7 @@
 package com.kr.ui_home.ui
 
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import InputHint
 import PrimaryColor
 import SecondaryColor
@@ -33,6 +35,7 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
@@ -90,8 +93,15 @@ fun HomeScreen(navController: NavController) {
                 textAlign = TextAlign.Start)
 
             Text(text = "See All", color = PrimaryColor ,textAlign = TextAlign.End)
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        // contentAlignment = Alignment.Center
+    )
+    {
+        Column(Modifier.padding(8.dp)) {
 
         }//end row
+            Text(text = "Home Screen", color = PrimaryColor)
 
         LazyRow(
             state = rememberLazyListState(),
@@ -128,6 +138,14 @@ private fun getServicesData(): List<Services> {
            }
 
        }
+            OutlinedButton(onClick = { navController.navigate("Product_List") }) {
+                Text("Open ProductList")
+            }
+
+            HomeProductList(navController)
+
+
+        }
     }
 }
 @Composable

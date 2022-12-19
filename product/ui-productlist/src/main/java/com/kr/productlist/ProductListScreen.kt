@@ -38,16 +38,11 @@ fun ProductListScreen(
         }
         Scaffold(
             modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(), scaffoldState = rememberScaffoldState()
+                , scaffoldState = rememberScaffoldState()
         ) {
             Box(
                 modifier = Modifier
-                    .padding(top = 32.dp, start = 16.dp, end = 16.dp, bottom = 32.dp)
-                    .fillMaxHeight()
-                    .fillMaxWidth()
-
-
+                    .padding(top = 32.dp, start = 8.dp, end = 8.dp, bottom = 32.dp)
             ) {
 
                 LazyVerticalGrid(
@@ -55,19 +50,20 @@ fun ProductListScreen(
                     columns = GridCells.Fixed(2),
                     userScrollEnabled = true,
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                   // horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier
                         .scrollable(rememberLazyGridState(), orientation = Orientation.Vertical)
-                        .fillMaxHeight()
-                        .fillMaxWidth(),
+                      ,
                     content = {
                         items(7) {
                             //Added
                                 it ->
-                            ProductListItem { showBottomSheet ->
+                            ProductListItem()
+                        /* {
+                                    showBottomSheet ->
                                 showBottomSheet(true)
                                 showMutable =(true)
-                            }
+                            }*/
                         }
                     }
                 )
