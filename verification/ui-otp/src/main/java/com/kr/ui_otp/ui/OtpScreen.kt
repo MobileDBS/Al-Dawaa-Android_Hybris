@@ -1,6 +1,5 @@
 @file:Suppress("DEPRECATION")
 package com.kr.ui_otp.ui
-import PrimaryColor
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.*

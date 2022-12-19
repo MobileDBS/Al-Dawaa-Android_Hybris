@@ -24,7 +24,7 @@ import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.product_datasource.dto.FilterModel.Filteritems
 import com.kr.product_datasource.dto.FilterModel
 import com.kr.ui_filter.component.FilterItems
-import com.kr.ui_filter.ui.filterui.component.SortByItems
+import com.kr.ui_filter.component.SortByItems
 
 
 @ExperimentalMaterialApi

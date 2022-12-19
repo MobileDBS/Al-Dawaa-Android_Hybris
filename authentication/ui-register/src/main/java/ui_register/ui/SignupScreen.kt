@@ -1,11 +1,5 @@
 package ui_register.ui
 
-import DropdownColor
-import ErrorColor
-import InputColor
-import InputHint
-import PrimaryColor
-import SecondaryColor
 import android.app.DatePickerDialog
 import android.widget.DatePicker
 import android.widget.Toast
@@ -34,8 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.blue
 import androidx.navigation.NavController
-import com.kr.components.ui.theme.ShapeTabButtons
-import com.kr.components.ui.theme.ValidationHelper
+import com.kr.components.ui.theme.*
 import com.kr.ui_register.R
 import java.util.*
 

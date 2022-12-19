@@ -31,9 +31,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.ui.theme.PrimaryColor
+import com.kr.components.ui.theme.SecondaryColor
 import com.kr.ui_entry.R
-import PrimaryColor
-import SecondaryColor
+
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.components.ui.theme.Shapes
 import com.kr.ui_login.ui.LoginScreen

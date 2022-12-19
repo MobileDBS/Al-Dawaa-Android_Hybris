@@ -2,19 +2,12 @@ package com.kr.ui_home.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import InputHint
-import PrimaryColor
-import SecondaryColor
 import android.content.Context
 import android.graphics.drawable.shapes.Shape
 import android.media.Image
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -23,6 +16,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import android.view.Gravity
+import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -53,7 +48,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.ui.theme.InputHint
 import com.kr.components.ui.theme.PrimaryColor
+import com.kr.components.ui.theme.SecondaryColor
 import com.kr.services_domain.model.Services
 import com.kr.ui_home.R
 
@@ -61,31 +58,48 @@ import com.kr.ui_home.R
 @Composable
 fun HomeScreen(navController: NavController) {
     val context = LocalContext.current
+    Column(modifier = Modifier) {//modifier = Modifier.padding(16.dp)
 
-    Box(modifier = Modifier.fillMaxSize(),
-    contentAlignment = Alignment.TopCenter){
-       Column() {
-           Box(modifier = Modifier
-               .fillMaxWidth()
-               .background(PrimaryColor)
-               .wrapContentHeight()) {
-               Column() {
-                   TxtField(context)
-                   TextButton(onClick = {
-                       Toast
-                           .makeText(context, "Go To logi", Toast.LENGTH_SHORT)
-                           .show() }, modifier = Modifier
-                       .fillMaxWidth()
-                       .wrapContentHeight())
-                   {
-                       Text(text = "Login to check Arbahi points", color= SecondaryColor, fontSize = 15.sp)
-                       Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                       Icon(imageVector = Icons.Filled.Favorite,
-                           "", modifier = Modifier.size(ButtonDefaults.IconSize), tint = SecondaryColor)
-                   }
+        //start arbay
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .background(PrimaryColor)
+            .wrapContentHeight()) {
+            Column() {
+                TxtField(context)
+                TextButton(onClick = {
+                    Toast
+                        .makeText(context, "Go To logi", Toast.LENGTH_SHORT)
+                        .show() }, modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight())
+                {
+                    Text(text = "Login to check Arbahi points", color= SecondaryColor, fontSize = 15.sp)
+                    Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                    Icon(imageVector = Icons.Filled.Favorite,
+                        "", modifier = Modifier.size(ButtonDefaults.IconSize), tint = SecondaryColor)
+                }
 
-    Column(modifier = Modifier.padding(16.dp)) {
 
+            }
+
+        }
+
+        //end arbahi section
+         // start product list
+
+        Text(text = "Home Screen", color = PrimaryColor)
+
+//        OutlinedButton(onClick = { navController.navigate("Product_List") }) {
+//            Text("Open ProductList")
+//        }
+
+        HomeProductList(navController)
+
+        //end product list
+
+
+        // start services
         Row(modifier = Modifier.fillMaxWidth() ,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -93,15 +107,8 @@ fun HomeScreen(navController: NavController) {
                 textAlign = TextAlign.Start)
 
             Text(text = "See All", color = PrimaryColor ,textAlign = TextAlign.End)
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        // contentAlignment = Alignment.Center
-    )
-    {
-        Column(Modifier.padding(8.dp)) {
 
         }//end row
-            Text(text = "Home Screen", color = PrimaryColor)
 
         LazyRow(
             state = rememberLazyListState(),
@@ -118,6 +125,8 @@ fun HomeScreen(navController: NavController) {
         )
     }
 
+    // end services
+
 }
 
 private fun getServicesData(): List<Services> {
@@ -130,24 +139,9 @@ private fun getServicesData(): List<Services> {
     services.add(
         Services(4 , "Blog", "https://prnewswire2-a.akamaihd.net/p/1893751/sp/189375100/thumbnail/entry_id/0_x9ajkzs1/def_height/2700/def_width/2700/version/100012/type/1" , "https://cdn-icons.flaticon.com/svg/3917/3917058.svg?token=exp=1671093560~hmac=8f9926c4c7dfbe6fdf397e1a1d13e418", "Learn about the latest trends and topics on beauty, welness and more"))
     return services
-               }
-
-           }
-           OutlinedButton(onClick = { navController.navigate("Product_List") }) {
-               Text("Open ProductList")
-           }
-
-       }
-            OutlinedButton(onClick = { navController.navigate("Product_List") }) {
-                Text("Open ProductList")
-            }
-
-            HomeProductList(navController)
-
-
-        }
-    }
 }
+
+
 @Composable
 fun TxtField(context:Context) {
     // we are creating a variable for
@@ -226,24 +220,24 @@ fun TxtField(context:Context) {
 //
 //            // single line boolean is use to avoid
 //            // textfield entering in multiple lines.
-           singleLine = true,
+            singleLine = true,
             leadingIcon = {
                 // In this method we are specifying ,our leading icon and its color.
                 Icon(
                     Icons.Filled.Search,"",
-                   tint = Color.LightGray
+                    tint = Color.LightGray
                 )
             },
             trailingIcon = {
                 // trailing icons is use to add ,icon to the end of text field.
-                     Icon(
-                    Icons.Filled.Info,"",
+                Icon(
+                    Icons.Filled.Info, "",
                     tint = Color.LightGray, modifier = Modifier.clickable {
-                             Toast
-                                 .makeText(context, "Open Scanner...", Toast.LENGTH_SHORT)
-                                 .show()
-                         }
+                        Toast
+                            .makeText(context, "Open Scanner...", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 )
-            }
-
-
+                 })
+    }
+}

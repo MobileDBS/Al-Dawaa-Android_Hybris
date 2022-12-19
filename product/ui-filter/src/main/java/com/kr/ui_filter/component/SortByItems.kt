@@ -1,8 +1,5 @@
 package com.kr.ui_filter.component
 
-import PrimaryColor
-import SecondaryColor
-import FilterChip
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.material3.*

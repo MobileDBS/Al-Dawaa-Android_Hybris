@@ -2,8 +2,6 @@
 
 package com.kr.aldawaa.ui
 
-import PrimaryColor
-import WhiteColor
 import android.content.Context
 import android.os.Build
 import android.widget.Toast
@@ -15,7 +13,6 @@ import androidx.compose.material.*
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.R
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -24,7 +21,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -51,6 +47,8 @@ import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
 import com.kr.aldawaa.R
+import com.kr.components.ui.theme.PrimaryColor
+import com.kr.components.ui.theme.WhiteColor
 import dagger.hilt.android.AndroidEntryPoint
 
 @OptIn(ExperimentalFoundationApi::class,
@@ -73,18 +71,13 @@ fun MainScreen() {
         }
         .build()
     Scaffold(
+        topBar = { TopAppBarCompose(context,imageLoader) },
         bottomBar = { BottomBar(navController = navController )
-                    } ,
+        } ,
     ) {
-        innerPadding->
+            innerPadding->
         Box(modifier = Modifier.padding(innerPadding)){
 
-        topBar = { TopAppBarCompose(context,imageLoader) },
-        bottomBar = {
-            BottomBar(navController = navController)
-        },
-    ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)) {
             BottomNavGraph(navController = navController)
 
             FloatingButton(onItemClick = {isFloatingButtonClicked = true })
@@ -102,20 +95,20 @@ fun MainScreen() {
         }
 
 
-
-
     }
+
 }
 
 @Composable
 fun BottomBar(navController: NavHostController) {
+
     val screens = listOf(
         BottomBarScreen.Shop,
         BottomBarScreen.Offers,
         BottomBarScreen.Home,
         BottomBarScreen.Services,
         BottomBarScreen.Cart,
-        )
+    )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
@@ -129,6 +122,9 @@ fun BottomBar(navController: NavHostController) {
             )
         }
     }
+
+
+
 }
 
 @Composable
@@ -144,7 +140,7 @@ fun RowScope.AddItem(
         icon = {
 
             Icon(
-               // imageVector = screen.icon,
+                // imageVector = screen.icon,
                 painter = painterResource(id = screen.icon),
                 contentDescription = "Navigation Icon",
                 tint = Color.Unspecified
@@ -162,6 +158,8 @@ fun RowScope.AddItem(
         }
     )
 }
+
+
 
 @Composable
 fun TopAppBarCompose(context: Context, imageLoader: ImageLoader) {
@@ -214,9 +212,9 @@ fun userAvatarStatus(context: Context, imageLoader: ImageLoader,status: String) 
                         ImageRequest.Builder(context)
                             .data(data = "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80")
                             .crossfade(true)
-                                .apply(block = {
-                            size(Size.ORIGINAL)
-                        }).build(), imageLoader = imageLoader
+                            .apply(block = {
+                                size(Size.ORIGINAL)
+                            }).build(), imageLoader = imageLoader
                     ),
                     contentScale = ContentScale.FillBounds,
                     contentDescription = "userImg",

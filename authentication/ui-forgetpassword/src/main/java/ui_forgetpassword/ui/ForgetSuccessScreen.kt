@@ -1,6 +1,5 @@
 package ui_forgetpassword.ui
 
-import PrimaryColor
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.*
@@ -17,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.ui_forgetpassword.R
 
