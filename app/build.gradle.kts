@@ -119,6 +119,9 @@ dependencies {
     implementation(Compose.accompanistPager)
     implementation(Compose.accompanistPagerIndicator)
     implementation(Compose.composeUtil)
+    //google
+    implementation(SocialMedia.googleservice)
+
 
     // implementation(project(Modules.ui_register))
 

@@ -333,7 +333,7 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.birthdate),
-                        color = InputColor
+                        color = InputHint
                     )
                 },
                 isError = isErrorsignupbirth,
@@ -510,7 +510,7 @@ fun SignupScreen(navController: NavController) {
                         Icon(
                             painter = if (confirmpasswordvisibilitysignup.value) painterResource(R.drawable.ic_eye_show)
                             else painterResource(
-                                R.drawable.ic_100tb
+                                R.drawable.ic_eye_hide
                             ),
                             contentDescription = "password",
                             tint = if (confirmpasswordvisibilitysignup.value)

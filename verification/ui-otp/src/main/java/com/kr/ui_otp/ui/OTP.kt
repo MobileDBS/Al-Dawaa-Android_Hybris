@@ -27,10 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kr.components.ui.theme.ErrorColor
-import com.kr.components.ui.theme.InputColor
-import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.Shapes
+import com.kr.components.ui.theme.*
 
 
 @Composable
@@ -61,7 +58,7 @@ fun OTPTextFields(
                     .imePadding()
                     .paddingFromBaseline(top = 15.dp)
                     .height(56.dp)
-                    .clip(shape = Shapes.medium)
+                    .clip(shape = ShapeTextField.small)
                     .background(color = InputColor)
                     .focusRequester(focusRequester = focusRequesters[index]),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -74,7 +71,7 @@ fun OTPTextFields(
                     ),
 
                 textStyle = TextStyle.Default.copy(fontSize = 22.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold),
-                shape = Shapes.medium,
+                shape = ShapeTextField.small,
                 singleLine = true,
 
                 value = code.getOrNull(index = index)?.takeIf {

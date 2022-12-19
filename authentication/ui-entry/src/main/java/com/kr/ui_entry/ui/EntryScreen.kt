@@ -6,7 +6,15 @@ package com.kr.ui_login.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.SurfaceView
 import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,21 +29,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.graphics.Color.Companion.Unspecified
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.facebook.*
+import com.facebook.FacebookSdk.getApplicationContext
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
+import com.google.android.material.elevation.SurfaceColors
+import com.kr.components.ui.theme.*
 import com.kr.ui_entry.R
-import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.SecondaryColor
-import com.kr.components.ui.theme.ShapeTabButtons
-import com.kr.components.ui.theme.Shapes
+import com.kr.ui_entry.ui.FBLoginActivity
 
 import kotlinx.coroutines.*
 import ui_register.ui.SignupScreen
@@ -73,16 +88,17 @@ fun EntryScreen(navController: NavController) {
                 .verticalScroll(rememberScrollState())
 
         ) {
+            Spacer(modifier = Modifier.padding(8.dp))
 
 
             Image(
                 modifier = Modifier
-                    .width(100.dp)
-                    .height(80.dp)
+                    .width(105.dp)
+                    .height(52.dp)
                     .background(color = PrimaryColor),
-                painter = painterResource(R.drawable.ic_eye_hide),
+                painter = painterResource(R.drawable.logo_al_dawaa),
                 contentDescription = "login image",
-                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.FillBounds,
             )
 
             Spacer(modifier = Modifier.padding(8.dp))
@@ -165,7 +181,7 @@ fun EntryScreen(navController: NavController) {
                     )
                     // .background(color = White)
                     .paint(
-                        painterResource(id = R.drawable.background),
+                        painterResource(id = R.drawable.logo),
                         contentScale = ContentScale.FillBounds
                     )
 
@@ -245,23 +261,94 @@ fun EntryScreen(navController: NavController) {
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
+                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier.padding(start = 15.dp, end = 15.dp)
                     ) {
 
-                        Box(modifier = Modifier.clip(RoundedCornerShape(8.dp))) {
-                           // AuthScreen(authViewModel)
+                        Column() {
+
+                            Box(
+                                modifier = Modifier
+                                    .size(58.dp, 58.dp)
+                                    .paint(
+                                        painterResource(
+                                            id = R.drawable.googlelogo
+                                        )
+                                    ),
+
+                                ) {
+                                // AuthScreen(authViewModel)
+                            }
+                            
+
                         }
+                           
 
 
                         Spacer(modifier = Modifier.padding(4.dp))
 
-                        //facebook
-                        Box(modifier = Modifier.clip(RoundedCornerShape(8.dp))) {
-                        }
+                            //facebook
+                        Column() {
+                            Box(
+                                modifier = Modifier
+                                    .size(58.dp, 58.dp)
+                                    .paint(
+                                        painterResource(
+                                            id = R.drawable.facebooklogo
+                                        )
+                                    ),
+                            ) {
+                                FacebookLogin(navController)
+                            }
+                            Button(
+                                onClick = {
+                                    if (AccessToken.getCurrentAccessToken() == null) {
+                                        Toast.makeText(context, "user is logged out ", Toast.LENGTH_SHORT).show()
+                                        // already logged out
+                                    }else{
+                                        Toast.makeText(context, "user is Login wait for logout  ", Toast.LENGTH_SHORT).show()
 
+                                        GraphRequest(
+                                            AccessToken.getCurrentAccessToken(),
+                                            "/me/permissions/",
+                                            null,
+                                            HttpMethod.DELETE,
+                                            GraphRequest.Callback {
+
+                                                LoginManager.getInstance().logOut()
+                                                Log.e("facebooklogout response : ", "${it.request.accessToken?.token}")
+
+
+                                            }).executeAsync()
+                                    }
+
+                                }, modifier = Modifier
+                                    .size(10.dp, 10.dp,)
+                                    .background(Unspecified),
+                                colors = ButtonDefaults.buttonColors(Unspecified)
+                            ) {
+
+                            }
+                            
+                        }
+                      
 
                         Spacer(modifier = Modifier.padding(4.dp))
-                        //Google
+                        Column() {
+                            
+                        }
+                        //Twitter
+                            Box(
+                                modifier = Modifier
+                                    .size(58.dp, 58.dp)
+                                    .paint(
+                                        painterResource(
+                                            id = R.drawable.twitterlogo
+                                        )
+                                    )
+                            ) {
+                                // AuthScreen(authViewModel)
+                            }
 
                     }
 
@@ -283,4 +370,73 @@ fun EntryScreen(navController: NavController) {
         }
 
     }
+}
+
+
+@Composable
+fun FacebookLogin(navController:NavController) {
+    val context = LocalContext.current
+
+
+    val facebookSignRequest =
+        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                val data = result.data?.getStringExtra(FBLoginActivity.EXTRA_DATA_FB)
+                val accessToken: AccessToken? = AccessToken.getCurrentAccessToken()
+                //do something with data
+                val datax = result.data?.extras.toString()
+                val dataxe = result.data?.getStringExtra(FBLoginActivity.EXTRA_DATA_FB)
+                Log.d("facebook", "data is ${result.toString()}")
+                Log.d("facebook", "data is ${datax.toString()}")
+                Log.d("facebook", "data is ${dataxe.toString()}")
+
+
+                val request = GraphRequest.newMeRequest(
+                    accessToken,
+                    callback = GraphRequest.GraphJSONObjectCallback { obj, response ->
+                        val id: String = obj?.getString("id").toString()
+                        val name: String = obj?.getString("name").toString()
+                        val email: String = obj?.getString("email").toString()
+                        // val pictureUri: String = obj?.getString("pictureUri").toString()
+                        val picture: String = obj?.getString("picture").toString()
+
+                        Log.e("facebookname1 : ", id)
+                        Log.e("facebooklink1 : ", name)
+                        Log.e("facebookmail1 : ", email)
+                        Log.e("facebookpicture1 : ", picture)
+                    })
+
+                val parameters = Bundle()
+                parameters.putString("fields", "id,name,email,picture")
+
+                request.parameters = parameters
+                request.executeAsync()
+                Log.e("facebookparam : ", parameters.toString())
+                Log.e("facebook : ", accessToken.toString())
+
+                Log.e("facebook : ", accessToken?.expires.toString())
+
+                Log.e("facebook : ", accessToken?.userId.toString())
+
+
+
+
+            }
+        }
+
+   IconButton(onClick = {
+       if (AccessToken.getCurrentAccessToken() == null) {
+           facebookSignRequest.launch(FBLoginActivity.getInstance(context))
+
+       }else{
+           navController.navigate("MainUi")
+       }
+
+
+   }, modifier = Modifier
+       .background(Unspecified)
+       .fillMaxSize()) {
+    //   Icon(painter = painterResource(id = R.drawable.ic_facebook)  , contentDescription ="facebook icon" )
+
+   }
 }

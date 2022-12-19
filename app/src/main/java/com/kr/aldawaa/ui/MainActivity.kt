@@ -24,6 +24,9 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+  import com.google.android.gms.auth.api.signin.GoogleSignIn
+  import com.google.android.gms.auth.api.signin.GoogleSignInClient
+  import com.google.android.gms.auth.api.signin.GoogleSignInOptions
   import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
@@ -45,6 +48,19 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
     var locationClass=LocationClass(this)
 @Inject
      lateinit var connectivityObserver: NetworkConnectivityObserver
+
+
+     //Google
+
+    private fun getGoogleLoginAuth(): GoogleSignInClient {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .requestIdToken(getString(R.string.gcp_id))
+            .requestId()
+            .requestProfile()
+            .build()
+        return GoogleSignIn.getClient(this, gso)
+    }
 
     @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {

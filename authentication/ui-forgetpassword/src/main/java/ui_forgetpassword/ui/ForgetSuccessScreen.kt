@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -46,6 +47,8 @@ fun ForgetSuccess (navController: NavController) {
                 .fillMaxSize()
                 .background(color = Color.White)
                 .verticalScroll(rememberScrollState())
+                .paint(painter = painterResource(id = R.drawable.group))
+
 
         ) {
 
@@ -113,9 +116,9 @@ fun ForgetSuccess (navController: NavController) {
 
 
 
-                                  //  navController.navigate("Forget_Password_Otp")
+                                    navController.navigate("Login_page")
 
-                                    Toast.makeText(context, "Backed to  Home ", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, "Backed to  Login ", Toast.LENGTH_SHORT).show()
 
 
                         },

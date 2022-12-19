@@ -59,7 +59,7 @@ fun LoginScreen(navController: NavController) {
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.enteryouremail),
-                    color = InputColor
+                    color = InputHint
                 )
             },
             isError = isErrorloginmail,
