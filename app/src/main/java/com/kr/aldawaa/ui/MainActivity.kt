@@ -29,7 +29,6 @@ import com.kr.aldawaa.LocationClass
   import com.google.android.gms.auth.api.signin.GoogleSignIn
   import com.google.android.gms.auth.api.signin.GoogleSignInClient
   import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-  import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver

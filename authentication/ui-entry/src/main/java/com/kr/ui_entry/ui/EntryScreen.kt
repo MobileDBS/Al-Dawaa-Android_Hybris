@@ -42,6 +42,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.facebook.AccessToken
+import com.facebook.GraphRequest
+import com.facebook.HttpMethod
+import com.facebook.login.LoginManager
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
 import com.kr.ui_entry.R
@@ -49,14 +53,8 @@ import com.kr.ui_entry.R
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.components.ui.theme.Shapes
 import com.kr.ui_login.ui.LoginScreen
-import com.facebook.*
-import com.facebook.FacebookSdk.getApplicationContext
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
-import com.facebook.login.widget.LoginButton
 import com.google.android.material.elevation.SurfaceColors
 import com.kr.components.ui.theme.*
-import com.kr.ui_entry.R
 import com.kr.ui_entry.ui.FBLoginActivity
 
 import kotlinx.coroutines.*
