@@ -65,6 +65,8 @@ fun CameraScreen(navController: NavController, showGallery :Boolean) {
                             modifier = Modifier.align(Alignment.TopEnd).padding(end = 10.dp),
                             onClick = {
                                 imageUri = EMPTY_IMAGE_URI
+                                showGallerySelect = false
+
                             }
                         ) {
                            Icon(imageVector = Icons.Filled.Close, contentDescription ="close camera" )

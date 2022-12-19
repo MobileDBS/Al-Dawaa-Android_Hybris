@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY
+import androidx.camera.core.ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY
 import androidx.camera.core.Preview
 import androidx.camera.core.UseCase
 import androidx.compose.foundation.layout.Box
@@ -31,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.kr.ui_services.ui.componant.util.Permission
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import java.io.File
@@ -74,11 +76,15 @@ fun CameraCapture(
             val imageCaptureUseCase by remember {
                 mutableStateOf(
                     ImageCapture.Builder()
-                        .setCaptureMode(CAPTURE_MODE_MAXIMIZE_QUALITY).setJpegQuality(60)
+                        .setCaptureMode(CAPTURE_MODE_MAXIMIZE_QUALITY)
+                        .setJpegQuality(60)
                         .build()
+
+
 
                 )
             }
+
             Box {
                 CameraPreview(
                     modifier = Modifier.fillMaxSize(),
@@ -95,6 +101,12 @@ fun CameraCapture(
                         coroutineScope.launch {
                             imageCaptureUseCase.takePicture(context.executor).let {
                                 onImageFile(it)
+                                Log.e("CameraCapture", " Sized ${imageCaptureUseCase.currentConfig.defaultCaptureConfig}")
+                                Log.e("CameraCapture", " Sized ${it.toUri().userInfo}")
+
+
+
+
                             }
                         }
                     }
@@ -110,8 +122,10 @@ fun CameraCapture(
                     )
                 } catch (ex: Exception) {
                     Log.e("CameraCapture", "Failed to bind camera use cases", ex)
+
                 }
             }
+
         }
     }
 }
