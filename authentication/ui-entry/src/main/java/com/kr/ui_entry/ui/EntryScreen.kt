@@ -1,7 +1,7 @@
 @file:Suppress("DEPRECATION")
 @file:OptIn(ExperimentalFoundationApi::class, DelicateCoroutinesApi::class)
 
-package com.kr.ui_login.ui
+package com.kr.ui_entry.ui
 
 
 import android.annotation.SuppressLint
@@ -32,14 +32,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.ui_entry.R
-import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.SecondaryColor
+import PrimaryColor
+import SecondaryColor
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.components.ui.theme.Shapes
+import com.kr.ui_login.ui.LoginScreen
 
 import kotlinx.coroutines.*
 import ui_register.ui.SignupScreen
-import java.util.*
 
 
 @DelicateCoroutinesApi

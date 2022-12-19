@@ -87,14 +87,11 @@ fun ProductListItem(showBottomSheet: (Boolean) -> Unit) {
                         painter = painterResource(R.drawable.image),
                         contentDescription = "product image",
                         contentScale = ContentScale.Crop,
-
                     )
                 }
 
                 Column(modifier = Modifier.fillMaxWidth()) {
-
                     IconButton(
-
                         modifier = Modifier
                             .height(27.dp)
                             .width(27.dp)

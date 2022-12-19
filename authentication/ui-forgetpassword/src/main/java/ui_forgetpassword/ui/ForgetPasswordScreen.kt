@@ -1,5 +1,8 @@
 package ui_forgetpassword.ui
-
+import ErrorColor
+import InputColor
+import InputHint
+import PrimaryColor
 import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.*

@@ -94,7 +94,6 @@ dependencies {
     implementation(project(Modules.ui_categories))
     implementation(project(Modules.categoriesDataSource))
 
-    implementation(project(Modules.components))
     implementation(project(Modules.ui_login))
 
 //    implementation(Hilt.lifecycle)
@@ -119,6 +118,7 @@ dependencies {
     implementation(Compose.accompanistPager)
     implementation(Compose.accompanistPagerIndicator)
     implementation(Compose.composeUtil)
+    implementation(Compose.accompanistSystemUiController)
 
     "implementation"("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
 

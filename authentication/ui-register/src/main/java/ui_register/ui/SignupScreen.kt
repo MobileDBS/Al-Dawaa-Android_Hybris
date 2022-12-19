@@ -1,13 +1,17 @@
-
 package ui_register.ui
 
+import DropdownColor
+import ErrorColor
+import InputColor
+import InputHint
+import PrimaryColor
+import SecondaryColor
 import android.app.DatePickerDialog
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -30,18 +34,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.blue
 import androidx.navigation.NavController
-import com.kr.components.ui.theme.*
+import com.kr.components.ui.theme.ShapeTabButtons
+import com.kr.components.ui.theme.ValidationHelper
 import com.kr.ui_register.R
 import java.util.*
 
 
 @Composable
 fun SignupScreen(navController: NavController) {
-    val validationHelper : ValidationHelper = ValidationHelper()
+    val validationHelper: ValidationHelper = ValidationHelper()
     var expandedtitle by remember { mutableStateOf(false) }
     var expandedgender by remember { mutableStateOf(false) }
-    val gender = listOf(stringResource(id = R.string.male).toString(), stringResource(id = R.string.female).toString())
-    val title = listOf(stringResource(id = R.string.title1).toString(), stringResource(id = R.string.title2).toString())
+    val gender = listOf(
+        stringResource(id = R.string.male).toString(),
+        stringResource(id = R.string.female).toString()
+    )
+    val title = listOf(
+        stringResource(id = R.string.title1).toString(),
+        stringResource(id = R.string.title2).toString()
+    )
     var chosentitle by remember { mutableStateOf(title[0]) }
     var chosengender by remember { mutableStateOf(gender[0]) }
     val checkboxsubscribe = rememberSaveable { mutableStateOf(false) }
@@ -93,7 +104,7 @@ fun SignupScreen(navController: NavController) {
                 },
                 isError = isErrorsignupname,
                 //  keyboardActions = KeyboardActions { validate(name.value) },
-                keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Text),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
 
                 singleLine = true,
                 modifier = Modifier
@@ -151,7 +162,7 @@ fun SignupScreen(navController: NavController) {
                             contentDescription = null,
                             modifier = Modifier.padding(start = 15.dp)
 
-                            )
+                        )
                     }
                     DropdownMenu(
                         expanded = expandedtitle,
@@ -240,8 +251,8 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupemail.value,
                 onValueChange = {
-                        signupemail.value= it
-                    isErrorsignupemail= false
+                    signupemail.value = it
+                    isErrorsignupemail = false
 
                 },
                 placeholder = {
@@ -283,8 +294,8 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupphonenum.value,
                 onValueChange = {
-                    signupphonenum.value= it
-                    isErrorsignupphone =false
+                    signupphonenum.value = it
+                    isErrorsignupphone = false
 
                 },
                 placeholder = {
@@ -326,7 +337,7 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupmyBirthDate.value,
                 onValueChange = {
-                    signupmyBirthDate.value= it
+                    signupmyBirthDate.value = it
                     isErrorsignupbirth = false
 
                 },
@@ -408,7 +419,7 @@ fun SignupScreen(navController: NavController) {
 
                 value = signuppassword.value,
                 onValueChange = {
-                    signuppassword.value =it
+                    signuppassword.value = it
                     isErrorsignuppass = false
 
                 },
@@ -567,32 +578,35 @@ fun SignupScreen(navController: NavController) {
                 border = BorderStroke(2.dp, PrimaryColor),
                 onClick = {
 
-                     if ( !validationHelper.emptyvalidation(signuname.value))  {
-                            isErrorsignupname = true
-                        }
-                     if (!validationHelper.emailvalidation(signupemail.value)) {
-                            isErrorsignupemail = true
-                        }
-                     if (!validationHelper.phonenumvalidation(signupphonenum.value)) {
-                            isErrorsignupphone = true
-                        }
-                     if (!validationHelper.emptyvalidation(signupmyBirthDate.value)){
-                            isErrorsignupbirth = true
-                        }
-                     if (!validationHelper.passwordlvalidation(signuppassword.value)){
-                            isErrorsignuppass = true
-                        }
-                     if (!validationHelper.passwordlvalidation(signupconfirmpassword.value)) {
-                            isErrorsignupconfirmpass = true
-                        }
-                    if (!validationHelper.confirmpasswordvalidation(signuppassword.value,signupconfirmpassword.value)) {
-                        isErrorsignupconfirmpass = true
-                        isErrorsignuppass=true
+                    if (!validationHelper.emptyvalidation(signuname.value)) {
+                        isErrorsignupname = true
                     }
-                     else {
-                            //navController.navigate("home")
-                            Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show()
-                        }
+                    if (!validationHelper.emailvalidation(signupemail.value)) {
+                        isErrorsignupemail = true
+                    }
+                    if (!validationHelper.phonenumvalidation(signupphonenum.value)) {
+                        isErrorsignupphone = true
+                    }
+                    if (!validationHelper.emptyvalidation(signupmyBirthDate.value)) {
+                        isErrorsignupbirth = true
+                    }
+                    if (!validationHelper.passwordlvalidation(signuppassword.value)) {
+                        isErrorsignuppass = true
+                    }
+                    if (!validationHelper.passwordlvalidation(signupconfirmpassword.value)) {
+                        isErrorsignupconfirmpass = true
+                    }
+                    if (!validationHelper.confirmpasswordvalidation(
+                            signuppassword.value,
+                            signupconfirmpassword.value
+                        )
+                    ) {
+                        isErrorsignupconfirmpass = true
+                        isErrorsignuppass = true
+                    } else {
+                        //navController.navigate("home")
+                        Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show()
+                    }
 
 
                 },

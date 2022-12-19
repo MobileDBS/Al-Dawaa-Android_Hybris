@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.kr.components.ui.theme.PrimaryColor
+import PrimaryColor
 //import com.kr.categories_domain.model.Categories
 import com.kr.ui_categories.ui.categoriesui.component.CategoriesItems
 

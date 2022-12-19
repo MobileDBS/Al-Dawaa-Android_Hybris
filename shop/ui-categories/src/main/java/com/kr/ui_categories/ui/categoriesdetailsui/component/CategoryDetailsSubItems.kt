@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.*
-import com.kr.components.ui.theme.PrimaryColor
+import PrimaryColor
 
 @Composable
 fun CategoryDetailsSubItems(categoryIS : String) {

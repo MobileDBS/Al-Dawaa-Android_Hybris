@@ -17,6 +17,9 @@ dependencies{
     "implementation"(Compose.accompanistPager)
     "implementation"(Compose.accompanistPagerIndicator)
     "implementation"(Compose.composeUtil)
+    "implementation"(Compose.accompanistSystemUiController)
+
+
 
 
 }
