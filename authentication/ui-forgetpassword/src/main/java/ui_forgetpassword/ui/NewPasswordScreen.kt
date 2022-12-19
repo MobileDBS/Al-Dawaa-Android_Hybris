@@ -60,6 +60,8 @@ fun NewPasswordScreen (navController: NavController) {
                 .fillMaxSize()
                 .background(color = PrimaryColor)
                 .verticalScroll(rememberScrollState())
+                .paint(painter = painterResource(id = R.drawable.group))
+
 
         ) {
 

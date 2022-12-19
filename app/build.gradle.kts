@@ -118,9 +118,10 @@ dependencies {
     implementation(Compose.accompanistPager)
     implementation(Compose.accompanistPagerIndicator)
     implementation(Compose.composeUtil)
-    implementation(Compose.accompanistSystemUiController)
+    //google
+    implementation(SocialMedia.googleservice)
 
-    "implementation"("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
+    implementation(Compose.accompanistSystemUiController)
 
 
 }

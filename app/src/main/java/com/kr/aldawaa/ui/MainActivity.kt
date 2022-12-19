@@ -26,6 +26,10 @@ import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
 import com.kr.aldawaa.LocationClass
+  import com.google.android.gms.auth.api.signin.GoogleSignIn
+  import com.google.android.gms.auth.api.signin.GoogleSignInClient
+  import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+  import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver
@@ -47,6 +51,20 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
     @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class,
         ExperimentalFoundationApi::class
     )
+
+     //Google
+
+    private fun getGoogleLoginAuth(): GoogleSignInClient {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .requestIdToken(getString(R.string.gcp_id))
+            .requestId()
+            .requestProfile()
+            .build()
+        return GoogleSignIn.getClient(this, gso)
+    }
+
+    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -154,7 +172,7 @@ fun Greeting() {
         topBar = {
             TopAppBar (
                 title = { Text(text = "Calender View")},
-            )
+                )
         },
         content = {
             Column (verticalArrangement = Arrangement.Center,
@@ -180,6 +198,5 @@ fun DefaultPreview() {
     AlDawaaHybrisTheme {
         Greeting()
     }
-
 }
 
