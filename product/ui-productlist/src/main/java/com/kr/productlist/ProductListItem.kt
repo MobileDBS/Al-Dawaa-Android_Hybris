@@ -43,9 +43,8 @@ fun ProductListItem(){
     Surface(
         elevation = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
             .padding(top = 4.dp, bottom = 6.dp, start = 8.dp, end = 8.dp)
-            .fillMaxWidth()
+            .wrapContentWidth()
             .wrapContentHeight()
-           // .wrapContentSize()
     )
 
 
@@ -53,7 +52,7 @@ fun ProductListItem(){
         Column(
             modifier = Modifier
                 .height(325.dp)
-                // .width(162.dp)
+                .width(162.dp)
                 .padding(8.dp)
                /* .fillMaxWidth()
                 .wrapContentHeight()*/
@@ -139,7 +138,7 @@ fun ProductListItem(){
                 color = colorResource(id = R.color.dark_blue)
             )
             Text(
-                text = "Finish Bay Kit Lipstick Dark Nude (1 pack)",
+                text = "Finish Bay Kit Lipstick Dark Nude (1 pack)Finish Bay Kit Lipstick Dark Nude (1 pack)Finish Bay Kit Lipstick Dark Nude (1 pack)",
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 2,
                 fontSize = 10.sp,

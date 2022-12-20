@@ -27,10 +27,6 @@ fun HomeProductList(navController: NavController)
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            // .wrapContentSize()
-          //  .align(Alignment.Start)
-        //, contentAlignment = Alignment.TopStart
-        //  .padding(top = 8.dp, start = 8.dp, end = 8.dp, bottom = 8.dp)
     ) {
         Row(
             modifier = Modifier
@@ -85,6 +81,8 @@ fun HomeProductList(navController: NavController)
 
         Box(modifier = Modifier
             .fillMaxWidth()
+            .wrapContentSize()
+            .align(Alignment.Start)
         ) {
             LazyHorizontalGrid(
                 state = rememberLazyGridState(),
@@ -94,12 +92,14 @@ fun HomeProductList(navController: NavController)
                 verticalArrangement = Arrangement.Top,
                 horizontalArrangement = Arrangement.Start,
                 modifier = Modifier
+                   // .wrapContentSize(align = Alignment.TopStart)
+                    .fillMaxWidth()
+                    .height(350.dp)
+                    .align(Alignment.TopStart)
                     .scrollable(
                         rememberLazyGridState(),
                         orientation = Orientation.Horizontal
                     )
-                    .fillMaxWidth()
-                //.wrapContentHeight()
                 // content padding
                 , contentPadding = PaddingValues(
                     start =8.dp,

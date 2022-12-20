@@ -48,7 +48,7 @@ fun ProductListScreen(
                     state = rememberLazyGridState(),
                     columns = GridCells.Fixed(2),
                     userScrollEnabled = true,
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
                    // horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier
                         .scrollable(rememberLazyGridState(), orientation = Orientation.Vertical)
