@@ -1,13 +1,15 @@
 package com.kr.productlist
 
-import android.os.Handler
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -15,7 +17,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.kr.components.CustomModalBottomSheet
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductListScreen(
     navController: NavController,
@@ -37,8 +39,8 @@ fun ProductListScreen(
 
         }
         Scaffold(
-            modifier = Modifier
-                , scaffoldState = rememberScaffoldState()
+            modifier = Modifier,
+            /*scaffoldState = rememberScaffoldState()*/
         ) {
             Box(
                 modifier = Modifier

@@ -15,7 +15,6 @@ import com.kr.components.ui.theme.PrimaryColor
 
 
 @Composable
-@ExperimentalMaterialApi
 fun CustomModalBottomSheet(navController: NavController) {
 
     val list = listOf("Liked products" ,"Makeup" , "Create new")

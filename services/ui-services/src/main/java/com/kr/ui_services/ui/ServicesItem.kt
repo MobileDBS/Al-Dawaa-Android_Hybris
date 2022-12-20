@@ -1,34 +1,23 @@
 package com.kr.ui_services.ui
 
 import android.os.Build
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.ImageLoader
-import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
-import com.kr.components.ui.theme.PrimaryColor
 import com.kr.services_domain.model.Services
-import com.kr.ui_services.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ServicesItem(result: Services, onItemClick: (Services) -> Unit) {
 
@@ -85,12 +74,12 @@ fun ServicesItem(result: Services, onItemClick: (Services) -> Unit) {
                            modifier = Modifier
                                .wrapContentWidth()
                                .wrapContentHeight().padding(bottom = 5.dp),
-                           fontSize = 16.sp)
+                       style = MaterialTheme.typography.headlineLarge)
 
                        Text(text = result.description, textAlign = TextAlign.Start,
                            modifier = Modifier
                                .wrapContentWidth()
-                               .wrapContentHeight() , fontSize = 14.sp)
+                               .wrapContentHeight() ,  style = MaterialTheme.typography.bodyMedium)
 
 
                    }

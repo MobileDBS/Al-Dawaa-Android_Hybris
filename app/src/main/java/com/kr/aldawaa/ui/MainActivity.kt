@@ -2,6 +2,7 @@ package com.kr.aldawaa.ui
 
 import android.location.Location
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
@@ -25,12 +25,13 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
 import com.kr.aldawaa.LocationClass
   import com.google.android.gms.auth.api.signin.GoogleSignIn
   import com.google.android.gms.auth.api.signin.GoogleSignInClient
   import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.kr.aldawaa.R
-import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
@@ -40,16 +41,20 @@ import javax.inject.Inject
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 @ExperimentalMaterial3Api
-@OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(),LocationClass.Interface {
+
+
+    private val localizationDelegate = LocalizationActivityDelegate(this)
+    override fun attachBaseContext(newBase: Context) {
+        applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
+        super.attachBaseContext(newBase)
+    }
+
     var locationClass=LocationClass(this)
     @Inject
     lateinit var connectivityObserver: NetworkConnectivityObserver
 
-    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class,
-        ExperimentalFoundationApi::class
-    )
 
      //Google
 
@@ -197,5 +202,7 @@ fun DefaultPreview() {
     AlDawaaHybrisTheme {
         Greeting()
     }
+
+
 }
 

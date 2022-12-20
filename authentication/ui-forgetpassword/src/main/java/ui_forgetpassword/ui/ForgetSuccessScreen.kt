@@ -6,6 +6,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 
 import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +24,7 @@ import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.ui_forgetpassword.R
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ForgetSuccess (navController: NavController) {
@@ -30,13 +32,14 @@ fun ForgetSuccess (navController: NavController) {
 
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
 
 
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 
@@ -96,13 +99,7 @@ fun ForgetSuccess (navController: NavController) {
 
             )
 
-
-
             Spacer(modifier = Modifier.padding(80.dp))
-
-
-
-
                     OutlinedButton(
                         modifier = Modifier
                             .fillMaxWidth(0.9f)

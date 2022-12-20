@@ -19,9 +19,9 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.ZeroCornerSize
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -38,10 +38,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.facebook.HttpMethod
@@ -49,28 +49,25 @@ import com.facebook.login.LoginManager
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
 import com.kr.ui_entry.R
-
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.components.ui.theme.Shapes
 import com.kr.ui_login.ui.LoginScreen
-import com.google.android.material.elevation.SurfaceColors
 import com.kr.components.ui.theme.*
-import com.kr.ui_entry.ui.FBLoginActivity
-
 import kotlinx.coroutines.*
 import ui_register.ui.SignupScreen
+import java.util.Locale
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
-@ExperimentalMaterialApi
 @SuppressLint("ResourceType", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun EntryScreen(navController: NavController) {
 
     var expanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
     val languages = listOf("English", "العربية")
 
     var chosenlanguage by rememberSaveable { mutableStateOf("English") }
@@ -79,7 +76,8 @@ fun EntryScreen(navController: NavController) {
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 
@@ -121,7 +119,7 @@ fun EntryScreen(navController: NavController) {
 
 
             OutlinedButton(
-                colors = ButtonDefaults.buttonColors(backgroundColor = Transparent),
+                colors = ButtonDefaults.buttonColors(containerColor = Transparent),
                 onClick = { expanded = !expanded }, modifier = Modifier.background(
                     color = Transparent
                 )
@@ -149,14 +147,14 @@ fun EntryScreen(navController: NavController) {
                         when (label) {
                             "English" -> {
                                 chosenlanguage = label
-                               // setLanguage(context, Locale("en"))
+                                setLanguage(context, Locale("en"))
                                 (context as? Activity)?.recreate()
                                 chosenlanguage = label
 
                             }
                             "العربية" -> {
                                 chosenlanguage = label
-                                //setLanguage(context, Locale("ar"))
+                                setLanguage(context, Locale("ar"))
                                 (context as? Activity)?.recreate()
 
                             }
@@ -202,7 +200,7 @@ fun EntryScreen(navController: NavController) {
                 )
 
                 TabRow(selectedTabIndex = selectedIndex,
-                    backgroundColor = Transparent,
+                    containerColor = Transparent,
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
                         .clip(RoundedCornerShape(50))

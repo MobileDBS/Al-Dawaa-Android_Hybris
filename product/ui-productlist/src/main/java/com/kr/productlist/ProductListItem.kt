@@ -6,8 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -25,9 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kr.ui_productlist.R
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-//fun ProductListItem(showBottomSheet: (Boolean) -> Unit)
 fun ProductListItem(){
 
     var itemToCart = rememberSaveable {
@@ -41,7 +41,7 @@ fun ProductListItem(){
 
 
     Surface(
-        elevation = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
+        shadowElevation  = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
             .padding(top = 4.dp, bottom = 6.dp, start = 8.dp, end = 8.dp)
             .fillMaxWidth()
             .wrapContentHeight()

@@ -10,9 +10,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +32,7 @@ import com.kr.ui_services.ui.componant.camera.CameraCapture
 import com.kr.ui_services.ui.componant.gallery.GallerySelect
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CameraScreen(navController: NavController, showGallery :Boolean) {
 
@@ -46,7 +47,7 @@ fun CameraScreen(navController: NavController, showGallery :Boolean) {
 
             Log.d("select gallery ", "select value $showGallery")
 
-            Surface(color = MaterialTheme.colors.background,
+            Surface(color = MaterialTheme.colorScheme.background,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(425.dp),
@@ -122,7 +123,7 @@ fun CameraScreen(navController: NavController, showGallery :Boolean) {
                     .height(53.dp)
                     .clip(shape = RoundedCornerShape(24.dp)),
                 colors = ButtonDefaults.outlinedButtonColors(
-                    backgroundColor = Color.Transparent
+                    containerColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(24.dp),
                 border = BorderStroke(2.dp, PrimaryColor),

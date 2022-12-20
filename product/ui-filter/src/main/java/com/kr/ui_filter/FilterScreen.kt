@@ -5,10 +5,6 @@ package com.kr.ui_filter
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.material.*
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -26,8 +22,6 @@ import com.kr.product_datasource.dto.FilterModel
 import com.kr.ui_filter.component.FilterItems
 import com.kr.ui_filter.component.SortByItems
 
-
-@ExperimentalMaterialApi
 @Composable
 fun FilterScreen(
     navController: NavController,
@@ -36,7 +30,7 @@ fun FilterScreen(
 
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+   // val scaffoldState = rememberScaffoldState()
     val filteritemsd = FilterModel()
     val filteritemsdata  = listOf( Filteritems().Filteritemsname)
 
@@ -72,7 +66,8 @@ fun FilterScreen(
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 

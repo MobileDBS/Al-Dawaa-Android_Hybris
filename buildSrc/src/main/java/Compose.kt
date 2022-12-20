@@ -5,7 +5,7 @@ object Compose {
     const val kotlinCompilerExtensionVersion = "1.3.1"
 
     const val ui = "androidx.compose.ui:ui:$composeVersion"
-    const val material = "androidx.compose.material:material:$composeVersion"
+  // const val material = "androidx.compose.material:material:$composeVersion"
     const val tooling = "androidx.compose.ui:ui-tooling:$composeVersion"
     const val preview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
 

@@ -72,13 +72,13 @@ dependencies {
 
     implementation(Compose.activity)
     implementation(Compose.ui)
-    implementation(Compose.material)
+//    implementation(Compose.material)
     implementation(Compose.tooling)
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigation)
     implementation(Compose.preview)
     implementation(Compose.material3)
-    implementation(Google.material)
+//    implementation(Google.material)
 
     implementation (Retrofit.retrofit)
     implementation (Retrofit.moshiConverter)
@@ -122,6 +122,10 @@ dependencies {
     implementation(SocialMedia.googleservice)
 
     implementation(Compose.accompanistSystemUiController)
+
+    //localization
+    implementation(Localization.localization)
+
 
 
 }
