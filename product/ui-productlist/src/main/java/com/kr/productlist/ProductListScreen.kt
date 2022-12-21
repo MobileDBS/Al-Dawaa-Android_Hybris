@@ -12,7 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.kr.components.CustomModalBottomSheet
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -24,7 +23,7 @@ fun ProductListScreen(
     var showMutable by remember { mutableStateOf(false) }
 
 
-    Column() {
+    Column {
 
         OutlinedButton(onClick = {
             navController.navigate("Filter_Screen")
@@ -36,45 +35,12 @@ fun ProductListScreen(
             Text("Open Map")
 
         }
-        Scaffold(
-            modifier = Modifier
-                , scaffoldState = rememberScaffoldState()
-        ) {
-            Box(
-                modifier = Modifier
-                    .padding(top = 32.dp, start = 8.dp, end = 8.dp, bottom = 32.dp)
-            ) {
-
-                LazyVerticalGrid(
-                    state = rememberLazyGridState(),
-                    columns = GridCells.Fixed(2),
-                    userScrollEnabled = true,
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                   // horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier
-                        .scrollable(rememberLazyGridState(), orientation = Orientation.Vertical)
-                      ,
-                    content = {
-                        items(7) {
-                            //Added
-                                it ->
-                            ProductListItem()
-                        /* {
-                                    showBottomSheet ->
-                                showBottomSheet(true)
-                                showMutable =(true)
-                            }*/
-                        }
-                    }
-                )
-            }
-        }
-
+        DisplayProductList()
     }
 
 
     if (showMutable) {
-        val systemUiController = rememberSystemUiController()
+     //   val systemUiController = rememberSystemUiController()
         CustomModalBottomSheet(navController = navController)
     }
 
