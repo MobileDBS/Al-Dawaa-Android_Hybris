@@ -13,8 +13,7 @@ dependencies{
     "implementation"(Camera.cameraview)
     "implementation"(Camera.cameraxlife)
     "implementation"(Camera.permission)
-
-
+    "implementation"(project(Modules.servicesDomain))
 
 
 

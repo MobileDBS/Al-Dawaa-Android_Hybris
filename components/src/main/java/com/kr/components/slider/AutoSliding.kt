@@ -9,9 +9,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
@@ -34,6 +35,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.yield
 import kotlin.math.absoluteValue
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalPagerApi
 @Composable
 fun AutoSliding() {
@@ -132,7 +135,7 @@ fun AutoSliding() {
                     ) {
                         Text(
                             text = natural.title,
-                            style = MaterialTheme.typography.h5,
+                            style = MaterialTheme.typography.bodyMedium,
                             color = Color.White,
                             fontWeight = FontWeight.Bold
                         )
@@ -153,7 +156,7 @@ fun AutoSliding() {
 
                         Text(
                             text = natural.desc,
-                            style = MaterialTheme.typography.body1,
+                            style = MaterialTheme.typography.bodyMedium,
                             color = Color.White,
                             fontWeight = FontWeight.Normal,
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 0.dp)

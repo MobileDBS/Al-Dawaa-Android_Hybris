@@ -25,7 +25,15 @@
             <option value="$PROJECT_DIR$/cart/ui-cart" />
             <option value="$PROJECT_DIR$/components" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/filter" />
+            <option value="$PROJECT_DIR$/filter/filter-datasource" />
+            <option value="$PROJECT_DIR$/filter/filter-domain" />
+            <option value="$PROJECT_DIR$/filter/filter-interactors" />
+            <option value="$PROJECT_DIR$/filter/ui-filter" />
             <option value="$PROJECT_DIR$/home" />
+            <option value="$PROJECT_DIR$/home/home-domain" />
+            <option value="$PROJECT_DIR$/home/home-interactors" />
+            <option value="$PROJECT_DIR$/home/home_dataSource" />
             <option value="$PROJECT_DIR$/home/ui-home" />
             <option value="$PROJECT_DIR$/offers" />
             <option value="$PROJECT_DIR$/offers/ui-offers" />
@@ -36,6 +44,8 @@
             <option value="$PROJECT_DIR$/product/ui-filter" />
             <option value="$PROJECT_DIR$/product/ui-productlist" />
             <option value="$PROJECT_DIR$/services" />
+            <option value="$PROJECT_DIR$/services/services-domain" />
+            <option value="$PROJECT_DIR$/services/services-interactors" />
             <option value="$PROJECT_DIR$/services/ui-services" />
             <option value="$PROJECT_DIR$/shop" />
             <option value="$PROJECT_DIR$/shop/categories-datasource" />

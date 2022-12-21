@@ -21,5 +21,10 @@
     <string name="title2">لقب 2</string>
     <string name="male">"ذكر "</string>
     <string name="female">"انثى "</string>
+    <string name="access_location_msg">“Al Dawaa” Would Like to Access the location</string>
+    <string name="live_video_call">Live video call</string>
+    <string name="call">Call</string>
+    <string name="chat">Chat</string>
+    <string name="speak_to_pharmacist">Speak to a pharmacist</string>
 
 </resources>

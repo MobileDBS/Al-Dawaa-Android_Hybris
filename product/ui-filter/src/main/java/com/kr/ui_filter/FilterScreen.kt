@@ -5,10 +5,6 @@ package com.kr.ui_filter
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.material.*
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -21,13 +17,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.ShapeTabButtons
-import com.kr.product_datasource.dto.Filter
-import com.kr.product_datasource.dto.Filter.Filteritems
+import com.kr.product_datasource.dto.FilterModel.Filteritems
+import com.kr.product_datasource.dto.FilterModel
 import com.kr.ui_filter.component.FilterItems
-import com.kr.ui_filter.ui.filterui.component.SortByItems
+import com.kr.ui_filter.component.SortByItems
 
-
-@ExperimentalMaterialApi
 @Composable
 fun FilterScreen(
     navController: NavController,
@@ -36,8 +30,8 @@ fun FilterScreen(
 
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
-    val filteritemsd = Filter()
+   // val scaffoldState = rememberScaffoldState()
+    val filteritemsd = FilterModel()
     val filteritemsdata  = listOf( Filteritems().Filteritemsname)
 
 
@@ -57,7 +51,7 @@ fun FilterScreen(
 
     val filterRowitems by remember {
         mutableStateOf(
-            Filter(listOf(
+            FilterModel(listOf(
                 "Sort filter 1",
                 "Sort filter 2",
                 "Sort filter 3",
@@ -72,7 +66,8 @@ fun FilterScreen(
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 

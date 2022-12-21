@@ -1,22 +1,23 @@
-package com.kr.ui_filter.ui.filterui.component
+package com.kr.ui_filter.component
 
 import android.util.Log
-import androidx.compose.foundation.clickable
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.*
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
-import com.kr.product_datasource.dto.Filter
-import okhttp3.internal.toImmutableList
+import com.kr.product_datasource.dto.FilterModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FilterSubItemsCategories(filterSubItems : MutableState<ArrayList<Filter.Filteritems.Filtersub>>, index :Int):MutableState<ArrayList<Filter.Filteritems.Filtersub>> {
+fun FilterSubItemsCategories(filterSubItems : MutableState<ArrayList<FilterModel.Filteritems.Filtersub>>, index :Int):MutableState<ArrayList<FilterModel.Filteritems.Filtersub>> {
  //   val context = LocalContext.current
    // val checkboxvalue = remember { mutableStateOf(false) }
 
@@ -33,7 +34,7 @@ fun FilterSubItemsCategories(filterSubItems : MutableState<ArrayList<Filter.Filt
                         item.copy(filtersubbolean = !item.filtersubbolean)
                     } else item
 
-                } as ArrayList<Filter.Filteritems.Filtersub>
+                } as ArrayList<FilterModel.Filteritems.Filtersub>
             },
 
             colors = CheckboxDefaults.colors(
@@ -59,8 +60,9 @@ fun FilterSubItemsCategories(filterSubItems : MutableState<ArrayList<Filter.Filt
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FilterSubItemsBrand(filterSubItemsBra : MutableState<ArrayList<Filter.Filteritems.Filtersub>>, index :Int) {
+fun FilterSubItemsBrand(filterSubItemsBra : MutableState<ArrayList<FilterModel.Filteritems.Filtersub>>, index :Int) {
     //   val context = LocalContext.current
     // val checkboxvalue = remember { mutableStateOf(false) }
 
@@ -75,7 +77,7 @@ fun FilterSubItemsBrand(filterSubItemsBra : MutableState<ArrayList<Filter.Filter
                         item.copy(filtersubbolean = !item.filtersubbolean)
                     } else item
 
-                } as ArrayList<Filter.Filteritems.Filtersub>
+                } as ArrayList<FilterModel.Filteritems.Filtersub>
                 //   categoriesitems[index].isSelected==it
                 // Log.d("ListList","is $categoriesitems")
 

@@ -37,13 +37,13 @@ class FBLoginActivity : ComponentActivity() {
         LoginManager.getInstance()
             .registerCallback(callbackManager, callback = object : FacebookCallback<LoginResult> {
                 override fun onCancel() {
-                    Log.d("TAG++", "facebook login cancelled")
+                    Log.d("++TAG", "facebook login cancelled")
                     setResult(RESULT_CANCELED)
                     finish()
                 }
 
                 override fun onError(error: FacebookException) {
-                    Log.d("TAG++", "facebook login error")
+                    Log.d("TAG++", error.message.toString())
                     setResult(RESULT_ERROR)
                     finish()
                 }

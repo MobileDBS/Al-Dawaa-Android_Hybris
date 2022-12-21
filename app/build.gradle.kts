@@ -72,7 +72,7 @@ dependencies {
 
     implementation(Compose.activity)
     implementation(Compose.ui)
-    implementation(Compose.material)
+//    implementation(Compose.material)
     implementation(Compose.tooling)
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigation)
@@ -94,7 +94,6 @@ dependencies {
     implementation(project(Modules.ui_categories))
     implementation(project(Modules.categoriesDataSource))
 
-    implementation(project(Modules.components))
     implementation(project(Modules.ui_login))
 
 //    implementation(Hilt.lifecycle)
@@ -122,8 +121,11 @@ dependencies {
     //google
     implementation(SocialMedia.googleservice)
 
+    implementation(Compose.accompanistSystemUiController)
 
-    // implementation(project(Modules.ui_register))
+    //localization
+    implementation(Localization.localization)
+
 
 
 }

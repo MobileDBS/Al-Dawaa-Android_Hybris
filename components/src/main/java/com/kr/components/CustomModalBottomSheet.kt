@@ -6,19 +6,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.ui.theme.PrimaryColor
-import kotlinx.coroutines.launch
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-@ExperimentalMaterialApi
 fun CustomModalBottomSheet(navController: NavController) {
 
     val list = listOf("Liked products" ,"Makeup" , "Create new")
@@ -26,9 +23,9 @@ fun CustomModalBottomSheet(navController: NavController) {
         initialValue = ModalBottomSheetValue.Expanded
     )
 
-    ModalBottomSheetLayout(
+   ModalBottomSheetLayout(
         modifier = Modifier.fillMaxSize(),
-        sheetState = modalBottomSheetState,
+       sheetState = modalBottomSheetState,
         sheetContent = {
                 Column(modifier = Modifier.padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,

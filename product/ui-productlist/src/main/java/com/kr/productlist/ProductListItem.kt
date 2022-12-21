@@ -6,8 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -25,9 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kr.ui_productlist.R
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ProductListItem(showBottomSheet: (Boolean) -> Unit) {
+fun ProductListItem(){
 
     var itemToCart = rememberSaveable {
         mutableStateOf(1)
@@ -40,9 +41,12 @@ fun ProductListItem(showBottomSheet: (Boolean) -> Unit) {
 
 
     Surface(
-        elevation = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
-            .padding(top = 4.dp, bottom = 6.dp)
-            .fillMaxWidth())
+        shadowElevation  = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
+            .padding(top = 4.dp, bottom = 6.dp, start = 8.dp, end = 8.dp)
+            .fillMaxWidth()
+            .wrapContentHeight()
+           // .wrapContentSize()
+    )
 
 
     {
@@ -51,7 +55,9 @@ fun ProductListItem(showBottomSheet: (Boolean) -> Unit) {
                 .height(325.dp)
                 // .width(162.dp)
                 .padding(8.dp)
-                .wrapContentWidth()
+               /* .fillMaxWidth()
+                .wrapContentHeight()*/
+              //  .wrapContentSize()
               //  .alpha(0.5f)
         ) {
             Row(
@@ -87,21 +93,18 @@ fun ProductListItem(showBottomSheet: (Boolean) -> Unit) {
                         painter = painterResource(R.drawable.image),
                         contentDescription = "product image",
                         contentScale = ContentScale.Crop,
-
                     )
                 }
 
                 Column(modifier = Modifier.fillMaxWidth()) {
-
                     IconButton(
-
                         modifier = Modifier
                             .height(27.dp)
                             .width(27.dp)
                             .align(Alignment.End),
                         onClick = {
                             //added here
-                            showBottomSheet ( true)
+//                            showBottomSheet ( true)
                             if (isItemInProductList.value){
                                 Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
                                 isLikedButtonPress.value = !isLikedButtonPress.value

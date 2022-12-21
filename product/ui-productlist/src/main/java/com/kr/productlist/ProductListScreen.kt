@@ -1,20 +1,23 @@
 package com.kr.productlist
 
-import android.os.Handler
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.kr.components.CustomModalBottomSheet
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductListScreen(
     navController: NavController,
@@ -36,17 +39,12 @@ fun ProductListScreen(
 
         }
         Scaffold(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(), scaffoldState = rememberScaffoldState()
+            modifier = Modifier,
+            /*scaffoldState = rememberScaffoldState()*/
         ) {
             Box(
                 modifier = Modifier
-                    .padding(top = 32.dp, start = 16.dp, end = 16.dp, bottom = 32.dp)
-                    .fillMaxHeight()
-                    .fillMaxWidth()
-
-
+                    .padding(top = 32.dp, start = 8.dp, end = 8.dp, bottom = 32.dp)
             ) {
 
                 LazyVerticalGrid(
@@ -54,19 +52,21 @@ fun ProductListScreen(
                     columns = GridCells.Fixed(2),
                     userScrollEnabled = true,
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                   // horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier
                         .scrollable(rememberLazyGridState(), orientation = Orientation.Vertical)
-                        .fillMaxHeight()
-                        .fillMaxWidth(),
+                      ,
                     content = {
                         items(7) {
                             //Added
                                 it ->
-                            ProductListItem { showBottomSheet ->
+                            ProductListItem()
+                            showMutable= true
+                        /* {
+                                    showBottomSheet ->
                                 showBottomSheet(true)
                                 showMutable =(true)
-                            }
+                            }*/
                         }
                     }
                 )
@@ -77,6 +77,7 @@ fun ProductListScreen(
 
 
     if (showMutable) {
+        val systemUiController = rememberSystemUiController()
         CustomModalBottomSheet(navController = navController)
     }
 

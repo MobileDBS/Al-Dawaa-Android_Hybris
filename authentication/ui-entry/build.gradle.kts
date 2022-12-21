@@ -17,6 +17,7 @@ dependencies{
     "implementation"(SocialMedia.googleservice)
     "implementation"(SocialMedia.twitter)
     "implementation"(AndroidX.constraint)
+    "implementation"(Localization.localization)
 
 
 }

@@ -1,10 +1,6 @@
 package com.kr.aldawaa.di
 
 import android.app.Application
-import android.graphics.drawable.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material.icons.outlined.Warning
 import coil.ImageLoader
 import coil.memory.MemoryCache
 import com.kr.aldawaa.R
@@ -29,7 +25,6 @@ object CoilModule {
             .error(R.drawable.error_image)
             .placeholder(R.drawable.ic_100tb)
             .memoryCache { MemoryCache.Builder(app).maxSizePercent(0.25).build() } // Don't know what is recommended?
-
             .crossfade(true)
             .build()
     }

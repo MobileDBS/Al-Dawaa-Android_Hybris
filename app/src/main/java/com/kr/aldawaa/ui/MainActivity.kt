@@ -1,16 +1,18 @@
 package com.kr.aldawaa.ui
 
-  import android.location.Location
+import android.location.Location
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
-  import androidx.activity.ComponentActivity
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,16 +26,14 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.kr.aldawaa.LocationClass
   import com.google.android.gms.auth.api.signin.GoogleSignIn
   import com.google.android.gms.auth.api.signin.GoogleSignInClient
   import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-  import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
-import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
-  import com.kr.components.CustomDialog
-//import com.kr.ui_login.ui.LoginViewModel
-
-  import com.kr.network.NetworkConnectivityObserver
+import com.kr.components.ui.theme.AlDawaaHybrisTheme
+import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,27 +42,34 @@ import javax.inject.Inject
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 @ExperimentalMaterial3Api
-@OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(),LocationClass.Interface {
+
+
+    private val localizationDelegate = LocalizationActivityDelegate(this)
+    override fun attachBaseContext(newBase: Context) {
+        applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
+        super.attachBaseContext(newBase)
+    }
+
     var locationClass=LocationClass(this)
-@Inject
-     lateinit var connectivityObserver: NetworkConnectivityObserver
+    @Inject
+    lateinit var connectivityObserver: NetworkConnectivityObserver
 
 
      //Google
-    /* private fun getGoogleLoginAuth(): GoogleSignInClient {
-         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-             .requestEmail()
-             .requestIdToken(getString(R.string.gcp_id))
-             .requestId()
-             .requestProfile()
-             .build()
-         return GoogleSignIn.getClient(this, gso)
-     }*/
 
+    private fun getGoogleLoginAuth(): GoogleSignInClient {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .requestIdToken(getString(R.string.gcp_id))
+            .requestId()
+            .requestProfile()
+            .build()
+        return GoogleSignIn.getClient(this, gso)
+    }
 
-    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -79,30 +86,28 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 //
 //                Log.v("loginResponse" , state.error.toString())
 
-                    /////////////////Start Navigation Bar////////////////
+                /////////////////Start Navigation Bar////////////////
 
-                    val viewModel: LoginViewModel = hiltViewModel()
-                    val state = viewModel.state.value
-                    val categoriesViewModel: CategoriesViewModel = hiltViewModel()
-                    val categoriesstate = categoriesViewModel.state.value
+                val viewModel: LoginViewModel = hiltViewModel()
+                val state = viewModel.state.value
+                val categoriesViewModel: CategoriesViewModel = hiltViewModel()
+                val categoriesstate = categoriesViewModel.state.value
 
-                    Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
-                    Log.v("Login Response", state.error.toString())
+                Log.v("categorieslist Response", categoriesstate.Categorieslist.toString())
+                Log.v("Login Response", state.error.toString())
 
-                    // A surface container using the 'background' color from the theme
-                    Surface(color = MaterialTheme.colors.background) {
-                        // GifImage()
-                      //  Greeting()
-                        NavigationController ()
-                       // test()
-                    }
-
-                    ///////////////End Navigation Bar///////////////////////
+                // A surface container using the 'background' color from the theme
+                Surface(color = MaterialTheme.colorScheme.background) {
+                    // GifImage()
+                    //  Greeting()
+                    NavigationController ()
                 }
+
+                ///////////////End Navigation Bar///////////////////////
             }
-
-
         }
+
+    }
 
     override fun findLocation(location: Location) {
         Log.v("LocationFromHomeActivity",location.toString())
@@ -112,34 +117,35 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 }
 
 
-    @Composable
-    fun GifImage(
-        modifier: Modifier = Modifier,
-    ) {
-        val context = LocalContext.current
-        val imageLoader = ImageLoader.Builder(context)
-            .components {
-                if (SDK_INT >= 28) {
-                    add(ImageDecoderDecoder.Factory())
-                } else {
-                    add(GifDecoder.Factory())
-                }
+@Composable
+fun GifImage(
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+    val imageLoader = ImageLoader.Builder(context)
+        .components {
+            if (SDK_INT >= 28) {
+                add(ImageDecoderDecoder.Factory())
+            } else {
+                add(GifDecoder.Factory())
             }
-            .build()
-        Image(
-            painter = rememberAsyncImagePainter(
-                ImageRequest.Builder(context).data(
-                    data =
-                    R.raw.splash_gif
-                ).apply(block = {
-                    size(Size.ORIGINAL)
-                }).build(), imageLoader = imageLoader
-            ),
-            contentDescription = null,
-            modifier = modifier.fillMaxWidth(),
-        )
-    }
+        }
+        .build()
+    Image(
+        painter = rememberAsyncImagePainter(
+            ImageRequest.Builder(context).data(
+                data =
+                R.raw.splash_gif
+            ).apply(block = {
+                size(Size.ORIGINAL)
+            }).build(), imageLoader = imageLoader
+        ),
+        contentDescription = null,
+        modifier = modifier.fillMaxWidth(),
+    )
+}
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Greeting() {
     val c = Calendar.getInstance()
@@ -176,15 +182,15 @@ fun Greeting() {
         },
         content = {
             Column (verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxSize()
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxSize()
             ){
-         /*       AndroidView(factory = { CalendarView(it) }, update = {
-                    it.setOnDateChangeListener { calendarView, year, month, day ->
-                        date = "$day - ${month +1} - $year"
-                    }
-                })*/
-               datePickerDialog.show()
+                /*       AndroidView(factory = { CalendarView(it) }, update = {
+                           it.setOnDateChangeListener { calendarView, year, month, day ->
+                               date = "$day - ${month +1} - $year"
+                           }
+                       })*/
+                datePickerDialog.show()
 
                 Text(text = date)
             }
@@ -198,5 +204,7 @@ fun DefaultPreview() {
     AlDawaaHybrisTheme {
         Greeting()
     }
+
+
 }
 

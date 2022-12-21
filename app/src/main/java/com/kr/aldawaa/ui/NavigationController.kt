@@ -2,7 +2,6 @@
 
 package com.kr.aldawaa.ui
 
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -20,7 +19,6 @@ import ui_forgetpassword.ui.NewPasswordScreen
 
 @ExperimentalMaterial3Api
 @DelicateCoroutinesApi
-@ExperimentalMaterialApi
 @Composable
 fun NavigationController() {
     val navController = rememberNavController()

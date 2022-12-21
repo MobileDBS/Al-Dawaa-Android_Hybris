@@ -1,4 +1,3 @@
-
 package ui_register.ui
 
 import android.app.DatePickerDialog
@@ -7,11 +6,11 @@ import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -35,13 +34,20 @@ import com.kr.ui_register.R
 import java.util.*
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignupScreen(navController: NavController) {
-    val validationHelper : ValidationHelper = ValidationHelper()
+    val validationHelper: ValidationHelper = ValidationHelper()
     var expandedtitle by remember { mutableStateOf(false) }
     var expandedgender by remember { mutableStateOf(false) }
-    val gender = listOf(stringResource(id = R.string.male).toString(), stringResource(id = R.string.female).toString())
-    val title = listOf(stringResource(id = R.string.title1).toString(), stringResource(id = R.string.title2).toString())
+    val gender = listOf(
+        stringResource(id = R.string.male).toString(),
+        stringResource(id = R.string.female).toString()
+    )
+    val title = listOf(
+        stringResource(id = R.string.title1).toString(),
+        stringResource(id = R.string.title2).toString()
+    )
     var chosentitle by remember { mutableStateOf(title[0]) }
     var chosengender by remember { mutableStateOf(gender[0]) }
     val checkboxsubscribe = rememberSaveable { mutableStateOf(false) }
@@ -93,7 +99,7 @@ fun SignupScreen(navController: NavController) {
                 },
                 isError = isErrorsignupname,
                 //  keyboardActions = KeyboardActions { validate(name.value) },
-                keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Text),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
 
                 singleLine = true,
                 modifier = Modifier
@@ -139,6 +145,7 @@ fun SignupScreen(navController: NavController) {
 
                         onClick = { expandedtitle = !expandedtitle },
                         colors = ButtonDefaults.outlinedButtonColors(InputColor),
+                        border = BorderStroke(0.dp , color = InputColor),
                         shape = ShapeTabButtons.small,
                         modifier = Modifier
                             .fillMaxWidth(0.4f)
@@ -151,12 +158,12 @@ fun SignupScreen(navController: NavController) {
                             contentDescription = null,
                             modifier = Modifier.padding(start = 15.dp)
 
-                            )
+                        )
                     }
                     DropdownMenu(
                         expanded = expandedtitle,
                         onDismissRequest = { expandedtitle = false },
-                        modifier = Modifier.background(color = Color.Transparent),
+                        Modifier.background(color = WhiteColor),
 
 
                         ) {
@@ -176,9 +183,12 @@ fun SignupScreen(navController: NavController) {
 
                                         }
                                     }
-                                }) {
-                                Text(text = label, color = PrimaryColor)
-                            }
+                               }, text = {
+                                    Text(text = label, color = PrimaryColor)}
+                            )
+                            //{
+//                                    Text(text = label, color = PrimaryColor)
+//                            }
                         }
                     }
                 }
@@ -187,8 +197,9 @@ fun SignupScreen(navController: NavController) {
 
                     OutlinedButton(
                         onClick = { expandedgender = !expandedgender },
-                        colors = ButtonDefaults.outlinedButtonColors(DropdownColor),
+                        colors = ButtonDefaults.outlinedButtonColors(InputColor),
                         shape = ShapeTabButtons.small,
+                        border = BorderStroke(0.dp , color = InputColor),
                         modifier = Modifier
                             .fillMaxWidth(0.7f)
                             .clip(shape = ShapeTabButtons.small)
@@ -205,7 +216,7 @@ fun SignupScreen(navController: NavController) {
                     DropdownMenu(
                         expanded = expandedgender,
                         onDismissRequest = { expandedgender = false },
-                        modifier = Modifier.background(color = Color.Transparent),
+                        Modifier.background(color = WhiteColor),
 
 
                         ) {
@@ -226,9 +237,13 @@ fun SignupScreen(navController: NavController) {
 
                                         }
                                     }
-                                }) {
-                                Text(text = label, color = PrimaryColor)
-                            }
+                                } , text = {
+                                    Text(text = label, color = PrimaryColor)}
+                            )
+                                    //{
+//                                Text(text = label, color = PrimaryColor)
+//                            }
+                                }
                         }
                     }
                 }
@@ -240,8 +255,8 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupemail.value,
                 onValueChange = {
-                        signupemail.value= it
-                    isErrorsignupemail= false
+                    signupemail.value = it
+                    isErrorsignupemail = false
 
                 },
                 placeholder = {
@@ -256,7 +271,7 @@ fun SignupScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .clip(shape = ShapeTabButtons.small)
-                    .height(53.dp)
+
                     .background(color = InputColor),
                 textStyle = TextStyle(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -283,8 +298,8 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupphonenum.value,
                 onValueChange = {
-                    signupphonenum.value= it
-                    isErrorsignupphone =false
+                    signupphonenum.value = it
+                    isErrorsignupphone = false
 
                 },
                 placeholder = {
@@ -326,7 +341,7 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupmyBirthDate.value,
                 onValueChange = {
-                    signupmyBirthDate.value= it
+                    signupmyBirthDate.value = it
                     isErrorsignupbirth = false
 
                 },
@@ -408,7 +423,7 @@ fun SignupScreen(navController: NavController) {
 
                 value = signuppassword.value,
                 onValueChange = {
-                    signuppassword.value =it
+                    signuppassword.value = it
                     isErrorsignuppass = false
 
                 },
@@ -567,32 +582,35 @@ fun SignupScreen(navController: NavController) {
                 border = BorderStroke(2.dp, PrimaryColor),
                 onClick = {
 
-                     if ( !validationHelper.emptyvalidation(signuname.value))  {
-                            isErrorsignupname = true
-                        }
-                     if (!validationHelper.emailvalidation(signupemail.value)) {
-                            isErrorsignupemail = true
-                        }
-                     if (!validationHelper.phonenumvalidation(signupphonenum.value)) {
-                            isErrorsignupphone = true
-                        }
-                     if (!validationHelper.emptyvalidation(signupmyBirthDate.value)){
-                            isErrorsignupbirth = true
-                        }
-                     if (!validationHelper.passwordlvalidation(signuppassword.value)){
-                            isErrorsignuppass = true
-                        }
-                     if (!validationHelper.passwordlvalidation(signupconfirmpassword.value)) {
-                            isErrorsignupconfirmpass = true
-                        }
-                    if (!validationHelper.confirmpasswordvalidation(signuppassword.value,signupconfirmpassword.value)) {
-                        isErrorsignupconfirmpass = true
-                        isErrorsignuppass=true
+                    if (!validationHelper.emptyvalidation(signuname.value)) {
+                        isErrorsignupname = true
                     }
-                     else {
-                            //navController.navigate("home")
-                            Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show()
-                        }
+                    if (!validationHelper.emailvalidation(signupemail.value)) {
+                        isErrorsignupemail = true
+                    }
+                    if (!validationHelper.phonenumvalidation(signupphonenum.value)) {
+                        isErrorsignupphone = true
+                    }
+                    if (!validationHelper.emptyvalidation(signupmyBirthDate.value)) {
+                        isErrorsignupbirth = true
+                    }
+                    if (!validationHelper.passwordlvalidation(signuppassword.value)) {
+                        isErrorsignuppass = true
+                    }
+                    if (!validationHelper.passwordlvalidation(signupconfirmpassword.value)) {
+                        isErrorsignupconfirmpass = true
+                    }
+                    if (!validationHelper.confirmpasswordvalidation(
+                            signuppassword.value,
+                            signupconfirmpassword.value
+                        )
+                    ) {
+                        isErrorsignupconfirmpass = true
+                        isErrorsignuppass = true
+                    } else {
+                        //navController.navigate("home")
+                        Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show()
+                    }
 
 
                 },
@@ -608,4 +626,3 @@ fun SignupScreen(navController: NavController) {
             }
         }
     }
-}
