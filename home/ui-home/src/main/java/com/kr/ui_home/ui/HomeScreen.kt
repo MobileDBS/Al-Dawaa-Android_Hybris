@@ -86,7 +86,7 @@ fun HomeScreen(navController: NavController) {
         // Text(text = "Home Screen", color = PrimaryColor)
 
 
-        //  HomeProductList(navController)
+         HomeProductList(navController)
 
         //end product list
 
@@ -122,6 +122,8 @@ fun HomeScreen(navController: NavController) {
                 }
             )
         }
+
+
     }
 
     // end services
@@ -239,4 +241,5 @@ fun TxtField(context:Context) {
                 )
                  })
     }
+
 }
