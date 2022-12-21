@@ -8,6 +8,6 @@ plugins {
 dependencies {
     "implementation"(project(Modules.components))
     "implementation"(project(Modules.ui_filter))
-
+    "implementation"(project(Modules.productDomain))
     "implementation"("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
 }

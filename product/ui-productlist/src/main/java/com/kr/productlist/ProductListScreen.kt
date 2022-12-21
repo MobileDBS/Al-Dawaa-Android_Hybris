@@ -73,6 +73,7 @@ fun ProductListScreen(
             }
         }
 
+        DisplayProductList()
     }
 
 
