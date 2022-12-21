@@ -363,22 +363,22 @@ fun ProductListItem(result:ProductItemModel){
  fun getProductItemData():MutableList<ProductItemModel>{
  val productData : MutableList<ProductItemModel> = mutableListOf()
     productData.add(
-        ProductItemModel("+1","Forever Lip","Finish Mat Lip Gloss Dark Node"
+        ProductItemModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
     ,"205","Buy 1 get two free",
             "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
             "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductItemModel("+1","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductItemModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductItemModel("+1","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductItemModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductItemModel("+1","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductItemModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))
