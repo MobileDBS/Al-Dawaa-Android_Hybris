@@ -39,7 +39,7 @@ fun NavigationController() {
 
             composable("MainUi", content = { MainScreen() })
 
-            composable("Product_List", content = { ProductListScreen(navController=navController) {} })
+            composable("Product_List", content = { ProductListScreen(navController=navController) })
 
             /* composable("MainUi", content = { MainUi(navController = navController) })
 

@@ -61,7 +61,7 @@ fun BottomNavGraph(navController: NavHostController) {
 
         composable("Category_Items", content = { CategoryDetailsScreen(navController = navController) })
 
-        composable("Product_List", content = { ProductListScreen(navController=navController, {}) })
+        composable("Product_List", content = { ProductListScreen(navController=navController) })
         composable("Camera_Screen?showvalu={showvalu}", arguments = listOf(navArgument(name ="showvalu" ){
             type = NavType.BoolType
         }), content = {
