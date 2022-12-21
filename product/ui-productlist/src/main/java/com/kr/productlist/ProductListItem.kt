@@ -104,7 +104,7 @@ fun ProductListItem(){
                             .align(Alignment.End),
                         onClick = {
                             //added here
-                         //   showBottomSheet ( true)
+//                            showBottomSheet ( true)
                             if (isItemInProductList.value){
                                 Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
                                 isLikedButtonPress.value = !isLikedButtonPress.value

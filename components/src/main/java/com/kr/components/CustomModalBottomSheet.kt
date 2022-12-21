@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import com.kr.components.ui.theme.PrimaryColor
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CustomModalBottomSheet(navController: NavController) {
 
@@ -22,9 +23,9 @@ fun CustomModalBottomSheet(navController: NavController) {
         initialValue = ModalBottomSheetValue.Expanded
     )
 
-    ModalBottomSheetLayout(
+   ModalBottomSheetLayout(
         modifier = Modifier.fillMaxSize(),
-        sheetState = modalBottomSheetState,
+       sheetState = modalBottomSheetState,
         sheetContent = {
                 Column(modifier = Modifier.padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,

@@ -75,7 +75,7 @@ dependencies{
 
       implementation Compose.preview
 
-//    implementation Google.material
+    implementation Google.material
 
     implementation (Retrofit.retrofit)
     implementation (Retrofit.moshiConverter)

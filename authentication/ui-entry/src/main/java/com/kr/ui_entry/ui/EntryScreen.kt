@@ -159,9 +159,11 @@ fun EntryScreen(navController: NavController) {
 
                             }
                         }
-                    }) {
-                        Text(text = label)
-                    }
+                    }, text = { Text(text = label) }
+                    )
+//                    {
+//                        Text(text = label)
+//                    }
                 }
             }
         }

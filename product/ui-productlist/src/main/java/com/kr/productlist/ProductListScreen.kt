@@ -61,6 +61,7 @@ fun ProductListScreen(
                             //Added
                                 it ->
                             ProductListItem()
+                            showMutable= true
                         /* {
                                     showBottomSheet ->
                                 showBottomSheet(true)

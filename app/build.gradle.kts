@@ -78,7 +78,7 @@ dependencies {
     implementation(Compose.hiltNavigation)
     implementation(Compose.preview)
     implementation(Compose.material3)
-//    implementation(Google.material)
+    implementation(Google.material)
 
     implementation (Retrofit.retrofit)
     implementation (Retrofit.moshiConverter)

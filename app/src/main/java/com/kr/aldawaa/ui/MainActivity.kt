@@ -11,7 +11,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -68,7 +69,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
         return GoogleSignIn.getClient(this, gso)
     }
 
-    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -96,7 +97,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                 Log.v("Login Response", state.error.toString())
 
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
+                Surface(color = MaterialTheme.colorScheme.background) {
                     // GifImage()
                     //  Greeting()
                     NavigationController ()
@@ -144,6 +145,7 @@ fun GifImage(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Greeting() {
     val c = Calendar.getInstance()

@@ -7,6 +7,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.*
@@ -33,6 +34,7 @@ import com.kr.ui_register.R
 import java.util.*
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignupScreen(navController: NavController) {
     val validationHelper: ValidationHelper = ValidationHelper()
@@ -180,9 +182,12 @@ fun SignupScreen(navController: NavController) {
 
                                         }
                                     }
-                                }) {
-                                Text(text = label, color = PrimaryColor)
-                            }
+                               }, text = {
+                                    Text(text = label, color = PrimaryColor)}
+                            )
+                            //{
+//                                    Text(text = label, color = PrimaryColor)
+//                            }
                         }
                     }
                 }
@@ -230,9 +235,13 @@ fun SignupScreen(navController: NavController) {
 
                                         }
                                     }
-                                }) {
-                                Text(text = label, color = PrimaryColor)
-                            }
+                                } , text = {
+                                    Text(text = label, color = PrimaryColor)}
+                            )
+                                    //{
+//                                Text(text = label, color = PrimaryColor)
+//                            }
+                                }
                         }
                     }
                 }
@@ -615,4 +624,3 @@ fun SignupScreen(navController: NavController) {
             }
         }
     }
-}
