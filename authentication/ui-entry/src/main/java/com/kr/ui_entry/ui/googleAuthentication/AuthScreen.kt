@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.*
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,7 +21,6 @@ import kotlinx.coroutines.launch
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @ExperimentalCoroutinesApi
-@ExperimentalMaterialApi
 @Composable
 fun AuthScreen(
     authViewModel: AuthViewModel,

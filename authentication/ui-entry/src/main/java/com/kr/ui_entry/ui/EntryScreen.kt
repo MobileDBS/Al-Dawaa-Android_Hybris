@@ -57,15 +57,12 @@ import com.kr.ui_entry.ui.googleAuthentication.getGoogleSignInClient
 import com.kr.ui_login.ui.LoginScreen
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.components.ui.theme.Shapes
-import com.kr.ui_login.ui.LoginScreen
-import com.kr.components.ui.theme.*
 import kotlinx.coroutines.*
 import ui_register.ui.SignupScreen
 import java.util.Locale
 
 
-@OptIn(ExperimentalMaterial3Api::class)
-@OptIn(ExperimentalAnimationApi::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
 @SuppressLint("ResourceType", "UnusedMaterialScaffoldPaddingParameter")
