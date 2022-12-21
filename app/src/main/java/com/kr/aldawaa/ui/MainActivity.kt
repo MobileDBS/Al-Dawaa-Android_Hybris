@@ -51,16 +51,16 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 
 
      //Google
+    /* private fun getGoogleLoginAuth(): GoogleSignInClient {
+         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+             .requestEmail()
+             .requestIdToken(getString(R.string.gcp_id))
+             .requestId()
+             .requestProfile()
+             .build()
+         return GoogleSignIn.getClient(this, gso)
+     }*/
 
-    private fun getGoogleLoginAuth(): GoogleSignInClient {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .requestIdToken(getString(R.string.gcp_id))
-            .requestId()
-            .requestProfile()
-            .build()
-        return GoogleSignIn.getClient(this, gso)
-    }
 
     @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,6 +100,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                     ///////////////End Navigation Bar///////////////////////
                 }
             }
+
 
         }
 

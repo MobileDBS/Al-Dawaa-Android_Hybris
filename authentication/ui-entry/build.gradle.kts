@@ -8,15 +8,16 @@ plugins {
 }
 dependencies{
     "implementation"(project(Modules.ui_login))
+    "implementation"(project(Modules.authenticationDomain))
     "implementation"(project(Modules.ui_register))
     "implementation"(project(Modules.components))
     "implementation"(SocialMedia.facebooksdk)
     "implementation"(SocialMedia.facebookLogin)
     "implementation"(SocialMedia.facebookcore)
+    "implementation"(SocialMedia.googleservice)
+    "implementation"(SocialMedia.twitter)
     "implementation"(AndroidX.constraint)
 
 
-
-
-
 }
+

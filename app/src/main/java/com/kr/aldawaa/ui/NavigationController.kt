@@ -5,13 +5,11 @@ package com.kr.aldawaa.ui
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.kr.components.CustomModalBottomSheet
 import com.kr.productlist.ProductListScreen
-import com.kr.ui_login.ui.EntryScreen
+import com.kr.ui_entry.ui.EntryScreen
 import com.kr.ui_otp.ui.OtpScreen
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi

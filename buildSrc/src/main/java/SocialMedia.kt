@@ -8,9 +8,9 @@ object SocialMedia {
     // Google
     const val googleversion = "20.4.0"
     const val googleservice= "com.google.android.gms:play-services-auth:$googleversion"
-
-
-
+//twitter
+   const val twitterversion = "4.0.7"
+   const val twitter= "org.twitter4j:twitter4j-core:$twitterversion"
 
 
 
