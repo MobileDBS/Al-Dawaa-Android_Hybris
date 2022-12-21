@@ -205,7 +205,7 @@ fun ProductListItem(result:ProductItemModel){
                             //added here
                          //   showBottomSheet ( true)
                             if (isItemInProductList.value){
-                                Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Add to favourite", Toast.LENGTH_SHORT).show()
                                 isLikedButtonPress.value = !isLikedButtonPress.value
                             }
 
@@ -341,7 +341,7 @@ fun ProductListItem(result:ProductItemModel){
                             .align(alignment = Bottom)
                     ) {
                         IconButton(
-                            onClick = { /*TODO*/ }, modifier = Modifier
+                            onClick = { Toast.makeText(context, "Add to cart", Toast.LENGTH_SHORT).show() }, modifier = Modifier
                                 .align(Alignment.End)
                                 .height(27.dp)
                                 .width(27.dp)

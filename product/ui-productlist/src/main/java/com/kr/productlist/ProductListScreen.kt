@@ -22,7 +22,7 @@ import com.kr.components.CustomModalBottomSheet
 @Composable
 fun ProductListScreen(
     navController: NavController,
-    showBottomSheet: (Boolean) -> Unit
+   // showBottomSheet: (Boolean) -> Unit
 ) {
     var showMutable by remember { mutableStateOf(false) }
 
