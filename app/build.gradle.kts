@@ -72,7 +72,7 @@ dependencies {
 
     implementation(Compose.activity)
     implementation(Compose.ui)
-    implementation(Compose.material)
+//    implementation(Compose.material)
     implementation(Compose.tooling)
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigation)
@@ -122,6 +122,10 @@ dependencies {
     implementation(SocialMedia.googleservice)
 
     implementation(Compose.accompanistSystemUiController)
+
+    //localization
+    implementation(Localization.localization)
+
 
 
 }

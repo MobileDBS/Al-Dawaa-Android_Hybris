@@ -2,6 +2,7 @@ package com.kr.aldawaa.ui
 
 import android.location.Location
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +11,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,12 +26,13 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
 import com.kr.aldawaa.LocationClass
   import com.google.android.gms.auth.api.signin.GoogleSignIn
   import com.google.android.gms.auth.api.signin.GoogleSignInClient
   import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.kr.aldawaa.R
-import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_login.ui.LoginViewModel
@@ -40,16 +42,20 @@ import javax.inject.Inject
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 @ExperimentalMaterial3Api
-@OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(),LocationClass.Interface {
+
+
+    private val localizationDelegate = LocalizationActivityDelegate(this)
+    override fun attachBaseContext(newBase: Context) {
+        applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
+        super.attachBaseContext(newBase)
+    }
+
     var locationClass=LocationClass(this)
     @Inject
     lateinit var connectivityObserver: NetworkConnectivityObserver
 
-    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class,
-        ExperimentalFoundationApi::class
-    )
 
      //Google
 
@@ -63,7 +69,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
         return GoogleSignIn.getClient(this, gso)
     }
 
-    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class)
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -91,7 +97,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                 Log.v("Login Response", state.error.toString())
 
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
+                Surface(color = MaterialTheme.colorScheme.background) {
                     // GifImage()
                     //  Greeting()
                     NavigationController ()
@@ -139,6 +145,7 @@ fun GifImage(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Greeting() {
     val c = Calendar.getInstance()
@@ -197,5 +204,7 @@ fun DefaultPreview() {
     AlDawaaHybrisTheme {
         Greeting()
     }
+
+
 }
 

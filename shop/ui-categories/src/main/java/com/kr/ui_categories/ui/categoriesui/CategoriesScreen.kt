@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +21,7 @@ import com.kr.components.ui.theme.PrimaryColor
 import com.kr.ui_categories.ui.categoriesui.component.CategoriesItems
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun CategoriesScreen(navController: NavController, viewModel: CategoriesViewModel= hiltViewModel()
@@ -29,13 +30,14 @@ fun CategoriesScreen(navController: NavController, viewModel: CategoriesViewMode
     val state = viewModel.state.value
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
 
 
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 
@@ -80,7 +82,7 @@ fun CategoriesScreen(navController: NavController, viewModel: CategoriesViewMode
                 if (state.error.isNotBlank()) {
                     Text(
                         text = state.error,
-                        color = MaterialTheme.colors.error,
+                        color = MaterialTheme.colorScheme.error,
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .fillMaxWidth()

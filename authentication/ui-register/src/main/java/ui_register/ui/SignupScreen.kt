@@ -10,6 +10,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -33,6 +34,7 @@ import com.kr.ui_register.R
 import java.util.*
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignupScreen(navController: NavController) {
     val validationHelper: ValidationHelper = ValidationHelper()
@@ -143,6 +145,7 @@ fun SignupScreen(navController: NavController) {
 
                         onClick = { expandedtitle = !expandedtitle },
                         colors = ButtonDefaults.outlinedButtonColors(InputColor),
+                        border = BorderStroke(0.dp , color = InputColor),
                         shape = ShapeTabButtons.small,
                         modifier = Modifier
                             .fillMaxWidth(0.4f)
@@ -160,7 +163,7 @@ fun SignupScreen(navController: NavController) {
                     DropdownMenu(
                         expanded = expandedtitle,
                         onDismissRequest = { expandedtitle = false },
-                        modifier = Modifier.background(color = Color.Transparent),
+                        Modifier.background(color = WhiteColor),
 
 
                         ) {
@@ -180,9 +183,12 @@ fun SignupScreen(navController: NavController) {
 
                                         }
                                     }
-                                }) {
-                                Text(text = label, color = PrimaryColor)
-                            }
+                               }, text = {
+                                    Text(text = label, color = PrimaryColor)}
+                            )
+                            //{
+//                                    Text(text = label, color = PrimaryColor)
+//                            }
                         }
                     }
                 }
@@ -191,8 +197,9 @@ fun SignupScreen(navController: NavController) {
 
                     OutlinedButton(
                         onClick = { expandedgender = !expandedgender },
-                        colors = ButtonDefaults.outlinedButtonColors(DropdownColor),
+                        colors = ButtonDefaults.outlinedButtonColors(InputColor),
                         shape = ShapeTabButtons.small,
+                        border = BorderStroke(0.dp , color = InputColor),
                         modifier = Modifier
                             .fillMaxWidth(0.7f)
                             .clip(shape = ShapeTabButtons.small)
@@ -209,7 +216,7 @@ fun SignupScreen(navController: NavController) {
                     DropdownMenu(
                         expanded = expandedgender,
                         onDismissRequest = { expandedgender = false },
-                        modifier = Modifier.background(color = Color.Transparent),
+                        Modifier.background(color = WhiteColor),
 
 
                         ) {
@@ -230,9 +237,13 @@ fun SignupScreen(navController: NavController) {
 
                                         }
                                     }
-                                }) {
-                                Text(text = label, color = PrimaryColor)
-                            }
+                                } , text = {
+                                    Text(text = label, color = PrimaryColor)}
+                            )
+                                    //{
+//                                Text(text = label, color = PrimaryColor)
+//                            }
+                                }
                         }
                     }
                 }
@@ -260,7 +271,7 @@ fun SignupScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .clip(shape = ShapeTabButtons.small)
-                    .height(53.dp)
+
                     .background(color = InputColor),
                 textStyle = TextStyle(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -615,4 +626,3 @@ fun SignupScreen(navController: NavController) {
             }
         }
     }
-}

@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.ZeroCornerSize
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -27,9 +27,9 @@ import com.kr.ui_otp.R
 import kotlinx.coroutines.*
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
-@ExperimentalMaterialApi
 @SuppressLint("ResourceType", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun OtpScreen(navController: NavController) {
@@ -37,7 +37,7 @@ fun OtpScreen(navController: NavController) {
     val validationHelper: ValidationHelper = ValidationHelper()
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
     var isErrorOtp by rememberSaveable { mutableStateOf(false) }
     val otp = rememberSaveable { mutableStateOf("") }
     var otpVal: String? = null
@@ -45,7 +45,8 @@ fun OtpScreen(navController: NavController) {
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 

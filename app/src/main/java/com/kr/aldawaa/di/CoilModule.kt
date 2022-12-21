@@ -1,10 +1,6 @@
 package com.kr.aldawaa.di
 
 import android.app.Application
-import android.graphics.drawable.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material.icons.outlined.Warning
 import coil.ImageLoader
 import coil.memory.MemoryCache
 import com.kr.aldawaa.R

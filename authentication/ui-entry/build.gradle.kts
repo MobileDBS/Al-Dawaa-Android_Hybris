@@ -14,6 +14,7 @@ dependencies{
     "implementation"(SocialMedia.facebookLogin)
     "implementation"(SocialMedia.facebookcore)
     "implementation"(AndroidX.constraint)
+    "implementation"(Localization.localization)
 
 
 

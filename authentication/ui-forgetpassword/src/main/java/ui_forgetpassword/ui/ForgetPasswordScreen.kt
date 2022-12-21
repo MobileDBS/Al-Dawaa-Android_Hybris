@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import com.kr.ui_forgetpassword.R
 import com.kr.components.ui.theme.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ForgetPasswordScreen (navController: NavController) {
@@ -34,14 +35,15 @@ fun ForgetPasswordScreen (navController: NavController) {
     val validationHelper : ValidationHelper = ValidationHelper()
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
     var isErrorforget by rememberSaveable { mutableStateOf(false) }
     val forgetphone = rememberSaveable { mutableStateOf("") }
 
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -29,6 +30,7 @@ import androidx.navigation.NavController
 import com.kr.components.ui.theme.*
 import com.kr.ui_forgetpassword.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun NewPasswordScreen (navController: NavController) {
@@ -36,7 +38,7 @@ fun NewPasswordScreen (navController: NavController) {
     val validationHelper : ValidationHelper = ValidationHelper()
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
     var isErrorpassword by rememberSaveable { mutableStateOf(false) }
     var isErrorconfirmpassword by rememberSaveable { mutableStateOf(false) }
     val passwordvisibilityforget = remember { mutableStateOf(false) }
@@ -49,7 +51,8 @@ fun NewPasswordScreen (navController: NavController) {
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 
@@ -112,9 +115,6 @@ fun NewPasswordScreen (navController: NavController) {
 
             ) {
                 Spacer(modifier = Modifier.padding(15.dp))
-
-
-
 
                 OutlinedTextField(
 

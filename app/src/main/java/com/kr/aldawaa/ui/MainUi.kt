@@ -1,8 +1,4 @@
-@file:OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
-
 package com.kr.aldawaa.ui
-
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -26,6 +22,7 @@ import com.kr.ui_services.ui.CameraScreen
 import com.kr.ui_services.ui.ServicesScreen
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @ExperimentalMaterial3Api
 @Composable
 fun BottomNavGraph(navController: NavHostController) {
@@ -87,7 +84,7 @@ fun BottomNavGraph(navController: NavHostController) {
 
         dialog("CustomModalBottomSheet3") {
             // The content here will be added to a Dialog() Composable
-            CustomModalBottomSheet3(navController=navController  )
+        CustomModalBottomSheet3(navController=navController  )
         }
 
         composable("Map", content = { CustomMap() })
