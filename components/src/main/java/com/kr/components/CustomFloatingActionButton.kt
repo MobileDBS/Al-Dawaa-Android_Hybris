@@ -1,6 +1,7 @@
 package com.kr.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,12 +17,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.SecondaryColor
-import com.kr.components.ui.theme.WhiteColor
 import androidx.compose.material3.FloatingActionButton
-    @ExperimentalFoundationApi
+import com.kr.components.ui.theme.*
+
+@ExperimentalFoundationApi
     @Composable
     fun FloatingButton(onItemClick: (Boolean) -> Unit) {//onItemClick: (String) -> Unit
         val context = LocalContext.current
@@ -35,8 +34,9 @@ import androidx.compose.material3.FloatingActionButton
                 onClick = {
                     onItemClick(true)
                 },
+                shape = RoundedCornerShape(40.dp),
                 containerColor = WhiteColor,
-                contentColor = Color.Unspecified
+                contentColor = Color.Unspecified,
             ) {
                 Icon(painter = painterResource(R.drawable.ic_chatbot), "")
             }
@@ -77,7 +77,7 @@ import androidx.compose.material3.FloatingActionButton
                         color = PrimaryColor,
                     )
                 },
-                containerColor = WhiteColor,
+                containerColor = Color.White,
                 icon = {
                     Icon(
                         painter = painterResource(R.drawable.ic_chatbot),

@@ -14,84 +14,84 @@ val fonts = FontFamily(
     Font(R.font.bold, weight = FontWeight.Bold)
 
 )
+
+
 val Typography = Typography(
     displayLarge = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Bold,
-        fontSize = 16.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 50.sp
     ),
     displayMedium = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 40.sp
     ),
     displaySmall = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
+        fontSize = 34.sp
     ),
     headlineLarge = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Bold,
-        fontSize = 16.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 30.sp
     ),
     headlineMedium = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp
     ),
     headlineSmall = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Light,
-        fontSize = 12.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp
     ),
-
     titleLarge = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Bold,
-        fontSize = 16.sp
+        fontSize = 20.sp
     ),
     titleMedium = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp
     ),
     titleSmall = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Light,
-        fontSize = 12.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp
     ),
-
-    bodyLarge  = TextStyle(
-        fontFamily = fonts,
-        fontWeight = FontWeight.Bold,
-        fontSize = 16.sp
-    ),
-    bodyMedium = TextStyle(
+    bodyLarge = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
+    bodyMedium = TextStyle(
+        fontFamily = fonts,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
+    ),
     bodySmall = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Light,
-        fontSize = 12.sp
+        fontSize = 10.sp
     ),
 
     labelLarge = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Bold,
-        fontSize = 16.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp
     ),
     labelMedium = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp
     ),
     labelSmall = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Light,
-        fontSize = 12.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 11.sp
     ),
 )
 

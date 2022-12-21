@@ -92,7 +92,8 @@ fun CategoriesItems (result: Categories, onItemClick: (Categories) -> Unit) {
 
             Spacer(modifier = Modifier.padding(5.dp))
           val colo = result.additional_text_color
-          Row(horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.Top, modifier = Modifier.fillMaxWidth(0.9f)) {
+          Row(horizontalArrangement = Arrangement.End, verticalAlignment = Alignment.Top,
+              modifier = Modifier.fillMaxWidth(0.9f)) {
               Text(text = "See all",
                   color = colo?.color!!,
                   modifier = Modifier.padding(bottom = 5.dp)

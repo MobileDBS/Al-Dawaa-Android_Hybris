@@ -45,23 +45,34 @@ fun HomeScreen(navController: NavController) {
     Column(modifier = Modifier) {//modifier = Modifier.padding(16.dp)
 
         //start arbay
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .background(PrimaryColor)
-            .wrapContentHeight()) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(PrimaryColor)
+                .wrapContentHeight()
+        ) {
             Column() {
                 TxtField(context)
-                TextButton(onClick = {
-                    Toast
-                        .makeText(context, "Go To logi", Toast.LENGTH_SHORT)
-                        .show() }, modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight())
+                TextButton(
+                    onClick = {
+                        Toast
+                            .makeText(context, "Go To logi", Toast.LENGTH_SHORT)
+                            .show()
+                    }, modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                )
                 {
-                    Text(text = "Login to check Arbahi points", color= SecondaryColor, fontSize = 15.sp)
+                    Text(
+                        text = "Login to check Arbahi points",
+                        color = SecondaryColor,
+                        fontSize = 15.sp
+                    )
                     Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                    Icon(imageVector = Icons.Filled.Favorite,
-                        "", modifier = Modifier.size(ButtonDefaults.IconSize), tint = SecondaryColor)
+                    Icon(
+                        imageVector = Icons.Filled.Favorite,
+                        "", modifier = Modifier.size(ButtonDefaults.IconSize), tint = SecondaryColor
+                    )
                 }
 
 
@@ -70,40 +81,47 @@ fun HomeScreen(navController: NavController) {
         }
 
         //end arbahi section
-         // start product list
+        // start product list
 
-       // Text(text = "Home Screen", color = PrimaryColor)
+        // Text(text = "Home Screen", color = PrimaryColor)
 
 
-      //  HomeProductList(navController)
+        //  HomeProductList(navController)
 
         //end product list
 
 
         // start services
-        Row(modifier = Modifier.fillMaxWidth() ,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(text = "Services", color = PrimaryColor ,
-                textAlign = TextAlign.Start)
+        Column(modifier = Modifier.padding(16.dp)) {
 
-            Text(text = "See All", color = PrimaryColor ,textAlign = TextAlign.End)
 
-        }//end row
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Services", color = PrimaryColor,
+                    textAlign = TextAlign.Start
+                )
 
-        LazyRow(
-            state = rememberLazyListState(),
-            userScrollEnabled = true,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            content = {
-                items(getServicesData()) { item ->
-                    ServicesHomeItem(item) {
-                        navController.navigate("service")
+                Text(text = "See All", color = PrimaryColor, textAlign = TextAlign.End)
+
+            }//end row
+
+            LazyRow(
+                state = rememberLazyListState(),
+                userScrollEnabled = true,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                content = {
+                    items(getServicesData()) { item ->
+                        ServicesHomeItem(item) {
+                            navController.navigate("service")
+                        }
                     }
-                }
 
-            }
-        )
+                }
+            )
+        }
     }
 
     // end services

@@ -120,6 +120,7 @@ fun EntryScreen(navController: NavController) {
 
             OutlinedButton(
                 colors = ButtonDefaults.buttonColors(containerColor = Transparent),
+                border = BorderStroke(0.dp , color = PrimaryColor),
                 onClick = { expanded = !expanded }, modifier = Modifier.background(
                     color = Transparent
                 )
@@ -135,15 +136,10 @@ fun EntryScreen(navController: NavController) {
             DropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
-                modifier = Modifier.background(color = Transparent),
-
-
+                modifier = Modifier.background(color = WhiteColor),
                 ) {
-                Color.DarkGray
                 languages.forEach { label ->
-                    DropdownMenuItem(modifier = Modifier.background(Color.Transparent), onClick = {
-                        // expanded = true
-
+                    DropdownMenuItem(modifier = Modifier.background(WhiteColor), onClick = {
                         when (label) {
                             "English" -> {
                                 chosenlanguage = label
@@ -159,11 +155,7 @@ fun EntryScreen(navController: NavController) {
 
                             }
                         }
-                    }, text = { Text(text = label) }
-                    )
-//                    {
-//                        Text(text = label)
-//                    }
+                    }, text = { Text(text = label) })
                 }
             }
         }

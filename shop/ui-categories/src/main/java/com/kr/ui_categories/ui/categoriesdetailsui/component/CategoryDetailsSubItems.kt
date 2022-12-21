@@ -12,7 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.*
+import com.kr.components.ui.theme.InputColor
 import com.kr.components.ui.theme.PrimaryColor
+import com.kr.components.ui.theme.WhiteColor
 
 
 @Composable
@@ -27,7 +29,8 @@ fun CategoryDetailsSubItems(categoryIS : String) {
                 defaultElevation = 2.dp,
 
                 ),
-            colors = ButtonDefaults.outlinedButtonColors(Color.White),
+            border = BorderStroke(1.dp , color = InputColor),
+            colors = ButtonDefaults.buttonColors(WhiteColor),
             shape = RoundedCornerShape(20.dp),
 
             onClick = {
