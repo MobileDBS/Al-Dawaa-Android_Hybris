@@ -73,7 +73,8 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
         super.onCreate(savedInstanceState)
         setContent {
             locationClass.GetLastLocation()
-            AlDawaaHybrisTheme {
+            AlDawaaHybrisTheme{
+
                 //BottomSheet
 //                Surface(color = MaterialTheme.colors.background) {
 //                    CustomModalBottomSheet(list)
@@ -96,9 +97,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                 Log.v("Login Response", state.error.toString())
 
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colorScheme.background) {
-                    // GifImage()
-                    //  Greeting()
+                Surface() {
                     NavigationController ()
                 }
 
@@ -197,13 +196,4 @@ fun Greeting() {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    AlDawaaHybrisTheme {
-        Greeting()
-    }
-
-
-}
 

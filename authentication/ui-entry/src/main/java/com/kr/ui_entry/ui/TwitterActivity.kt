@@ -14,8 +14,6 @@ import android.util.Log
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.compose.runtime.Composable
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import twitter4j.Twitter
 import twitter4j.TwitterFactory
@@ -23,7 +21,7 @@ import twitter4j.auth.AccessToken
 import twitter4j.conf.ConfigurationBuilder
 
 @OptIn(DelicateCoroutinesApi::class)
-class MainActivity : AppCompatActivity() {
+class TwitterActivity : AppCompatActivity() {
     lateinit var twitterDialog: Dialog
     lateinit var twitter: Twitter
     var accToken: AccessToken? = null
@@ -223,7 +221,7 @@ class MainActivity : AppCompatActivity() {
 const val token = ""
 
         fun getInstance(context: Context): Intent {
-            return Intent(context, MainActivity::class.java)
+            return Intent(context, TwitterActivity::class.java)
 
         }
     }

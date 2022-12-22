@@ -6,6 +6,7 @@ package com.kr.ui_entry.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -40,7 +41,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.facebook.*
-import com.facebook.login.LoginClient
 import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
@@ -67,7 +67,7 @@ import java.util.Locale
 @ExperimentalCoroutinesApi
 @SuppressLint("ResourceType", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun EntryScreen(navController: NavController) {
+fun EntryScreen(navController: NavController , onItemClick: (String) -> Unit) {
     val authViewModel: AuthViewModel = hiltViewModel()
     var expanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -114,6 +114,7 @@ fun EntryScreen(navController: NavController) {
                 fontSize = 25.sp,
                 color = White,
                 fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleLarge
             )
 
             Spacer(modifier = Modifier.padding(6.dp))
@@ -129,7 +130,7 @@ fun EntryScreen(navController: NavController) {
                     color = Transparent
                 )
             ) {
-                Text(chosenlanguage, color = White)
+                Text(chosenlanguage, color = White , style = MaterialTheme.typography.titleSmall)
                 Icon(
                     imageVector = Icons.Filled.ArrowDropDown,
                     tint = White,
@@ -148,18 +149,21 @@ fun EntryScreen(navController: NavController) {
                             "English" -> {
                                 chosenlanguage = label
                                 setLanguage(context, Locale("en"))
-                                (context as? Activity)?.recreate()
-                                chosenlanguage = label
+//                                (context as? Activity)?.recreate()
+                                onItemClick("English")
 
                             }
                             "العربية" -> {
                                 chosenlanguage = label
                                 setLanguage(context, Locale("ar"))
-                                (context as? Activity)?.recreate()
+//                                (context as? Activity)?.recreate()
+                                onItemClick("العربية")
+
+
 
                             }
                         }
-                    }, text = { Text(text = label) })
+                    }, text = { Text(text = label , style = MaterialTheme.typography.bodyLarge) })
                 }
             }
         }
@@ -224,7 +228,7 @@ fun EntryScreen(navController: NavController) {
                                 ),
                             selected = selected,
                             onClick = { selectedIndex = index },
-                            text = { Text(text = text, color = PrimaryColor) }
+                            text = { Text(text = text, color = PrimaryColor  , style = MaterialTheme.typography.bodyLarge) }
                         )
 
                     }
@@ -256,7 +260,7 @@ fun EntryScreen(navController: NavController) {
                         text = stringResource(id = R.string.orsigninwith),
                         fontSize = 15.sp,
                         color = PrimaryColor,
-                    )
+                            style = MaterialTheme.typography.titleMedium)
                     Spacer(modifier = Modifier.padding(15.dp))
 
                     Row(
@@ -370,12 +374,12 @@ fun EntryScreen(navController: NavController) {
 
                 }
                 Spacer(modifier = Modifier.padding(10.dp))
-                Text(text = stringResource(id = R.string.continueasaguest),
+                Text(text = stringResource(id = R.string.continueasaguest ),
+                    style = MaterialTheme.typography.bodyLarge,
                     color = PrimaryColor,
                     modifier = Modifier.clickable {
                         // navController.navigate("")
                         Toast.makeText(context, "Wellcome to Home ", Toast.LENGTH_SHORT).show()
-
 
                     })
                 Spacer(modifier = Modifier.padding(10.dp))
@@ -467,7 +471,7 @@ fun TwitterLogin(navController:NavController) {
     val twitterrequest =
 
         rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            val data = result.data?.getStringExtra(MainActivity.token)
+            val data = result.data?.getStringExtra(TwitterActivity.token)
             Log.e("twitter : ", data.toString())
             Log.e("twitter : ", result.resultCode.toString())
             Log.e("twitter : ", result.data.toString())
@@ -480,7 +484,7 @@ fun TwitterLogin(navController:NavController) {
         }
     IconButton(onClick = {
       //  startForResult.launch(GoogleSignIn.getClient(context,GoogleSignInOptions))
-           twitterrequest.launch(MainActivity.getInstance(context))
+           twitterrequest.launch(TwitterActivity.getInstance(context))
     }, modifier = Modifier
         .background(Unspecified)
         .fillMaxSize()) {
