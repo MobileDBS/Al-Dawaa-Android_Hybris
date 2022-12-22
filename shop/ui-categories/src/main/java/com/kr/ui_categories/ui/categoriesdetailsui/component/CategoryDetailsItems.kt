@@ -56,7 +56,7 @@ fun CategoryDetailsItems(categoryItems: String) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White)
+                .background(color = Color.White)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically

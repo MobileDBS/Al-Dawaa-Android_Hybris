@@ -9,7 +9,7 @@ plugins {
 dependencies{
     "implementation"(project(Modules.components))
     "implementation"(project(Modules.ui_productList))
-
+    "implementation"(project(Modules.productDomain))
     "implementation"(project(Modules.servicesDomain))
 
 }

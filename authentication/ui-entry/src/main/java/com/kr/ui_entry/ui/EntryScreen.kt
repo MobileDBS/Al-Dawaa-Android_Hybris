@@ -6,15 +6,13 @@ package com.kr.ui_entry.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.SurfaceView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.Unspecified
 import androidx.compose.ui.graphics.Color.Companion.White
@@ -40,31 +37,38 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.facebook.*
+import com.facebook.login.LoginClient
 import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
 import com.facebook.HttpMethod
 import com.facebook.login.LoginManager
+import com.kr.components.ui.theme.*
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
 import com.kr.ui_entry.R
+import com.kr.ui_entry.ui.googleAuthentication.AuthScreen
+import com.kr.ui_entry.ui.googleAuthentication.AuthViewModel
+import com.kr.ui_entry.ui.googleAuthentication.Googletokenid
+import com.kr.ui_entry.ui.googleAuthentication.getGoogleSignInClient
+import com.kr.ui_login.ui.LoginScreen
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.components.ui.theme.Shapes
-import com.kr.ui_login.ui.LoginScreen
-import com.kr.components.ui.theme.*
 import kotlinx.coroutines.*
 import ui_register.ui.SignupScreen
 import java.util.Locale
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
 @SuppressLint("ResourceType", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun EntryScreen(navController: NavController) {
-
+    val authViewModel: AuthViewModel = hiltViewModel()
     var expanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
 //    val scaffoldState = rememberScaffoldState()
@@ -273,10 +277,23 @@ fun EntryScreen(navController: NavController) {
                                     ),
 
                                 ) {
-                                // AuthScreen(authViewModel)
+                              //  GoogleLogin(navController = navController)
+                               AuthScreen(authViewModel = authViewModel,navController)
                             }
 
 
+                           Button(onClick = {
+                               getGoogleSignInClient(context).signOut()
+                                 Googletokenid=""
+
+
+                           }, modifier = Modifier
+                               .size(10.dp, 10.dp)
+                               .background(Unspecified),
+                               colors = ButtonDefaults.buttonColors(Unspecified)
+                           ) {
+
+                           }
                         }
 
 
@@ -298,6 +315,8 @@ fun EntryScreen(navController: NavController) {
                             }
                             Button(
                                 onClick = {
+
+
                                     if (AccessToken.getCurrentAccessToken() == null) {
                                         Toast.makeText(context, "user is logged out ", Toast.LENGTH_SHORT).show()
                                         // already logged out
@@ -310,16 +329,16 @@ fun EntryScreen(navController: NavController) {
                                             null,
                                             HttpMethod.DELETE,
                                             GraphRequest.Callback {
-
                                                 LoginManager.getInstance().logOut()
                                                 Log.e("facebooklogout response : ", "${it.request.accessToken?.token}")
 
 
                                             }).executeAsync()
+
                                     }
 
                                 }, modifier = Modifier
-                                    .size(10.dp, 10.dp,)
+                                    .size(10.dp, 10.dp)
                                     .background(Unspecified),
                                 colors = ButtonDefaults.buttonColors(Unspecified)
                             ) {
@@ -343,7 +362,8 @@ fun EntryScreen(navController: NavController) {
                                         )
                                     )
                             ) {
-                                // AuthScreen(authViewModel)
+                                TwitterLogin(navController = navController)
+                                    }
                             }
 
                     }
@@ -366,7 +386,7 @@ fun EntryScreen(navController: NavController) {
         }
 
     }
-}
+
 
 
 @Composable
@@ -435,4 +455,39 @@ fun FacebookLogin(navController:NavController) {
     //   Icon(painter = painterResource(id = R.drawable.ic_facebook)  , contentDescription ="facebook icon" )
 
    }
+}
+
+
+// Google
+
+@Composable
+fun TwitterLogin(navController:NavController) {
+   val context = LocalContext.current
+
+    val twitterrequest =
+
+        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val data = result.data?.getStringExtra(MainActivity.token)
+            Log.e("twitter : ", data.toString())
+            Log.e("twitter : ", result.resultCode.toString())
+            Log.e("twitter : ", result.data.toString())
+
+
+            if (result.resultCode == Activity.RESULT_OK) {
+                Toast.makeText(context, "yesyesyes", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+    IconButton(onClick = {
+      //  startForResult.launch(GoogleSignIn.getClient(context,GoogleSignInOptions))
+           twitterrequest.launch(MainActivity.getInstance(context))
+    }, modifier = Modifier
+        .background(Unspecified)
+        .fillMaxSize()) {
+
+    }
+
+
+
+
 }

@@ -1,10 +1,12 @@
 package com.kr.ui_home.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -18,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.productlist.ProductListItem
+import com.kr.productlist.getProductItemData
 import com.kr.ui_home.R
 
 @Composable
@@ -27,10 +30,6 @@ fun HomeProductList(navController: NavController)
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            // .wrapContentSize()
-          //  .align(Alignment.Start)
-        //, contentAlignment = Alignment.TopStart
-        //  .padding(top = 8.dp, start = 8.dp, end = 8.dp, bottom = 8.dp)
     ) {
         Row(
             modifier = Modifier
@@ -59,6 +58,7 @@ fun HomeProductList(navController: NavController)
 
                         modifier = Modifier.padding(end=2.dp, top = 4.dp)
                             .align(Alignment.Bottom)
+                            .clickable(true,"",null, onClick = {navController.navigate("Product_List")})
 
                     )
                     IconButton(
@@ -91,15 +91,16 @@ fun HomeProductList(navController: NavController)
                 rows = GridCells.Fixed(1),
                 userScrollEnabled = true,
                 reverseLayout = false,
-                verticalArrangement = Arrangement.Top,
-                horizontalArrangement = Arrangement.Start,
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement =Arrangement.spacedBy(8.dp),
                 modifier = Modifier
+                    .fillMaxWidth()
+                   .height(350.dp)
+                    .align(Alignment.TopStart)
                     .scrollable(
                         rememberLazyGridState(),
                         orientation = Orientation.Horizontal
                     )
-                    .fillMaxWidth()
-                //.wrapContentHeight()
                 // content padding
                 , contentPadding = PaddingValues(
                     start =8.dp,
@@ -108,8 +109,9 @@ fun HomeProductList(navController: NavController)
                     bottom =8.dp
                 ),
                 content = {
-                    items(7) {
-                        ProductListItem()
+
+                    items(getProductItemData()) {
+                        ProductListItem(it)
                     }
 
                 }
