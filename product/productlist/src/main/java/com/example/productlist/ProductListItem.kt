@@ -248,7 +248,7 @@ fun ProductListItem() {
                             .align(alignment = Bottom)
                     ) {
                         IconButton(
-                            onClick = { /*TODO*/ }, modifier = Modifier
+                            onClick = { Toast.makeText(context, "button cart clicked", Toast.LENGTH_SHORT).show()}, modifier = Modifier
                                 .align(Alignment.End)
                                 .height(27.dp)
                                 .width(27.dp)
