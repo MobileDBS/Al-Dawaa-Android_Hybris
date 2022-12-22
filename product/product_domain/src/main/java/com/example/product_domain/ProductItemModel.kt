@@ -9,4 +9,5 @@ class ProductItemModel (
     val productImage: String,
     val arbahiLoyaltyPoint: String,
     val qitafLoyaltyPoint : String
+    //val string
 )
