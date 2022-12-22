@@ -31,10 +31,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.MutableLiveData
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
-import com.example.product_domain.ProductItemModel
+import com.kr.product_domain.ProductListModel
 import com.kr.ui_productlist.R
 
 //@OptIn(ExperimentalMaterialApi::class)
@@ -66,7 +64,7 @@ fun DisplayProductList() {
 }
 @Composable
 //fun ProductListItem(showBottomSheet: (Boolean) -> Unit)
-fun ProductListItem(result:ProductItemModel){
+fun ProductListItem(result:ProductListModel){
     val imagePainter= rememberAsyncImagePainter(model = result.productImage)
     var itemToCart = rememberSaveable {
         mutableStateOf(1)
@@ -360,25 +358,25 @@ fun ProductListItem(result:ProductItemModel){
     }
 }
 
- fun getProductItemData():MutableList<ProductItemModel>{
- val productData : MutableList<ProductItemModel> = mutableListOf()
+ fun getProductItemData():MutableList<ProductListModel>{
+ val productData : MutableList<ProductListModel> = mutableListOf()
     productData.add(
-        ProductItemModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
+        ProductListModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
     ,"205","Buy 1 get two free",
             "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
             "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductItemModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductListModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductItemModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductListModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductItemModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductListModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))

@@ -1,6 +1,6 @@
-package com.example.product_domain
+package com.kr.product_domain
 
-class ProductItemModel (
+class ProductListModel (
     val offerNumber: String,
     val productName : String,
     val productDescription:String,
@@ -9,5 +9,4 @@ class ProductItemModel (
     val productImage: String,
     val arbahiLoyaltyPoint: String,
     val qitafLoyaltyPoint : String
-    //val string
 )

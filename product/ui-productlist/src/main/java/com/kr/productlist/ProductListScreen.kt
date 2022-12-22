@@ -15,7 +15,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.kr.components.CustomModalBottomSheet
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,7 +43,7 @@ fun ProductListScreen(
 
 
     if (showMutable) {
-        val systemUiController = rememberSystemUiController()
+       // val systemUiController = rememberSystemUiController()
         CustomModalBottomSheet(navController = navController)
     }
 
