@@ -1,8 +1,10 @@
 @file:Suppress("DEPRECATION")
 package com.kr.ui_otp.ui
 import android.annotation.SuppressLint
+import android.os.CountDownTimer
 import android.widget.Toast
 import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material3.*
@@ -10,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -35,20 +38,35 @@ import kotlinx.coroutines.*
 fun OtpScreen(navController: NavController) {
 
     val validationHelper: ValidationHelper = ValidationHelper()
-
     val context = LocalContext.current
 //    val scaffoldState = rememberScaffoldState()
     var isErrorOtp by rememberSaveable { mutableStateOf(false) }
     val otp = rememberSaveable { mutableStateOf("") }
     var otpVal: String? = null
+    var resendOtpVisible: Boolean by remember { mutableStateOf(false)}
+    val intervalTime:Long=10000
+    val countTimer = object:CountDownTimer(intervalTime,1000){
+        /**
+         * Callback fired on regular interval.
+         * @param millisUntilFinished The amount of time until finished.
+         */
+        override fun onTick(millisUntilFinished: Long) {
+        }
 
+        /**
+         * Callback fired when the time is up.
+         */
+        override fun onFinish() {
+            resendOtpVisible=true
+        }
+    }
+    countTimer.start()
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(),
 //        scaffoldState = scaffoldState
     ) {
-
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -110,7 +128,7 @@ fun OtpScreen(navController: NavController) {
 
 
                 OTPTextFields(length = 4) { getOpt ->
-                    otpVal=getOpt
+                    otpVal = getOpt
 
                 }
 
@@ -130,7 +148,28 @@ fun OtpScreen(navController: NavController) {
                     text = stringResource(id = R.string.recendcode),
                     color = PrimaryColor,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    modifier = Modifier
+                        .alpha(if (resendOtpVisible) 1f else 0.5f)
+                        .clickable(enabled = resendOtpVisible, onClick =
+                        {
+                            resendOtpVisible = false
+                            countTimer.start()
+                            Toast
+                                .makeText(context, "OTP Number will send again", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                            ,indication = null,
+                            interactionSource = remember { MutableInteractionSource()}
+                            /*   if (resendOtpVisible) {
+                                    resendOtpVisible = false
+                                    countTimer.start()
+                                    Toast
+                                        .makeText(context, "OTP Number will send again", Toast.LENGTH_SHORT)
+                                        .show()
+                                }*/
+                        )
+
 
                 )
 
@@ -144,15 +183,12 @@ fun OtpScreen(navController: NavController) {
                         .fillMaxWidth(0.9f)
                         .height(53.dp)
                         .clip(shape = ShapeTabButtons.small)
-                        .align(alignment = Alignment.CenterHorizontally)
-
-                    ,
+                        .align(alignment = Alignment.CenterHorizontally),
                     colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
                     shape = ShapeTabButtons.small,
                     border = BorderStroke(2.dp, PrimaryColor),
 
                     onClick = {
-
                         if (otpVal.toString() == "1234") {
                             Toast.makeText(context, "Verefication done  ", Toast.LENGTH_SHORT)
                                 .show()
@@ -160,7 +196,6 @@ fun OtpScreen(navController: NavController) {
                         }
 
                     },
-
 
                     ) {
                     Text(
@@ -173,9 +208,21 @@ fun OtpScreen(navController: NavController) {
                 }
 
             }
+
         }
+
     }
 
+    fun countDownTimer()
+    {
+
+    }
 }
+
+
+
+
+
+
 
 
