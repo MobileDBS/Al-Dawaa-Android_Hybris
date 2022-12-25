@@ -44,23 +44,19 @@ fun OtpScreen(navController: NavController) {
     val otp = rememberSaveable { mutableStateOf("") }
     var otpVal: String? = null
     var resendOtpVisible: Boolean by remember { mutableStateOf(false)}
-    val intervalTime:Long=10000
-    val countTimer = object:CountDownTimer(intervalTime,1000){
-        /**
-         * Callback fired on regular interval.
-         * @param millisUntilFinished The amount of time until finished.
-         */
+    val START_TIME_IN_MILLIS:Long=2*60*1000
+    var timeToResend:String by remember { mutableStateOf("")}
+    val countTimer = object:CountDownTimer( START_TIME_IN_MILLIS,1000){
         override fun onTick(millisUntilFinished: Long) {
+            timeToResend= updateTimerText(millisUntilFinished)
         }
-
-        /**
-         * Callback fired when the time is up.
-         */
         override fun onFinish() {
             resendOtpVisible=true
         }
     }
+
     countTimer.start()
+
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
@@ -133,14 +129,22 @@ fun OtpScreen(navController: NavController) {
                 }
 
                 Spacer(modifier = Modifier.padding(20.dp))
+Row(modifier = Modifier
+    .fillMaxWidth()) {
+    Spacer(modifier = Modifier.width(54.dp))
+    Text(
+        text = stringResource(id = R.string.forgetdontrec),
+        color = PrimaryColor,
+        fontSize = 16.sp
+    )
+    Spacer(modifier = Modifier.padding(8.dp))
+    Text(text = "$timeToResend",
+        modifier = Modifier.padding(top = 2.dp),
+        color = PrimaryColor,
+        fontSize = 14.sp)
+}
 
 
-                Text(
-                    text = stringResource(id = R.string.forgetdontrec),
-                    color = PrimaryColor,
-                    fontSize = 16.sp
-
-                )
                 Spacer(modifier = Modifier.padding(5.dp))
 
 
@@ -156,11 +160,14 @@ fun OtpScreen(navController: NavController) {
                             resendOtpVisible = false
                             countTimer.start()
                             Toast
-                                .makeText(context, "OTP Number will send again", Toast.LENGTH_SHORT)
+                                .makeText(
+                                    context,
+                                    "OTP Number will send again",
+                                    Toast.LENGTH_SHORT
+                                )
                                 .show()
-                        }
-                            ,indication = null,
-                            interactionSource = remember { MutableInteractionSource()}
+                        }, indication = null,
+                            interactionSource = remember { MutableInteractionSource() }
                             /*   if (resendOtpVisible) {
                                     resendOtpVisible = false
                                     countTimer.start()
@@ -212,13 +219,12 @@ fun OtpScreen(navController: NavController) {
         }
 
     }
-
-    fun countDownTimer()
-    {
-
-    }
 }
-
+private fun updateTimerText(remainingTime: Long): String {
+    val minute = remainingTime.div(1000).div(60)
+    val second = remainingTime.div(1000) % 60
+    return String.format("%02d:%02d", minute, second)
+}
 
 
 
