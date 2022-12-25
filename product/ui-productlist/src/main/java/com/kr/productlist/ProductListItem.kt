@@ -69,12 +69,10 @@ fun ProductListItem(result:ProductListModel){
     var itemToCart = rememberSaveable {
         mutableStateOf(1)
     }
-
     val context = LocalContext.current
     var offerText = "1"
     val isLikedButtonPress = remember { mutableStateOf(false) }
     val isItemInProductList = remember { mutableStateOf(true) }
-
 
     Surface(
         shadowElevation  = 8.dp, shape = RoundedCornerShape(20.dp), modifier = Modifier
