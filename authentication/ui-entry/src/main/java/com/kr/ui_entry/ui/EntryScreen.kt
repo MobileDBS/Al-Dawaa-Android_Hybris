@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.Unspecified
 import androidx.compose.ui.graphics.Color.Companion.White
@@ -290,11 +291,10 @@ fun EntryScreen(navController: NavController , onItemClick: (String) -> Unit) {
                                getGoogleSignInClient(context).signOut()
                                  Googletokenid=""
 
-
                            }, modifier = Modifier
                                .size(10.dp, 10.dp)
                                .background(Unspecified),
-                               colors = ButtonDefaults.buttonColors(Unspecified)
+                               colors = ButtonDefaults.buttonColors(Red)
                            ) {
 
                            }
@@ -468,9 +468,7 @@ fun FacebookLogin(navController:NavController) {
 fun TwitterLogin(navController:NavController) {
    val context = LocalContext.current
 
-    val twitterrequest =
-
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+    val twitterrequest = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val data = result.data?.getStringExtra(TwitterActivity.token)
             Log.e("twitter : ", data.toString())
             Log.e("twitter : ", result.resultCode.toString())

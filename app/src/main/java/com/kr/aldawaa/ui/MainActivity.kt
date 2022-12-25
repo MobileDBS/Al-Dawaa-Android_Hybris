@@ -31,6 +31,7 @@ import com.kr.aldawaa.LocationClass
   import com.google.android.gms.auth.api.signin.GoogleSignInClient
   import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.kr.aldawaa.R
+import com.kr.components.StartPermissionSetting
 import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
@@ -97,8 +98,10 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                 Log.v("Login Response", state.error.toString())
 
                 // A surface container using the 'background' color from the theme
-                Surface() {
-                    NavigationController ()
+                Surface {
+                   // NavigationController ()
+                   // test()
+                    StartPermissionSetting()
                 }
 
                 ///////////////End Navigation Bar///////////////////////

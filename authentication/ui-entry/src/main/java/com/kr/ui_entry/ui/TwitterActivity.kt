@@ -35,7 +35,6 @@ class TwitterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
-
         GlobalScope.launch {
             val results = GlobalScope.async { isLoggedIn() }
             val result = results.await()

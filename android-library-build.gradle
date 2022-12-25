@@ -93,4 +93,6 @@ dependencies{
     kapt(Hilt.compiler)
     implementation(Hilt.android)
 
+    //google permission
+    implementation(Google.googlePermission)
 }
