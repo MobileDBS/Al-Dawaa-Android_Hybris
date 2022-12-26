@@ -25,84 +25,13 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.kr.components.ui.theme.LightBlue
 
-@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun CustomDialog(
     description: String,
     navigateToSettingsScreen: () -> Unit,
-    content: @Composable() () -> Unit
 ) {
 
     val context = LocalContext.current.applicationContext
-    fun <T> stateSaver() = Saver<MutableState<T>, Any>(
-        save = { state -> state.value ?: "null" },
-        restore = { value ->
-            @Suppress("UNCHECKED_CAST")
-            (mutableStateOf((if (value == "null") null else value) as T))
-        }
-    )
-
-    // Track if the user doesn't want to see the rationale any more.
-    var doNotShowRationale by rememberSaveable(saver = stateSaver()) { mutableStateOf(false) }
-
-    // Permission state
-    val permissionState = rememberMultiplePermissionsState(
-        listOf(
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        )
-    )
-
-
-
-
-    when {
-        permissionState.allPermissionsGranted -> {
-            content()
-        }
-        // If the user denied the permission but a rationale should be shown, or the user sees
-        // the permission for the first time, explain why the feature is needed by the app and allow
-        // the user to be presented with the permission again or to not see the rationale any more.
-        permissionState.shouldShowRationale ||
-                !permissionState.permissionRequested -> {
-            if (doNotShowRationale) {
-                Text("Feature not available")
-            } else {
-                Column {
-                    Text("Need to detect current location. Please grant the permission.")
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Row {
-                        Button(onClick = { permissionState.launchMultiplePermissionRequest() }) {
-                            Text("Request permission")
-                        }
-                        Spacer(Modifier.width(8.dp))
-                        Button(onClick = { doNotShowRationale = true }) {
-                            Text("Don't show rationale again")
-                        }
-                    }
-                }
-            }
-        }
-        // If the criteria above hasn't been met, the user denied the permission. Let's present
-        // the user with a FAQ in case they want to know more and send them to the Settings screen
-        // to enable it the future there if they want to.
-        else -> {
-            Column {
-                Text(
-                    "Request location permission denied. " +
-                            "Need current location to show nearby places. " +
-                            "Please grant access on the Settings screen."
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Button(onClick = navigateToSettingsScreen) {
-                    Text("Open")
-                }
-            }
-        }
-    }
-
-
-
     Dialog(
         onDismissRequest = {
         }
@@ -113,7 +42,6 @@ fun CustomDialog(
                 .fillMaxWidth()
                 .wrapContentHeight(),
             shape = RoundedCornerShape(size = 20.dp),
-
             ) {
 
             Column(
@@ -121,7 +49,6 @@ fun CustomDialog(
             ) {
 
                 Text(
-
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp, end = 16.dp, top = 20.dp, bottom = 20.dp),
@@ -135,7 +62,6 @@ fun CustomDialog(
                 )
 
                 Divider(color = Color.LightGray, thickness = 1.dp)
-
 
                 Row(
                     modifier = Modifier
@@ -152,7 +78,7 @@ fun CustomDialog(
                     Button(
                         onClick = navigateToSettingsScreen,
                         modifier = Modifier
-                            .padding(top = 15.dp, bottom = 15.dp)
+                            .padding(top = 5.dp, bottom = 5.dp)
                             .weight(0.5f),
                         colors = ButtonDefaults.buttonColors(containerColor = Color.Unspecified)
 
@@ -172,7 +98,7 @@ fun CustomDialog(
                     Button(
                         onClick = {},
                         modifier = Modifier
-                            .padding(top = 15.dp, bottom = 15.dp)
+                            .padding(top = 5.dp, bottom = 5.dp)
                             .weight(0.5f),
                         colors = ButtonDefaults.buttonColors(containerColor = Color.Unspecified)
 
@@ -190,12 +116,9 @@ fun CustomDialog(
         }
     }
 }
-
-@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun StartPermissionSetting() {
     val context = LocalContext.current
-
     CustomDialog(context.resources.getString(R.string.access_location_msg),
         navigateToSettingsScreen = {
             context.startActivity(
@@ -204,7 +127,6 @@ fun StartPermissionSetting() {
                     Uri.fromParts("package", context.packageName, null)
                 )
             )
-        }) {
-//        Text("Location Permission Accessible")
-    }
+        })
+
 }
