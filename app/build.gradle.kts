@@ -120,6 +120,8 @@ dependencies {
     implementation(Compose.composeUtil)
     //google
     implementation(SocialMedia.googleservice)
+    //twitter
+    implementation(SocialMedia.twitter)
 
     implementation(Compose.accompanistSystemUiController)
 

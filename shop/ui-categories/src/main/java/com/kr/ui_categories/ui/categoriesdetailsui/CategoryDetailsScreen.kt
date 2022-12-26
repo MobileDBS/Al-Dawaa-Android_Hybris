@@ -76,7 +76,7 @@ fun CategoryDetailsScreen(navController: NavController
                     shape = RoundedCornerShape(28.dp),
                     elevation =CardDefaults.cardElevation(2.dp),//change
                     colors = CardDefaults.cardColors(
-                        containerColor =  MaterialTheme.colorScheme.surfaceVariant,
+                    //    containerColor =  MaterialTheme.colorScheme.surfaceVariant,
                     ),
                 ) {}
 

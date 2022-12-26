@@ -20,17 +20,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.ImageLoader
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
 import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
+import com.kr.ui_entry.ui.twitterAuthentication.TwitterConstants
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.*
+import twitter4j.TwitterFactory
+import twitter4j.conf.ConfigurationBuilder
 import java.util.*
 import javax.inject.Inject
 
@@ -54,6 +56,7 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
 
 
     //Google
+/*
 
     private fun getGoogleLoginAuth(): GoogleSignInClient {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -64,10 +67,25 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
             .build()
         return GoogleSignIn.getClient(this, gso)
     }
+*/
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        GlobalScope.launch {
+            val results = GlobalScope.async { isLoggedIn() }
+            val result = results.await()
+            if (result) {
+                // Show the Activity with the logged in user
+                Log.d("LoggedIn Twitter?: ", "YES")
+                //   finish()
+            } else {
+                // Show the Home Activity
+                Log.d("LoggedIn Twitter?: ", "NO")
+                //   finish()
+
+            }
+        }
         setContent {
             locationClass.GetLastLocation()
             AlDawaaHybrisTheme {
@@ -94,13 +112,33 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
                     //  Greeting()
-                    NavigationController ()
+                     NavigationController ()
                 }
 
                 ///////////////End Navigation Bar///////////////////////
             }
         }
 
+    }
+
+    private suspend fun isLoggedIn(): Boolean {
+        val sharedPref = this.getSharedPreferences("twitter",Context.MODE_PRIVATE)
+        val accessToken = sharedPref.getString("oauth_token","")
+        val accessTokenSecret = sharedPref.getString("oauth_token_secret", "")
+        val builder = ConfigurationBuilder()
+        builder.setOAuthConsumerKey(TwitterConstants.CONSUMER_KEY)
+            .setOAuthConsumerSecret(TwitterConstants.CONSUMER_SECRET)
+            .setOAuthAccessToken(accessToken)
+            .setOAuthAccessTokenSecret(accessTokenSecret)
+        val config = builder.build()
+        val factory = TwitterFactory(config)
+        val twitter = factory.instance
+        return try {
+            withContext(Dispatchers.IO) { twitter.verifyCredentials() }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
     override fun findLocation(location: Location) {

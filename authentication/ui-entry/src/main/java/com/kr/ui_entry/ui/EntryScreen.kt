@@ -8,6 +8,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import android.webkit.CookieManager
+import android.webkit.CookieSyncManager
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
@@ -39,27 +41,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.facebook.*
-import com.facebook.login.LoginClient
 import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
-import com.facebook.AccessToken
-import com.facebook.GraphRequest
-import com.facebook.HttpMethod
+import com.facebook.*
 import com.facebook.login.LoginManager
 import com.kr.components.ui.theme.*
-import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.SecondaryColor
 import com.kr.ui_entry.R
+import com.kr.ui_entry.ui.facebookAuthentication.FBLoginActivity
 import com.kr.ui_entry.ui.googleAuthentication.AuthScreen
 import com.kr.ui_entry.ui.googleAuthentication.AuthViewModel
 import com.kr.ui_entry.ui.googleAuthentication.Googletokenid
 import com.kr.ui_entry.ui.googleAuthentication.getGoogleSignInClient
+import com.kr.ui_entry.ui.twitterAuthentication.TwitterConstants
+import com.kr.ui_entry.ui.twitterAuthentication.TwitterScreen
 import com.kr.ui_login.ui.LoginScreen
-import com.kr.components.ui.theme.ShapeTabButtons
-import com.kr.components.ui.theme.Shapes
 import kotlinx.coroutines.*
+import twitter4j.Twitter
+import twitter4j.TwitterAPIConfiguration
+import twitter4j.TwitterBase
+import twitter4j.TwitterFactory
 import ui_register.ui.SignupScreen
-import java.util.Locale
+import java.util.*
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
@@ -69,6 +70,11 @@ import java.util.Locale
 @Composable
 fun EntryScreen(navController: NavController) {
     val authViewModel: AuthViewModel = hiltViewModel()
+     val twitter: TwitterFactory?=null
+    val twitter1: Twitter?=null
+    lateinit var twitter2: TwitterAPIConfiguration
+    lateinit var twitter3: TwitterBase
+
     var expanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
 //    val scaffoldState = rememberScaffoldState()
@@ -76,6 +82,11 @@ fun EntryScreen(navController: NavController) {
 
     var chosenlanguage by rememberSaveable { mutableStateOf("English") }
     val errorMessage = "name format is invalid"
+
+
+
+
+
 
     Scaffold(
         modifier = Modifier
@@ -172,7 +183,7 @@ fun EntryScreen(navController: NavController) {
 
                 modifier = Modifier
                     .fillMaxSize()
-                    .fillMaxWidth()
+                    // .fillMaxWidth()
                     .clip(
                         shape = Shapes.large.copy(
                             bottomStart = ZeroCornerSize,
@@ -289,7 +300,7 @@ fun EntryScreen(navController: NavController) {
 
                            }, modifier = Modifier
                                .size(10.dp, 10.dp)
-                               .background(Unspecified),
+                               .background(InputHint),
                                colors = ButtonDefaults.buttonColors(Unspecified)
                            ) {
 
@@ -339,7 +350,7 @@ fun EntryScreen(navController: NavController) {
 
                                 }, modifier = Modifier
                                     .size(10.dp, 10.dp)
-                                    .background(Unspecified),
+                                    .background(InputHint),
                                 colors = ButtonDefaults.buttonColors(Unspecified)
                             ) {
 
@@ -362,8 +373,35 @@ fun EntryScreen(navController: NavController) {
                                         )
                                     )
                             ) {
-                                TwitterLogin(navController = navController)
-                                    }
+                                TwitterScreen {
+
+                                }
+                                     }
+
+                        Button(
+                            onClick = {
+
+                                CookieSyncManager.createInstance(context)
+                                val cookieManager = CookieManager.getInstance()
+                                cookieManager.removeSessionCookie()
+                                twitter1?.setOAuthConsumer(
+                                    TwitterConstants.CONSUMER_KEY,
+                                    TwitterConstants.CONSUMER_SECRET)
+                                twitter1?.oAuthAccessToken=null
+                               twitter?.instance?.oAuthAccessToken=null
+                               /* val shared = context.getSharedPreferences("twitter",Context.MODE_PRIVATE)
+
+                                shared.edit().putString("oauth_token","").apply()
+                                shared.edit().putString("oauth_token_secret", "").apply()
+*/
+
+                                      }, modifier = Modifier
+                                .size(10.dp, 10.dp)
+                                .background(InputHint),
+                            colors = ButtonDefaults.buttonColors(Unspecified)
+                        ) {
+
+                        }
                             }
 
                     }
@@ -378,7 +416,7 @@ fun EntryScreen(navController: NavController) {
 
 
                     })
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(15.dp))
 
 
             }
@@ -459,6 +497,7 @@ fun FacebookLogin(navController:NavController) {
 
 
 // Google
+/*
 
 @Composable
 fun TwitterLogin(navController:NavController) {
@@ -467,7 +506,7 @@ fun TwitterLogin(navController:NavController) {
     val twitterrequest =
 
         rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            val data = result.data?.getStringExtra(MainActivity.token)
+            val data = result.data?.getStringExtra(TwitterActivity.token)
             Log.e("twitter : ", data.toString())
             Log.e("twitter : ", result.resultCode.toString())
             Log.e("twitter : ", result.data.toString())
@@ -480,14 +519,15 @@ fun TwitterLogin(navController:NavController) {
         }
     IconButton(onClick = {
       //  startForResult.launch(GoogleSignIn.getClient(context,GoogleSignInOptions))
-           twitterrequest.launch(MainActivity.getInstance(context))
+           twitterrequest.launch(TwitterActivity.getInstance(context))
     }, modifier = Modifier
         .background(Unspecified)
         .fillMaxSize()) {
 
-    }
+    }}
+*/
 
 
 
 
-}
+

@@ -1,4 +1,4 @@
-package com.kr.ui_entry.ui
+package com.kr.ui_entry.ui.facebookAuthentication
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,6 @@ import androidx.activity.ComponentActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
-import com.facebook.GraphRequest
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import java.util.*
@@ -52,36 +51,6 @@ class FBLoginActivity : ComponentActivity() {
                     Log.d("TAG++", "facebook login success")
                     Log.d("TAG++", "facebook login success ${result.authenticationToken?.claims?.email}")
 
-
-          /*          val request = GraphRequest.newMeRequest(
-                        result.accessToken,
-                        callback = GraphRequest.GraphJSONObjectCallback { obj, response ->
-                            val id: String = obj?.getString("id").toString()
-                            val name: String = obj?.getString("name").toString()
-                          //  val email: String = obj?.getString("email").toString()
-                            // val pictureUri: String = obj?.getString("pictureUri").toString()
-                            val picture: String = obj?.getString("picture").toString()
-
-                            Log.e("facebookname1 : ", id)
-                            Log.e("facebooklink1 : ", name)
-                          //  Log.e("facebookmail1 : ", email)
-                            Log.e("facebookpicture1 : ", picture)
-                        })
-
-                    val parameters = Bundle()
-                    parameters.putString("fields", "id,name,email,picture")
-
-                    request.parameters = parameters
-                    request.executeAsync()
-                    Log.e("facebookparam : ", parameters.toString())
-                    Log.e("facebook : ", result.accessToken.toString())
-
-                    Log.e("facebook : ", result.accessToken.expires.toString())
-
-                    Log.e("facebook : ", result.accessToken.userId)
-
-                    Log.d("TAG+++++", "facebook login success ${result.authenticationToken?.claims?.email}")
-*/
 
                     val intent = Intent().apply {
                         putExtra(EXTRA_DATA_FB, result.accessToken)

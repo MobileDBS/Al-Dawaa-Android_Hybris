@@ -41,13 +41,16 @@ fun CategoryDetailsItems(categoryItems: String) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White)
+            .background(Color.Unspecified)
             .animateContentSize(
                 animationSpec = tween(
                     durationMillis = 500,
                     easing = LinearOutSlowInEasing
                 )
-            ),
+            ), colors = CardDefaults.cardColors(containerColor = Color.White,
+            disabledContainerColor = Color.White
+        )
+        ,
         shape = Shapes.None,
         onClick = {
             expandedState = !expandedState
