@@ -1,4 +1,4 @@
-package com.kr.ui_entry.ui
+package com.kr.ui_entry.ui.twitterAuthentication
 
 object TwitterConstants {
     var CONSUMER_KEY = "t3Ws5V0zR39bLTubFAHf826UF"

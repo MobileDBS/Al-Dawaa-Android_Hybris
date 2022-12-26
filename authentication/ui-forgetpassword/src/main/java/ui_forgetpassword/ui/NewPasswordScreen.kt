@@ -97,8 +97,7 @@ fun NewPasswordScreen (navController: NavController) {
                 verticalArrangement = Arrangement.Top,
 
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     .clip(
                         shape = Shapes.large.copy(
                             bottomStart = ZeroCornerSize,

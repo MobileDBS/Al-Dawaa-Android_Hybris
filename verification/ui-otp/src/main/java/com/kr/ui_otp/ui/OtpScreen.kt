@@ -1,8 +1,10 @@
 @file:Suppress("DEPRECATION")
 package com.kr.ui_otp.ui
 import android.annotation.SuppressLint
+import android.os.CountDownTimer
 import android.widget.Toast
 import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material3.*
@@ -10,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -35,12 +38,24 @@ import kotlinx.coroutines.*
 fun OtpScreen(navController: NavController) {
 
     val validationHelper: ValidationHelper = ValidationHelper()
-
     val context = LocalContext.current
 //    val scaffoldState = rememberScaffoldState()
     var isErrorOtp by rememberSaveable { mutableStateOf(false) }
     val otp = rememberSaveable { mutableStateOf("") }
     var otpVal: String? = null
+    var resendOtpVisible: Boolean by remember { mutableStateOf(false)}
+    val START_TIME_IN_MILLIS:Long=2*60*1000
+    var timeToResend:String by remember { mutableStateOf("")}
+    val countTimer = object:CountDownTimer( START_TIME_IN_MILLIS,1000){
+        override fun onTick(millisUntilFinished: Long) {
+            timeToResend= updateTimerText(millisUntilFinished)
+        }
+        override fun onFinish() {
+            resendOtpVisible=true
+        }
+    }
+
+    countTimer.start()
 
     Scaffold(
         modifier = Modifier
@@ -48,7 +63,6 @@ fun OtpScreen(navController: NavController) {
             .fillMaxHeight(),
 //        scaffoldState = scaffoldState
     ) {
-
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -110,19 +124,27 @@ fun OtpScreen(navController: NavController) {
 
 
                 OTPTextFields(length = 4) { getOpt ->
-                    otpVal=getOpt
+                    otpVal = getOpt
 
                 }
 
                 Spacer(modifier = Modifier.padding(20.dp))
+Row(modifier = Modifier
+    .fillMaxWidth()) {
+    Spacer(modifier = Modifier.width(54.dp))
+    Text(
+        text = stringResource(id = R.string.forgetdontrec),
+        color = PrimaryColor,
+        fontSize = 16.sp
+    )
+    Spacer(modifier = Modifier.padding(8.dp))
+    Text(text = "$timeToResend",
+        modifier = Modifier.padding(top = 2.dp),
+        color = PrimaryColor,
+        fontSize = 14.sp)
+}
 
 
-                Text(
-                    text = stringResource(id = R.string.forgetdontrec),
-                    color = PrimaryColor,
-                    fontSize = 16.sp
-
-                )
                 Spacer(modifier = Modifier.padding(5.dp))
 
 
@@ -130,7 +152,31 @@ fun OtpScreen(navController: NavController) {
                     text = stringResource(id = R.string.recendcode),
                     color = PrimaryColor,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    modifier = Modifier
+                        .alpha(if (resendOtpVisible) 1f else 0.5f)
+                        .clickable(enabled = resendOtpVisible, onClick =
+                        {
+                            resendOtpVisible = false
+                            countTimer.start()
+                            Toast
+                                .makeText(
+                                    context,
+                                    "OTP Number will send again",
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
+                        }, indication = null,
+                            interactionSource = remember { MutableInteractionSource() }
+                            /*   if (resendOtpVisible) {
+                                    resendOtpVisible = false
+                                    countTimer.start()
+                                    Toast
+                                        .makeText(context, "OTP Number will send again", Toast.LENGTH_SHORT)
+                                        .show()
+                                }*/
+                        )
+
 
                 )
 
@@ -144,15 +190,12 @@ fun OtpScreen(navController: NavController) {
                         .fillMaxWidth(0.9f)
                         .height(53.dp)
                         .clip(shape = ShapeTabButtons.small)
-                        .align(alignment = Alignment.CenterHorizontally)
-
-                    ,
+                        .align(alignment = Alignment.CenterHorizontally),
                     colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
                     shape = ShapeTabButtons.small,
                     border = BorderStroke(2.dp, PrimaryColor),
 
                     onClick = {
-
                         if (otpVal.toString() == "1234") {
                             Toast.makeText(context, "Verefication done  ", Toast.LENGTH_SHORT)
                                 .show()
@@ -160,7 +203,6 @@ fun OtpScreen(navController: NavController) {
                         }
 
                     },
-
 
                     ) {
                     Text(
@@ -173,9 +215,20 @@ fun OtpScreen(navController: NavController) {
                 }
 
             }
-        }
-    }
 
+        }
+
+    }
 }
+private fun updateTimerText(remainingTime: Long): String {
+    val minute = remainingTime.div(1000).div(60)
+    val second = remainingTime.div(1000) % 60
+    return String.format("%02d:%02d", minute, second)
+}
+
+
+
+
+
 
 
