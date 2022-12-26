@@ -79,12 +79,14 @@ fun ServicesItem(result: Services, onItemClick: (Services) -> Unit) {
                            modifier = Modifier
                                .wrapContentWidth()
                                .wrapContentHeight().padding(bottom = 5.dp),
-                       fontWeight = FontWeight.SemiBold, color = PrimaryColor)
+                              style = MaterialTheme.typography.titleMedium, color = PrimaryColor)
 
                        Text(text = result.description, textAlign = TextAlign.Start,
                            modifier = Modifier
                                .wrapContentWidth()
-                               .wrapContentHeight(), color = PrimaryColor)
+                               .wrapContentHeight(),
+                           color = PrimaryColor ,
+                       style = MaterialTheme.typography.bodyLarge)
 
 
                    }

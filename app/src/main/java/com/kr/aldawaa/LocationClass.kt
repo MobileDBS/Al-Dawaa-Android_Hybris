@@ -41,6 +41,7 @@ this.interfaceListener=interfaceListener
             },
             permissionsNotAvailableContent = {
                 Log.v("location_permission" , "not available")
+
             }
         ) {
 

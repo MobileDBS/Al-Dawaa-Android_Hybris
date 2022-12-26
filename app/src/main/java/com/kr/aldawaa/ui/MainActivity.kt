@@ -1,5 +1,6 @@
 package com.kr.aldawaa.ui
 
+import android.Manifest
 import android.location.Location
 import android.app.DatePickerDialog
 import android.content.Context
@@ -28,11 +29,11 @@ import coil.size.Size
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
 
 import com.kr.aldawaa.LocationClass
-import com.kr.aldawaa.LocationClass
   import com.google.android.gms.auth.api.signin.GoogleSignIn
   import com.google.android.gms.auth.api.signin.GoogleSignInClient
   import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.kr.aldawaa.R
+import com.kr.components.CustomPermission
 import com.kr.components.StartPermissionSetting
 import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver
@@ -46,7 +47,6 @@ import twitter4j.TwitterFactory
 import twitter4j.conf.ConfigurationBuilder
 import java.util.*
 import javax.inject.Inject
-import kotlinx.coroutines.DelicateCoroutinesApi
 
 @ExperimentalMaterial3Api
 @AndroidEntryPoint
@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
         super.attachBaseContext(newBase)
     }
 
-    var locationClass=LocationClass(this)
+//    var locationClass=LocationClass(this)
     @Inject
     lateinit var connectivityObserver: NetworkConnectivityObserver
 
@@ -101,7 +101,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
             }
         }
         setContent {
-            locationClass.GetLastLocation()
+            //locationClass.GetLastLocation()
             AlDawaaHybrisTheme{
 
                 //BottomSheet
@@ -126,9 +126,11 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 
                 // A surface container using the 'background' color from the theme
                 Surface {
-                   // NavigationController ()
-                   // test()
-                    StartPermissionSetting()
+                    NavigationController ()
+                    CustomPermission(permissions  = listOf(
+                        Manifest.permission.CAMERA)
+                        , permissionContent ={
+                        } )
                 }
 
                 ///////////////End Navigation Bar///////////////////////

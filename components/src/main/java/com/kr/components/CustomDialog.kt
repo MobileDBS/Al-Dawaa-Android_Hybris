@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,17 +33,35 @@ fun CustomDialog(
 ) {
 
     val context = LocalContext.current.applicationContext
-    Dialog(
-        onDismissRequest = {
-        }
-    ) {
+    val dialogState: MutableState<Boolean> = remember {
+        mutableStateOf(true)
+    }
+    if (dialogState.value) {
+        Dialog(
+            onDismissRequest = { dialogState.value = false },
+            content = {
+                DialogContent(description = description , dialogState  = dialogState, navigateToSettingsScreen = navigateToSettingsScreen)
+            }
+        )
+    }
+    else {
+        Toast.makeText(context, "Dialog Closed", Toast.LENGTH_SHORT).show()
+    }
+
+}
+
+    @Composable
+    fun DialogContent (description: String ,
+                       dialogState : MutableState<Boolean>,
+                               navigateToSettingsScreen: () -> Unit,
+    ){
 
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
             shape = RoundedCornerShape(size = 20.dp),
-            ) {
+        ) {
 
             Column(
                 modifier = Modifier
@@ -96,7 +115,7 @@ fun CustomDialog(
                             .width(1.dp)
                     )
                     Button(
-                        onClick = {},
+                        onClick = {dialogState.value = false},
                         modifier = Modifier
                             .padding(top = 5.dp, bottom = 5.dp)
                             .weight(0.5f),
@@ -104,7 +123,7 @@ fun CustomDialog(
 
                     ) {
                         Text(
-                            text = "Ok",
+                            text = "Cancel",
                             color = LightBlue,
                             style = MaterialTheme.typography.titleMedium
                         )
@@ -115,11 +134,12 @@ fun CustomDialog(
 
         }
     }
-}
+
 @Composable
-fun StartPermissionSetting() {
+fun StartPermissionSetting(description: String,) {
     val context = LocalContext.current
-    CustomDialog(context.resources.getString(R.string.access_location_msg),
+    CustomDialog(
+        description = description,
         navigateToSettingsScreen = {
             context.startActivity(
                 Intent(
