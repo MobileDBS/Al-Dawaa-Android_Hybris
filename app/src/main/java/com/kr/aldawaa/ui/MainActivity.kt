@@ -34,11 +34,15 @@ import com.kr.aldawaa.R
 import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
+import com.kr.ui_entry.ui.twitterAuthentication.TwitterConstants
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
+import twitter4j.TwitterFactory
+import twitter4j.conf.ConfigurationBuilder
 import java.util.*
 import javax.inject.Inject
-import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlin.coroutines.CoroutineContext
 
 @ExperimentalMaterial3Api
 @AndroidEntryPoint
@@ -71,6 +75,21 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        lateinit var coroutineScope :CoroutineScope
+        coroutineScope.launch {
+            val results = coroutineScope.async { isLoggedIn() }
+            val result = results.await()
+            if (result) {
+                // Show the Activity with the logged in user
+                Log.d("LoggedIn Twitter?: ", "YES")
+                //   finish()
+            } else {
+                // Show the Home Activity
+                Log.d("LoggedIn Twitter?: ", "NO")
+                //   finish()
+
+            }
+        }
         setContent {
             locationClass.GetLastLocation()
             AlDawaaHybrisTheme {
@@ -106,6 +125,26 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
             }
         }
 
+    }
+
+    private suspend fun isLoggedIn(): Boolean {
+        val sharedPref = this.getSharedPreferences("twitter",Context.MODE_PRIVATE)
+        val accessToken = sharedPref.getString("oauth_token","")
+        val accessTokenSecret = sharedPref.getString("oauth_token_secret", "")
+        val builder = ConfigurationBuilder()
+        builder.setOAuthConsumerKey(TwitterConstants.CONSUMER_KEY)
+            .setOAuthConsumerSecret(TwitterConstants.CONSUMER_SECRET)
+            .setOAuthAccessToken(accessToken)
+            .setOAuthAccessTokenSecret(accessTokenSecret)
+        val config = builder.build()
+        val factory = TwitterFactory(config)
+        val twitter = factory.instance
+        return try {
+            withContext(Dispatchers.IO) { twitter.verifyCredentials() }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
     override fun findLocation(location: Location) {

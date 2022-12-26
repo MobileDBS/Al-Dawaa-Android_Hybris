@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ButtonElevation
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -29,8 +30,8 @@ fun CategoryDetailsSubItems(categoryIS : String) {
                 defaultElevation = 2.dp,
 
                 ),
-            border = BorderStroke(1.dp , color = InputColor),
-            colors = ButtonDefaults.buttonColors(WhiteColor),
+          //  border = BorderStroke(1.dp , color = InputColor),
+            colors = ButtonDefaults.outlinedButtonColors(Color.Unspecified),
             shape = RoundedCornerShape(20.dp),
 
             onClick = {
