@@ -33,9 +33,6 @@ fun TwitterScreen(
 
         getRequestToken()
         onClicked()
-    }else{
-        getRequestToken()
-        onClicked()
     }
 }
 
@@ -49,13 +46,13 @@ lateinit var twitterDialog: Dialog
 @Composable
 private fun getRequestToken() {
     val context = LocalContext.current
-
+ val coroutineScope = rememberCoroutineScope()
 
         val sharedPref = context.getSharedPreferences("twitter",Context.MODE_PRIVATE)
         sharedPref.edit().putString("oauth_token",OauthToken).apply()
         sharedPref.edit().putString("oauth_token_secret",OauthTokensecret).apply()
-     val coroutinescop = rememberCoroutineScope()
-    coroutinescop.launch(Dispatchers.Default) {
+
+    coroutineScope.launch(Dispatchers.IO) {
 
         val builder = ConfigurationBuilder()
             .setDebugEnabled(true)

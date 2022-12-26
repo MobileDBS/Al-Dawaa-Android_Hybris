@@ -1,3 +1,5 @@
+@file:OptIn(DelicateCoroutinesApi::class)
+
 package com.kr.aldawaa.ui
 
 import android.app.DatePickerDialog
@@ -29,7 +31,6 @@ import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_entry.ui.twitterAuthentication.TwitterConstants
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.*
 import twitter4j.TwitterFactory
 import twitter4j.conf.ConfigurationBuilder
@@ -55,7 +56,7 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
     @Inject
     lateinit var connectivityObserver: NetworkConnectivityObserver
 
-
+     val coroutineScope :CoroutineScope = CoroutineScope(Dispatchers.IO)
     //Google
 /*
 
@@ -70,11 +71,11 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
     }
 */
 
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        GlobalScope.launch {
-            val results = GlobalScope.async { isLoggedIn() }
+
+        coroutineScope.launch(Dispatchers.IO) {
+            val results = coroutineScope.async { isLoggedIn() }
             val result = results.await()
             if (result) {
                 // Show the Activity with the logged in user

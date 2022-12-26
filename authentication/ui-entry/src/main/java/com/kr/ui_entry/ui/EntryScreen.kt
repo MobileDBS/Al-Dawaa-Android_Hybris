@@ -496,38 +496,6 @@ fun FacebookLogin(navController:NavController) {
 }
 
 
-// Google
-/*
-
-@Composable
-fun TwitterLogin(navController:NavController) {
-   val context = LocalContext.current
-
-    val twitterrequest =
-
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            val data = result.data?.getStringExtra(TwitterActivity.token)
-            Log.e("twitter : ", data.toString())
-            Log.e("twitter : ", result.resultCode.toString())
-            Log.e("twitter : ", result.data.toString())
-
-
-            if (result.resultCode == Activity.RESULT_OK) {
-                Toast.makeText(context, "yesyesyes", Toast.LENGTH_SHORT).show()
-
-            }
-        }
-    IconButton(onClick = {
-      //  startForResult.launch(GoogleSignIn.getClient(context,GoogleSignInOptions))
-           twitterrequest.launch(TwitterActivity.getInstance(context))
-    }, modifier = Modifier
-        .background(Unspecified)
-        .fillMaxSize()) {
-
-    }}
-*/
-
-
 
 
 
