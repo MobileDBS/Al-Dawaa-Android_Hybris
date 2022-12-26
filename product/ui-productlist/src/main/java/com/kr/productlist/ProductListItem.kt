@@ -66,7 +66,7 @@ fun DisplayProductList() {
 //fun ProductListItem(showBottomSheet: (Boolean) -> Unit)
 fun ProductListItem(result:ProductListModel){
     val imagePainter= rememberAsyncImagePainter(model = result.productImage)
-    var itemToCart = rememberSaveable {
+    val itemToCart = rememberSaveable {
         mutableStateOf(1)
     }
     val context = LocalContext.current

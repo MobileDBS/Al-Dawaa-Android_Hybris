@@ -26,12 +26,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.ui.theme.*
 import com.kr.ui_login.R
+import dagger.hilt.android.AndroidEntryPoint
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(navController: NavController) {
-
-
     val context = LocalContext.current
     val passwordvisibilitylogin = remember { mutableStateOf(false) }
     val checkboxremember = remember { mutableStateOf(false) }
