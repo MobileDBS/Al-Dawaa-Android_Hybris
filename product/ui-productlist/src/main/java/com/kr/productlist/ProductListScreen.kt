@@ -5,6 +5,7 @@ import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedButton
@@ -14,7 +15,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.kr.components.CustomModalBottomSheet
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,46 +38,12 @@ fun ProductListScreen(
             Text("Open Map")
 
         }
-        Scaffold(
-            modifier = Modifier,
-            /*scaffoldState = rememberScaffoldState()*/
-        ) {
-            Box(
-                modifier = Modifier
-                    .padding(top = 32.dp, start = 8.dp, end = 8.dp, bottom = 32.dp)
-            ) {
-
-                LazyVerticalGrid(
-                    state = rememberLazyGridState(),
-                    columns = GridCells.Fixed(2),
-                    userScrollEnabled = true,
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                   // horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier
-                        .scrollable(rememberLazyGridState(), orientation = Orientation.Vertical)
-                      ,
-                    content = {
-                        items(7) {
-                            //Added
-                                it ->
-                            ProductListItem()
-                            showMutable= true
-                        /* {
-                                    showBottomSheet ->
-                                showBottomSheet(true)
-                                showMutable =(true)
-                            }*/
-                        }
-                    }
-                )
-            }
-        }
-
+        DisplayProductList()
     }
 
 
     if (showMutable) {
-        val systemUiController = rememberSystemUiController()
+       // val systemUiController = rememberSystemUiController()
         CustomModalBottomSheet(navController = navController)
     }
 

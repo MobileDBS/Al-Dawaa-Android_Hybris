@@ -21,6 +21,9 @@ object Compose {
     private const val material_3 = "1.0.0-alpha13"
     const val material3 = "androidx.compose.material3:material3:$material_3"
 
+    private const val constraintlayout_composeVersion = "1.0.1"
+    const val constraintlayout_compose = "androidx.constraintlayout:constraintlayout-compose:$constraintlayout_composeVersion"
+
     private const val flow = "0.17.0"
     const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$flow"
 
@@ -29,7 +32,7 @@ object Compose {
 
 
     private const val accompanistPermissionsVersion = "0.23.0"
-    const val Permissions = "com.google.accompanist:accompanist-permissions:$accompanistPermissionsVersion"
+    const val permissions = "com.google.accompanist:accompanist-permissions:$accompanistPermissionsVersion"
 
     private const val accompanistPagerVersion = "0.28.0"
     const val accompanistPager = "com.google.accompanist:accompanist-pager:$accompanistPagerVersion"

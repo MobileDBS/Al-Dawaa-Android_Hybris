@@ -32,18 +32,22 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.SnackbarHostComponent
 import com.kr.components.ui.theme.InputHint
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
 import com.kr.services_domain.model.Services
 import com.kr.ui_home.R
+import kotlinx.coroutines.launch
 
 
 @Composable
 fun HomeScreen(navController: NavController) {
     val context = LocalContext.current
+    val snackbarHostState = SnackbarHostState()
+    val coroutinescope = rememberCoroutineScope()
     Column(modifier = Modifier) {//modifier = Modifier.padding(16.dp)
-
+        val isShowing = remember{ mutableStateOf(false)}
         //start arbay
         Box(
             modifier = Modifier
@@ -55,9 +59,17 @@ fun HomeScreen(navController: NavController) {
                 TxtField(context)
                 TextButton(
                     onClick = {
-                        Toast
+                        isShowing.value = true
+                        coroutinescope.launch {
+                            snackbarHostState.showSnackbar(
+                                message = "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as a",
+                                actionLabel = "HIDE",
+                                duration = SnackbarDuration.Short
+                            )
+                        }
+               /*         Toast
                             .makeText(context, "Go To logi", Toast.LENGTH_SHORT)
-                            .show()
+                            .show()*/
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
@@ -74,19 +86,18 @@ fun HomeScreen(navController: NavController) {
                         "", modifier = Modifier.size(ButtonDefaults.IconSize), tint = SecondaryColor
                     )
                 }
-
-
+                /*      SampleSnackbar (isShowing= isShowing.value,
+                              onHideSnackbar = {isShowing.value = false})*/
+                SnackbarHostComponent(snackbarHostState)
             }
-
         }
-
         //end arbahi section
         // start product list
 
         // Text(text = "Home Screen", color = PrimaryColor)
 
 
-        //  HomeProductList(navController)
+         HomeProductList(navController)
 
         //end product list
 
@@ -122,6 +133,8 @@ fun HomeScreen(navController: NavController) {
                 }
             )
         }
+
+
     }
 
     // end services
@@ -239,4 +252,5 @@ fun TxtField(context:Context) {
                 )
                  })
     }
+
 }

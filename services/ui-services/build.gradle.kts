@@ -12,7 +12,7 @@ dependencies{
     "implementation"(Camera.camerax)
     "implementation"(Camera.cameraview)
     "implementation"(Camera.cameraxlife)
-    "implementation"(Camera.permission)
+    "implementation"(Compose.permissions)
     "implementation"(project(Modules.servicesDomain))
 
 
