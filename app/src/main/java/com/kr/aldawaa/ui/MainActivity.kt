@@ -37,7 +37,6 @@ import twitter4j.TwitterFactory
 import twitter4j.conf.ConfigurationBuilder
 import java.util.*
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @ExperimentalMaterial3Api
 @AndroidEntryPoint
@@ -46,6 +45,7 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
 
     @Inject
     lateinit var imageLoader: ImageLoader
+
 
     override fun attachBaseContext(newBase: Context) {
         applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
@@ -59,6 +59,7 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
 
 
     //Google
+/*
 
     private fun getGoogleLoginAuth(): GoogleSignInClient {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -69,13 +70,13 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
             .build()
         return GoogleSignIn.getClient(this, gso)
     }
+*/
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lateinit var coroutineScope :CoroutineScope
-        coroutineScope.launch {
-            val results = coroutineScope.async { isLoggedIn() }
+        GlobalScope.launch {
+            val results = GlobalScope.async { isLoggedIn() }
             val result = results.await()
             if (result) {
                 // Show the Activity with the logged in user
