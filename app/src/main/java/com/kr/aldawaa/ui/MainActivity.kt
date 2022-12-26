@@ -20,9 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.ImageLoader
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
 import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.components.ui.theme.AlDawaaHybrisTheme
@@ -116,7 +114,7 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
                 Surface(color = MaterialTheme.colorScheme.background) {
 
                     //  Greeting()
-                    // NavigationController ()
+                     NavigationController ()
                 }
 
                 ///////////////End Navigation Bar///////////////////////
