@@ -45,7 +45,6 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
     @Inject
     lateinit var imageLoader: ImageLoader
 
-
     override fun attachBaseContext(newBase: Context) {
         applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
         super.attachBaseContext(newBase)
@@ -113,7 +112,6 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
 
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
-
                     //  Greeting()
                      NavigationController ()
                 }

@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.SnackbarHostComponent
+import com.kr.components.textFieldComponent.TextFieldComponent
 import com.kr.components.ui.theme.InputHint
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
@@ -175,7 +176,35 @@ fun TxtField(context:Context) {
         horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
-        OutlinedTextField(
+        TextFieldComponent(
+            _value = inputvalue.value,
+            _onValueChange = {newValue ->
+                inputvalue.value = newValue},
+            _placeholder = {  Text(
+                text = stringResource(id = R.string.enteryourpass),
+                color = InputHint
+            ) },
+            _leadingIcon = {    Icon(
+                Icons.Filled.Search,"",
+                tint = Color.LightGray
+            ) },
+            _trailingIcon = {
+                Icon(
+                    Icons.Filled.Info, "",
+                    tint = Color.LightGray, modifier = Modifier.clickable {
+                        Toast
+                            .makeText(context, "Open Scanner...", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                )
+            },
+            _textStyle = TextStyle(
+                color = PrimaryColor,
+                fontFamily = FontFamily.SansSerif
+            ),
+            _colors = TextFieldDefaults.outlinedTextFieldColors(containerColor = Color.White)
+        )
+/*        OutlinedTextField(
             // below line is used to get
             // value of text field,
             value = inputvalue.value,
@@ -250,7 +279,7 @@ fun TxtField(context:Context) {
                             .show()
                     }
                 )
-                 })
+                 })*/
     }
 
 }
