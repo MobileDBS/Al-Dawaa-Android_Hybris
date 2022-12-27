@@ -18,13 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.ui_categories.R
 import com.kr.ui_categories.ui.categoriesdetailsui.component.CategoryDetailsItems
-import  com.kr.components.ui.theme.InputHint
+import  com.kr.components.ui.theme.InputTextColor
 
 @ExperimentalMaterial3Api
 @Composable
@@ -93,9 +92,9 @@ fun CategoryDetailsScreen(navController: NavController
                         item {
                             Row(modifier = Modifier.fillMaxWidth(),
                                 verticalAlignment = Alignment.CenterVertically) {
-                                Divider(color = InputHint, thickness = 1.dp, modifier = Modifier.weight(5f))
+                                Divider(color = InputTextColor, thickness = 1.dp, modifier = Modifier.weight(5f))
                                 Text(text = "Or",modifier = Modifier.weight(1f))
-                                Divider(color = InputHint, thickness = 1.dp,modifier = Modifier.weight(5f))
+                                Divider(color = InputTextColor, thickness = 1.dp,modifier = Modifier.weight(5f))
 
                             }
                         }

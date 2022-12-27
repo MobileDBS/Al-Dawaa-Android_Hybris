@@ -20,13 +20,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.ui.theme.*
 import com.kr.ui_login.R
-import dagger.hilt.android.AndroidEntryPoint
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,7 +57,7 @@ fun LoginScreen(navController: NavController) {
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.enteryouremail),
-                    color = InputHint
+                    color = InputTextColor
                 )
             },
             isError = isErrorloginmail,
@@ -99,7 +97,7 @@ fun LoginScreen(navController: NavController) {
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.enteryourpass),
-                    color = InputHint
+                    color = InputTextColor
                 )
             },
             isError = isErrorloginpass,

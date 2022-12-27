@@ -7,7 +7,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.*
@@ -94,7 +93,7 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.name),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 isError = isErrorsignupname,
@@ -262,7 +261,7 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.enteryouremail),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -305,7 +304,7 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.phonenumber),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
@@ -348,7 +347,7 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.birthdate),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 isError = isErrorsignupbirth,
@@ -430,7 +429,7 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.enteryourpass),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 isError = isErrorsignuppass,
@@ -495,7 +494,7 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.confirmpassword),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 isError = isErrorsignupconfirmpass,

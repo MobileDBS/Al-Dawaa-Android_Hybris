@@ -300,7 +300,7 @@ fun EntryScreen(navController: NavController) {
 
                            }, modifier = Modifier
                                .size(10.dp, 10.dp)
-                               .background(InputHint),
+                               .background(InputTextColor),
                                colors = ButtonDefaults.buttonColors(Unspecified)
                            ) {
 
@@ -350,7 +350,7 @@ fun EntryScreen(navController: NavController) {
 
                                 }, modifier = Modifier
                                     .size(10.dp, 10.dp)
-                                    .background(InputHint),
+                                    .background(InputTextColor),
                                 colors = ButtonDefaults.buttonColors(Unspecified)
                             ) {
 
@@ -397,7 +397,7 @@ fun EntryScreen(navController: NavController) {
 
                                       }, modifier = Modifier
                                 .size(10.dp, 10.dp)
-                                .background(InputHint),
+                                .background(InputTextColor),
                             colors = ButtonDefaults.buttonColors(Unspecified)
                         ) {
 

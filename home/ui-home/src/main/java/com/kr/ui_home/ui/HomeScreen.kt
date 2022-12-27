@@ -3,9 +3,6 @@ package com.kr.ui_home.ui
 import androidx.compose.foundation.layout.*
 import android.content.Context
 import android.widget.Toast
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import android.view.Gravity
 import androidx.compose.foundation.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -25,16 +22,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.*
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.SnackbarHostComponent
 import com.kr.components.textFieldComponent.TextFieldComponent
-import com.kr.components.ui.theme.InputHint
+import com.kr.components.ui.theme.InputTextColor
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
 import com.kr.services_domain.model.Services
@@ -176,13 +170,13 @@ fun TxtField(context:Context) {
         horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
-        TextFieldComponent(
+/*        TextFieldComponent(
             _value = inputvalue.value,
             _onValueChange = {newValue ->
                 inputvalue.value = newValue},
             _placeholder = {  Text(
                 text = stringResource(id = R.string.enteryourpass),
-                color = InputHint
+                color = InputTextColor
             ) },
             _leadingIcon = {    Icon(
                 Icons.Filled.Search,"",
@@ -203,7 +197,7 @@ fun TxtField(context:Context) {
                 fontFamily = FontFamily.SansSerif
             ),
             _colors = TextFieldDefaults.outlinedTextFieldColors(containerColor = Color.White)
-        )
+        )*/
 /*        OutlinedTextField(
             // below line is used to get
             // value of text field,

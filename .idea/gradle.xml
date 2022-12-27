@@ -34,6 +34,7 @@
             <option value="$PROJECT_DIR$/home/home-domain" />
             <option value="$PROJECT_DIR$/home/home-interactors" />
             <option value="$PROJECT_DIR$/home/home_dataSource" />
+            <option value="$PROJECT_DIR$/home/home_domain" />
             <option value="$PROJECT_DIR$/home/ui-home" />
             <option value="$PROJECT_DIR$/offers" />
             <option value="$PROJECT_DIR$/offers/ui-offers" />
