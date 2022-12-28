@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,7 +53,8 @@ fun ForgetSuccess (navController: NavController) {
                 .fillMaxSize()
                 .background(color = Color.White)
                 .verticalScroll(rememberScrollState())
-                .paint(painter = painterResource(id = R.drawable.group))
+                .paint(painter = painterResource(id = R.drawable.group)
+                , contentScale = ContentScale.FillBounds)
 
 
         ) {
@@ -110,8 +112,10 @@ fun ForgetSuccess (navController: NavController) {
                 Toast.makeText(context, "Backed to  Login ", Toast.LENGTH_SHORT).show()
             }, statue = BTNSTATE.ACTIVE,
                 contenttext = stringResource(id = R.string.backtohome ))
+            Spacer(modifier = Modifier.padding(15.dp))
 
-                }
+
+        }
             }
         }
 
