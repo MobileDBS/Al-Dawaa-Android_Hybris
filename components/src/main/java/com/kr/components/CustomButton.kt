@@ -31,7 +31,7 @@ fun CustomOutlinedButton(
     modifier = modifier.fillMaxWidth(0.9f)
         .height(53.dp)
         .clip(shape = ShapeBigButtons.small),
-    enabled = statue.enablestatue,
+    enabled = statue.enablestate,
     shape = ShapeBigButtons.small,
     colors = ButtonDefaults.outlinedButtonColors(
         contentColor = statue.textcolor,
