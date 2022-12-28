@@ -14,16 +14,21 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.kr.components.textFieldComponent.TextFieldComponent
+import com.kr.components.ui.theme.PrimaryColor
 
 @Composable
 fun TextFieldComponent(data: TextFieldData,
-                        _value: TextFieldValue,
+                       _value: TextFieldValue,
                        _onValueChange : (TextFieldValue) -> Unit,
                        _placeholder:@Composable (() -> Unit),
                        _leadingIcon:@Composable (()->Unit),
                        _trailingIcon:@Composable (()->Unit),
+                       styleType: TEXTFIELDSTYLE,
+                       customStyle:TextFieldStyleConfig?,
                        _modifier: Modifier = Modifier, _textStyle:TextStyle,
                        _colors : TextFieldColors){
+    val style:TextFieldStyleConfig =  getTextStyleField(styleType,customStyle)
     OutlinedTextField(
         value = _value,
         onValueChange = _onValueChange ,
@@ -37,7 +42,7 @@ fun TextFieldComponent(data: TextFieldData,
             keyboardType = KeyboardType.Text,
         ),
         // //TODO:Ask shimaa which font.
-        textStyle = TextStyle(color =_textStyle.color,fontFamily =_textStyle.fontFamily),
+        textStyle = TextStyle(color = style.textColor,fontFamily =_textStyle.fontFamily),
         colors = _colors,
         maxLines = 2,
         shape = RoundedCornerShape(35.dp),
@@ -46,6 +51,7 @@ fun TextFieldComponent(data: TextFieldData,
         trailingIcon =  _trailingIcon)
  var test = when(data.state){
         STATE.NORMAL-> {
+
         //TODO: Draw normal UI
         }
         STATE.DISABLED-> {
@@ -60,18 +66,19 @@ fun TextFieldComponent(data: TextFieldData,
      else -> {//TODO: Draw normal UI
       }
     }
+/*
  var backgroundColor = when(data.state){
         STATE.NORMAL-> {
-            //TODO: Draw normal UI
+           backgroundColor
         }
         STATE.DISABLED-> {
-            //TODO: Draw disabled UI
+            disabledBackgroundColor
         }
         STATE.ERROR-> {
-            //TODO: Draw error UI
+           errorBackgroundColor
         }
         STATE.SUCCESS-> {
-            //TODO: Draw success UI
+            successBackgroundColor
         }
         else -> {//TODO: Draw normal UI
         }
@@ -108,6 +115,7 @@ fun TextFieldComponent(data: TextFieldData,
         else -> {//TODO: Draw normal UI
         }
     }
+*/
 
 }
 //TODO: make for each var depends on the status its own value using when
