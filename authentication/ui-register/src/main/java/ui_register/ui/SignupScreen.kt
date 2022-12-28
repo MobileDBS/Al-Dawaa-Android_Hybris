@@ -609,57 +609,6 @@ fun SignupScreen(navController: NavController) {
         }, statue = BTNSTATE.ACTIVE,
         contenttext = stringResource(id = R.string.signuporg))
 
-     /*       OutlinedButton(
-                modifier = Modifier
-                    .fillMaxWidth(0.9f)
-                    .clip(shape = ShapeBigButtons.small)
-                    .height(53.dp),
-                colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                shape = ShapeBigButtons.small,
-                border = BorderStroke(2.dp, PrimaryColor),
-                onClick = {
 
-                    if (!validationHelper.emptyvalidation(signuname.value)) {
-                        isErrorsignupname = true
-                    }
-                    if (!validationHelper.emailvalidation(signupemail.value)) {
-                        isErrorsignupemail = true
-                    }
-                    if (!validationHelper.phonenumvalidation(signupphonenum.value)) {
-                        isErrorsignupphone = true
-                    }
-                    if (!validationHelper.emptyvalidation(signupmyBirthDate.value)) {
-                        isErrorsignupbirth = true
-                    }
-                    if (!validationHelper.passwordlvalidation(signuppassword.value)) {
-                        isErrorsignuppass = true
-                    }
-                    if (!validationHelper.passwordlvalidation(signupconfirmpassword.value)) {
-                        isErrorsignupconfirmpass = true
-                    }
-                    if (!validationHelper.confirmpasswordvalidation(
-                            signuppassword.value,
-                            signupconfirmpassword.value
-                        )
-                    ) {
-                        isErrorsignupconfirmpass = true
-                        isErrorsignuppass = true
-                    } else {
-                        //navController.navigate("home")
-                        Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show()
-                    }
-
-
-                },
-
-
-                ) {
-                Text(
-                    text = stringResource(id = R.string.signuporg),
-                    fontSize = 20.sp,
-                    color = PrimaryColor,
-                )
-
-            }*/
         }
     }

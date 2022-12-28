@@ -24,6 +24,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
 import com.kr.ui_forgetpassword.R
 import com.kr.components.ui.theme.*
 
@@ -146,36 +147,18 @@ fun ForgetPasswordScreen (navController: NavController) {
 
                      Spacer(modifier = Modifier.padding(vertical = 120.dp))
 
-                    OutlinedButton(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .height(53.dp)
-                            .clip(shape = ShapeBigButtons.small),
-                        colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                        shape = ShapeBigButtons.small,
-                        border = BorderStroke(2.dp, PrimaryColor),
-
-                        onClick = {
-                                if (!validationHelper.phonenumvalidation(forgetphone.value)){
-                                    isErrorforget = true
-                                }
-                                else {
-                                    navController.navigate("Forget_Password_Otp")
-                                    Toast.makeText(context, "code sent ", Toast.LENGTH_SHORT).show()
-                                }
-
-                        },
-
-
-                        ) {
-                        Text(
-                            text = stringResource(id = R.string.forgetsend),
-                            fontSize = 20.sp,
-                            color = PrimaryColor,
-                        )
-
-
+                CustomOutlinedButton(onClick = {
+                    if (!validationHelper.phonenumvalidation(forgetphone.value)){
+                        isErrorforget = true
                     }
+                    else {
+                        navController.navigate("Forget_Password_Otp")
+                        Toast.makeText(context, "code sent ", Toast.LENGTH_SHORT).show()
+                    }
+                }, statue = BTNSTATE.ACTIVE,
+                contenttext = stringResource(id = R.string.forgetsend))
+
+
                 }
 
             }

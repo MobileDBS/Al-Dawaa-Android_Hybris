@@ -26,6 +26,8 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.kr.components.CustomOutlinedButton
+import com.kr.components.ui.theme.BTNSTATE
 import com.kr.components.ui.theme.PrimaryColor
 
 import com.kr.ui_services.ui.componant.camera.CameraCapture
@@ -63,7 +65,9 @@ fun CameraScreen(navController: NavController, showGallery :Boolean) {
                             contentDescription = "Captured image"
                         )
                         IconButton(
-                            modifier = Modifier.align(Alignment.TopEnd).padding(end = 10.dp),
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .padding(end = 10.dp),
                             onClick = {
                                 imageUri = EMPTY_IMAGE_URI
                                 showGallerySelect = false
@@ -116,34 +120,12 @@ fun CameraScreen(navController: NavController, showGallery :Boolean) {
                     Text("Select from Gallery")
                 }*/
             }
+            CustomOutlinedButton(onClick = {
 
-            OutlinedButton(
-                modifier = Modifier
-                    .fillMaxWidth(0.9f)
-                    .height(53.dp)
-                    .clip(shape = RoundedCornerShape(24.dp)),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    containerColor = Color.Transparent
-                ),
-                shape = RoundedCornerShape(24.dp),
-                border = BorderStroke(2.dp, PrimaryColor),
-
-                onClick = {
-                    //  navController.navigate("MainUi")
+            }, statue = BTNSTATE.ACTIVE,
+            contenttext = "Apply")
 
 
-                },
-
-
-                ) {
-                Text(
-                    text = "Apply",
-                    fontSize = 20.sp,
-                    color = PrimaryColor,
-                )
-
-
-            }
         }
     }
 }

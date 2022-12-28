@@ -19,6 +19,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
+import com.kr.components.ui.theme.BTNSTATE
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.ShapeBigButtons
 import com.kr.ui_forgetpassword.R
@@ -70,7 +72,8 @@ fun ForgetSuccess (navController: NavController) {
             Spacer(modifier = Modifier.padding(50.dp))
 
             Image(
-                modifier = Modifier.wrapContentSize()
+                modifier = Modifier
+                    .wrapContentSize()
                     .width(55.dp)
                     .height(50.dp)
                     ,
@@ -100,36 +103,14 @@ fun ForgetSuccess (navController: NavController) {
             )
 
             Spacer(modifier = Modifier.padding(80.dp))
-                    OutlinedButton(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .height(53.dp)
-                            .clip(shape = ShapeBigButtons.small),
-                        colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                        shape = ShapeBigButtons.small,
-                        border = BorderStroke(2.dp, PrimaryColor),
 
-                        onClick = {
+            CustomOutlinedButton(onClick = {
+                navController.navigate("Login_page")
 
+                Toast.makeText(context, "Backed to  Login ", Toast.LENGTH_SHORT).show()
+            }, statue = BTNSTATE.ACTIVE,
+                contenttext = stringResource(id = R.string.backtohome ))
 
-
-                                    navController.navigate("Login_page")
-
-                                    Toast.makeText(context, "Backed to  Login ", Toast.LENGTH_SHORT).show()
-
-
-                        },
-
-
-                        ) {
-                        Text(
-                            text = stringResource(id = R.string.backtohome),
-                            fontSize = 20.sp,
-                            color = PrimaryColor,
-                        )
-
-
-                    }
                 }
             }
         }

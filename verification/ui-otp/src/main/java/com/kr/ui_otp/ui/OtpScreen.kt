@@ -1,5 +1,7 @@
 @file:Suppress("DEPRECATION")
+
 package com.kr.ui_otp.ui
+
 import android.annotation.SuppressLint
 import android.os.CountDownTimer
 import android.widget.Toast
@@ -24,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
 import com.kr.components.ui.theme.*
 import com.kr.ui_otp.R
 
@@ -43,15 +46,16 @@ fun OtpScreen(navController: NavController) {
     var isErrorOtp by rememberSaveable { mutableStateOf(false) }
     val otp = rememberSaveable { mutableStateOf("") }
     var otpVal: String? = null
-    var resendOtpVisible: Boolean by remember { mutableStateOf(false)}
-    val START_TIME_IN_MILLIS:Long=2*60*1000
-    var timeToResend:String by remember { mutableStateOf("")}
-    val countTimer = object:CountDownTimer( START_TIME_IN_MILLIS,1000){
+    var resendOtpVisible: Boolean by remember { mutableStateOf(false) }
+    val START_TIME_IN_MILLIS: Long = 2 * 60 * 1000
+    var timeToResend: String by remember { mutableStateOf("") }
+    val countTimer = object : CountDownTimer(START_TIME_IN_MILLIS, 1000) {
         override fun onTick(millisUntilFinished: Long) {
-            timeToResend= updateTimerText(millisUntilFinished)
+            timeToResend = updateTimerText(millisUntilFinished)
         }
+
         override fun onFinish() {
-            resendOtpVisible=true
+            resendOtpVisible = true
         }
     }
 
@@ -129,20 +133,24 @@ fun OtpScreen(navController: NavController) {
                 }
 
                 Spacer(modifier = Modifier.padding(20.dp))
-Row(modifier = Modifier
-    .fillMaxWidth()) {
-    Spacer(modifier = Modifier.width(54.dp))
-    Text(
-        text = stringResource(id = R.string.forgetdontrec),
-        color = PrimaryColor,
-        fontSize = 16.sp
-    )
-    Spacer(modifier = Modifier.padding(8.dp))
-    Text(text = "$timeToResend",
-        modifier = Modifier.padding(top = 2.dp),
-        color = PrimaryColor,
-        fontSize = 14.sp)
-}
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    Spacer(modifier = Modifier.width(54.dp))
+                    Text(
+                        text = stringResource(id = R.string.forgetdontrec),
+                        color = PrimaryColor,
+                        fontSize = 16.sp
+                    )
+                    Spacer(modifier = Modifier.padding(8.dp))
+                    Text(
+                        text = "$timeToResend",
+                        modifier = Modifier.padding(top = 2.dp),
+                        color = PrimaryColor,
+                        fontSize = 14.sp
+                    )
+                }
 
 
                 Spacer(modifier = Modifier.padding(5.dp))
@@ -184,17 +192,7 @@ Row(modifier = Modifier
 
                 Spacer(modifier = Modifier.padding(70.dp))
 
-
-                OutlinedButton(
-                    modifier = Modifier
-                        .fillMaxWidth(0.9f)
-                        .height(53.dp)
-                        .clip(shape = ShapeBigButtons.small)
-                        .align(alignment = Alignment.CenterHorizontally),
-                    colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                    shape = ShapeBigButtons.small,
-                    border = BorderStroke(2.dp, PrimaryColor),
-
+                CustomOutlinedButton(
                     onClick = {
                         if (otpVal.toString() == "1234") {
                             Toast.makeText(context, "Verefication done  ", Toast.LENGTH_SHORT)
@@ -202,24 +200,44 @@ Row(modifier = Modifier
                             navController.navigate("Forget_Change_Password")
                         }
 
-                    },
+                    }, statue = BTNSTATE.ACTIVE,
+                    contenttext = stringResource(id = R.string.forgetsend)
+                )
+                /* OutlinedButton(
+                     modifier = Modifier
+                         .fillMaxWidth(0.9f)
+                         .height(53.dp)
+                         .clip(shape = ShapeBigButtons.small)
+                         .align(alignment = Alignment.CenterHorizontally),
+                     colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
+                     shape = ShapeBigButtons.small,
+                     border = BorderStroke(2.dp, PrimaryColor),
 
-                    ) {
-                    Text(
-                        text = stringResource(id = R.string.forgetsend),
-                        fontSize = 20.sp,
-                        color = PrimaryColor,
-                    )
-                    Spacer(modifier = Modifier.padding(15.dp))
+                     onClick = {
+                         if (otpVal.toString() == "1234") {
+                             Toast.makeText(context, "Verefication done  ", Toast.LENGTH_SHORT)
+                                 .show()
+                             navController.navigate("Forget_Change_Password")
+                         }
 
-                }
+                     },
+
+                     ) {
+                     Text(
+                         text = stringResource(id = R.string.forgetsend),
+                         fontSize = 20.sp,
+                         color = PrimaryColor,
+                     )*/
+                Spacer(modifier = Modifier.padding(15.dp))
 
             }
 
         }
 
     }
+
 }
+
 private fun updateTimerText(remainingTime: Long): String {
     val minute = remainingTime.div(1000).div(60)
     val second = remainingTime.div(1000) % 60
