@@ -10,7 +10,7 @@ val Shapes = Shapes(
     large = RoundedCornerShape(8.dp)
 )
 
-val ShapeTabButtons= Shapes(
+val ShapeBigButtons= Shapes(
     small = RoundedCornerShape(30.dp),
     medium = RoundedCornerShape(40.dp),
     large = RoundedCornerShape(50.dp),

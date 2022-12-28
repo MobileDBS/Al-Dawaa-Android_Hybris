@@ -224,12 +224,12 @@ fun EntryScreen(navController: NavController) {
                         val selected = selectedIndex == index
                         Tab(
                             modifier = if (selected) Modifier
-                                .clip(shape = ShapeTabButtons.large)
+                                .clip(shape = ShapeBigButtons.large)
                                 .background(
                                     SecondaryColor,
                                 )
                             else Modifier
-                                .clip(shape = ShapeTabButtons.large)
+                                .clip(shape = ShapeBigButtons.large)
                                 .background(
                                     Color.Transparent
                                 ),
@@ -276,7 +276,8 @@ fun EntryScreen(navController: NavController) {
                         modifier = Modifier.padding(start = 15.dp, end = 15.dp)
                     ) {
 
-                        Column() {
+                        Column(verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally) {
 
                             Box(
                                 modifier = Modifier
@@ -300,7 +301,7 @@ fun EntryScreen(navController: NavController) {
 
                            }, modifier = Modifier
                                .size(10.dp, 10.dp)
-                               .background(InputHint),
+                               .background(Transparent),
                                colors = ButtonDefaults.buttonColors(Unspecified)
                            ) {
 
@@ -312,7 +313,8 @@ fun EntryScreen(navController: NavController) {
                         Spacer(modifier = Modifier.padding(4.dp))
 
                             //facebook
-                        Column() {
+                        Column(verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally) {
                             Box(
                                 modifier = Modifier
                                     .size(58.dp, 58.dp)
@@ -350,8 +352,8 @@ fun EntryScreen(navController: NavController) {
 
                                 }, modifier = Modifier
                                     .size(10.dp, 10.dp)
-                                    .background(InputHint),
-                                colors = ButtonDefaults.buttonColors(Unspecified)
+                                    .background(Transparent),
+                                colors = ButtonDefaults.buttonColors(Transparent)
                             ) {
 
                             }
@@ -360,7 +362,8 @@ fun EntryScreen(navController: NavController) {
 
 
                         Spacer(modifier = Modifier.padding(4.dp))
-                        Column() {
+                        Column(verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally) {
 
                         }
                         //Twitter
@@ -397,16 +400,14 @@ fun EntryScreen(navController: NavController) {
 
                                       }, modifier = Modifier
                                 .size(10.dp, 10.dp)
-                                .background(InputHint),
-                            colors = ButtonDefaults.buttonColors(Unspecified)
+                                .background(Transparent),
+                            colors = ButtonDefaults.buttonColors(Transparent)
                         ) {
 
                         }
                             }
 
                     }
-
-                }
                 Spacer(modifier = Modifier.padding(10.dp))
                 Text(text = stringResource(id = R.string.continueasaguest),
                     color = PrimaryColor,
@@ -416,7 +417,11 @@ fun EntryScreen(navController: NavController) {
 
 
                     })
+
                 Spacer(modifier = Modifier.padding(15.dp))
+
+            }
+
 
 
             }

@@ -189,10 +189,10 @@ Row(modifier = Modifier
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
                         .height(53.dp)
-                        .clip(shape = ShapeTabButtons.small)
+                        .clip(shape = ShapeBigButtons.small)
                         .align(alignment = Alignment.CenterHorizontally),
                     colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                    shape = ShapeTabButtons.small,
+                    shape = ShapeBigButtons.small,
                     border = BorderStroke(2.dp, PrimaryColor),
 
                     onClick = {

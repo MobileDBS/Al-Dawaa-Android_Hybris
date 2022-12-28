@@ -125,13 +125,13 @@ fun ForgetPasswordScreen (navController: NavController) {
                         singleLine = true,
                         modifier = Modifier
                             .fillMaxWidth(0.9f)
-                            .clip(shape = ShapeTabButtons.small)
+                            .clip(shape = ShapeBigButtons.small)
                             .height(53.dp)
                             .background(color = InputColor),
                         colors = TextFieldDefaults.outlinedTextFieldColors(
                             focusedBorderColor = Color.Transparent,
                             unfocusedBorderColor = Color.Transparent
-                        ), shape = ShapeTabButtons.small
+                        ), shape = ShapeBigButtons.small
                     )
                     if (isErrorforget) Text(
                         modifier = Modifier
@@ -150,9 +150,9 @@ fun ForgetPasswordScreen (navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth(0.9f)
                             .height(53.dp)
-                            .clip(shape = ShapeTabButtons.small),
+                            .clip(shape = ShapeBigButtons.small),
                         colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                        shape = ShapeTabButtons.small,
+                        shape = ShapeBigButtons.small,
                         border = BorderStroke(2.dp, PrimaryColor),
 
                         onClick = {

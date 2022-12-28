@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.ShapeTabButtons
+import com.kr.components.ui.theme.ShapeBigButtons
 import com.kr.product_datasource.dto.FilterModel.Filteritems
 import com.kr.product_datasource.dto.FilterModel
 import com.kr.ui_filter.component.FilterItems
@@ -136,9 +136,9 @@ fun FilterScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(53.dp)
-                                .clip(shape = ShapeTabButtons.small),
+                                .clip(shape = ShapeBigButtons.small),
                             colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                            shape = ShapeTabButtons.small,
+                            shape = ShapeBigButtons.small,
                             border = BorderStroke(2.dp, PrimaryColor),
 
                             onClick = {

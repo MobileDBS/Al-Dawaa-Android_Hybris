@@ -1,7 +1,6 @@
 package com.kr.ui_login.ui
 
 import android.widget.Toast
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -24,9 +23,9 @@ import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
 import com.kr.components.ui.theme.*
 import com.kr.ui_login.R
-import dagger.hilt.android.AndroidEntryPoint
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -68,13 +67,13 @@ fun LoginScreen(navController: NavController) {
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .clip(shape = ShapeTabButtons.small)
+                .clip(shape = ShapeBigButtons.small)
                 .height(53.dp)
                 .background(color = InputColor),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent
-            ), shape = ShapeTabButtons.small
+            ), shape = ShapeBigButtons.small
         )
         if (isErrorloginmail) Text(
             modifier = Modifier
@@ -110,7 +109,7 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .height(53.dp)
-                .clip(shape = ShapeTabButtons.small)
+                .clip(shape = ShapeBigButtons.small)
                 .background(
                     color = InputColor
                 ),
@@ -121,7 +120,7 @@ fun LoginScreen(navController: NavController) {
                 errorBorderColor = ErrorColor,
 
                 ),
-            shape = ShapeTabButtons.small,
+            shape = ShapeBigButtons.small,
 
             trailingIcon = {
                 IconButton(onClick = {
@@ -190,13 +189,17 @@ fun LoginScreen(navController: NavController) {
         }
         Spacer(modifier = Modifier.padding(15.dp))
 
-        OutlinedButton(
+        CustomOutlinedButton(onClick = {
+            navController.navigate("MainUi") },
+            statue = if(loginemailorphone.value.isNotEmpty() && loginpassword.value.isNotEmpty()) BTNSTATE.ACTIVE else BTNSTATE.INACTIVE ,
+        contenttext = stringResource(id = R.string.signinorg) )
+       /* OutlinedButton(
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .height(53.dp)
-                .clip(shape = ShapeTabButtons.small),
+                .clip(shape = ShapeBigButtons.small),
             colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-            shape = ShapeTabButtons.small,
+            shape = ShapeBigButtons.small,
             border = BorderStroke(2.dp, PrimaryColor),
 
             onClick = {
@@ -211,7 +214,7 @@ fun LoginScreen(navController: NavController) {
                 color = PrimaryColor,
             )
 
-        }
+        }*/
         Spacer(modifier = Modifier.padding(10.dp))
 
 
