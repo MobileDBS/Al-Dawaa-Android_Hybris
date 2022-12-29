@@ -1,19 +1,19 @@
-@file:OptIn(DelicateCoroutinesApi::class)
-
 package com.kr.aldawaa.ui
 
+import android.Manifest
+import android.location.Location
 import android.app.DatePickerDialog
 import android.content.Context
-import android.location.Location
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,10 +21,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.ImageLoader
+import coil.compose.rememberAsyncImagePainter
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
+import coil.request.ImageRequest
+import coil.size.Size
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
 
 import com.kr.aldawaa.LocationClass
+  import com.google.android.gms.auth.api.signin.GoogleSignIn
+  import com.google.android.gms.auth.api.signin.GoogleSignInClient
+  import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.kr.aldawaa.R
+import com.kr.components.CustomPermission
+import com.kr.components.StartPermissionSetting
 import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
@@ -39,19 +49,21 @@ import javax.inject.Inject
 
 @ExperimentalMaterial3Api
 @AndroidEntryPoint
-class MainActivity : ComponentActivity(), LocationClass.Interface {
+class MainActivity : ComponentActivity(),LocationClass.Interface {
+
+
     private val localizationDelegate = LocalizationActivityDelegate(this)
 
     @Inject
     lateinit var imageLoader: ImageLoader
+
 
     override fun attachBaseContext(newBase: Context) {
         applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
         super.attachBaseContext(newBase)
     }
 
-    var locationClass = LocationClass(this)
-
+//    var locationClass=LocationClass(this)
     @Inject
     lateinit var connectivityObserver: NetworkConnectivityObserver
 
@@ -88,8 +100,9 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
             }
         }
         setContent {
-            locationClass.GetLastLocation()
+            //locationClass.GetLastLocation()
             AlDawaaHybrisTheme {
+
                 //BottomSheet
 //                Surface(color = MaterialTheme.colors.background) {
 //                    CustomModalBottomSheet(list)
@@ -113,13 +126,17 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
                     //  Greeting()
-                     NavigationController ()
+                    NavigationController()
+                    CustomPermission(permissions = listOf(
+                        Manifest.permission.CAMERA
+                    ), permissionContent = {
+                    })
+
+                    ///////////////End Navigation Bar///////////////////////
                 }
-
-                ///////////////End Navigation Bar///////////////////////
             }
-        }
 
+        }
     }
 
     private suspend fun isLoggedIn(): Boolean {
@@ -143,7 +160,7 @@ class MainActivity : ComponentActivity(), LocationClass.Interface {
     }
 
     override fun findLocation(location: Location) {
-        Log.v("LocationFromHomeActivity", location.toString())
+        Log.v("LocationFromHomeActivity",location.toString())
     }
 
 
@@ -160,7 +177,7 @@ fun Greeting() {
 
     val context = LocalContext.current
 
-    var date by remember {
+    var date by remember{
         mutableStateOf("")
     }
 /*    MaterialDatePicker
@@ -171,26 +188,25 @@ fun Greeting() {
         .show(supportFragmentManager, "DATE_PICKER")*/
 
     val datePickerDialog = DatePickerDialog(
-        context, R.style.MyDatePickerDialogTheme,
+        context,R.style.MyDatePickerDialogTheme,
         { d, year1, month1, day1 ->
             val month = month1 + 1
             date = "$day1 - $month - $year1"
-        }, year, month, day
+        },year , month , day
     )
 
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(text = "Calender View") },
-            )
+            TopAppBar (
+                title = { Text(text = "Calender View")},
+                )
         },
         content = {
-            Column(
-                verticalArrangement = Arrangement.Center,
+            Column (verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
-            ) {
+            ){
                 /*       AndroidView(factory = { CalendarView(it) }, update = {
                            it.setOnDateChangeListener { calendarView, year, month, day ->
                                date = "$day - ${month +1} - $year"

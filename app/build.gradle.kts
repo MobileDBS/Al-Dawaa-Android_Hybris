@@ -128,6 +128,9 @@ dependencies {
     //localization
     implementation(Localization.localization)
 
+    //google permission
+    implementation(Google.googlePermission)
+
 
 
 }

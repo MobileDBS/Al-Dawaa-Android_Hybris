@@ -6,6 +6,7 @@ package com.kr.ui_entry.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.webkit.CookieManager
@@ -29,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.Unspecified
 import androidx.compose.ui.graphics.Color.Companion.White
@@ -68,7 +70,7 @@ import java.util.*
 @ExperimentalCoroutinesApi
 @SuppressLint("ResourceType", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun EntryScreen(navController: NavController) {
+fun EntryScreen(navController: NavController , onItemClick: (String) -> Unit) {
     val authViewModel: AuthViewModel = hiltViewModel()
      val twitter: TwitterFactory?=null
     val twitter1: Twitter?=null
@@ -82,11 +84,6 @@ fun EntryScreen(navController: NavController) {
 
     var chosenlanguage by rememberSaveable { mutableStateOf("English") }
     val errorMessage = "name format is invalid"
-
-
-
-
-
 
     Scaffold(
         modifier = Modifier
@@ -125,6 +122,7 @@ fun EntryScreen(navController: NavController) {
                 fontSize = 25.sp,
                 color = White,
                 fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleLarge
             )
 
             Spacer(modifier = Modifier.padding(6.dp))
@@ -159,18 +157,21 @@ fun EntryScreen(navController: NavController) {
                             "English" -> {
                                 chosenlanguage = label
                                 setLanguage(context, Locale("en"))
-                                (context as? Activity)?.recreate()
-                                chosenlanguage = label
+//                                (context as? Activity)?.recreate()
+                                onItemClick("English")
 
                             }
                             "العربية" -> {
                                 chosenlanguage = label
                                 setLanguage(context, Locale("ar"))
-                                (context as? Activity)?.recreate()
+//                                (context as? Activity)?.recreate()
+                                onItemClick("العربية")
+
+
 
                             }
                         }
-                    }, text = { Text(text = label) })
+                    }, text = { Text(text = label , style = MaterialTheme.typography.bodyLarge) })
                 }
             }
         }
@@ -183,7 +184,7 @@ fun EntryScreen(navController: NavController) {
 
                 modifier = Modifier
                     .fillMaxSize()
-                    // .fillMaxWidth()
+                    .fillMaxWidth()
                     .clip(
                         shape = Shapes.large.copy(
                             bottomStart = ZeroCornerSize,
@@ -235,7 +236,7 @@ fun EntryScreen(navController: NavController) {
                                 ),
                             selected = selected,
                             onClick = { selectedIndex = index },
-                            text = { Text(text = text, color = PrimaryColor) }
+                            text = { Text(text = text, color = PrimaryColor  , style = MaterialTheme.typography.bodyLarge) }
                         )
 
                     }
@@ -267,7 +268,7 @@ fun EntryScreen(navController: NavController) {
                         text = stringResource(id = R.string.orsigninwith),
                         fontSize = 15.sp,
                         color = PrimaryColor,
-                    )
+                            style = MaterialTheme.typography.titleMedium)
                     Spacer(modifier = Modifier.padding(15.dp))
 
                     Row(
@@ -301,6 +302,8 @@ fun EntryScreen(navController: NavController) {
 
                            }, modifier = Modifier
                                .size(10.dp, 10.dp)
+                               .background(Unspecified),
+                               colors = ButtonDefaults.buttonColors(Red)
                                .background(Transparent),
                                colors = ButtonDefaults.buttonColors(Unspecified)
                            ) {
@@ -352,6 +355,8 @@ fun EntryScreen(navController: NavController) {
 
                                 }, modifier = Modifier
                                     .size(10.dp, 10.dp)
+                                    .background(Unspecified),
+                                colors = ButtonDefaults.buttonColors(Unspecified)
                                     .background(Transparent),
                                 colors = ButtonDefaults.buttonColors(Transparent)
                             ) {
@@ -409,14 +414,15 @@ fun EntryScreen(navController: NavController) {
 
                     }
                 Spacer(modifier = Modifier.padding(10.dp))
-                Text(text = stringResource(id = R.string.continueasaguest),
+                Text(text = stringResource(id = R.string.continueasaguest ),
+                    style = MaterialTheme.typography.bodyLarge,
                     color = PrimaryColor,
                     modifier = Modifier.clickable {
                         // navController.navigate("")
                         Toast.makeText(context, "Wellcome to Home ", Toast.LENGTH_SHORT).show()
 
-
                     })
+                Spacer(modifier = Modifier.padding(10.dp))
 
                 Spacer(modifier = Modifier.padding(15.dp))
 

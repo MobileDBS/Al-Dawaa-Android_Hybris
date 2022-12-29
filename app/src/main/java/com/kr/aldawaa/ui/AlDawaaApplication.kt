@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import com.akexorcist.localizationactivity.core.LocalizationApplicationDelegate
+import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import dagger.hilt.android.HiltAndroidApp
 import java.util.*
 
@@ -12,7 +13,7 @@ import java.util.*
 class AlDawaaApplication:Application() {
     override fun onCreate() {
         super.onCreate()
-    }
+        }
 
 
     private val localizationDelegate = LocalizationApplicationDelegate()

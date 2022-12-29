@@ -13,6 +13,7 @@ import androidx.compose.material.*
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -133,7 +134,7 @@ fun RowScope.AddItem(
 ) {
     BottomNavigationItem(
         label = {
-            Text(text = screen.name)
+            Text(text = screen.name , style = MaterialTheme.typography.bodyMedium)
         },
         icon = {
 

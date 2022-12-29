@@ -75,10 +75,10 @@ fun ForgetPasswordScreen (navController: NavController) {
             Spacer(modifier = Modifier.padding(15.dp))
 
             Text(
-                text = stringResource(id = R.string.forgetpassword),
-                fontSize = 25.sp,
+                text = stringResource(id = R.string.forgetpassword ),
                 color = Color.White,
-                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleLarge
+
             )
 
             Spacer(modifier = Modifier.padding(15.dp))
@@ -116,7 +116,8 @@ fun ForgetPasswordScreen (navController: NavController) {
                         placeholder = {
                             Text(
                                 text = stringResource(id = R.string.phonenumber),
-                                color = InputHint
+                                color = InputHint ,
+                                style = MaterialTheme.typography.bodyLarge
                             )
                         },
                         isError = isErrorforget,
@@ -159,6 +160,15 @@ fun ForgetPasswordScreen (navController: NavController) {
                 contenttext = stringResource(id = R.string.forgetsend))
 
 
+                        ) {
+                        Text(
+                            text = stringResource(id = R.string.forgetsend),
+                            style = MaterialTheme.typography.titleLarge,
+                            color = PrimaryColor,
+                        )
+
+
+                    }
                 }
 
             }
