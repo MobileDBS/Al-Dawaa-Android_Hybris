@@ -27,7 +27,10 @@ import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.kr.components.SnackbarHostComponent
+import com.kr.components.textFieldComponent.STATE
+import com.kr.components.textFieldComponent.TEXTFIELDSTYLE
 import com.kr.components.textFieldComponent.TextFieldComponent
+import com.kr.components.textFieldComponent.TextFieldData
 import com.kr.components.ui.theme.InputTextColor
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.SecondaryColor
@@ -153,7 +156,7 @@ private fun getServicesData(): List<Services> {
 fun TxtField(context:Context) {
     // we are creating a variable for
     // getting a value of our text field.
-    val inputvalue = remember { mutableStateOf(TextFieldValue()) }
+    val inputvalue = remember { mutableStateOf(TextFieldData(text = "hhhhh")) }
     Column(
         // we are using column to align our
         // imageview to center of the screen.
@@ -170,19 +173,20 @@ fun TxtField(context:Context) {
         horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
-/*        TextFieldComponent(
-            _value = inputvalue.value,
-            _onValueChange = {newValue ->
-                inputvalue.value = newValue},
-            _placeholder = {  Text(
-                text = stringResource(id = R.string.enteryourpass),
-                color = InputTextColor
-            ) },
+        TextFieldComponent(
+            styleType= TEXTFIELDSTYLE.DEFAULT,
+            customStyle= null,
+            data = inputvalue.value,
+            _onValueChange = {
+                    newValue ->
+                inputvalue.value = TextFieldData(text = newValue)
+            },
+            _placeholderText = stringResource(id = R.string.enteryourpass),
             _leadingIcon = {    Icon(
                 Icons.Filled.Search,"",
                 tint = Color.LightGray
-            ) },
-            _trailingIcon = {
+            ) }
+            , _trailingIcon = {
                 Icon(
                     Icons.Filled.Info, "",
                     tint = Color.LightGray, modifier = Modifier.clickable {
@@ -191,13 +195,8 @@ fun TxtField(context:Context) {
                             .show()
                     }
                 )
-            },
-            _textStyle = TextStyle(
-                color = PrimaryColor,
-                fontFamily = FontFamily.SansSerif
-            ),
-            _colors = TextFieldDefaults.outlinedTextFieldColors(containerColor = Color.White)
-        )*/
+            }
+        )
 /*        OutlinedTextField(
             // below line is used to get
             // value of text field,

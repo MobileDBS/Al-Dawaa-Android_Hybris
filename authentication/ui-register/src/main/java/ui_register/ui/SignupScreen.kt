@@ -81,15 +81,12 @@ fun SignupScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.background(Transparent)
         ) {
-
             OutlinedTextField(
-
                 value = signuname.value,
                 onValueChange = {
                     signuname.value = it
                     isErrorsignupname = false
-
-                },
+                } ,
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.name),
@@ -106,7 +103,6 @@ fun SignupScreen(navController: NavController) {
                     .clip(shape = ShapeTabButtons.small)
                     .height(53.dp)
                     .background(color = InputColor),
-
                 shape = ShapeTabButtons.small,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.Transparent,
@@ -485,7 +481,6 @@ fun SignupScreen(navController: NavController) {
 
 
             OutlinedTextField(
-
                 value = signupconfirmpassword.value,
                 onValueChange = {
                     signupconfirmpassword.value = it
@@ -510,11 +505,8 @@ fun SignupScreen(navController: NavController) {
                     focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent
                 ),
-
                 shape = ShapeTabButtons.small,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-
-
                 trailingIcon = {
                     IconButton(onClick = {
                         confirmpasswordvisibilitysignup.value =
