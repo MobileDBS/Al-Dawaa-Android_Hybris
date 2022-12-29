@@ -160,15 +160,7 @@ fun ForgetPasswordScreen (navController: NavController) {
                 contenttext = stringResource(id = R.string.forgetsend))
 
 
-                        ) {
-                        Text(
-                            text = stringResource(id = R.string.forgetsend),
-                            style = MaterialTheme.typography.titleLarge,
-                            color = PrimaryColor,
-                        )
 
-
-                    }
                 }
 
             }

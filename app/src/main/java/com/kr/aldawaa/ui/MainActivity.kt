@@ -47,6 +47,7 @@ import twitter4j.conf.ConfigurationBuilder
 import java.util.*
 import javax.inject.Inject
 
+@OptIn(DelicateCoroutinesApi::class)
 @ExperimentalMaterial3Api
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(),LocationClass.Interface {

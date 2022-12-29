@@ -129,7 +129,7 @@ fun FilterItems(filterItems: String) {
 
     Card(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(0.9f)
             .background(Color.White)
             .animateContentSize(
                 animationSpec = tween(

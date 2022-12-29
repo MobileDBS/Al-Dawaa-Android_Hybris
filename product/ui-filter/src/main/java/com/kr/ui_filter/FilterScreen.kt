@@ -129,26 +129,34 @@ fun FilterScreen(
 
                         FilterItems(filterItems = filterI.Filteritemsname)
 
+                        Spacer(modifier = Modifier.padding(5.dp))
 
                     }
 
                     item {
                         Spacer(modifier = Modifier.padding(10.dp))
 
-                        CustomOutlinedButton(onClick = {
+                        Column( horizontalAlignment = Alignment.CenterHorizontally,
+    verticalArrangement = Arrangement.Center,
+    modifier = Modifier
+        .fillMaxWidth()) {
+    CustomOutlinedButton(onClick = {
 
-                        }, statue = BTNSTATE.ACTIVE,
-                        contenttext = "Apply")
+    }, statue = BTNSTATE.ACTIVE,
+        contenttext = "Apply")
+}
+
                     }
 
 
 
                 },
                 modifier = Modifier
-                    .fillMaxWidth(0.9f)
+                    .fillMaxWidth(1f)
                     .fillMaxHeight()
-                    .padding(top = 20.dp, bottom = 59.dp)
+                    .padding(top = 20.dp, bottom = 5.dp)
                     .background(Color.White),
+                horizontalAlignment = Alignment.CenterHorizontally
 
 
                 )
