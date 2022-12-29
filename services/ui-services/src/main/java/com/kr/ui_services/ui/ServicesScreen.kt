@@ -17,26 +17,24 @@ import com.kr.ui_services.R
 
 @Composable
 fun ServicesScreen(navController: NavController,modifier: Modifier = Modifier) {
-    CameraScreen(navController = navController, showGallery =true )
-//        LazyColumn(
-//            state = rememberLazyListState(),
-//            userScrollEnabled = true,
-//            verticalArrangement = Arrangement.spacedBy(8.dp),
-//            modifier = Modifier.fillMaxWidth().fillMaxHeight().paint(
-//                    painterResource(id = R.drawable.background),
-//            contentScale = ContentScale.FillBounds
-//        ),
-//            content = {
-//
-//
-//                items(getServicesDataAR()) { item ->
-//                    ServicesItem(item) {
-//
-//                    }
-//                }
-//
-//            }
-//        )
+//    CameraScreen(navController = navController, showGallery =true )
+        LazyColumn(
+            state = rememberLazyListState(),
+            userScrollEnabled = true,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().paint(
+                    painterResource(id = R.drawable.background),
+            contentScale = ContentScale.FillBounds
+        ),
+            content = {
+                items(getServicesDataAR()) { item ->
+                    ServicesItem(item) {
+
+                    }
+                }
+
+            }
+        )
 }
 
 private fun getServicesData(): List<Services> {

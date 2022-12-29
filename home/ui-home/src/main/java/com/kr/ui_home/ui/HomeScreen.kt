@@ -7,6 +7,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import android.view.Gravity
 import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.ScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -42,103 +44,108 @@ import com.kr.ui_home.R
 import kotlinx.coroutines.launch
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
     val context = LocalContext.current
     val snackbarHostState = SnackbarHostState()
     val coroutinescope = rememberCoroutineScope()
-    Column(modifier = Modifier) {//modifier = Modifier.padding(16.dp)
-        val isShowing = remember{ mutableStateOf(false)}
-        //start arbay
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(PrimaryColor)
-                .wrapContentHeight()
-        ) {
-            Column() {
-                TxtField(context)
-                TextButton(
-                    onClick = {
-                        isShowing.value = true
-                        coroutinescope.launch {
-                            snackbarHostState.showSnackbar(
-                                message = "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as a",
-                                actionLabel = "HIDE",
-                                duration = SnackbarDuration.Short
-                            )
-                        }
-               /*         Toast
+    val scroll = rememberScrollState(0)
+
+            Column(modifier = Modifier.verticalScroll(scroll)) {//modifier = Modifier.padding(16.dp)
+                val isShowing = remember { mutableStateOf(false) }
+                //start arbay
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(PrimaryColor)
+                        .wrapContentHeight()
+                ) {
+                    Column() {
+                        TxtField(context)
+                        TextButton(
+                            onClick = {
+                                isShowing.value = true
+                                coroutinescope.launch {
+                                    snackbarHostState.showSnackbar(
+                                        message = "Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and coherence of ideas among sentences is what constitutes a paragraph. A paragraph is defined as a",
+                                        actionLabel = "HIDE",
+                                        duration = SnackbarDuration.Short
+                                    )
+                                }
+                                /*         Toast
                             .makeText(context, "Go To logi", Toast.LENGTH_SHORT)
                             .show()*/
-                    }, modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                )
-                {
-                    Text(
-                        text = "Login to check Arbahi points",
-                        color = SecondaryColor,
-                        fontSize = 15.sp
-                    )
-                    Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                    Icon(
-                        imageVector = Icons.Filled.Favorite,
-                        "", modifier = Modifier.size(ButtonDefaults.IconSize), tint = SecondaryColor
-                    )
-                }
-                /*      SampleSnackbar (isShowing= isShowing.value,
-                              onHideSnackbar = {isShowing.value = false})*/
-                SnackbarHostComponent(snackbarHostState)
-            }
-        }
-        //end arbahi section
-        // start product list
-
-        // Text(text = "Home Screen", color = PrimaryColor)
-
-
-         HomeProductList(navController)
-
-        //end product list
-
-
-        // start services
-        Column(modifier = Modifier.padding(16.dp)) {
-
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = "Services", color = PrimaryColor,
-                    textAlign = TextAlign.Start
-                )
-
-                Text(text = "See All", color = PrimaryColor, textAlign = TextAlign.End)
-
-            }//end row
-
-            LazyRow(
-                state = rememberLazyListState(),
-                userScrollEnabled = true,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                content = {
-                    items(getServicesData()) { item ->
-                        ServicesHomeItem(item) {
-                            navController.navigate("service")
+                            }, modifier = Modifier
+                                .fillMaxWidth()
+                                .wrapContentHeight()
+                        )
+                        {
+                            Text(
+                                text = "Login to check Arbahi points",
+                                color = SecondaryColor,
+                                fontSize = 15.sp
+                            )
+                            Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                            Icon(
+                                imageVector = Icons.Filled.Favorite,
+                                "",
+                                modifier = Modifier.size(ButtonDefaults.IconSize),
+                                tint = SecondaryColor
+                            )
                         }
+                        /*      SampleSnackbar (isShowing= isShowing.value,
+                              onHideSnackbar = {isShowing.value = false})*/
+                        SnackbarHostComponent(snackbarHostState)
                     }
-
                 }
-            )
-        }
+                //end arbahi section
+                // start product list
+
+                // Text(text = "Home Screen", color = PrimaryColor)
 
 
-    }
+                HomeProductList(navController)
 
-    // end services
+                //end product list
+
+
+                // start services
+                Column(modifier = Modifier.padding(16.dp)) {
+
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Services", color = PrimaryColor,
+                            textAlign = TextAlign.Start
+                        )
+
+                        Text(text = "See All", color = PrimaryColor, textAlign = TextAlign.End)
+
+                    }//end row
+
+                    LazyRow(
+                        state = rememberLazyListState(),
+                        userScrollEnabled = true,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        content = {
+                            items(getServicesData()) { item ->
+                                ServicesHomeItem(item) {
+                                    navController.navigate("service")
+                                }
+                            }
+
+                        }
+                    )
+                }
+
+
+            }
+
+            // end services
 
 }
 
