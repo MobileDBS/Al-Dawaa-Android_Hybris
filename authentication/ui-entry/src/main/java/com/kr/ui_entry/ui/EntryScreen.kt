@@ -49,6 +49,7 @@ import com.facebook.login.LoginManager
 import com.kr.components.ui.theme.*
 import com.kr.ui_entry.R
 import com.kr.ui_entry.ui.facebookAuthentication.FBLoginActivity
+import com.kr.ui_entry.ui.facebookAuthentication.FacebookLogin
 import com.kr.ui_entry.ui.googleAuthentication.AuthScreen
 import com.kr.ui_entry.ui.googleAuthentication.AuthViewModel
 import com.kr.ui_entry.ui.googleAuthentication.Googletokenid
@@ -302,8 +303,6 @@ fun EntryScreen(navController: NavController , onItemClick: (String) -> Unit) {
 
                            }, modifier = Modifier
                                .size(10.dp, 10.dp)
-                               .background(Unspecified),
-                               colors = ButtonDefaults.buttonColors(Red)
                                .background(Transparent),
                                colors = ButtonDefaults.buttonColors(Unspecified)
                            ) {
@@ -355,8 +354,6 @@ fun EntryScreen(navController: NavController , onItemClick: (String) -> Unit) {
 
                                 }, modifier = Modifier
                                     .size(10.dp, 10.dp)
-                                    .background(Unspecified),
-                                colors = ButtonDefaults.buttonColors(Unspecified)
                                     .background(Transparent),
                                 colors = ButtonDefaults.buttonColors(Transparent)
                             ) {
@@ -437,74 +434,6 @@ fun EntryScreen(navController: NavController , onItemClick: (String) -> Unit) {
     }
 
 
-
-@Composable
-fun FacebookLogin(navController:NavController) {
-    val context = LocalContext.current
-
-
-    val facebookSignRequest =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                val data = result.data?.getStringExtra(FBLoginActivity.EXTRA_DATA_FB)
-                val accessToken: AccessToken? = AccessToken.getCurrentAccessToken()
-                //do something with data
-                val datax = result.data?.extras.toString()
-                val dataxe = result.data?.getStringExtra(FBLoginActivity.EXTRA_DATA_FB)
-                Log.d("facebook", "data is ${result.toString()}")
-                Log.d("facebook", "data is ${datax.toString()}")
-                Log.d("facebook", "data is ${dataxe.toString()}")
-
-
-                val request = GraphRequest.newMeRequest(
-                    accessToken,
-                    callback = GraphRequest.GraphJSONObjectCallback { obj, response ->
-                        val id: String = obj?.getString("id").toString()
-                        val name: String = obj?.getString("name").toString()
-                        val email: String = obj?.getString("email").toString()
-                        // val pictureUri: String = obj?.getString("pictureUri").toString()
-                        val picture: String = obj?.getString("picture").toString()
-
-                        Log.e("facebookname1 : ", id)
-                        Log.e("facebooklink1 : ", name)
-                        Log.e("facebookmail1 : ", email)
-                        Log.e("facebookpicture1 : ", picture)
-                    })
-
-                val parameters = Bundle()
-                parameters.putString("fields", "id,name,email,picture")
-
-                request.parameters = parameters
-                request.executeAsync()
-                Log.e("facebookparam : ", parameters.toString())
-                Log.e("facebook : ", accessToken.toString())
-
-                Log.e("facebook : ", accessToken?.expires.toString())
-
-                Log.e("facebook : ", accessToken?.userId.toString())
-
-
-
-
-            }
-        }
-
-   IconButton(onClick = {
-       if (AccessToken.getCurrentAccessToken() == null) {
-           facebookSignRequest.launch(FBLoginActivity.getInstance(context))
-
-       }else{
-           navController.navigate("MainUi")
-       }
-
-
-   }, modifier = Modifier
-       .background(Unspecified)
-       .fillMaxSize()) {
-    //   Icon(painter = painterResource(id = R.drawable.ic_facebook)  , contentDescription ="facebook icon" )
-
-   }
-}
 
 
 
