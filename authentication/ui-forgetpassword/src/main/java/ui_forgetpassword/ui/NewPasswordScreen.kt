@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -127,7 +126,7 @@ fun NewPasswordScreen (navController: NavController) {
                     placeholder = {
                         Text(
                             text = stringResource(id = R.string.enternewpass),
-                            color = InputHint
+                            color = InputTextColor
                         )
                     },
                     isError = isErrorpassword,
@@ -192,7 +191,7 @@ fun NewPasswordScreen (navController: NavController) {
                     placeholder = {
                         Text(
                             text = stringResource(id = R.string.enternewpassagain),
-                            color = InputHint
+                            color = InputTextColor
                         )
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
