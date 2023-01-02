@@ -26,6 +26,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
 import com.kr.components.ui.theme.*
 import com.kr.ui_forgetpassword.R
 
@@ -136,7 +137,7 @@ fun NewPasswordScreen (navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
                         .height(53.dp)
-                        .clip(shape = ShapeTabButtons.small)
+                        .clip(shape = ShapeBigButtons.small)
                         .background(
                             color = InputColor
                         ),
@@ -145,7 +146,7 @@ fun NewPasswordScreen (navController: NavController) {
                         unfocusedBorderColor = Color.Transparent
                     ),
 
-                    shape = ShapeTabButtons.small,
+                    shape = ShapeBigButtons.small,
                     trailingIcon = {
                         IconButton(onClick = {
                             passwordvisibilityforget.value = !passwordvisibilityforget.value
@@ -200,7 +201,7 @@ fun NewPasswordScreen (navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
                         .height(53.dp)
-                        .clip(shape = ShapeTabButtons.small)
+                        .clip(shape = ShapeBigButtons.small)
                         .background(
                             color = InputColor
                         ),
@@ -209,7 +210,7 @@ fun NewPasswordScreen (navController: NavController) {
                         unfocusedBorderColor = Color.Transparent
                     ),
 
-                    shape = ShapeTabButtons.small,
+                    shape = ShapeBigButtons.small,
                     trailingIcon = {
                         IconButton(onClick = {
                             confirmpasswordvisibilityforget.value =
@@ -244,45 +245,27 @@ fun NewPasswordScreen (navController: NavController) {
 
                 Spacer(modifier = Modifier.padding(vertical = 90.dp))
 
-                    OutlinedButton(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .height(51.dp)
-                            .clip(shape = ShapeTabButtons.small),
-                        colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                        shape = ShapeTabButtons.small,
-                        border = BorderStroke(2.dp, PrimaryColor),
+                CustomOutlinedButton(onClick = {
 
-                        onClick = {
-                            if (!validationHelper.confirmpasswordvalidation(forgetpassword.value,forgetconfirmpassword.value)){
-                                isErrorconfirmpassword = true
-                            }
-                            if (!validationHelper.passwordlvalidation(forgetpassword.value)) {
-                                isErrorpassword = true
-                            }
-                            if (!validationHelper.passwordlvalidation(forgetconfirmpassword.value)){
-                                isErrorconfirmpassword = true
-                            }
-
-                            else {
-                                 navController.navigate("Forget_Success")
-
-                                Toast.makeText(context, "password changed ", Toast.LENGTH_SHORT)
-                                    .show()
-                            }
-
-                        },
-
-
-                        ) {
-                        Text(
-                            text = stringResource(id = R.string.forgetsend),
-                            fontSize = 20.sp,
-                            color = PrimaryColor,
-                        )
-
-
+                    if (!validationHelper.confirmpasswordvalidation(forgetpassword.value,forgetconfirmpassword.value)){
+                        isErrorconfirmpassword = true
                     }
+                    if (!validationHelper.passwordlvalidation(forgetpassword.value)) {
+                        isErrorpassword = true
+                    }
+                    if (!validationHelper.passwordlvalidation(forgetconfirmpassword.value)){
+                        isErrorconfirmpassword = true
+                    }
+
+                    else {
+                        navController.navigate("Forget_Success")
+
+                        Toast.makeText(context, "password changed ", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }, statue = BTNSTATE.ACTIVE,
+                    contenttext = stringResource(id = R.string.forgetsend) )
+
                 }
             }
         }

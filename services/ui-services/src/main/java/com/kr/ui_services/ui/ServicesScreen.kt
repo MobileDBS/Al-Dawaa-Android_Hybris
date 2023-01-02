@@ -17,6 +17,7 @@ import com.kr.ui_services.R
 
 @Composable
 fun ServicesScreen(navController: NavController,modifier: Modifier = Modifier) {
+//    CameraScreen(navController = navController, showGallery =true )
         LazyColumn(
             state = rememberLazyListState(),
             userScrollEnabled = true,
@@ -26,8 +27,6 @@ fun ServicesScreen(navController: NavController,modifier: Modifier = Modifier) {
             contentScale = ContentScale.FillBounds
         ),
             content = {
-
-
                 items(getServicesDataAR()) { item ->
                     ServicesItem(item) {
 

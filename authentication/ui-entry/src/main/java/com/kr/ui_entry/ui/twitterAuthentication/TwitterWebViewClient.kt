@@ -9,6 +9,8 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.coroutines.*
+import twitter4j.auth.AccessToken
+val coroutineScope = CoroutineScope(Dispatchers.IO)
 var OauthToken = ""
 var OauthTokensecret = ""
 // A client to know about WebView navigations
@@ -47,7 +49,7 @@ class TwitterWebViewClient : WebViewClient() {
         return false
     }
     // Get the oauth_verifier
-     var accToken: twitter4j.auth.AccessToken? = null
+     var accToken: AccessToken? = null
     lateinit var accToken1: String
 
 
@@ -56,7 +58,7 @@ class TwitterWebViewClient : WebViewClient() {
 
         val uri = Uri.parse(url)
         val oauthVerifier = uri.getQueryParameter("oauth_verifier") ?:""
-        GlobalScope.launch(Dispatchers.Main) {
+        coroutineScope.launch {
             accToken = withContext(Dispatchers.IO) { twitter.getOAuthAccessToken(oauthVerifier) }
 
 
@@ -65,7 +67,7 @@ class TwitterWebViewClient : WebViewClient() {
         }
     }
 
-    suspend fun getUserProfile() {
+    private suspend fun getUserProfile() {
         val usr = withContext(Dispatchers.IO) { twitter.verifyCredentials() }
         //Twitter Id
         val twitterId = usr.id.toString()

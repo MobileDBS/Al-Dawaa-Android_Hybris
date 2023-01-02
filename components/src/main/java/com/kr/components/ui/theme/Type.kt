@@ -34,22 +34,22 @@ val Typography = Typography(
     ),
     headlineLarge = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Normal,
-        fontSize = 30.sp
+        fontWeight = FontWeight.Bold,
+        fontSize =20.sp
     ),
     headlineMedium = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Normal,
-        fontSize = 24.sp
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp
     ),
     headlineSmall = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
     ),
     titleLarge = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Medium,
         fontSize = 20.sp
     ),
     titleMedium = TextStyle(
@@ -74,24 +74,24 @@ val Typography = Typography(
     ),
     bodySmall = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Light,
+        fontWeight = FontWeight.Normal,
         fontSize = 10.sp
     ),
 
     labelLarge = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
     labelMedium = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 12.sp
     ),
     labelSmall = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp
     ),
 )
 

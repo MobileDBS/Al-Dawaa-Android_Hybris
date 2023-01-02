@@ -6,6 +6,7 @@ package com.kr.ui_entry.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.webkit.CookieManager
@@ -29,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.Unspecified
 import androidx.compose.ui.graphics.Color.Companion.White
@@ -47,6 +49,7 @@ import com.facebook.login.LoginManager
 import com.kr.components.ui.theme.*
 import com.kr.ui_entry.R
 import com.kr.ui_entry.ui.facebookAuthentication.FBLoginActivity
+import com.kr.ui_entry.ui.facebookAuthentication.FacebookLogin
 import com.kr.ui_entry.ui.googleAuthentication.AuthScreen
 import com.kr.ui_entry.ui.googleAuthentication.AuthViewModel
 import com.kr.ui_entry.ui.googleAuthentication.Googletokenid
@@ -68,7 +71,7 @@ import java.util.*
 @ExperimentalCoroutinesApi
 @SuppressLint("ResourceType", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun EntryScreen(navController: NavController) {
+fun EntryScreen(navController: NavController , onItemClick: (String) -> Unit) {
     val authViewModel: AuthViewModel = hiltViewModel()
      val twitter: TwitterFactory?=null
     val twitter1: Twitter?=null
@@ -82,11 +85,6 @@ fun EntryScreen(navController: NavController) {
 
     var chosenlanguage by rememberSaveable { mutableStateOf("English") }
     val errorMessage = "name format is invalid"
-
-
-
-
-
 
     Scaffold(
         modifier = Modifier
@@ -125,6 +123,7 @@ fun EntryScreen(navController: NavController) {
                 fontSize = 25.sp,
                 color = White,
                 fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleLarge
             )
 
             Spacer(modifier = Modifier.padding(6.dp))
@@ -159,18 +158,21 @@ fun EntryScreen(navController: NavController) {
                             "English" -> {
                                 chosenlanguage = label
                                 setLanguage(context, Locale("en"))
-                                (context as? Activity)?.recreate()
-                                chosenlanguage = label
+//                                (context as? Activity)?.recreate()
+                                onItemClick("English")
 
                             }
                             "العربية" -> {
                                 chosenlanguage = label
                                 setLanguage(context, Locale("ar"))
-                                (context as? Activity)?.recreate()
+//                                (context as? Activity)?.recreate()
+                                onItemClick("العربية")
+
+
 
                             }
                         }
-                    }, text = { Text(text = label) })
+                    }, text = { Text(text = label , style = MaterialTheme.typography.bodyLarge) })
                 }
             }
         }
@@ -183,7 +185,7 @@ fun EntryScreen(navController: NavController) {
 
                 modifier = Modifier
                     .fillMaxSize()
-                    // .fillMaxWidth()
+                    .fillMaxWidth()
                     .clip(
                         shape = Shapes.large.copy(
                             bottomStart = ZeroCornerSize,
@@ -224,18 +226,18 @@ fun EntryScreen(navController: NavController) {
                         val selected = selectedIndex == index
                         Tab(
                             modifier = if (selected) Modifier
-                                .clip(shape = ShapeTabButtons.large)
+                                .clip(shape = ShapeBigButtons.large)
                                 .background(
                                     SecondaryColor,
                                 )
                             else Modifier
-                                .clip(shape = ShapeTabButtons.large)
+                                .clip(shape = ShapeBigButtons.large)
                                 .background(
                                     Color.Transparent
                                 ),
                             selected = selected,
                             onClick = { selectedIndex = index },
-                            text = { Text(text = text, color = PrimaryColor) }
+                            text = { Text(text = text, color = PrimaryColor  , style = MaterialTheme.typography.bodyLarge) }
                         )
 
                     }
@@ -267,7 +269,7 @@ fun EntryScreen(navController: NavController) {
                         text = stringResource(id = R.string.orsigninwith),
                         fontSize = 15.sp,
                         color = PrimaryColor,
-                    )
+                            style = MaterialTheme.typography.titleMedium)
                     Spacer(modifier = Modifier.padding(15.dp))
 
                     Row(
@@ -276,7 +278,8 @@ fun EntryScreen(navController: NavController) {
                         modifier = Modifier.padding(start = 15.dp, end = 15.dp)
                     ) {
 
-                        Column() {
+                        Column(verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally) {
 
                             Box(
                                 modifier = Modifier
@@ -300,7 +303,7 @@ fun EntryScreen(navController: NavController) {
 
                            }, modifier = Modifier
                                .size(10.dp, 10.dp)
-                               .background(InputTextColor),
+                               .background(Transparent),
                                colors = ButtonDefaults.buttonColors(Unspecified)
                            ) {
 
@@ -312,7 +315,8 @@ fun EntryScreen(navController: NavController) {
                         Spacer(modifier = Modifier.padding(4.dp))
 
                             //facebook
-                        Column() {
+                        Column(verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally) {
                             Box(
                                 modifier = Modifier
                                     .size(58.dp, 58.dp)
@@ -350,8 +354,8 @@ fun EntryScreen(navController: NavController) {
 
                                 }, modifier = Modifier
                                     .size(10.dp, 10.dp)
-                                    .background(InputTextColor),
-                                colors = ButtonDefaults.buttonColors(Unspecified)
+                                    .background(Transparent),
+                                colors = ButtonDefaults.buttonColors(Transparent)
                             ) {
 
                             }
@@ -360,7 +364,8 @@ fun EntryScreen(navController: NavController) {
 
 
                         Spacer(modifier = Modifier.padding(4.dp))
-                        Column() {
+                        Column(verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally) {
 
                         }
                         //Twitter
@@ -397,26 +402,29 @@ fun EntryScreen(navController: NavController) {
 
                                       }, modifier = Modifier
                                 .size(10.dp, 10.dp)
-                                .background(InputTextColor),
-                            colors = ButtonDefaults.buttonColors(Unspecified)
+                                .background(Transparent),
+                            colors = ButtonDefaults.buttonColors(Transparent)
                         ) {
 
                         }
                             }
 
                     }
-
-                }
                 Spacer(modifier = Modifier.padding(10.dp))
-                Text(text = stringResource(id = R.string.continueasaguest),
+                Text(text = stringResource(id = R.string.continueasaguest ),
+                    style = MaterialTheme.typography.bodyLarge,
                     color = PrimaryColor,
                     modifier = Modifier.clickable {
                         // navController.navigate("")
                         Toast.makeText(context, "Wellcome to Home ", Toast.LENGTH_SHORT).show()
 
-
                     })
+                Spacer(modifier = Modifier.padding(10.dp))
+
                 Spacer(modifier = Modifier.padding(15.dp))
+
+            }
+
 
 
             }
@@ -426,106 +434,6 @@ fun EntryScreen(navController: NavController) {
     }
 
 
-
-@Composable
-fun FacebookLogin(navController:NavController) {
-    val context = LocalContext.current
-
-
-    val facebookSignRequest =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                val data = result.data?.getStringExtra(FBLoginActivity.EXTRA_DATA_FB)
-                val accessToken: AccessToken? = AccessToken.getCurrentAccessToken()
-                //do something with data
-                val datax = result.data?.extras.toString()
-                val dataxe = result.data?.getStringExtra(FBLoginActivity.EXTRA_DATA_FB)
-                Log.d("facebook", "data is ${result.toString()}")
-                Log.d("facebook", "data is ${datax.toString()}")
-                Log.d("facebook", "data is ${dataxe.toString()}")
-
-
-                val request = GraphRequest.newMeRequest(
-                    accessToken,
-                    callback = GraphRequest.GraphJSONObjectCallback { obj, response ->
-                        val id: String = obj?.getString("id").toString()
-                        val name: String = obj?.getString("name").toString()
-                        val email: String = obj?.getString("email").toString()
-                        // val pictureUri: String = obj?.getString("pictureUri").toString()
-                        val picture: String = obj?.getString("picture").toString()
-
-                        Log.e("facebookname1 : ", id)
-                        Log.e("facebooklink1 : ", name)
-                        Log.e("facebookmail1 : ", email)
-                        Log.e("facebookpicture1 : ", picture)
-                    })
-
-                val parameters = Bundle()
-                parameters.putString("fields", "id,name,email,picture")
-
-                request.parameters = parameters
-                request.executeAsync()
-                Log.e("facebookparam : ", parameters.toString())
-                Log.e("facebook : ", accessToken.toString())
-
-                Log.e("facebook : ", accessToken?.expires.toString())
-
-                Log.e("facebook : ", accessToken?.userId.toString())
-
-
-
-
-            }
-        }
-
-   IconButton(onClick = {
-       if (AccessToken.getCurrentAccessToken() == null) {
-           facebookSignRequest.launch(FBLoginActivity.getInstance(context))
-
-       }else{
-           navController.navigate("MainUi")
-       }
-
-
-   }, modifier = Modifier
-       .background(Unspecified)
-       .fillMaxSize()) {
-    //   Icon(painter = painterResource(id = R.drawable.ic_facebook)  , contentDescription ="facebook icon" )
-
-   }
-}
-
-
-// Google
-/*
-
-@Composable
-fun TwitterLogin(navController:NavController) {
-   val context = LocalContext.current
-
-    val twitterrequest =
-
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            val data = result.data?.getStringExtra(TwitterActivity.token)
-            Log.e("twitter : ", data.toString())
-            Log.e("twitter : ", result.resultCode.toString())
-            Log.e("twitter : ", result.data.toString())
-
-
-            if (result.resultCode == Activity.RESULT_OK) {
-                Toast.makeText(context, "yesyesyes", Toast.LENGTH_SHORT).show()
-
-            }
-        }
-    IconButton(onClick = {
-      //  startForResult.launch(GoogleSignIn.getClient(context,GoogleSignInOptions))
-           twitterrequest.launch(TwitterActivity.getInstance(context))
-    }, modifier = Modifier
-        .background(Unspecified)
-        .fillMaxSize()) {
-
-    }}
-*/
 
 
 

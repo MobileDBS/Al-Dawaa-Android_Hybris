@@ -20,9 +20,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.kr.components.ui.theme.ShapeTabButtons
 import com.kr.ui_categories.R
 import com.kr.ui_categories.ui.categoriesdetailsui.component.CategoryDetailsItems
+import com.kr.components.ui.theme.ShapeBigButtons
 import  com.kr.components.ui.theme.InputTextColor
 
 @ExperimentalMaterial3Api
@@ -116,7 +116,7 @@ fun CategoryDetailsScreen(navController: NavController
                                             easing = LinearOutSlowInEasing
                                         )
                                     ),
-                                shape = ShapeTabButtons.small,
+                                shape = ShapeBigButtons.small,
                               //  elevation = 4.dp
 
                             ) {
