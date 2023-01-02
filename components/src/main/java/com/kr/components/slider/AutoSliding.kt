@@ -1,4 +1,4 @@
-package com.kr.components
+package com.kr.components.slider
 
 import android.graphics.PorterDuff
 import android.util.Log
@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.accompanist.pager.*
-import com.kr.components.slider.natural
+import com.kr.components.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.yield
