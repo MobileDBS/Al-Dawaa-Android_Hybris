@@ -112,11 +112,11 @@ fun ProductListItem() {
                             .width(27.dp)
                             .align(Alignment.End),
                         onClick = {
-                            if (isItemInProductList.value){
-                                Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
-                                isLikedButtonPress.value = !isLikedButtonPress.value
-                            }
-
+                            if (!isLikedButtonPress.value)
+                                isLikedButtonPress.value = true
+                            else
+                                isLikedButtonPress.value = false
+                            Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
                         }
                     )
                     {
