@@ -130,8 +130,8 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
                     //  Greeting()
-                    AutoSliding(PrimaryColor)
-                  //  NavigationController()
+                  //  AutoSliding(PrimaryColor)
+                    NavigationController()
                     CustomPermission(permissions = listOf(
                         Manifest.permission.CAMERA
                     ), permissionContent = {
