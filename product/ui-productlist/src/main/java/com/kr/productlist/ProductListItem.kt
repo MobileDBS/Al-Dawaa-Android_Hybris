@@ -1,5 +1,6 @@
 package com.kr.productlist
 
+import android.widget.Button
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -89,51 +90,50 @@ fun ProductListItem(result:ProductListModel){
                 .width(172.dp)
                 .padding(8.dp)
                 /* .fillMaxWidth()
-                 .wrapContentHeight()*/
+                 //.wrapContentHeight()*/
                 //  .wrapContentSize()
                 //  .alpha(0.5f)
         ) {
-            Row(
+            Column(
                 Modifier
                     .padding(top = 3.dp)
                     .fillMaxWidth()
             ) {
-              /*  Box() {
+                Box(   Modifier
+                    .fillMaxWidth()) {
                     Image(
                         modifier = Modifier
                             .width(120.dp)
-                            .height(120.dp),
-                        //.align(Alignment.CenterHorizontally),
+                            .height(120.dp)
+                        .align(Alignment.TopCenter),
                           painter = painterResource(R.drawable.image),
 
                       //  painter=imagePainter,
                         contentDescription = "product image",
                         contentScale = ContentScale.Crop,
                     )
-                }
-                Box() {
                     Text(
                         text = "${result.offerNumber}",
                         textAlign = TextAlign.Center,
                         color = Color.White,
-                        fontSize = 15.sp,
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1,
+                        fontSize = 12.sp,
                         modifier = Modifier
                             .background(color = Color.Red, shape = CircleShape)
                             //    .width(36.dp)
-                            //.fillMaxWidth()
-                            .wrapContentSize()
-                            .height(35.dp)
-                            .padding(all = 8.dp)
+                            .wrapContentWidth()
+                           // .height(35.dp)
+                            .padding(top = 8.dp, bottom =8.dp, start =10.dp,end=10.dp )
+                            .align(Alignment.TopStart)
 
                     )
-                }
-                Box() {
                     IconButton(
                         modifier = Modifier
                             .height(27.dp)
                             .width(27.dp)
-                          //  .align(Alignment.End)
-                                ,
+                          .align(Alignment.TopEnd)
+                        ,
                         onClick = {
                             //added here
                             //   showBottomSheet ( true)
@@ -156,8 +156,9 @@ fun ProductListItem(result:ProductListModel){
                             tint = colorResource(id = R.color.unlike_icon_color),
                         )
                     }
-                }*/
-                Text(
+                }
+
+             /*   Text(
                     text = "${result.offerNumber}",
                     textAlign = TextAlign.Center,
                     color = Color.White,
@@ -200,10 +201,15 @@ fun ProductListItem(result:ProductListModel){
                         onClick = {
                             //added here
                          //   showBottomSheet ( true)
-                          //  if (isItemInProductList.value){
+                          *//*  if (isItemInProductList.value){
                                 Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
                                 isLikedButtonPress.value = !isLikedButtonPress.value
-                          //  }
+                            }*//*
+                            if (!isLikedButtonPress.value)
+                                isLikedButtonPress.value = true
+                                else
+                                    isLikedButtonPress.value=false
+                            Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
 
                         }
                     )
@@ -211,16 +217,15 @@ fun ProductListItem(result:ProductListModel){
 
                         Icon(
                             painter = if (!isLikedButtonPress.value)
-                                painterResource(R.drawable.unlike)
-                            else{
-                                painterResource(R.drawable.liked)
-                                },
+                                painterResource(R.drawable.unlike) else painterResource(
+                                R.drawable.liked
+                            ),
                             contentDescription = "likedproduct",
-                            tint = colorResource(id = R.color.unlike_icon_color),
+                            tint = colorResource(id = R.color.unlike_icon_color)
                         )
                     }
                 }
-
+*/
             }
             Text(
                 text = "${result.productName}",
@@ -337,7 +342,7 @@ fun ProductListItem(result:ProductListModel){
                             .align(alignment = Bottom)
                     ) {
                         IconButton(
-                            onClick = { /*TODO*/ }, modifier = Modifier
+                            onClick = {  Toast.makeText(context, "Added to cart", Toast.LENGTH_SHORT).show()}, modifier = Modifier
                                 .align(Alignment.End)
                                 .height(27.dp)
                                 .width(27.dp)
