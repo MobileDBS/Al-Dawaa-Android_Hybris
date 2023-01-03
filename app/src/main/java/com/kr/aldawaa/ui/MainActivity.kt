@@ -27,6 +27,7 @@ import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 import com.kr.aldawaa.LocationClass
   import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -35,7 +36,9 @@ import com.kr.aldawaa.LocationClass
 import com.kr.aldawaa.R
 import com.kr.components.CustomPermission
 import com.kr.components.StartPermissionSetting
+import com.kr.components.slider.AutoSliding
 import com.kr.components.ui.theme.AlDawaaHybrisTheme
+import com.kr.components.ui.theme.PrimaryColor
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_entry.ui.twitterAuthentication.TwitterConstants
@@ -82,6 +85,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
     }
 */
 
+    @OptIn(ExperimentalPagerApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -126,16 +130,15 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
                     //  Greeting()
-                    NavigationController()
+                    AutoSliding(PrimaryColor)
+                  //  NavigationController()
                     CustomPermission(permissions = listOf(
                         Manifest.permission.CAMERA
                     ), permissionContent = {
                     })
-
                     ///////////////End Navigation Bar///////////////////////
                 }
             }
-
         }
     }
 

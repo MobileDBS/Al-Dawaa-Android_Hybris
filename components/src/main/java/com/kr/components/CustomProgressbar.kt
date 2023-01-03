@@ -79,7 +79,6 @@ fun RenderImage(
         ),
         contentDescription = contentDescription,
         modifier = modifier,
-
         )
 
 

@@ -1,4 +1,4 @@
-package com.kr.components
+package com.kr.components.slider
 
 import android.graphics.PorterDuff
 import android.util.Log
@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.accompanist.pager.*
-import com.kr.components.slider.natural
+import com.kr.components.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.yield
@@ -39,10 +39,9 @@ import kotlin.math.absoluteValue
 @OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalPagerApi
 @Composable
-fun AutoSliding() {
-    var pagerState = rememberPagerState()
+fun AutoSliding(sliderBgColor:Color) {
+    val pagerState = rememberPagerState()
     val scope = rememberCoroutineScope()
-
     LaunchedEffect(Unit) {
         Log.v("pagerState"," inside while ${pagerState.currentPage}")
         while (true) {
@@ -57,12 +56,13 @@ fun AutoSliding() {
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Yellow)
+            .height(145.dp)
+            .fillMaxWidth()
+            .background(sliderBgColor)
     ) {
-        Column(
+/*        Column(
             modifier = Modifier
-                .height(50.dp)
+                .height(16.dp)
                 .fillMaxWidth()
                 .background(Color.DarkGray),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -76,13 +76,12 @@ fun AutoSliding() {
             )
         }
 
-        Spacer(modifier = Modifier.height(30.dp))
-
+        Spacer(modifier = Modifier.height(30.dp))*/
         HorizontalPager(count = natural.size,
             state = pagerState,
             modifier = Modifier
-                .weight(1f)
-                .padding(0.dp, 40.dp, 0.dp, 40.dp)
+                .fillMaxSize()
+                .padding(0.dp, 5.dp, 0.dp, 5.dp)
         ) { page ->
             Card(
                 modifier = Modifier
@@ -130,7 +129,7 @@ fun AutoSliding() {
                     )
                     Column(
                         modifier = Modifier
-                            .align(Alignment.BottomStart)
+                            .align(Alignment.TopStart)
                             .padding(15.dp)
                     ) {
                         Text(
@@ -140,7 +139,7 @@ fun AutoSliding() {
                             fontWeight = FontWeight.Bold
                         )
 
-                        val ratingBar = RatingBar(
+            /*            val ratingBar = RatingBar(
                             LocalContext.current, null, R.attr.ratingBarStyleSmall
                         ).apply {
                             rating = natural.rating
@@ -152,7 +151,7 @@ fun AutoSliding() {
                         AndroidView(
                             factory = { ratingBar },
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 0.dp)
-                        )
+                        )*/
 
                         Text(
                             text = natural.desc,
@@ -162,17 +161,25 @@ fun AutoSliding() {
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 0.dp)
                         )
                     }
+                    //Horizontal dot indicator
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.BottomStart)
+                    ){
+                        HorizontalPagerIndicator(
+                            pagerState = pagerState,
+                            activeColor = Color.White,
+                            modifier = Modifier
+                                .padding(15.dp)
+
+                        )
+                    }
                 }
+
             }
+
         }
 
-        //Horizontal dot indicator
-        HorizontalPagerIndicator(
-            pagerState = pagerState,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(16.dp)
-
-        )
     }
+
 }

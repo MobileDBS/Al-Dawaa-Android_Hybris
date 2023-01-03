@@ -116,7 +116,7 @@ fun ForgetPasswordScreen (navController: NavController) {
                         placeholder = {
                             Text(
                                 text = stringResource(id = R.string.phonenumber),
-                                color = InputHint ,
+                                color = InputTextColor ,
                                 style = MaterialTheme.typography.bodyLarge
                             )
                         },
