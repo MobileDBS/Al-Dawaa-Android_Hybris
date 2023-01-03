@@ -200,10 +200,10 @@ fun ProductListItem(result:ProductListModel){
                         onClick = {
                             //added here
                          //   showBottomSheet ( true)
-                            if (isItemInProductList.value){
+                          //  if (isItemInProductList.value){
                                 Toast.makeText(context, "button clicked", Toast.LENGTH_SHORT).show()
                                 isLikedButtonPress.value = !isLikedButtonPress.value
-                            }
+                          //  }
 
                         }
                     )
