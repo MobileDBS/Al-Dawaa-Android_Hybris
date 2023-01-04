@@ -1,6 +1,7 @@
 package com.kr.product_domain
 
 class ProductListModel (
+    val productListId:String,
     val offerNumber: String,
     val productName : String,
     val productDescription:String,

@@ -2,6 +2,7 @@ package com.kr.productlist
 
 import android.widget.Button
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
@@ -13,6 +14,9 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -24,6 +28,7 @@ import androidx.compose.ui.Alignment.Companion.Bottom
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -38,11 +43,11 @@ import com.kr.ui_productlist.R
 
 //@OptIn(ExperimentalMaterialApi::class)
 @Composable
-
 fun DisplayProductList() {
-
+    var productListItems= getProductItemData()
+    val listState = rememberLazyGridState()
     LazyVerticalGrid(
-        state = rememberLazyGridState(),
+        state = listState,
         columns = GridCells.Fixed(2),
         userScrollEnabled = true,
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -56,12 +61,26 @@ fun DisplayProductList() {
             bottom = 8.dp
         ),
         content = {
-            items(getProductItemData()) {
+            items(productListItems) {
                     it ->
                 ProductListItem(it)
+              /*  key {
+                    it.productListId
+                }*/
+
             }
         }
     )
+
+    val showButton by remember {
+        derivedStateOf {
+            listState.firstVisibleItemIndex > 0
+        }
+    }
+
+    AnimatedVisibility(visible = showButton) {
+
+    }
 }
 @Composable
 //fun ProductListItem(showBottomSheet: (Boolean) -> Unit)
@@ -105,7 +124,7 @@ fun ProductListItem(result:ProductListModel){
                         modifier = Modifier
                             .width(120.dp)
                             .height(120.dp)
-                        .align(Alignment.TopCenter),
+                            .align(Alignment.TopCenter),
                           painter = painterResource(R.drawable.image),
 
                       //  painter=imagePainter,
@@ -123,8 +142,8 @@ fun ProductListItem(result:ProductListModel){
                             .background(color = Color.Red, shape = CircleShape)
                             //    .width(36.dp)
                             .wrapContentWidth()
-                           // .height(35.dp)
-                            .padding(top = 8.dp, bottom =8.dp, start =10.dp,end=10.dp )
+                            // .height(35.dp)
+                            .padding(top = 8.dp, bottom = 8.dp, start = 10.dp, end = 10.dp)
                             .align(Alignment.TopStart)
 
                     )
@@ -132,7 +151,7 @@ fun ProductListItem(result:ProductListModel){
                         modifier = Modifier
                             .height(27.dp)
                             .width(27.dp)
-                          .align(Alignment.TopEnd)
+                            .align(Alignment.TopEnd)
                         ,
                         onClick = {
                             //added here
@@ -228,7 +247,7 @@ fun ProductListItem(result:ProductListModel){
 */
             }
             Text(
-                text = "${result.productName}",
+                text = result.productName,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
                 fontSize = 17.sp,
@@ -236,7 +255,7 @@ fun ProductListItem(result:ProductListModel){
                 color = colorResource(id = R.color.dark_blue)
             )
             Text(
-                text = "${result.productDescription}",
+                text = result.productDescription,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 2,
                 fontSize = 10.sp,
@@ -360,29 +379,53 @@ fun ProductListItem(result:ProductListModel){
         }
     }
 }
-
+@Composable
  fun getProductItemData():MutableList<ProductListModel>{
- val productData : MutableList<ProductListModel> = mutableListOf()
+ val productData : MutableList<ProductListModel> = remember {
+     mutableListOf()
+ }
     productData.add(
-        ProductListModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
+        ProductListModel("1","1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
     ,"205","Buy 1 get two free",
             "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
             "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductListModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductListModel("2","1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductListModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductListModel("3","1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))
      productData.add(
-         ProductListModel("1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
+         ProductListModel("4","1+","Forever Lip","Finish Mat Lip Gloss Dark Node"
              ,"205","Buy 1 get two free",
              "https://thumbs.dreamstime.com/b/pills-medicine-background-25754120.jpg",
              "1.25 Loyalty points","1.25 Loyalty points"))
 
     return productData
 }
+//iconTogleButton
+/*
+IconToggleButton(
+checked = isLikedButtonPress.value,
+onCheckedChange = {
+    isLikedButtonPress.value = !isLikedButtonPress.value
+}
+) {
+    Icon(
+        tint = Color.Blue,
+        modifier = Modifier.graphicsLayer {
+            scaleX = 1.3f
+            scaleY = 1.3f
+        },
+        imageVector = if (isLikedButtonPress.value) {
+            Icons.Filled.Favorite
+        } else {
+            Icons.Default.FavoriteBorder
+        },
+        contentDescription = null
+    )
+}*/

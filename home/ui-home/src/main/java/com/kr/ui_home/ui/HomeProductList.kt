@@ -26,6 +26,7 @@ import com.kr.ui_home.R
 @Composable
 fun HomeProductList(navController: NavController)
 {
+    var productListItems= getProductItemData()
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -47,7 +48,10 @@ fun HomeProductList(navController: NavController)
                     .padding(all = 8.dp)
 
             )
-            Column(Modifier.fillMaxWidth().align(Alignment.CenterVertically)) {
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.CenterVertically)) {
                 Row(modifier = Modifier.align(Alignment.End)) {
                     Text(
                         text="See all",
@@ -56,9 +60,14 @@ fun HomeProductList(navController: NavController)
                         //      fontWeight= FontWeight.Bold,
                         //  textAlign = TextAlign.Center,
 
-                        modifier = Modifier.padding(end=2.dp, top = 4.dp)
+                        modifier = Modifier
+                            .padding(end = 2.dp, top = 4.dp)
                             .align(Alignment.Bottom)
-                            .clickable(true,"",null, onClick = {navController.navigate("Product_List")})
+                            .clickable(
+                                true,
+                                "",
+                                null,
+                                onClick = { navController.navigate("Product_List") })
 
                     )
                     IconButton(
@@ -95,7 +104,7 @@ fun HomeProductList(navController: NavController)
                 horizontalArrangement =Arrangement.spacedBy(8.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                   .height(350.dp)
+                    .height(350.dp)
                     .align(Alignment.TopStart)
                     .scrollable(
                         rememberLazyGridState(),
@@ -110,7 +119,7 @@ fun HomeProductList(navController: NavController)
                 ),
                 content = {
 
-                    items(getProductItemData()) {
+                    items(productListItems) {
                         ProductListItem(it)
                     }
 

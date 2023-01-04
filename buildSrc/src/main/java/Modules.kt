@@ -32,7 +32,7 @@ object Modules {
     const val productDomain=":product:product-domain"
     const val homeDomain=":home:home-domain"
     const val homeInteractors =":home:home-interactors"
-
+    const val homeDataSource=":home:home-dataSource"
     const val servicesInteractors =":services:services-interactors"
     const val servicesDomain =":services:services-domain"
 
