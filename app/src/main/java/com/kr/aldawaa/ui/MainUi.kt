@@ -87,7 +87,7 @@ fun BottomNavGraph(navController: NavHostController) {
         CustomModalBottomSheet3(navController=navController  )
         }
 
-        composable("Map", content = { CustomMap() })
+        composable("Map", content = { CustomMap(getLocationLest()) })
 
 
 

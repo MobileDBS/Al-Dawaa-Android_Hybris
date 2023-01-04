@@ -29,12 +29,12 @@ class Activity : ComponentActivity() {
 }
 
 @Composable
-fun CustomMap() {
-   val icon=R.drawable.ic_close
+fun CustomMap(locationList: ArrayList<LatLng>) {
+   val icon=R.drawable.location
     Column() {
 
         val cameraPositionState = rememberCameraPositionState {
-            position = CameraPosition.fromLatLngZoom(LatLng(30.026348, 31.482875), 17f)
+            position = CameraPosition.fromLatLngZoom(LatLng(30.026348, 31.482875), 4f)
         }
         var uiSettings by remember {
             mutableStateOf(
@@ -58,34 +58,21 @@ fun CustomMap() {
                    title = "Marker1",
                    icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
                )*/
-            GoogleMarkers(icon)
+            GoogleMarkers(icon,locationList)
         }
     }
 }
 
 @Composable
-fun GoogleMarkers(@DrawableRes iconResourceId:Int) {
+fun GoogleMarkers(@DrawableRes iconResourceId:Int,locationList: List<LatLng>) {
     val icon=bitmapDescriptorFromVactor(LocalContext.current,iconResourceId)
-    Marker(
-        state = rememberMarkerState(position = LatLng(44.811058, 20.4627586)),
-        title = "Marker2",
-        icon = icon
-    )
-    Marker(
-        state = rememberMarkerState(position = LatLng(44.810058, 20.4627586)),
-        title = "Marker3",
-        icon = icon
-    )
-    Marker(
-        state = rememberMarkerState(position = LatLng(44.809058, 20.4627586)),
-        title = "Marker4",
-        icon = icon
-    )
-    Marker(
-        state = rememberMarkerState(position = LatLng(44.809058, 20.4617586)),
-        title = "Marker5",
-        icon = icon
-    )
+    locationList.forEach {
+        Marker(
+            state = rememberMarkerState(position = it),
+            title = "Marker2",
+            icon = icon
+        )
+    }
 }
 
 fun bitmapDescriptorFromVactor(context: Context, vectorResourceId:Int): BitmapDescriptor? {
@@ -99,3 +86,12 @@ fun bitmapDescriptorFromVactor(context: Context, vectorResourceId:Int): BitmapDe
 }
 
 
+fun getLocationLest():ArrayList<LatLng>{
+    var list:ArrayList<LatLng> = arrayListOf()
+    list.add(LatLng(30.026348, 31.482875))
+    list.add(LatLng(29.026348, 30.482875))
+    list.add(LatLng(25.026348, 29.482875))
+    list.add(LatLng(20.026348, 25.482875))
+    list.add(LatLng(24.026348, 21.482875))
+    return list
+}
