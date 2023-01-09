@@ -9,10 +9,8 @@ import retrofit2.http.Path
 
 interface ApiInterface {
     //Login
-    @POST("{lang}/V1/crocoit/auth/login")
+    @POST("authorizationserver/oauth/token")
    suspend fun login(
-        @Header("firebase-token") fireBaseToken: String,
-        @Path("lang") lang: String,
         @Body body:LoginRequest
     ): LoginResponse
 

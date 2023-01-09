@@ -14,10 +14,10 @@ import javax.inject.Inject
 class LoginUseCase @Inject constructor(
     private  val repository: AuthenticationRepoImp
 ) {
-   operator fun invoke(identity :String , password :String): Flow<Resource<User>> = flow {
+   operator fun invoke(): Flow<Resource<User>> = flow {
         try {
             emit(Resource.Loading())
-            val response = repository.loginRequest(identity , password).toUser()
+            val response = repository.loginRequest().toUser()
             emit(Resource.Success(response))
         } catch(e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))

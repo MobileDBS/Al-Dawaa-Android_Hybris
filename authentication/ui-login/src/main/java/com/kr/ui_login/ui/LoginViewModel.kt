@@ -20,11 +20,11 @@ class LoginViewModel @Inject constructor(
     private val _state = mutableStateOf(LoginState())
     val state: State<LoginState> = _state
     init {
-        login("0562137538", "123456")
+        login()
     }
 
-    private fun login(identity :String , password :String) {
-       userCase(identity , password).onEach { result ->
+    private fun login() {
+       userCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.value = LoginState(user = result.data)

@@ -3,6 +3,8 @@ package com.kr.aldawaa.di
 import android.app.Application
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.kr.aldawaa.network.AuthToken
+import com.kr.aldawaa.network.RefreshTokenApiInterface
 import com.kr.authentication_datasource.network.ApiInterface
 import com.kr.authentication_datasource.network.AuthenticationRepoImp
 import com.kr.categories_datasource.network.CategoriesApiInterface
@@ -30,9 +32,10 @@ object NetworkModule {
     @Provides
     @Singleton
     //logger: HttpLoggingInterceptor,authenticator: TokenAuthenticator,interceptor: NoConnectionInterceptor
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(@ApplicationContext context: Context/*,authInterceptor: AuthToken*/): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
         okHttpClient
+          // .addInterceptor(authInterceptor)
             /*       .addInterceptor { chain ->
                        val request: Request = chain.request().newBuilder().addHeader("MobileType", "android").build()
                        chain.proceed(request)
@@ -42,6 +45,7 @@ object NetworkModule {
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .writeTimeout(90, TimeUnit.SECONDS)
+
 
  /*       if (BuildConfig.DEBUG) {
             okHttpClient.addInterceptor(logger)
@@ -80,11 +84,24 @@ object NetworkModule {
     fun provideConnectivityObserver(@ApplicationContext application: Context): NetworkConnectivityObserver {
         return NetworkConnectivityObserver(application)
     }
+//    @Provides
+//    @Singleton
+//    fun provideTokenInterceptor(
+//        context: Context, refreshTokenApiInterface: RefreshTokenApiInterface
+//    ): AuthToken {
+//        return AuthToken(context, refreshTokenApiInterface)
+//    }
 
     @Provides
     @Singleton
     fun providApiService(retrofit: Retrofit): CategoriesApiInterface  {
         return retrofit.create(CategoriesApiInterface::class.java)
     }
+
+//    @Provides
+//    @Singleton
+//    fun provideRefreshTokenApiService(retrofit: Retrofit): RefreshTokenApiInterface {
+//        return retrofit.create(RefreshTokenApiInterface::class.java)
+//    }
 
 }

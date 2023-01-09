@@ -9,6 +9,4 @@ abstract class RepoModule {
     abstract  fun provideCoinRepository(api: AuthenticationRepoImp): AuthenticationRepoImp {
         return AuthenticationRepoImp(api)
     }*/
-
-
 }
