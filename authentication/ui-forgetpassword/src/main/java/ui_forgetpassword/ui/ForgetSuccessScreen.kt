@@ -6,22 +6,28 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 
 import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
+import com.kr.components.ui.theme.BTNSTATE
 import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.ShapeTabButtons
+import com.kr.components.ui.theme.ShapeBigButtons
 import com.kr.ui_forgetpassword.R
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ForgetSuccess (navController: NavController) {
@@ -29,13 +35,14 @@ fun ForgetSuccess (navController: NavController) {
 
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
 
 
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 
@@ -46,6 +53,9 @@ fun ForgetSuccess (navController: NavController) {
                 .fillMaxSize()
                 .background(color = Color.White)
                 .verticalScroll(rememberScrollState())
+                .paint(painter = painterResource(id = R.drawable.group)
+                , contentScale = ContentScale.FillBounds)
+
 
         ) {
 
@@ -64,7 +74,8 @@ fun ForgetSuccess (navController: NavController) {
             Spacer(modifier = Modifier.padding(50.dp))
 
             Image(
-                modifier = Modifier.wrapContentSize()
+                modifier = Modifier
+                    .wrapContentSize()
                     .width(55.dp)
                     .height(50.dp)
                     ,
@@ -93,44 +104,18 @@ fun ForgetSuccess (navController: NavController) {
 
             )
 
-
-
             Spacer(modifier = Modifier.padding(80.dp))
 
+            CustomOutlinedButton(onClick = {
+                navController.navigate("Login_page")
+
+                Toast.makeText(context, "Backed to  Login ", Toast.LENGTH_SHORT).show()
+            }, statue = BTNSTATE.ACTIVE,
+                contenttext = stringResource(id = R.string.backtohome ))
+            Spacer(modifier = Modifier.padding(15.dp))
 
 
-
-                    OutlinedButton(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .height(53.dp)
-                            .clip(shape = ShapeTabButtons.small),
-                        colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                        shape = ShapeTabButtons.small,
-                        border = BorderStroke(2.dp, PrimaryColor),
-
-                        onClick = {
-
-
-
-                                  //  navController.navigate("Forget_Password_Otp")
-
-                                    Toast.makeText(context, "Backed to  Home ", Toast.LENGTH_SHORT).show()
-
-
-                        },
-
-
-                        ) {
-                        Text(
-                            text = stringResource(id = R.string.backtohome),
-                            fontSize = 20.sp,
-                            color = PrimaryColor,
-                        )
-
-
-                    }
-                }
+        }
             }
         }
 

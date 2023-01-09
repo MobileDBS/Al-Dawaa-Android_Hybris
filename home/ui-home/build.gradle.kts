@@ -8,6 +8,8 @@ plugins {
 }
 dependencies{
     "implementation"(project(Modules.components))
+    "implementation"(project(Modules.ui_productList))
     "implementation"(project(Modules.servicesDomain))
+    "implementation"(project(Modules.productDomain))
 
 }

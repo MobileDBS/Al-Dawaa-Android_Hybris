@@ -1,11 +1,10 @@
-package com.kr.ui_filter.ui.filterui.component
+package com.kr.ui_filter.component
 
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.material3.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color

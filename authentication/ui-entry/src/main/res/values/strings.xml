@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="app_name">AlDawaa</string>
-<string name="wellcometoaldawaa">Wellcome to Al-Dawaa</string>
-<string name="signintap">Login</string>
-<string name="signuptap">Sign up</string>
-<string name="enteryouremail"> E-mail</string>
-<string name="enteryourpass"> Password</string>
-<string name="signinorg">Login</string>
-<string name="orsigninwith">Or Sign in With</string>
-<string name="continueasaguest">Continue as a Guest</string>
-<string name="signuporg">Create account</string>
-<string name="name">Name</string>
-<string name="phonenumber">Phone number</string>
-<string name="forgetmypassword">Forgot Password ?</string>
-<string name="rememberme">Remember me</string>
-<string name="Subscribeto">Subscribe to e-mail newletters</string>
+
+    <string name="facebook_app_id">1258428858321843</string>
+    <string name="fb_login_protocol_scheme">fb1258428858321843</string>
+    <string name="facebook_client_token">f5e750f85255108e68642226b55a70a7</string>
+    <string name="gcp_id">631843954719-ljjtv3ae3n7ehdv6jnpht6118jlpucdb.apps.googleusercontent.com</string>
+
+    <string name="app_name">AlDawaa</string>
+    <string name="wellcometoaldawaa">Wellcome to Al-Dawaa</string>
+    <string name="signintap">Login</string>
+    <string name="signuptap">Sign up</string>
+    <string name="enteryouremail"> E-mail</string>
+    <string name="enteryourpass"> Password</string>
+    <string name="signinorg">Login</string>
+    <string name="orsigninwith">Or Sign in With</string>
+    <string name="continueasaguest">Continue as a Guest</string>
+    <string name="signuporg">Create account</string>
+    <string name="name">Name</string>
+    <string name="phonenumber">Phone number</string>
+    <string name="forgetmypassword">Forgot Password ?</string>
+    <string name="rememberme">Remember me</string>
+    <string name="Subscribeto">Subscribe to e-mail newletters</string>
     <string name="title1">title1</string>
-<string name="title2">title2</string>
+    <string name="title2">title2</string>
     <string name="male">Male</string>
-<string name="female">Female</string>
+    <string name="female">Female</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 </resources>

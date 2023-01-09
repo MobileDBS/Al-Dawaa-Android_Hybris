@@ -18,7 +18,7 @@ suspend fun Context.getCameraProvider(): ProcessCameraProvider = suspendCoroutin
     ProcessCameraProvider.getInstance(this).also { future ->
         future.addListener(
             {
-                continuation.resume(future.get())
+                continuation.run { resume(future.get()) }
             },
             executor
         )

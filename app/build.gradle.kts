@@ -72,7 +72,7 @@ dependencies {
 
     implementation(Compose.activity)
     implementation(Compose.ui)
-    implementation(Compose.material)
+//    implementation(Compose.material)
     implementation(Compose.tooling)
     implementation(Compose.navigation)
     implementation(Compose.hiltNavigation)
@@ -94,7 +94,6 @@ dependencies {
     implementation(project(Modules.ui_categories))
     implementation(project(Modules.categoriesDataSource))
 
-    implementation(project(Modules.components))
     implementation(project(Modules.ui_login))
 
 //    implementation(Hilt.lifecycle)
@@ -113,14 +112,25 @@ dependencies {
     implementation(project(Modules.ui_cart))
    implementation(project(Modules.ui_login))
     implementation(project(Modules.ui_productList))
-    implementation(Compose.Permissions)
+    implementation(Compose.permissions)
     implementation(Compose.playServicesLocation)
     //Slider
     implementation(Compose.accompanistPager)
     implementation(Compose.accompanistPagerIndicator)
     implementation(Compose.composeUtil)
+    //google
+    implementation(SocialMedia.googleservice)
+    //twitter
+    implementation(SocialMedia.twitter)
 
-    "implementation"("com.google.accompanist:accompanist-systemuicontroller:0.23.1")
+    implementation(Compose.accompanistSystemUiController)
+
+    //localization
+    implementation(Localization.localization)
+
+    //google permission
+    implementation(Google.googlePermission)
+
 
 
 }

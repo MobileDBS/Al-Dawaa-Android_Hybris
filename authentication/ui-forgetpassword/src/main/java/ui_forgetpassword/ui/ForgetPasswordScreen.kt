@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -24,9 +24,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
 import com.kr.ui_forgetpassword.R
 import com.kr.components.ui.theme.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ForgetPasswordScreen (navController: NavController) {
@@ -34,14 +36,15 @@ fun ForgetPasswordScreen (navController: NavController) {
     val validationHelper : ValidationHelper = ValidationHelper()
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
     var isErrorforget by rememberSaveable { mutableStateOf(false) }
     val forgetphone = rememberSaveable { mutableStateOf("") }
 
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 
@@ -52,6 +55,7 @@ fun ForgetPasswordScreen (navController: NavController) {
                 .fillMaxSize()
                 .background(color = PrimaryColor)
                 .verticalScroll(rememberScrollState())
+                .paint(painter = painterResource(id = R.drawable.group))
 
         ) {
 
@@ -71,10 +75,10 @@ fun ForgetPasswordScreen (navController: NavController) {
             Spacer(modifier = Modifier.padding(15.dp))
 
             Text(
-                text = stringResource(id = R.string.forgetpassword),
-                fontSize = 25.sp,
+                text = stringResource(id = R.string.forgetpassword ),
                 color = Color.White,
-                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleLarge
+
             )
 
             Spacer(modifier = Modifier.padding(15.dp))
@@ -112,7 +116,8 @@ fun ForgetPasswordScreen (navController: NavController) {
                         placeholder = {
                             Text(
                                 text = stringResource(id = R.string.phonenumber),
-                                color = InputHint
+                                color = InputTextColor ,
+                                style = MaterialTheme.typography.bodyLarge
                             )
                         },
                         isError = isErrorforget,
@@ -122,13 +127,13 @@ fun ForgetPasswordScreen (navController: NavController) {
                         singleLine = true,
                         modifier = Modifier
                             .fillMaxWidth(0.9f)
-                            .clip(shape = ShapeTabButtons.small)
+                            .clip(shape = ShapeBigButtons.small)
                             .height(53.dp)
                             .background(color = InputColor),
                         colors = TextFieldDefaults.outlinedTextFieldColors(
                             focusedBorderColor = Color.Transparent,
                             unfocusedBorderColor = Color.Transparent
-                        ), shape = ShapeTabButtons.small
+                        ), shape = ShapeBigButtons.small
                     )
                     if (isErrorforget) Text(
                         modifier = Modifier
@@ -143,36 +148,17 @@ fun ForgetPasswordScreen (navController: NavController) {
 
                      Spacer(modifier = Modifier.padding(vertical = 120.dp))
 
-                    OutlinedButton(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .height(53.dp)
-                            .clip(shape = ShapeTabButtons.small),
-                        colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                        shape = ShapeTabButtons.small,
-                        border = BorderStroke(2.dp, PrimaryColor),
-
-                        onClick = {
-                                if (!validationHelper.phonenumvalidation(forgetphone.value)){
-                                    isErrorforget = true
-                                }
-                                else {
-                                    navController.navigate("Forget_Password_Otp")
-                                    Toast.makeText(context, "code sent ", Toast.LENGTH_SHORT).show()
-                                }
-
-                        },
-
-
-                        ) {
-                        Text(
-                            text = stringResource(id = R.string.forgetsend),
-                            fontSize = 20.sp,
-                            color = PrimaryColor,
-                        )
-
-
+                CustomOutlinedButton(onClick = {
+                    if (!validationHelper.phonenumvalidation(forgetphone.value)){
+                        isErrorforget = true
                     }
+                    else {
+                        navController.navigate("Forget_Password_Otp")
+                        Toast.makeText(context, "code sent ", Toast.LENGTH_SHORT).show()
+                    }
+                }, statue = BTNSTATE.ACTIVE,
+                contenttext = stringResource(id = R.string.forgetsend))
+
                 }
 
             }

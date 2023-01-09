@@ -17,8 +17,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Button
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.kr.ui_services.ui.componant.util.Permission
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import java.io.File
@@ -74,11 +75,15 @@ fun CameraCapture(
             val imageCaptureUseCase by remember {
                 mutableStateOf(
                     ImageCapture.Builder()
-                        .setCaptureMode(CAPTURE_MODE_MAXIMIZE_QUALITY).setJpegQuality(60)
+                        .setCaptureMode(CAPTURE_MODE_MAXIMIZE_QUALITY)
+                        .setJpegQuality(60)
                         .build()
+
+
 
                 )
             }
+
             Box {
                 CameraPreview(
                     modifier = Modifier.fillMaxSize(),
@@ -95,6 +100,12 @@ fun CameraCapture(
                         coroutineScope.launch {
                             imageCaptureUseCase.takePicture(context.executor).let {
                                 onImageFile(it)
+                                Log.e("CameraCapture", " Sized ${imageCaptureUseCase.currentConfig.defaultCaptureConfig}")
+                                Log.e("CameraCapture", " Sized ${it.toUri().userInfo}")
+
+
+
+
                             }
                         }
                     }
@@ -110,8 +121,10 @@ fun CameraCapture(
                     )
                 } catch (ex: Exception) {
                     Log.e("CameraCapture", "Failed to bind camera use cases", ex)
+
                 }
             }
+
         }
     }
 }

@@ -2,80 +2,20 @@ package com.kr.components
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.location.Location
-import android.location.LocationRequest
+import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat
+import com.google.android.gms.maps.model.*
 import com.google.maps.android.compose.*
-import java.util.jar.Manifest
-
-/*class LocationClass{
-    var currentLocation: Location? = null
-    @OptIn(ExperimentalPermissionsApi::class)
-    @Composable
-    fun GetLastLocation() {
-        // var x:Interface=InterfaceClass()
-
-        *//*   val LocalInterface = staticCompositionLocalOf<Interface> { error("Not provided") }
-           var inner: Interface? =null
-
-           CompositionLocalProvider(
-               LocalInterface provides inter
-           ) {
-                inner = LocalInterface.current // Call at any desired level
-           }*//*
-
-        val multiplePermissionState = rememberMultiplePermissionsState(
-            permissions = listOf(
-                ACCESS_COARSE_LOCATION,
-                ACCESS_FINE_LOCATION
-            )
-        )
-        LaunchedEffect(Unit) {
-            multiplePermissionState.launchMultiplePermissionRequest()
-        }
-        PermissionsRequired(
-            multiplePermissionsState = multiplePermissionState,
-            permissionsNotGrantedContent = { *//* ... *//* },
-            permissionsNotAvailableContent = { *//* ... *//* }
-        ) {
-
-            lateinit var fusedLocationClient: FusedLocationProviderClient
-            fusedLocationClient = LocationServices.getFusedLocationProviderClient(LocalContext.current)
-
-            fusedLocationClient.getCurrentLocation(LocationRequest.QUALITY_HIGH_ACCURACY, null)
-                .addOnSuccessListener { location: Location? ->
-                    // Got last known location. In some rare situations this can be null.
-                    if (location != null) {
-                        currentLocation = location
-
-                        //    inner!!.findLocation(location)
-
-                        Log.v("location", currentLocation!!.latitude.toString())
-
-                    } else
-                        currentLocation == null
-                }
-
-        }
-
-        // if (currentLocation!=null)
-        //   CustomMap(locatio = currentLocation)
-        //return currentLocation!!
-
-    }
-}*/
-
 
 //@OptIn(ExperimentalPermissionsApi::class)
 class Activity : ComponentActivity() {
@@ -89,12 +29,12 @@ class Activity : ComponentActivity() {
 }
 
 @Composable
-fun CustomMap() {
-
+fun CustomMap(locationList: ArrayList<LatLng>) {
+   val icon=R.drawable.location
     Column() {
 
         val cameraPositionState = rememberCameraPositionState {
-            position = CameraPosition.fromLatLngZoom(LatLng(30.026348, 31.482875), 17f)
+            position = CameraPosition.fromLatLngZoom(LatLng(30.026348, 31.482875), 4f)
         }
         var uiSettings by remember {
             mutableStateOf(
@@ -118,32 +58,40 @@ fun CustomMap() {
                    title = "Marker1",
                    icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
                )*/
-            GoogleMarkers()
+            GoogleMarkers(icon,locationList)
         }
     }
 }
 
 @Composable
-fun GoogleMarkers() {
-    Marker(
-        state = rememberMarkerState(position = LatLng(44.811058, 20.4627586)),
-        title = "Marker2",
-        icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)
-    )
-    Marker(
-        state = rememberMarkerState(position = LatLng(44.810058, 20.4627586)),
-        title = "Marker3",
-        icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)
-    )
-    Marker(
-        state = rememberMarkerState(position = LatLng(44.809058, 20.4627586)),
-        title = "Marker4",
-    )
-    Marker(
-        state = rememberMarkerState(position = LatLng(44.809058, 20.4617586)),
-        title = "Marker5",
-        icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)
-    )
+fun GoogleMarkers(@DrawableRes iconResourceId:Int,locationList: List<LatLng>) {
+    val icon=bitmapDescriptorFromVactor(LocalContext.current,iconResourceId)
+    locationList.forEach {
+        Marker(
+            state = rememberMarkerState(position = it),
+            title = "Marker2",
+            icon = icon
+        )
+    }
+}
+
+fun bitmapDescriptorFromVactor(context: Context, vectorResourceId:Int): BitmapDescriptor? {
+     val drawable= ContextCompat.getDrawable(context,vectorResourceId)
+    drawable?.setBounds(0,0,drawable.intrinsicWidth,drawable.intrinsicHeight)
+    val bitmap= Bitmap.createBitmap(drawable!!.intrinsicWidth,drawable!!.intrinsicHeight,Bitmap.Config.ARGB_8888)
+    //Draw it into Bitmap
+    val canves=android.graphics.Canvas(bitmap)
+    drawable.draw(canves)
+    return BitmapDescriptorFactory.fromBitmap(bitmap)
 }
 
 
+fun getLocationLest():ArrayList<LatLng>{
+    var list:ArrayList<LatLng> = arrayListOf()
+    list.add(LatLng(30.026348, 31.482875))
+    list.add(LatLng(29.026348, 30.482875))
+    list.add(LatLng(25.026348, 29.482875))
+    list.add(LatLng(20.026348, 25.482875))
+    list.add(LatLng(24.026348, 21.482875))
+    return list
+}

@@ -7,6 +7,7 @@ object AndroidX {
 
     private const val lifecycleVmKtxVersion = "2.6.0-alpha02"
     const val lifecycleVmKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVmKtxVersion"
+    const val constraint="androidx.constraintlayout:constraintlayout:2.1.4"
 }
 
 object AndroidXTest {

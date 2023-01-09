@@ -64,7 +64,7 @@ fun ServicesHomeItem(result: Services, onItemClick: (Services) -> Unit) {
             }
 
 
-             androidx.compose.material.Text(
+           Text(
                 text = result.title,
                 textAlign = TextAlign.Center,
                 color = PrimaryColor,

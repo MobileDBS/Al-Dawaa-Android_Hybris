@@ -2,58 +2,28 @@
 
 package com.kr.ui_filter
 
-import android.content.Context
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.LinearOutSlowInEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Card
-import androidx.compose.material.Checkbox
-import androidx.compose.material.CheckboxDefaults
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.RangeSlider
-import androidx.compose.material.SliderDefaults
-import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
-import com.google.accompanist.flowlayout.FlowRow
-import com.google.accompanist.flowlayout.MainAxisAlignment
-import com.kr.components.ui.theme.InputTextColor
+import com.kr.components.CustomOutlinedButton
+import com.kr.components.ui.theme.BTNSTATE
 import com.kr.components.ui.theme.PrimaryColor
-import com.kr.components.ui.theme.SecondaryColor
-import com.kr.components.ui.theme.ShapeTabButtons
+import com.kr.components.ui.theme.ShapeBigButtons
+import com.kr.product_datasource.dto.FilterModel.Filteritems
+import com.kr.product_datasource.dto.FilterModel
 import com.kr.ui_filter.component.FilterItems
-import com.kr.ui_filter.ui.filterui.component.FilterState
-import com.kr.ui_filter.ui.filterui.component.SortByItems
+import com.kr.ui_filter.component.SortByItems
 
-
-@ExperimentalMaterialApi
 @Composable
 fun FilterScreen(
     navController: NavController,
@@ -62,31 +32,44 @@ fun FilterScreen(
 
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+   // val scaffoldState = rememberScaffoldState()
+    val filteritemsd = FilterModel()
+    val filteritemsdata  = listOf( Filteritems().Filteritemsname)
+
+
     val filteritems = listOf(
+        Filteritems("items of Filter categories"),
+        Filteritems("items of Filter brand"),
+        Filteritems("items of Filter price")
+    )
+
+/*
+     val filteritems = listOf(
         "items of Filter categories",
         "items of Filter brand",
         "items of Filter price",
 
-        )
+        )*/
 
     val filterRowitems by remember {
-        mutableStateOf(listOf(
-            "Sort filter 1",
-            "Sort filter 2",
-            "Sort filter 3",
-            "Sort filter 4",
-            "Sort filter 5",
-            "Sort filter 6",
-            "Sort filter 7",
-        ))
+        mutableStateOf(
+            FilterModel(listOf(
+                "Sort filter 1",
+                "Sort filter 2",
+                "Sort filter 3",
+                "Sort filter 4",
+                "Sort filter 5",
+                "Sort filter 6",
+                "Sort filter 7",
+            ))
+        )
     }
-
 
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 
@@ -113,7 +96,8 @@ fun FilterScreen(
 
             LazyRow(content = {
                 item {
-                    filterRowitems.forEach {
+
+                    filterRowitems.filterrow.forEach {
                         SortByItems(context = context,
                             label = it,
                             selected = it == chipState) { chip ->
@@ -143,38 +127,18 @@ fun FilterScreen(
 
                     itemsIndexed(filteritems) { index, filterI ->
 
-                        FilterItems(filterItems = filterI)
+                        FilterItems(filterItems = filterI.Filteritemsname)
 
 
                     }
 
                     item {
                         Spacer(modifier = Modifier.padding(10.dp))
-                        OutlinedButton(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(53.dp)
-                                .clip(shape = ShapeTabButtons.small),
-                            colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                            shape = ShapeTabButtons.small,
-                            border = BorderStroke(2.dp, PrimaryColor),
 
-                            onClick = {
-                                //  navController.navigate("MainUi")
+                        CustomOutlinedButton(onClick = {
 
-
-                            },
-
-
-                            ) {
-                            Text(
-                                text = "Apply",
-                                fontSize = 20.sp,
-                                color = PrimaryColor,
-                            )
-
-
-                        }
+                        }, statue = BTNSTATE.ACTIVE,
+                        contenttext = "Apply")
                     }
 
 

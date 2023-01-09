@@ -9,14 +9,18 @@ apply(plugin = "org.jetbrains.kotlin.android")
 dependencies{
     "implementation"(Compose.maps)
     "implementation"(Compose.playServices)
-   // "implementation"(Compose.Permissions)
     "implementation"(Compose.googlePlaces)
-    "implementation"(Compose.Permissions)
-   // "implementation"(Compose.playServicesLocation)
+    "implementation"(Compose.permissions)
     //Slider
     "implementation"(Compose.accompanistPager)
     "implementation"(Compose.accompanistPagerIndicator)
     "implementation"(Compose.composeUtil)
+    "implementation"(Compose.accompanistSystemUiController)
+    //Constraint Layout for compose
+    "implementation"(Compose.constraintlayout_compose)
+
+
+
 
 
 }

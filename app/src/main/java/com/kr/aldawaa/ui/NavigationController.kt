@@ -2,14 +2,18 @@
 
 package com.kr.aldawaa.ui
 
-import androidx.compose.material.ExperimentalMaterialApi
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kr.productlist.ProductListScreen
-import com.kr.ui_login.ui.EntryScreen
+import com.kr.ui_entry.ui.EntryScreen
 import com.kr.ui_otp.ui.OtpScreen
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,14 +24,20 @@ import ui_forgetpassword.ui.NewPasswordScreen
 
 @ExperimentalMaterial3Api
 @DelicateCoroutinesApi
-@ExperimentalMaterialApi
 @Composable
 fun NavigationController() {
+    val context = LocalContext.current
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "Login_page",
         builder = {
 
-            composable("Login_page", content = { EntryScreen(navController = navController) })
+            composable("Login_page", content = { EntryScreen(navController = navController) {
+
+                context.startActivity(Intent(context, MainActivity::class.java))
+                val activity = context as Activity
+                activity.finish()
+            }
+            })
             composable(
                 "Forget_Password",
                 content = { ForgetPasswordScreen(navController = navController) })

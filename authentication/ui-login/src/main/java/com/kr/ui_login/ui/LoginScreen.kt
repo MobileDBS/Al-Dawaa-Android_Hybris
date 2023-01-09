@@ -1,12 +1,11 @@
 package com.kr.ui_login.ui
 
 import android.widget.Toast
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -20,17 +19,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
 import com.kr.components.ui.theme.*
 import com.kr.ui_login.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(navController: NavController) {
-
-
     val context = LocalContext.current
     val passwordvisibilitylogin = remember { mutableStateOf(false) }
     val checkboxremember = remember { mutableStateOf(false) }
@@ -59,7 +57,7 @@ fun LoginScreen(navController: NavController) {
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.enteryouremail),
-                    color = InputColor
+                    color = InputTextColor
                 )
             },
             isError = isErrorloginmail,
@@ -68,13 +66,13 @@ fun LoginScreen(navController: NavController) {
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .clip(shape = ShapeTabButtons.small)
+                .clip(shape = ShapeBigButtons.small)
                 .height(53.dp)
                 .background(color = InputColor),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.Transparent,
                 unfocusedBorderColor = Color.Transparent
-            ), shape = ShapeTabButtons.small
+            ), shape = ShapeBigButtons.small
         )
         if (isErrorloginmail) Text(
             modifier = Modifier
@@ -99,7 +97,7 @@ fun LoginScreen(navController: NavController) {
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.enteryourpass),
-                    color = InputHint
+                    color = InputTextColor
                 )
             },
             isError = isErrorloginpass,
@@ -110,7 +108,7 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .height(53.dp)
-                .clip(shape = ShapeTabButtons.small)
+                .clip(shape = ShapeBigButtons.small)
                 .background(
                     color = InputColor
                 ),
@@ -121,7 +119,7 @@ fun LoginScreen(navController: NavController) {
                 errorBorderColor = ErrorColor,
 
                 ),
-            shape = ShapeTabButtons.small,
+            shape = ShapeBigButtons.small,
 
             trailingIcon = {
                 IconButton(onClick = {
@@ -190,13 +188,17 @@ fun LoginScreen(navController: NavController) {
         }
         Spacer(modifier = Modifier.padding(15.dp))
 
-        OutlinedButton(
+        CustomOutlinedButton(onClick = {
+            navController.navigate("MainUi") },
+            statue = if(loginemailorphone.value.isNotEmpty() && loginpassword.value.isNotEmpty()) BTNSTATE.ACTIVE else BTNSTATE.INACTIVE ,
+        contenttext = stringResource(id = R.string.signinorg) )
+       /* OutlinedButton(
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .height(53.dp)
-                .clip(shape = ShapeTabButtons.small),
+                .clip(shape = ShapeBigButtons.small),
             colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-            shape = ShapeTabButtons.small,
+            shape = ShapeBigButtons.small,
             border = BorderStroke(2.dp, PrimaryColor),
 
             onClick = {
@@ -211,7 +213,7 @@ fun LoginScreen(navController: NavController) {
                 color = PrimaryColor,
             )
 
-        }
+        }*/
         Spacer(modifier = Modifier.padding(10.dp))
 
 

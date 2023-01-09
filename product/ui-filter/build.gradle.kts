@@ -6,6 +6,7 @@ plugins {
 }
 
 dependencies{
+    "implementation"(project(Modules.productDataSource))
     "implementation"(project(Modules.core))
     "implementation"(project(Modules.components))
 

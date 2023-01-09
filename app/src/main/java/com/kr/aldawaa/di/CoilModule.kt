@@ -1,11 +1,10 @@
 package com.kr.aldawaa.di
 
 import android.app.Application
-import android.graphics.drawable.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material.icons.outlined.Warning
+import android.os.Build.VERSION.SDK_INT
 import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import coil.memory.MemoryCache
 import com.kr.aldawaa.R
 import dagger.Module
@@ -28,9 +27,17 @@ object CoilModule {
         return ImageLoader.Builder(app)
             .error(R.drawable.error_image)
             .placeholder(R.drawable.ic_100tb)
-            .memoryCache { MemoryCache.Builder(app).maxSizePercent(0.25).build() } // Don't know what is recommended?
-
+            .memoryCache { MemoryCache.Builder(app)
+             .maxSizePercent(0.25).build() } // Don't know what is recommended?
             .crossfade(true)
+            .components {
+                //To render Gif
+                if (SDK_INT >= 28) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
+            }
             .build()
     }
 

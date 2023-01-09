@@ -1,4 +1,3 @@
-
 package ui_register.ui
 
 import android.app.DatePickerDialog
@@ -7,11 +6,11 @@ import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -30,18 +29,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.blue
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
 import com.kr.components.ui.theme.*
 import com.kr.ui_register.R
 import java.util.*
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignupScreen(navController: NavController) {
-    val validationHelper : ValidationHelper = ValidationHelper()
+    val validationHelper: ValidationHelper = ValidationHelper()
     var expandedtitle by remember { mutableStateOf(false) }
     var expandedgender by remember { mutableStateOf(false) }
-    val gender = listOf(stringResource(id = R.string.male).toString(), stringResource(id = R.string.female).toString())
-    val title = listOf(stringResource(id = R.string.title1).toString(), stringResource(id = R.string.title2).toString())
+    val gender = listOf(
+        stringResource(id = R.string.male).toString(),
+        stringResource(id = R.string.female).toString()
+    )
+    val title = listOf(
+        stringResource(id = R.string.title1).toString(),
+        stringResource(id = R.string.title2).toString()
+    )
     var chosentitle by remember { mutableStateOf(title[0]) }
     var chosengender by remember { mutableStateOf(gender[0]) }
     val checkboxsubscribe = rememberSaveable { mutableStateOf(false) }
@@ -88,21 +95,21 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.name),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 isError = isErrorsignupname,
                 //  keyboardActions = KeyboardActions { validate(name.value) },
-                keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Text),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
 
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
-                    .clip(shape = ShapeTabButtons.small)
+                    .clip(shape = ShapeBigButtons.small)
                     .height(53.dp)
                     .background(color = InputColor),
 
-                shape = ShapeTabButtons.small,
+                shape = ShapeBigButtons.small,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent,
@@ -139,10 +146,11 @@ fun SignupScreen(navController: NavController) {
 
                         onClick = { expandedtitle = !expandedtitle },
                         colors = ButtonDefaults.outlinedButtonColors(InputColor),
-                        shape = ShapeTabButtons.small,
+                        border = BorderStroke(0.dp , color = InputColor),
+                        shape = ShapeBigButtons.small,
                         modifier = Modifier
                             .fillMaxWidth(0.4f)
-                            .clip(shape = ShapeTabButtons.small)
+                            .clip(shape = ShapeBigButtons.small)
                     ) {
                         Text(chosentitle, color = PrimaryColor)
                         Icon(
@@ -151,12 +159,12 @@ fun SignupScreen(navController: NavController) {
                             contentDescription = null,
                             modifier = Modifier.padding(start = 15.dp)
 
-                            )
+                        )
                     }
                     DropdownMenu(
                         expanded = expandedtitle,
                         onDismissRequest = { expandedtitle = false },
-                        modifier = Modifier.background(color = Color.Transparent),
+                        Modifier.background(color = WhiteColor),
 
 
                         ) {
@@ -176,9 +184,12 @@ fun SignupScreen(navController: NavController) {
 
                                         }
                                     }
-                                }) {
-                                Text(text = label, color = PrimaryColor)
-                            }
+                               }, text = {
+                                    Text(text = label, color = PrimaryColor)}
+                            )
+                            //{
+//                                    Text(text = label, color = PrimaryColor)
+//                            }
                         }
                     }
                 }
@@ -187,11 +198,12 @@ fun SignupScreen(navController: NavController) {
 
                     OutlinedButton(
                         onClick = { expandedgender = !expandedgender },
-                        colors = ButtonDefaults.outlinedButtonColors(DropdownColor),
-                        shape = ShapeTabButtons.small,
+                        colors = ButtonDefaults.outlinedButtonColors(InputColor),
+                        shape = ShapeBigButtons.small,
+                        border = BorderStroke(0.dp , color = InputColor),
                         modifier = Modifier
                             .fillMaxWidth(0.7f)
-                            .clip(shape = ShapeTabButtons.small)
+                            .clip(shape = ShapeBigButtons.small)
 
                     ) {
                         Text(chosengender, color = PrimaryColor)
@@ -205,7 +217,7 @@ fun SignupScreen(navController: NavController) {
                     DropdownMenu(
                         expanded = expandedgender,
                         onDismissRequest = { expandedgender = false },
-                        modifier = Modifier.background(color = Color.Transparent),
+                        Modifier.background(color = WhiteColor),
 
 
                         ) {
@@ -226,9 +238,13 @@ fun SignupScreen(navController: NavController) {
 
                                         }
                                     }
-                                }) {
-                                Text(text = label, color = PrimaryColor)
-                            }
+                                } , text = {
+                                    Text(text = label, color = PrimaryColor)}
+                            )
+                                    //{
+//                                Text(text = label, color = PrimaryColor)
+//                            }
+                                }
                         }
                     }
                 }
@@ -240,14 +256,14 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupemail.value,
                 onValueChange = {
-                        signupemail.value= it
-                    isErrorsignupemail= false
+                    signupemail.value = it
+                    isErrorsignupemail = false
 
                 },
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.enteryouremail),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -255,15 +271,15 @@ fun SignupScreen(navController: NavController) {
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
-                    .clip(shape = ShapeTabButtons.small)
-                    .height(53.dp)
+                    .clip(shape = ShapeBigButtons.small)
+
                     .background(color = InputColor),
                 textStyle = TextStyle(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent
                 ),
-                shape = ShapeTabButtons.small
+                shape = ShapeBigButtons.small
             )
             if (isErrorsignupemail) {
                 Text(
@@ -283,14 +299,14 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupphonenum.value,
                 onValueChange = {
-                    signupphonenum.value= it
-                    isErrorsignupphone =false
+                    signupphonenum.value = it
+                    isErrorsignupphone = false
 
                 },
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.phonenumber),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
@@ -298,7 +314,7 @@ fun SignupScreen(navController: NavController) {
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
-                    .clip(shape = ShapeTabButtons.small)
+                    .clip(shape = ShapeBigButtons.small)
                     .height(53.dp)
                     .background(color = InputColor),
                 textStyle = TextStyle(),
@@ -306,7 +322,7 @@ fun SignupScreen(navController: NavController) {
                     focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent
                 ),
-                shape = ShapeTabButtons.small
+                shape = ShapeBigButtons.small
             )
             if (isErrorsignupphone) {
                 Text(
@@ -326,14 +342,14 @@ fun SignupScreen(navController: NavController) {
 
                 value = signupmyBirthDate.value,
                 onValueChange = {
-                    signupmyBirthDate.value= it
+                    signupmyBirthDate.value = it
                     isErrorsignupbirth = false
 
                 },
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.birthdate),
-                        color = InputColor
+                        color = InputTextColor
                     )
                 },
                 isError = isErrorsignupbirth,
@@ -342,7 +358,7 @@ fun SignupScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .height(53.dp)
-                    .clip(shape = ShapeTabButtons.small)
+                    .clip(shape = ShapeBigButtons.small)
                     .background(
                         color = InputColor
                     ),
@@ -350,7 +366,7 @@ fun SignupScreen(navController: NavController) {
                     focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent
                 ),
-                shape = ShapeTabButtons.small,
+                shape = ShapeBigButtons.small,
                 trailingIcon = {
                     IconButton(onClick = {
 
@@ -408,14 +424,14 @@ fun SignupScreen(navController: NavController) {
 
                 value = signuppassword.value,
                 onValueChange = {
-                    signuppassword.value =it
+                    signuppassword.value = it
                     isErrorsignuppass = false
 
                 },
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.enteryourpass),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 isError = isErrorsignuppass,
@@ -424,7 +440,7 @@ fun SignupScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .height(53.dp)
-                    .clip(shape = ShapeTabButtons.small)
+                    .clip(shape = ShapeBigButtons.small)
                     .background(
                         color = InputColor
                     ),
@@ -433,7 +449,7 @@ fun SignupScreen(navController: NavController) {
                     unfocusedBorderColor = Color.Transparent
                 ),
 
-                shape = ShapeTabButtons.small,
+                shape = ShapeBigButtons.small,
 
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
 
@@ -480,7 +496,7 @@ fun SignupScreen(navController: NavController) {
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.confirmpassword),
-                        color = InputHint
+                        color = InputTextColor
                     )
                 },
                 isError = isErrorsignupconfirmpass,
@@ -488,7 +504,7 @@ fun SignupScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
                     .height(53.dp)
-                    .clip(shape = ShapeTabButtons.small)
+                    .clip(shape = ShapeBigButtons.small)
                     .background(
                         color = InputColor
                     ),
@@ -497,7 +513,7 @@ fun SignupScreen(navController: NavController) {
                     unfocusedBorderColor = Color.Transparent
                 ),
 
-                shape = ShapeTabButtons.small,
+                shape = ShapeBigButtons.small,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
 
 
@@ -510,7 +526,7 @@ fun SignupScreen(navController: NavController) {
                         Icon(
                             painter = if (confirmpasswordvisibilitysignup.value) painterResource(R.drawable.ic_eye_show)
                             else painterResource(
-                                R.drawable.ic_100tb
+                                R.drawable.ic_eye_hide
                             ),
                             contentDescription = "password",
                             tint = if (confirmpasswordvisibilitysignup.value)
@@ -557,55 +573,42 @@ fun SignupScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.padding(10.dp))
 
-            OutlinedButton(
-                modifier = Modifier
-                    .fillMaxWidth(0.9f)
-                    .clip(shape = ShapeTabButtons.small)
-                    .height(53.dp),
-                colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                shape = ShapeTabButtons.small,
-                border = BorderStroke(2.dp, PrimaryColor),
-                onClick = {
 
-                     if ( !validationHelper.emptyvalidation(signuname.value))  {
-                            isErrorsignupname = true
-                        }
-                     if (!validationHelper.emailvalidation(signupemail.value)) {
-                            isErrorsignupemail = true
-                        }
-                     if (!validationHelper.phonenumvalidation(signupphonenum.value)) {
-                            isErrorsignupphone = true
-                        }
-                     if (!validationHelper.emptyvalidation(signupmyBirthDate.value)){
-                            isErrorsignupbirth = true
-                        }
-                     if (!validationHelper.passwordlvalidation(signuppassword.value)){
-                            isErrorsignuppass = true
-                        }
-                     if (!validationHelper.passwordlvalidation(signupconfirmpassword.value)) {
-                            isErrorsignupconfirmpass = true
-                        }
-                    if (!validationHelper.confirmpasswordvalidation(signuppassword.value,signupconfirmpassword.value)) {
-                        isErrorsignupconfirmpass = true
-                        isErrorsignuppass=true
-                    }
-                     else {
-                            //navController.navigate("home")
-                            Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show()
-                        }
+        CustomOutlinedButton(onClick = {
 
-
-                },
-
-
-                ) {
-                Text(
-                    text = stringResource(id = R.string.signuporg),
-                    fontSize = 20.sp,
-                    color = PrimaryColor,
-                )
-
+            if (!validationHelper.emptyvalidation(signuname.value)) {
+                isErrorsignupname = true
             }
+            if (!validationHelper.emailvalidation(signupemail.value)) {
+                isErrorsignupemail = true
+            }
+            if (!validationHelper.phonenumvalidation(signupphonenum.value)) {
+                isErrorsignupphone = true
+            }
+            if (!validationHelper.emptyvalidation(signupmyBirthDate.value)) {
+                isErrorsignupbirth = true
+            }
+            if (!validationHelper.passwordlvalidation(signuppassword.value)) {
+                isErrorsignuppass = true
+            }
+            if (!validationHelper.passwordlvalidation(signupconfirmpassword.value)) {
+                isErrorsignupconfirmpass = true
+            }
+            if (!validationHelper.confirmpasswordvalidation(
+                    signuppassword.value,
+                    signupconfirmpassword.value
+                )
+            ) {
+                isErrorsignupconfirmpass = true
+                isErrorsignuppass = true
+            } else {
+                //navController.navigate("home")
+                Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT).show()
+            }
+
+        }, statue = BTNSTATE.ACTIVE,
+        contenttext = stringResource(id = R.string.signuporg))
+
+
         }
     }
-}

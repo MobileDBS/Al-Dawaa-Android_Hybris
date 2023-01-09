@@ -1,17 +1,18 @@
 package com.kr.aldawaa.ui
 
+import android.Manifest
 import android.location.Location
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,33 +26,87 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.google.accompanist.pager.ExperimentalPagerApi
+
 import com.kr.aldawaa.LocationClass
+  import com.google.android.gms.auth.api.signin.GoogleSignIn
+  import com.google.android.gms.auth.api.signin.GoogleSignInClient
+  import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.kr.aldawaa.R
-import com.kr.aldawaa.ui.theme.AlDawaaHybrisTheme
+import com.kr.components.CustomPermission
+import com.kr.components.StartPermissionSetting
+import com.kr.components.slider.AutoSliding
+import com.kr.components.ui.theme.AlDawaaHybrisTheme
+import com.kr.components.ui.theme.PrimaryColor
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
+import com.kr.ui_entry.ui.twitterAuthentication.TwitterConstants
 import com.kr.ui_login.ui.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
+import twitter4j.TwitterFactory
+import twitter4j.conf.ConfigurationBuilder
 import java.util.*
 import javax.inject.Inject
-import kotlinx.coroutines.DelicateCoroutinesApi
 
 @ExperimentalMaterial3Api
-@OptIn(ExperimentalMaterialApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(),LocationClass.Interface {
-    var locationClass=LocationClass(this)
+
+
+    private val localizationDelegate = LocalizationActivityDelegate(this)
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
+
+
+    override fun attachBaseContext(newBase: Context) {
+        applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
+        super.attachBaseContext(newBase)
+    }
+
+//    var locationClass=LocationClass(this)
     @Inject
     lateinit var connectivityObserver: NetworkConnectivityObserver
 
-    @OptIn(ExperimentalMaterialApi::class, DelicateCoroutinesApi::class,
-        ExperimentalFoundationApi::class
-    )
+     val coroutineScope :CoroutineScope = CoroutineScope(Dispatchers.IO)
+    //Google
+/*
+
+    private fun getGoogleLoginAuth(): GoogleSignInClient {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .requestIdToken(getString(R.string.gcp_id))
+            .requestId()
+            .requestProfile()
+            .build()
+        return GoogleSignIn.getClient(this, gso)
+    }
+*/
+
+    @OptIn(ExperimentalPagerApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        coroutineScope.launch(Dispatchers.IO) {
+            val results = coroutineScope.async { isLoggedIn() }
+            val result = results.await()
+            if (result) {
+                // Show the Activity with the logged in user
+                Log.d("LoggedIn Twitter?: ", "YES")
+                //   finish()
+            } else {
+                // Show the Home Activity
+                Log.d("LoggedIn Twitter?: ", "NO")
+                //   finish()
+
+            }
+        }
         setContent {
-            locationClass.GetLastLocation()
+            //locationClass.GetLastLocation()
             AlDawaaHybrisTheme {
+
                 //BottomSheet
 //                Surface(color = MaterialTheme.colors.background) {
 //                    CustomModalBottomSheet(list)
@@ -64,7 +119,6 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 //                Log.v("loginResponse" , state.error.toString())
 
                 /////////////////Start Navigation Bar////////////////
-
                 val viewModel: LoginViewModel = hiltViewModel()
                 val state = viewModel.state.value
                 val categoriesViewModel: CategoriesViewModel = hiltViewModel()
@@ -74,16 +128,38 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
                 Log.v("Login Response", state.error.toString())
 
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    // GifImage()
+                Surface(color = MaterialTheme.colorScheme.background) {
                     //  Greeting()
-                    NavigationController ()
+                  //  AutoSliding(PrimaryColor)
+                    NavigationController()
+                    CustomPermission(permissions = listOf(
+                        Manifest.permission.CAMERA
+                    ), permissionContent = {
+                    })
+                    ///////////////End Navigation Bar///////////////////////
                 }
-
-                ///////////////End Navigation Bar///////////////////////
             }
         }
+    }
 
+    private suspend fun isLoggedIn(): Boolean {
+        val sharedPref = this.getSharedPreferences("twitter",Context.MODE_PRIVATE)
+        val accessToken = sharedPref.getString("oauth_token","")
+        val accessTokenSecret = sharedPref.getString("oauth_token_secret", "")
+        val builder = ConfigurationBuilder()
+        builder.setOAuthConsumerKey(TwitterConstants.CONSUMER_KEY)
+            .setOAuthConsumerSecret(TwitterConstants.CONSUMER_SECRET)
+            .setOAuthAccessToken(accessToken)
+            .setOAuthAccessTokenSecret(accessTokenSecret)
+        val config = builder.build()
+        val factory = TwitterFactory(config)
+        val twitter = factory.instance
+        return try {
+            withContext(Dispatchers.IO) { twitter.verifyCredentials() }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
     override fun findLocation(location: Location) {
@@ -94,34 +170,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
 }
 
 
-@Composable
-fun GifImage(
-    modifier: Modifier = Modifier,
-) {
-    val context = LocalContext.current
-    val imageLoader = ImageLoader.Builder(context)
-        .components {
-            if (SDK_INT >= 28) {
-                add(ImageDecoderDecoder.Factory())
-            } else {
-                add(GifDecoder.Factory())
-            }
-        }
-        .build()
-    Image(
-        painter = rememberAsyncImagePainter(
-            ImageRequest.Builder(context).data(
-                data =
-                R.raw.splash_gif
-            ).apply(block = {
-                size(Size.ORIGINAL)
-            }).build(), imageLoader = imageLoader
-        ),
-        contentDescription = null,
-        modifier = modifier.fillMaxWidth(),
-    )
-}
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Greeting() {
     val c = Calendar.getInstance()
@@ -154,7 +203,7 @@ fun Greeting() {
         topBar = {
             TopAppBar (
                 title = { Text(text = "Calender View")},
-            )
+                )
         },
         content = {
             Column (verticalArrangement = Arrangement.Center,
@@ -180,6 +229,7 @@ fun DefaultPreview() {
     AlDawaaHybrisTheme {
         Greeting()
     }
+
 
 }
 

@@ -63,7 +63,7 @@ dependencies{
 
     implementation Compose.activity
     implementation Compose.ui
-    implementation Compose.material
+//    implementation Compose.material
     implementation Compose.tooling
     implementation Compose.navigation
     implementation Compose.hiltNavigation
@@ -73,7 +73,7 @@ dependencies{
 
 //    implementation(Compose.composeCompiler)
 
-    //  implementation Compose.preview
+      implementation Compose.preview
 
     implementation Google.material
 
@@ -93,4 +93,6 @@ dependencies{
     kapt(Hilt.compiler)
     implementation(Hilt.android)
 
+    //google permission
+    implementation(Google.googlePermission)
 }

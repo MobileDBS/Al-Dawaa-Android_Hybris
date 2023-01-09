@@ -10,9 +10,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,12 +26,15 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.kr.components.CustomOutlinedButton
+import com.kr.components.ui.theme.BTNSTATE
 import com.kr.components.ui.theme.PrimaryColor
 
 import com.kr.ui_services.ui.componant.camera.CameraCapture
 import com.kr.ui_services.ui.componant.gallery.GallerySelect
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CameraScreen(navController: NavController, showGallery :Boolean) {
 
@@ -46,7 +49,7 @@ fun CameraScreen(navController: NavController, showGallery :Boolean) {
 
             Log.d("select gallery ", "select value $showGallery")
 
-            Surface(color = MaterialTheme.colors.background,
+            Surface(color = MaterialTheme.colorScheme.background,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(425.dp),
@@ -62,9 +65,13 @@ fun CameraScreen(navController: NavController, showGallery :Boolean) {
                             contentDescription = "Captured image"
                         )
                         IconButton(
-                            modifier = Modifier.align(Alignment.TopEnd).padding(end = 10.dp),
+                            modifier = Modifier
+                                .align(Alignment.TopEnd)
+                                .padding(end = 10.dp),
                             onClick = {
                                 imageUri = EMPTY_IMAGE_URI
+                                showGallerySelect = false
+
                             }
                         ) {
                            Icon(imageVector = Icons.Filled.Close, contentDescription ="close camera" )
@@ -113,34 +120,12 @@ fun CameraScreen(navController: NavController, showGallery :Boolean) {
                     Text("Select from Gallery")
                 }*/
             }
+            CustomOutlinedButton(onClick = {
 
-            OutlinedButton(
-                modifier = Modifier
-                    .fillMaxWidth(0.9f)
-                    .height(53.dp)
-                    .clip(shape = RoundedCornerShape(24.dp)),
-                colors = ButtonDefaults.outlinedButtonColors(
-                    backgroundColor = Color.Transparent
-                ),
-                shape = RoundedCornerShape(24.dp),
-                border = BorderStroke(2.dp, PrimaryColor),
-
-                onClick = {
-                    //  navController.navigate("MainUi")
+            }, statue = BTNSTATE.ACTIVE,
+            contenttext = "Apply")
 
 
-                },
-
-
-                ) {
-                Text(
-                    text = "Apply",
-                    fontSize = 20.sp,
-                    color = PrimaryColor,
-                )
-
-
-            }
         }
     }
 }

@@ -13,8 +13,6 @@ import com.google.accompanist.permissions.PermissionsRequired
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.kr.components.CustomDialog
-import dagger.hilt.android.AndroidEntryPoint
 
 
 class LocationClass(interfaceListener: Interface){
@@ -43,6 +41,7 @@ this.interfaceListener=interfaceListener
             },
             permissionsNotAvailableContent = {
                 Log.v("location_permission" , "not available")
+
             }
         ) {
 

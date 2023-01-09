@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -26,9 +26,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.kr.components.CustomOutlinedButton
 import com.kr.components.ui.theme.*
 import com.kr.ui_forgetpassword.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun NewPasswordScreen (navController: NavController) {
@@ -36,7 +38,7 @@ fun NewPasswordScreen (navController: NavController) {
     val validationHelper : ValidationHelper = ValidationHelper()
 
     val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
+//    val scaffoldState = rememberScaffoldState()
     var isErrorpassword by rememberSaveable { mutableStateOf(false) }
     var isErrorconfirmpassword by rememberSaveable { mutableStateOf(false) }
     val passwordvisibilityforget = remember { mutableStateOf(false) }
@@ -49,7 +51,8 @@ fun NewPasswordScreen (navController: NavController) {
     Scaffold(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), scaffoldState = scaffoldState
+            .fillMaxHeight(),
+//        scaffoldState = scaffoldState
     ) {
 
 
@@ -60,6 +63,8 @@ fun NewPasswordScreen (navController: NavController) {
                 .fillMaxSize()
                 .background(color = PrimaryColor)
                 .verticalScroll(rememberScrollState())
+                .paint(painter = painterResource(id = R.drawable.group))
+
 
         ) {
 
@@ -92,8 +97,7 @@ fun NewPasswordScreen (navController: NavController) {
                 verticalArrangement = Arrangement.Top,
 
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     .clip(
                         shape = Shapes.large.copy(
                             bottomStart = ZeroCornerSize,
@@ -111,9 +115,6 @@ fun NewPasswordScreen (navController: NavController) {
             ) {
                 Spacer(modifier = Modifier.padding(15.dp))
 
-
-
-
                 OutlinedTextField(
 
                     value = forgetpassword.value,
@@ -125,7 +126,7 @@ fun NewPasswordScreen (navController: NavController) {
                     placeholder = {
                         Text(
                             text = stringResource(id = R.string.enternewpass),
-                            color = InputHint
+                            color = InputTextColor
                         )
                     },
                     isError = isErrorpassword,
@@ -136,7 +137,7 @@ fun NewPasswordScreen (navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
                         .height(53.dp)
-                        .clip(shape = ShapeTabButtons.small)
+                        .clip(shape = ShapeBigButtons.small)
                         .background(
                             color = InputColor
                         ),
@@ -145,7 +146,7 @@ fun NewPasswordScreen (navController: NavController) {
                         unfocusedBorderColor = Color.Transparent
                     ),
 
-                    shape = ShapeTabButtons.small,
+                    shape = ShapeBigButtons.small,
                     trailingIcon = {
                         IconButton(onClick = {
                             passwordvisibilityforget.value = !passwordvisibilityforget.value
@@ -190,7 +191,7 @@ fun NewPasswordScreen (navController: NavController) {
                     placeholder = {
                         Text(
                             text = stringResource(id = R.string.enternewpassagain),
-                            color = InputHint
+                            color = InputTextColor
                         )
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -200,7 +201,7 @@ fun NewPasswordScreen (navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
                         .height(53.dp)
-                        .clip(shape = ShapeTabButtons.small)
+                        .clip(shape = ShapeBigButtons.small)
                         .background(
                             color = InputColor
                         ),
@@ -209,7 +210,7 @@ fun NewPasswordScreen (navController: NavController) {
                         unfocusedBorderColor = Color.Transparent
                     ),
 
-                    shape = ShapeTabButtons.small,
+                    shape = ShapeBigButtons.small,
                     trailingIcon = {
                         IconButton(onClick = {
                             confirmpasswordvisibilityforget.value =
@@ -244,45 +245,27 @@ fun NewPasswordScreen (navController: NavController) {
 
                 Spacer(modifier = Modifier.padding(vertical = 90.dp))
 
-                    OutlinedButton(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .height(51.dp)
-                            .clip(shape = ShapeTabButtons.small),
-                        colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-                        shape = ShapeTabButtons.small,
-                        border = BorderStroke(2.dp, PrimaryColor),
+                CustomOutlinedButton(onClick = {
 
-                        onClick = {
-                            if (!validationHelper.confirmpasswordvalidation(forgetpassword.value,forgetconfirmpassword.value)){
-                                isErrorconfirmpassword = true
-                            }
-                            if (!validationHelper.passwordlvalidation(forgetpassword.value)) {
-                                isErrorpassword = true
-                            }
-                            if (!validationHelper.passwordlvalidation(forgetconfirmpassword.value)){
-                                isErrorconfirmpassword = true
-                            }
-
-                            else {
-                                 navController.navigate("Forget_Success")
-
-                                Toast.makeText(context, "password changed ", Toast.LENGTH_SHORT)
-                                    .show()
-                            }
-
-                        },
-
-
-                        ) {
-                        Text(
-                            text = stringResource(id = R.string.forgetsend),
-                            fontSize = 20.sp,
-                            color = PrimaryColor,
-                        )
-
-
+                    if (!validationHelper.confirmpasswordvalidation(forgetpassword.value,forgetconfirmpassword.value)){
+                        isErrorconfirmpassword = true
                     }
+                    if (!validationHelper.passwordlvalidation(forgetpassword.value)) {
+                        isErrorpassword = true
+                    }
+                    if (!validationHelper.passwordlvalidation(forgetconfirmpassword.value)){
+                        isErrorconfirmpassword = true
+                    }
+
+                    else {
+                        navController.navigate("Forget_Success")
+
+                        Toast.makeText(context, "password changed ", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }, statue = BTNSTATE.ACTIVE,
+                    contenttext = stringResource(id = R.string.forgetsend) )
+
                 }
             }
         }

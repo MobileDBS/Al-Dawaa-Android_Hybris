@@ -5,7 +5,7 @@ object Compose {
     const val kotlinCompilerExtensionVersion = "1.3.1"
 
     const val ui = "androidx.compose.ui:ui:$composeVersion"
-    const val material = "androidx.compose.material:material:$composeVersion"
+  // const val material = "androidx.compose.material:material:$composeVersion"
     const val tooling = "androidx.compose.ui:ui-tooling:$composeVersion"
     const val preview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
 
@@ -21,6 +21,9 @@ object Compose {
     private const val material_3 = "1.0.0-alpha13"
     const val material3 = "androidx.compose.material3:material3:$material_3"
 
+    private const val constraintlayout_composeVersion = "1.0.1"
+    const val constraintlayout_compose = "androidx.constraintlayout:constraintlayout-compose:$constraintlayout_composeVersion"
+
     private const val flow = "0.17.0"
     const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$flow"
 
@@ -29,13 +32,18 @@ object Compose {
 
 
     private const val accompanistPermissionsVersion = "0.23.0"
-    const val Permissions = "com.google.accompanist:accompanist-permissions:$accompanistPermissionsVersion"
+    const val permissions = "com.google.accompanist:accompanist-permissions:$accompanistPermissionsVersion"
 
     private const val accompanistPagerVersion = "0.28.0"
     const val accompanistPager = "com.google.accompanist:accompanist-pager:$accompanistPagerVersion"
 
     private const val accompanistPagerIndicatorVersion = "0.28.0"
     const val accompanistPagerIndicator = "com.google.accompanist:accompanist-pager-indicators:$accompanistPagerIndicatorVersion"
+
+    private const val accompanistSystemUiControllerVersion = "0.28.0"
+    const val accompanistSystemUiController = "com.google.accompanist:accompanist-systemuicontroller:$accompanistSystemUiControllerVersion"
+
+
 
     private const val maps_compose = "2.7.2"
     const val maps ="com.google.maps.android:maps-compose:$maps_compose"

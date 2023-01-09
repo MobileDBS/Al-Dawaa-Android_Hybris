@@ -6,8 +6,6 @@ data class NaturalModel(
     val desc: String,
     val imgUrl: String
 )
-
-
 val natural = listOf(
     NaturalModel(
         "Sample 1",
