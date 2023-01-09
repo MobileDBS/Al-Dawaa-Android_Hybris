@@ -87,7 +87,13 @@ fun BottomNavGraph(navController: NavHostController) {
         CustomModalBottomSheet3(navController=navController  )
         }
 
+        dialog("ArbahyBottomSheet") {
+            ArbahyBottomSheet(navController = navController)
+        }
+
         composable("Map", content = { CustomMap() })
+
+
 
 
 

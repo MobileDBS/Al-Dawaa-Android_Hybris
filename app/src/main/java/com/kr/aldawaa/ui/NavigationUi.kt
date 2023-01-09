@@ -36,9 +36,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.kr.components.FloatingButton
-import com.kr.components.ExtendedFloatingActionButton
-import com.kr.components.FloatingButtonWithContent
 import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
@@ -46,9 +43,12 @@ import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
 import com.kr.aldawaa.R
+import com.kr.components.*
 import com.kr.components.ui.theme.PrimaryColor
 import com.kr.components.ui.theme.WhiteColor
+import com.kr.ui_entry.ui.twitterAuthentication.coroutineScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class,
     ExperimentalMaterialApi::class)
@@ -69,32 +69,33 @@ fun MainScreen() {
             }
         }
         .build()
+
+    val scaffoldState = rememberScaffoldState()
     Scaffold(
         topBar = { TopAppBarCompose(context,imageLoader) },
         bottomBar = { BottomBar(navController = navController )
-        } ,
-    ) {
-            innerPadding->
-        Box(modifier = Modifier.padding(innerPadding)){
+        } , content = {
+                innerPadding->
+            Box(modifier = Modifier.padding(innerPadding)){
 
-            BottomNavGraph(navController = navController)
+                BottomNavGraph(navController = navController)
 
-            FloatingButton(onItemClick = {isFloatingButtonClicked = true })
+                FloatingButton(onItemClick = {isFloatingButtonClicked = true })
 
-            if (isFloatingButtonClicked) {
-                FloatingButton(onItemClick = { isFloatingButtonClicked = false })
-                ExtendedFloatingActionButton(onItemClick = {isExtendedFloatingButtonClicked = true })
-            }
+                if (isFloatingButtonClicked) {
+                    FloatingButton(onItemClick = { isFloatingButtonClicked = false })
+                    ExtendedFloatingActionButton(onItemClick = {isExtendedFloatingButtonClicked = true })
+                }
 
-            if (isExtendedFloatingButtonClicked) {
-                ExtendedFloatingActionButton(onItemClick = { isExtendedFloatingButtonClicked = false })
-                FloatingButtonWithContent()
+                if (isExtendedFloatingButtonClicked) {
+                    ExtendedFloatingActionButton(onItemClick = { isExtendedFloatingButtonClicked = false })
+                    FloatingButtonWithContent()
+                }
+
             }
 
         }
-
-
-    }
+    )
 
 }
 
@@ -162,8 +163,13 @@ fun RowScope.AddItem(
 
 @Composable
 fun TopAppBarCompose(context: Context, imageLoader: ImageLoader) {
+    val navController = rememberNavController()
+    val clicked = true
+
+
     TopAppBar(title = {
         Box(modifier = Modifier.fillMaxSize()) {
+
             Image(painterResource(id = R.drawable.arbahy),
                 "logo",
                 modifier = Modifier
@@ -194,6 +200,7 @@ fun TopAppBarCompose(context: Context, imageLoader: ImageLoader) {
         },
         backgroundColor = PrimaryColor
     )
+
 }
 
 @Composable
@@ -257,11 +264,13 @@ fun userAvatarStatus(context: Context, imageLoader: ImageLoader,status: String) 
                 text = "Login",
                 fontSize = 20.sp,
                 color = WhiteColor,
-                modifier = Modifier.padding(start = 10.dp).clickable {
-                    Toast
-                        .makeText(context, "Go To Login", Toast.LENGTH_SHORT)
-                        .show()
-                }
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .clickable {
+                        Toast
+                            .makeText(context, "Go To Login", Toast.LENGTH_SHORT)
+                            .show()
+                    }
             )
 
         }

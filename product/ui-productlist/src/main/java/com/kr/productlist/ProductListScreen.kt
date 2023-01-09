@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.kr.components.ArbahyBottomSheet
 import com.kr.components.CustomModalBottomSheet
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -23,7 +24,7 @@ fun ProductListScreen(
     navController: NavController,
     showBottomSheet: (Boolean) -> Unit
 ) {
-    var showMutable by remember { mutableStateOf(false) }
+    var showMutable by remember { mutableStateOf(true) }
 
 
     Column() {
@@ -44,7 +45,7 @@ fun ProductListScreen(
 
     if (showMutable) {
        // val systemUiController = rememberSystemUiController()
-        CustomModalBottomSheet(navController = navController)
+        ArbahyBottomSheet(navController = navController)
     }
 
 }

@@ -19,13 +19,16 @@ import com.kr.components.ui.theme.PrimaryColor
 fun CustomModalBottomSheet(navController: NavController) {
 
     val list = listOf("Liked products" ,"Makeup" , "Create new")
-    val modalBottomSheetState = rememberModalBottomSheetState(
+  /*  val modalBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Expanded
+    )*/
+    val modalBottomSheetState = rememberBottomSheetScaffoldState(
+        bottomSheetState = BottomSheetState(BottomSheetValue.Expanded)
     )
 
-   ModalBottomSheetLayout(
+   BottomSheetScaffold(
         modifier = Modifier.fillMaxSize(),
-       sheetState = modalBottomSheetState,
+       scaffoldState = modalBottomSheetState,
         sheetContent = {
                 Column(modifier = Modifier.padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -59,7 +62,7 @@ fun CustomModalBottomSheet(navController: NavController) {
                 }
 
         },
-        sheetShape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp)
+        sheetShape = RoundedCornerShape(topEnd = 24.dp, topStart = 24.dp),
 
     ) {
 

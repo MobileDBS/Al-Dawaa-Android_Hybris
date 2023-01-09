@@ -30,7 +30,7 @@ val Typography = Typography(
     displaySmall = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Normal,
-        fontSize = 34.sp
+        fontSize = 32.sp
     ),
     headlineLarge = TextStyle(
         fontFamily = fonts,

@@ -192,28 +192,8 @@ fun LoginScreen(navController: NavController) {
             navController.navigate("MainUi") },
             statue = if(loginemailorphone.value.isNotEmpty() && loginpassword.value.isNotEmpty()) BTNSTATE.ACTIVE else BTNSTATE.INACTIVE ,
         contenttext = stringResource(id = R.string.signinorg) )
-       /* OutlinedButton(
-            modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .height(53.dp)
-                .clip(shape = ShapeBigButtons.small),
-            colors = ButtonDefaults.outlinedButtonColors(Color.Transparent),
-            shape = ShapeBigButtons.small,
-            border = BorderStroke(2.dp, PrimaryColor),
-
-            onClick = {
-                navController.navigate("MainUi")
-                      },
 
 
-            ) {
-            Text(
-                text = stringResource(id = R.string.signinorg),
-                fontSize = 20.sp,
-                color = PrimaryColor,
-            )
-
-        }*/
         Spacer(modifier = Modifier.padding(10.dp))
 
 
