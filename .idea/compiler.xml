@@ -24,10 +24,6 @@
       <module name="AlDawaaHybris.core" target="1.8" />
       <module name="AlDawaaHybris.core.main" target="1.8" />
       <module name="AlDawaaHybris.core.test" target="1.8" />
-      <module name="AlDawaaHybris.filter.ui-filter" target="11" />
-      <module name="AlDawaaHybris.home.home-domain" target="1.8" />
-      <module name="AlDawaaHybris.home.home-domain.main" target="1.8" />
-      <module name="AlDawaaHybris.home.home-domain.test" target="1.8" />
       <module name="AlDawaaHybris.home.home-interactors" target="1.8" />
       <module name="AlDawaaHybris.home.home-interactors.main" target="1.8" />
       <module name="AlDawaaHybris.home.home-interactors.test" target="1.8" />
