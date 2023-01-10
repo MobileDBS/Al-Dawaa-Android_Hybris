@@ -2,6 +2,7 @@ package com.kr.aldawaa.network
 
 import android.content.Context
 import android.os.Looper
+import android.util.Log
 import com.kr.aldawaa.R
 import com.kr.components.BuildConfig
 import com.kr.core.Constants
@@ -16,8 +17,8 @@ import javax.inject.Inject
 
 class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterface: RefreshTokenApiInterface) : Interceptor {
     var cont = context
-    var refreshToken = ""
-    var accessToken = ""
+    var accessToken = "HgLMn669FDXxDhpVFSzUXsU8FVU"
+    var refreshToken = "9qnZ-q6MSShp22uOrsjW2yQkLWE"
     var expiresFromServer:Long = 45000 // From sharedPreference
     var expireTimeStamp:Long = 0L // put it in sharedPreference
 
@@ -25,10 +26,18 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
        // val sp = cont.getSharedPreferences("app_data", 0)
          expireTimeStamp = ConvertMinutesTimeToHHMMString(expiresFromServer) // put it in sharedPreference
 
-//        if (sp!!.getLong("expires_in", 0) - sp.getLong("time_delta", 0) - System.currentTimeMillis() / 1000 <= 60 && !sp.getString("refresh_token", "")!!.isBlank()) updateAccessToken(cont)
-        if (expireTimeStamp - System.currentTimeMillis()  <= 60 && !refreshToken.isBlank()) updateAccessToken(cont)
+        Log.e(" expireTimeStamp: " , expireTimeStamp.toString() )
+        val diff = expireTimeStamp - System.currentTimeMillis()
+        Log.e( "expireTimeStamp_currentSystem" , System.currentTimeMillis().toString())
+        Log.e( "expireTimeStamp_diff" , diff.toString())
 
-        val initialRequest = if (expireTimeStamp - System.currentTimeMillis()  <= 60 && !refreshToken.isBlank()) {
+
+        if (expireTimeStamp - System.currentTimeMillis()  <= 2774674 && !refreshToken.isBlank())
+        {
+            updateAccessToken(cont)
+        }
+
+        val initialRequest = if (expireTimeStamp - System.currentTimeMillis()  <= 2774674 && !refreshToken.isBlank()) {
             updateAccessToken(cont)
             requestBuilder(chain)
         } else {
@@ -38,7 +47,10 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
 
         val initialResponse = chain.proceed(initialRequest)
 
-        return if (initialResponse.code == 401 && !refreshToken.isNullOrBlank() && expireTimeStamp - System.currentTimeMillis() / 1000 <= 60) {
+        return if (initialResponse.code == 401 && !refreshToken.isNullOrBlank() && expireTimeStamp - System.currentTimeMillis() <= 2774674) {
+            val errorBody = initialResponse.message
+
+            Log.e(" errorBody "  ,  errorBody)
             updateAccessToken(cont)
             initialResponse.close()
             val authorizedRequest = initialRequest
@@ -56,7 +68,7 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
                 val thread = object : Thread() {
                     override fun run() {
                         Looper.prepare()
-                        Logger("token",true).log(" errorBody: $errorBody ")
+                        Log.e(" errorBody "  ,  errorBody)
                      //   Toast.makeText(cont, cont.getString(R.string.server_error_500), Toast.LENGTH_SHORT).show()
                         Looper.loop()
                     }
@@ -83,9 +95,9 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
 
 
 
-              //  accessToken = responseBody?.accessToken.toString() // TODO: Handel null value
-                //refreshToken = responseBody?.refreshToken.toString() //TODO: Handel null value
-                //expiresFromServer = responseBody?.expiresIn ?: 0L
+                accessToken = responseBody?.access_token.toString() // TODO: Handel null value
+                refreshToken = responseBody?.refresh_token.toString() //TODO: Handel null value
+                expiresFromServer = responseBody?.expires_in ?: 0L
                 expireTimeStamp = ConvertMinutesTimeToHHMMString(expiresFromServer)
 /*         editor.putString("access_token", Objects.requireNonNull<ResNewTokens>(responseBody).access_token).apply()
                 editor.putString("refresh_token", Objects.requireNonNull<ResNewTokens>(responseBody).refresh_token).apply()
@@ -97,7 +109,7 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
                         val thread = object : Thread() {
                             override fun run() {
                                 Looper.prepare()
-                                Logger("token",true).log("500-> errorBody: ${tokensCall.errorBody()} , msg: ${tokensCall.message()} ")
+                                Log.e(" errorBody "  ,  tokensCall.errorBody().toString())
                                 Looper.loop()
                             }
                         }
@@ -105,10 +117,15 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
                     }
 
                     401 -> {
-                        Logger("token",true).log("401-> errorBody: ${tokensCall.errorBody()} , msg: ${tokensCall.message()} ")
+                        Log.e(" errorBody "  ,  tokensCall.errorBody().toString())
 
 //                        Singleton.logOut(context)
                     }
+                    400->{
+                        Log.e(" errorBody "  ,  tokensCall.errorBody().toString())
+
+                    }
+                    else -> {}
                 }
             }
 

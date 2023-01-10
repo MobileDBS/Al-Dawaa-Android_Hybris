@@ -9,6 +9,6 @@ interface RefreshTokenApiInterface {
                        @Query("client_secret") client_secret:String="Aldawaa@123",
                        @Query("grant_type") grant_type:String="refresh_token",
                        @Query("refresh_token") refresh_token:String)
-    : Call<String>
+    : Call<AccessTokenResponseModel>
 
 }

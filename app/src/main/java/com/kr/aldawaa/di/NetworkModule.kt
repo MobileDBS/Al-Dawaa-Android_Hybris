@@ -40,13 +40,6 @@ object NetworkModule {
         val okHttpClient = OkHttpClient().newBuilder()
         okHttpClient
             .addInterceptor(authInterceptor)
-            /*       .addInterceptor { chain ->
-                       val request: Request = chain.request().newBuilder().addHeader("MobileType", "android").build()
-                       chain.proceed(request)
-                   }*/
-            /*         .aut
-   henticator(authenticator)
-            .addInterceptor(interceptor)*/
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .writeTimeout(90, TimeUnit.SECONDS)
@@ -127,15 +120,14 @@ object NetworkModule {
             .client(okHttpClient.build())
             .build()
 
-
         return retrofit.create(RefreshTokenApiInterface::class.java)
     }
-
-    @Provides
-    @Singleton
-    fun provideRefreshTokenApiService(retrofit: Retrofit): RefreshTokenApiInterface {
-        return retrofit.create(RefreshTokenApiInterface::class.java)
-
-
-    }
+//
+//    @Provides
+//    @Singleton
+//    fun provideRefreshTokenApiService(retrofit: Retrofit): RefreshTokenApiInterface {
+//        return retrofit.create(RefreshTokenApiInterface::class.java)
+//
+//
+//    }
 }
