@@ -131,6 +131,9 @@ dependencies {
     //google permission
     implementation(Google.googlePermission)
 
+    //logger
+    implementation(Retrofit.logger)
+
 
 
 }

@@ -20,7 +20,7 @@ class LoginViewModel @Inject constructor(
     private val _state = mutableStateOf(LoginState())
     val state: State<LoginState> = _state
     init {
-        login("0562137538", "123456")
+        login("eslam@ali.com", "Eslam@123")
     }
 
     private fun login(identity :String , password :String) {

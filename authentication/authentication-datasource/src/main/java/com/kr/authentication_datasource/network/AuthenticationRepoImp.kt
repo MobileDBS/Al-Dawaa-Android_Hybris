@@ -8,11 +8,8 @@ import javax.inject.Inject
 class AuthenticationRepoImp @Inject constructor(private val apiInterface: ApiInterface) {
 
     suspend fun loginRequest(identity :String , password :String ): LoginResponse {
-        val loginRequest = LoginRequest(identity , password , "");
+        val loginRequest = LoginRequest(username = identity , password = password )
         return apiInterface.login(
-            "",
-            "english",
-          loginRequest
         )
 
     }
