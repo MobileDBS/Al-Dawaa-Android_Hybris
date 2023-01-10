@@ -36,7 +36,8 @@ object NetworkModule {
                        val request: Request = chain.request().newBuilder().addHeader("MobileType", "android").build()
                        chain.proceed(request)
                    }*/
-   /*         .authenticator(authenticator)
+   /*         .aut
+   henticator(authenticator)
             .addInterceptor(interceptor)*/
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
