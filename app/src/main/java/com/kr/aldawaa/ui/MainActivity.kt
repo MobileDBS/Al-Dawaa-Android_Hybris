@@ -39,6 +39,7 @@ import com.kr.components.StartPermissionSetting
 import com.kr.components.slider.AutoSliding
 import com.kr.components.ui.theme.AlDawaaHybrisTheme
 import com.kr.components.ui.theme.PrimaryColor
+import com.kr.core.ConvertMinutesTimeToHHMMString
 import com.kr.network.NetworkConnectivityObserver
 import com.kr.ui_categories.ui.categoriesui.CategoriesViewModel
 import com.kr.ui_entry.ui.twitterAuthentication.TwitterConstants
@@ -88,7 +89,7 @@ class MainActivity : ComponentActivity(),LocationClass.Interface {
     @OptIn(ExperimentalPagerApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        ConvertMinutesTimeToHHMMString(45000L)
         coroutineScope.launch(Dispatchers.IO) {
             val results = coroutineScope.async { isLoggedIn() }
             val result = results.await()

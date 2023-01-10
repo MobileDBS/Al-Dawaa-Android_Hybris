@@ -3,6 +3,8 @@ package com.kr.aldawaa.di
 import android.app.Application
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.kr.aldawaa.network.AuthToken
+import com.kr.aldawaa.network.RefreshTokenApiInterface
 import com.kr.authentication_datasource.network.ApiInterface
 import com.kr.categories_datasource.network.CategoriesApiInterface
 import com.kr.core.Constants.BASE_URL
@@ -30,8 +32,10 @@ object NetworkModule {
     @Singleton
     //logger: HttpLoggingInterceptor,authenticator: TokenAuthenticator,interceptor: NoConnectionInterceptor
     fun provideOkHttpClient(logger: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(@ApplicationContext context: Context,authInterceptor: AuthToken): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
         okHttpClient
+           .addInterceptor(authInterceptor)
             /*       .addInterceptor { chain ->
                        val request: Request = chain.request().newBuilder().addHeader("MobileType", "android").build()
                        chain.proceed(request)
@@ -44,6 +48,8 @@ object NetworkModule {
             .writeTimeout(90, TimeUnit.SECONDS)
 
         if (com.kr.aldawaa.BuildConfig.DEBUG) {
+
+ /*       if (BuildConfig.DEBUG) {
             okHttpClient.addInterceptor(logger)
         }
         return okHttpClient.build()
@@ -79,6 +85,13 @@ object NetworkModule {
     fun provideConnectivityObserver(@ApplicationContext application: Context): NetworkConnectivityObserver {
         return NetworkConnectivityObserver(application)
     }
+    @Provides
+    @Singleton
+    fun provideTokenInterceptor(
+        @ApplicationContext context: Context, refreshTokenApiInterface: RefreshTokenApiInterface
+    ): AuthToken {
+        return AuthToken(context, refreshTokenApiInterface)
+    }
 
     @Provides
     @Singleton
@@ -91,5 +104,28 @@ object NetworkModule {
     fun provideLoggerInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
+
+    @Provides
+    @Singleton
+    fun provideRefreshTokenApiService(converterFactory: Converter.Factory): RefreshTokenApiInterface {
+        val okHttpClient = OkHttpClient().newBuilder()
+        val retrofit = Retrofit.Builder()
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addConverterFactory(converterFactory)
+            .baseUrl(BASE_URL)
+            .client(okHttpClient.build())
+            .build()
+
+//        if (BuildConfig.DEBUG) {
+//            okHttpClient.addInterceptor(chuckerInterceptor)
+//        }
+
+        return retrofit.create(RefreshTokenApiInterface::class.java)
+    }
+   /* @Provides
+    @Singleton
+    fun provideRefreshTokenApiService(retrofit: Retrofit): RefreshTokenApiInterface {
+        return retrofit.create(RefreshTokenApiInterface::class.java)
+    }*/
 
 }

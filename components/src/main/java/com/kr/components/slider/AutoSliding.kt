@@ -45,9 +45,9 @@ fun AutoSliding(sliderBgColor:Color) {
     LaunchedEffect(Unit) {
         Log.v("pagerState"," inside while ${pagerState.currentPage}")
         while (true) {
-            yield()
+            yield() //it can stop the currently executing thread and will give a chance to other waiting threads of the same priority
             delay(200)
-            tween<Float>(100)
+            tween<Float>(100) //duration of the animation spec
             pagerState.animateScrollToPage(
                 page = (pagerState.currentPage + 1) % (pagerState.pageCount)
             )
@@ -85,6 +85,7 @@ fun AutoSliding(sliderBgColor:Color) {
         ) { page ->
             Card(
                 modifier = Modifier
+                    //graphicsLayer : can be used to apply effects to content, such as scaling, rotation, opacity, shadow, and clipping.
                     .graphicsLayer {
                         val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
                         lerp(
@@ -100,7 +101,7 @@ fun AutoSliding(sliderBgColor:Color) {
                     .padding(15.dp, 0.dp, 15.dp, 0.dp),
                 shape = RoundedCornerShape(20.dp)
             ) {
-                val natural = natural[page]
+                val natural = natural[page] //Our data class
                 // Log.v("page"," is: $page")
 // Later, scroll to page 2
                 scope.launch {
@@ -152,7 +153,6 @@ fun AutoSliding(sliderBgColor:Color) {
                             factory = { ratingBar },
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 0.dp)
                         )*/
-
                         Text(
                             text = natural.desc,
                             style = MaterialTheme.typography.bodyMedium,
@@ -160,6 +160,7 @@ fun AutoSliding(sliderBgColor:Color) {
                             fontWeight = FontWeight.Normal,
                             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 0.dp)
                         )
+
                     }
                     //Horizontal dot indicator
                     Column(
