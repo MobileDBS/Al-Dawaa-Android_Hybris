@@ -22,7 +22,7 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
     var expireTimeStamp:Long = 0L // put it in sharedPreference
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val sp = cont.getSharedPreferences("app_data", 0)
+       // val sp = cont.getSharedPreferences("app_data", 0)
          expireTimeStamp = ConvertMinutesTimeToHHMMString(expiresFromServer) // put it in sharedPreference
 
 //        if (sp!!.getLong("expires_in", 0) - sp.getLong("time_delta", 0) - System.currentTimeMillis() / 1000 <= 60 && !sp.getString("refresh_token", "")!!.isBlank()) updateAccessToken(cont)
@@ -69,26 +69,28 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
 
 
     private fun updateAccessToken(context: Context) {
-        val sp = context.getSharedPreferences("app_data", 0)
+      //  val sp = context.getSharedPreferences("app_data", 0)
         synchronized(this) {
             val tokensCall =  refreshTokenApiInterface.getAccessToken(refresh_token = refreshToken).execute()
 
 
             if (tokensCall.isSuccessful) {
                 val responseBody = tokensCall.body()
-                val editor = sp.edit()
+             //   val editor = sp.edit()
 
-               /* val localTime = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH).parse(tokensCall.headers()["Date"]!!)
-                Singleton.setServerTime(localTime!!.time / 1000, context)
-*/
+ //val localTime = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH).parse(tokensCall.headers()["Date"]!!)
+               // Singleton.setServerTime(localTime!!.time / 1000, context)
 
-                accessToken = responseBody?.accessToken.toString() // TODO: Handel null value
-                refreshToken = responseBody?.refreshToken.toString() //TODO: Handel null value
-                expiresFromServer = responseBody?.expiresIn ?: 0L
+
+
+              //  accessToken = responseBody?.accessToken.toString() // TODO: Handel null value
+                //refreshToken = responseBody?.refreshToken.toString() //TODO: Handel null value
+                //expiresFromServer = responseBody?.expiresIn ?: 0L
                 expireTimeStamp = ConvertMinutesTimeToHHMMString(expiresFromServer)
-       /*         editor.putString("access_token", Objects.requireNonNull<ResNewTokens>(responseBody).access_token).apply()
+/*         editor.putString("access_token", Objects.requireNonNull<ResNewTokens>(responseBody).access_token).apply()
                 editor.putString("refresh_token", Objects.requireNonNull<ResNewTokens>(responseBody).refresh_token).apply()
                 editor.putLong("expires_in", responseBody!!.expires_in!!).apply()*/
+
             } else {
                 when (tokensCall.code()) {
                     500 -> {
@@ -122,11 +124,11 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
             .build()
     }
 
-/*
-    private fun accessTokenApi(): RefreshTokenApiInterface {
-*/
-/*        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY*//*
+  /*  private fun accessTokenApi(): RefreshTokenApiInterface {
+
+
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
 
 
         val dispatcher = Dispatcher()
@@ -145,5 +147,6 @@ class AuthToken @Inject constructor(context: Context,val refreshTokenApiInterfac
 
         return retrofit.create(APIService::class.java)
     }
+
 */
 }

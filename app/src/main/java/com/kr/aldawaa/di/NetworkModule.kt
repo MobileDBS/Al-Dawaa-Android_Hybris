@@ -32,10 +32,10 @@ object NetworkModule {
     @Provides
     @Singleton
     //logger: HttpLoggingInterceptor,authenticator: TokenAuthenticator,interceptor: NoConnectionInterceptor
-    fun provideOkHttpClient(@ApplicationContext context: Context/*,authInterceptor: AuthToken*/): OkHttpClient {
+    fun provideOkHttpClient(@ApplicationContext context: Context,authInterceptor: AuthToken): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
         okHttpClient
-          // .addInterceptor(authInterceptor)
+           .addInterceptor(authInterceptor)
             /*       .addInterceptor { chain ->
                        val request: Request = chain.request().newBuilder().addHeader("MobileType", "android").build()
                        chain.proceed(request)
@@ -84,13 +84,13 @@ object NetworkModule {
     fun provideConnectivityObserver(@ApplicationContext application: Context): NetworkConnectivityObserver {
         return NetworkConnectivityObserver(application)
     }
-//    @Provides
-//    @Singleton
-//    fun provideTokenInterceptor(
-//        context: Context, refreshTokenApiInterface: RefreshTokenApiInterface
-//    ): AuthToken {
-//        return AuthToken(context, refreshTokenApiInterface)
-//    }
+    @Provides
+    @Singleton
+    fun provideTokenInterceptor(
+        @ApplicationContext context: Context, refreshTokenApiInterface: RefreshTokenApiInterface
+    ): AuthToken {
+        return AuthToken(context, refreshTokenApiInterface)
+    }
 
     @Provides
     @Singleton
@@ -98,10 +98,27 @@ object NetworkModule {
         return retrofit.create(CategoriesApiInterface::class.java)
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideRefreshTokenApiService(retrofit: Retrofit): RefreshTokenApiInterface {
-//        return retrofit.create(RefreshTokenApiInterface::class.java)
-//    }
+    @Provides
+    @Singleton
+    fun provideRefreshTokenApiService(converterFactory: Converter.Factory): RefreshTokenApiInterface {
+        val okHttpClient = OkHttpClient().newBuilder()
+        val retrofit = Retrofit.Builder()
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addConverterFactory(converterFactory)
+            .baseUrl(BASE_URL)
+            .client(okHttpClient.build())
+            .build()
+
+//        if (BuildConfig.DEBUG) {
+//            okHttpClient.addInterceptor(chuckerInterceptor)
+//        }
+
+        return retrofit.create(RefreshTokenApiInterface::class.java)
+    }
+   /* @Provides
+    @Singleton
+    fun provideRefreshTokenApiService(retrofit: Retrofit): RefreshTokenApiInterface {
+        return retrofit.create(RefreshTokenApiInterface::class.java)
+    }*/
 
 }

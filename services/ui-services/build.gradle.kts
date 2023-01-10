@@ -1,11 +1,12 @@
-
 apply{
     from("$rootDir/android-library-build.gradle")
 }
-plugins {
+apply(plugin = "org.jetbrains.kotlin.android")
+
+/*plugins {
     kotlin(KotlinPlugins.serialization) version Kotlin.version
     id("org.jetbrains.kotlin.android")
-}
+}*/
 dependencies{
 
     "implementation"(project(Modules.components))
@@ -14,7 +15,5 @@ dependencies{
     "implementation"(Camera.cameraxlife)
     "implementation"(Compose.permissions)
     "implementation"(project(Modules.servicesDomain))
-
-
 
 }

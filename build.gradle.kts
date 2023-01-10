@@ -16,7 +16,6 @@ buildscript {
         // in the individual module build.gradle files
 
     }
-
 }
 
 tasks.register("clean", Delete::class) {
