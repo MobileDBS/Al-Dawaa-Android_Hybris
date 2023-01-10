@@ -24,7 +24,7 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun login(identity :String , password :String) {
-       userCase(identity , password).onEach { result ->
+       userCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.value = LoginState(user = result.data)

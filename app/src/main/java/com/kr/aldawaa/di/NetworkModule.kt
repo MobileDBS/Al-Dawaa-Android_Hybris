@@ -3,6 +3,7 @@ package com.kr.aldawaa.di
 import android.app.Application
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.kr.aldawaa.BuildConfig
 import com.kr.aldawaa.network.AuthToken
 import com.kr.aldawaa.network.RefreshTokenApiInterface
 import com.kr.authentication_datasource.network.ApiInterface
@@ -31,28 +32,31 @@ object NetworkModule {
     @Provides
     @Singleton
     //logger: HttpLoggingInterceptor,authenticator: TokenAuthenticator,interceptor: NoConnectionInterceptor
-    fun provideOkHttpClient(logger: HttpLoggingInterceptor): OkHttpClient {
-    fun provideOkHttpClient(@ApplicationContext context: Context,authInterceptor: AuthToken): OkHttpClient {
+    fun provideOkHttpClient(
+        logger: HttpLoggingInterceptor,
+        @ApplicationContext context: Context,
+        authInterceptor: AuthToken
+    ): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
         okHttpClient
-           .addInterceptor(authInterceptor)
+            .addInterceptor(authInterceptor)
             /*       .addInterceptor { chain ->
                        val request: Request = chain.request().newBuilder().addHeader("MobileType", "android").build()
                        chain.proceed(request)
                    }*/
-   /*         .aut
+            /*         .aut
    henticator(authenticator)
             .addInterceptor(interceptor)*/
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .writeTimeout(90, TimeUnit.SECONDS)
 
-        if (com.kr.aldawaa.BuildConfig.DEBUG) {
-
- /*       if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             okHttpClient.addInterceptor(logger)
         }
+
         return okHttpClient.build()
+
     }
 
     @Provides
@@ -64,9 +68,13 @@ object NetworkModule {
                 .build()
         )
     }
+
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: Converter.Factory): Retrofit {
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        converterFactory: Converter.Factory
+    ): Retrofit {
         return Retrofit.Builder()
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(converterFactory)
@@ -74,6 +82,7 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
     }
+
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiInterface {
@@ -85,17 +94,19 @@ object NetworkModule {
     fun provideConnectivityObserver(@ApplicationContext application: Context): NetworkConnectivityObserver {
         return NetworkConnectivityObserver(application)
     }
+
     @Provides
     @Singleton
     fun provideTokenInterceptor(
-        @ApplicationContext context: Context, refreshTokenApiInterface: RefreshTokenApiInterface
+        @ApplicationContext context: Context,
+        refreshTokenApiInterface: RefreshTokenApiInterface
     ): AuthToken {
         return AuthToken(context, refreshTokenApiInterface)
     }
 
     @Provides
     @Singleton
-    fun providApiService(retrofit: Retrofit): CategoriesApiInterface  {
+    fun providApiService(retrofit: Retrofit): CategoriesApiInterface {
         return retrofit.create(CategoriesApiInterface::class.java)
     }
 
@@ -116,16 +127,15 @@ object NetworkModule {
             .client(okHttpClient.build())
             .build()
 
-//        if (BuildConfig.DEBUG) {
-//            okHttpClient.addInterceptor(chuckerInterceptor)
-//        }
 
         return retrofit.create(RefreshTokenApiInterface::class.java)
     }
-   /* @Provides
+
+    @Provides
     @Singleton
     fun provideRefreshTokenApiService(retrofit: Retrofit): RefreshTokenApiInterface {
         return retrofit.create(RefreshTokenApiInterface::class.java)
-    }*/
 
+
+    }
 }
